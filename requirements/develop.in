@@ -1,0 +1,5 @@
+-r base.in # includes the base.in requirements file
+
+Sphinx>=4.5.0
+coverage==6.3.2
+pre-commit==2.17.0
