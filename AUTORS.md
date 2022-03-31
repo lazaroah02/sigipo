@@ -1,11 +1,9 @@
 # Credits
 
-Development Lead
-----------------
+## Development Lead
 
-* Reinier Hernández <sasuke.reinier@gmail.com>
+- Reinier Hernández <sasuke.reinier@gmail.com>
 
-Contributors
-------------
+## Contributors
 
 None yet. Why not be the first?

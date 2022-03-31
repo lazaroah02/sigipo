@@ -1,0 +1,37 @@
+{
+  "name": "gpdb",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "author": "gpdb",
+  "license": "private",
+  "engines": {
+    "node": "15.x"
+  },
+  "scripts": {
+    "start_django": "python manage.py runserver"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ]
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "globals": {
+      "django": "readonly",
+      "Chart": "readonly",
+      "L": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.5"
+  }
+}
