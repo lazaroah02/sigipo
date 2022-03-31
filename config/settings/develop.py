@@ -18,3 +18,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "sigipo", "media")
 
 # email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+THIRD_PARTY_APPS = ["django_linear_migrations", "django_extensions", "debug_toolbar"]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "localhost",
+]
