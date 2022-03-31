@@ -31,7 +31,7 @@ jobs:
     - name: Update Coverage
       run: |
         pip install coverage-badge
-        coverage-badge -o coverage.svg
+        coverage-badge -o coverage.svg -f
     - name: Commit badge
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
