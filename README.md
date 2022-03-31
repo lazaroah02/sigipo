@@ -2,9 +2,7 @@
 
 Sistema Informático Integral de gestión del paciente Oncológico
 
-![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg)
-
-![pre-commit](https://github.com/UHo-GPDB/sigipo/actions/workflows/pre-commit.yml/badge.svg)
+![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg) ![pre-commit](https://github.com/UHo-GPDB/sigipo/actions/workflows/pre-commit.yml/badge.svg) ![Code Coverage](./coverage.svg)
 
 ## License
 
