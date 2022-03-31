@@ -14,7 +14,7 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # JSON-based secrets module
-try:
+try:  # pragma: no cover
     with open(os.path.join(BASE_DIR, "secrets.json")) as f:
         secrets = json.loads(f.read())
 except FileNotFoundError:
@@ -24,9 +24,9 @@ except FileNotFoundError:
 
 def get_secret(setting, default=None, secret_file=secrets):
     """Get the secret variable or return explicit exception."""
-    try:
+    try:  # pragma: no cover
         return secret_file[setting]
-    except KeyError:
+    except KeyError:  # pragma: no cover
         if default:
             return default
         else:
@@ -37,9 +37,9 @@ def get_secret(setting, default=None, secret_file=secrets):
 # env-based secrets module
 def get_env_variable(var_name):
     """Get the environment variable or return exception."""
-    try:
+    try:  # pragma: no cover
         return os.environ[var_name]
-    except KeyError:
+    except KeyError:  # pragma: no cover
         error_msg = f"Set the {var_name} environment variable"
         raise ImproperlyConfigured(error_msg)
 
