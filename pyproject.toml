@@ -3,3 +3,8 @@ target-version = ['py310']
 
 [tool.isort]
 profile = "black"
+
+[tool.djlint]
+ignore="H016,H030,H031"
+quiet=true
+indent=2

@@ -4,9 +4,12 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
+from apps.accounts.views import asdf
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("apps.accounts.urls")),
+    path("test/", asdf),
 ]
 
 if settings.DEBUG:  # pragma: no cover
