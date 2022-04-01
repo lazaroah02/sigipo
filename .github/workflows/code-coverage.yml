@@ -34,11 +34,17 @@ jobs:
         coverage-badge -o coverage.svg -f
     - name: Commit badge
       run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add coverage.svg
-        git commit -m "Update badge"
+        if git diff --exit-code; then
+          echo "ANYTHING_TO_COMMIT=false" >> $GITHUB_ENV
+        else
+          echo "ANYTHING_TO_COMMIT=true" >> $GITHUB_ENV
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add coverage.svg
+          git commit -m "Update badge"
+        fi
     - name: Push changes
+      if: ${{ env.ANYTHING_TO_COMMIT }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
