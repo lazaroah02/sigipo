@@ -21,6 +21,9 @@
         2
       ]
     },
+    "ignorePatterns": [
+      "bootstrap.bundle.min.js"
+    ],
     "env": {
       "browser": true,
       "es6": true
