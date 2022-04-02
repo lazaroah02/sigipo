@@ -1,0 +1,115 @@
+[
+    {
+        "model": "geographic_location.province",
+        "pk": 1,
+        "fields": {
+            "name": "Pinar del Río"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 2,
+        "fields": {
+            "name": "La Habana"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 3,
+        "fields": {
+            "name": "Artemisa"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 4,
+        "fields": {
+            "name": "Mayabeque"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 5,
+        "fields": {
+            "name": "Matanzas"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 6,
+        "fields": {
+            "name": "Villa Clara"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 7,
+        "fields": {
+            "name": "Cienfuegos"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 8,
+        "fields": {
+            "name": "Sáncti Spíritus"
+        }
+    },
+
+    {
+        "model": "geographic_location.province",
+        "pk": 9,
+        "fields": {
+            "name": "Ciego de Ávila"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 10,
+        "fields": {
+            "name": "Camagüey"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 11,
+        "fields": {
+            "name": "Las Tunas"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 12,
+        "fields": {
+            "name": "Holguín"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 13,
+        "fields": {
+            "name": "Granma"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 14,
+        "fields": {
+            "name": "Santiago de Cuba"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 15,
+        "fields": {
+            "name": "Guantánamo"
+        }
+    },
+    {
+        "model": "geographic_location.province",
+        "pk": 16,
+        "fields": {
+            "name": "Isla de la Juventud"
+        }
+    }
+]
