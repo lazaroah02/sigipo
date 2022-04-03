@@ -1,5 +1,5 @@
 default_language_version:
-  python: python3.8
+  python: python3.10
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -26,7 +26,7 @@ repos:
     - --config=package.json
     - --fix
     additional_dependencies:
-    - eslint@8.8.0
+    - eslint@8.12.0
 - repo: https://github.com/thibaudcolas/curlylint
   rev: v0.13.1
   hooks:
