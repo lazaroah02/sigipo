@@ -56,6 +56,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "django_version_checks",
+    "django_filters",
 ]
 
 LOCAL_APPS = [

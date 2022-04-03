@@ -1,3 +1,4 @@
 Django~=3.2
 Pillow>=7.0.0
 django-version-checks==1.5.0
+django-filter==21.1

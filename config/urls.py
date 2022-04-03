@@ -8,8 +8,9 @@ from apps.accounts.views import asdf
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("apps.accounts.urls")),
+    # path("accounts/", include("apps.accounts.urls")),
     path("test/", asdf),
+    path("geographic_location/", include("apps.geographic_location.urls")),
 ]
 
 if settings.DEBUG:  # pragma: no cover

@@ -12,6 +12,7 @@
     </title>
     <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/external/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/external/all.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/internal/main-style.css' %}"/>
     {% block styles %}
     {% endblock styles %}
@@ -47,21 +48,18 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle"
                  href="#"
-                 id="navbarDropdownMenuLink"
+                 id="geographicLocatioDropDownn"
                  role="button"
                  data-bs-toggle="dropdown"
                  aria-expanded="false">
-                Dropdown link
+                 <i class="fa-solid fa-earth-americas"></i> Ubicaci&oacute;n geogr&aacute;fica
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <ul class="dropdown-menu" aria-labelledby="geographicLocationDropDown">
                 <li>
-                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Provincia</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Another action</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">Municipio</a>
                 </li>
               </ul>
             </li>

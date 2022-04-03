@@ -5,6 +5,6 @@ target-version = ['py310']
 profile = "black"
 
 [tool.djlint]
-ignore="H016,H030,H031"
+ignore="H016,H023,H030,H031"
 quiet=true
 indent=2
