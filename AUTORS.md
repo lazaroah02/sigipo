@@ -3,7 +3,6 @@
 ## Development Lead
 
 - Reinier Hernández <sasuke.reinier@gmail.com>
+- Eduardo Leyva <lordedward98@gmail.com>
 
 ## Contributors
-
-None yet. Why not be the first?

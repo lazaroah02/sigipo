@@ -55,7 +55,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # graphene_django and other cool stuff
+    "django_version_checks",
 ]
 
 LOCAL_APPS = [
@@ -156,3 +156,7 @@ LANGUAGES = [
 
 # User model
 AUTH_USER_MODEL = "accounts.User"
+
+VERSION_CHECKS = {
+    "python": ">=3.10.0,<3.11",
+}
