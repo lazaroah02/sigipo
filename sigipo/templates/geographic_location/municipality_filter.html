@@ -1,0 +1,20 @@
+{% extends "base_crud/base_list.html" %}
+
+{% block crud_columns %}
+    <th class="text-center">Nombre</th>
+    <th class="text-center">Provincia</th>
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.province }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

@@ -3,6 +3,7 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/internal/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap4.min.css' %}"/>
 {% endblock styles %}
 
 {% block content %}
@@ -36,3 +37,8 @@
     </form>
 </div>
 {% endblock content %}
+{% block endloads %}
+<script src="{% static 'js/external/es.min.js' %}"></script>
+{{ form.media.css }}
+{{ form.media.js }}
+{% endblock endloads %}

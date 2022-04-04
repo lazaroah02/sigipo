@@ -80,7 +80,7 @@ pluggy==1.0.0
     # via pytest
 pre-commit==2.17.0
     # via -r requirements/develop.in
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.29
     # via ipython
 ptyprocess==0.7.0
     # via pexpect

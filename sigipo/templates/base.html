@@ -12,12 +12,15 @@
     </title>
     <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/external/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/external/all.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/internal/main-style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/external/all.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/external/select2.min.css' %}"/>
     {% block styles %}
     {% endblock styles %}
     <!-- Scripts -->
     <script src="{% static 'js/external/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/external/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/external/select2.min.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
   </head>
@@ -56,10 +59,10 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="geographicLocationDropDown">
                 <li>
-                  <a class="dropdown-item" href="#">Provincia</a>
+                  <a class="dropdown-item" href="{% url 'geographic_location:province_list' %}">Provincia</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Municipio</a>
+                  <a class="dropdown-item" href="{% url 'geographic_location:municipality_list' %}">Municipio</a>
                 </li>
               </ul>
             </li>
@@ -69,5 +72,7 @@
     </nav>
     {% block content %}
     {% endblock content %}
+    {% block endloads %}
+    {% endblock endloads %}
   </body>
 </html>
