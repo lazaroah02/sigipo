@@ -1,7 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import CreateView
 from django_filters.views import FilterView
 
 
-class PaginationFilterView(FilterView):
+class PaginationFilterView(LoginRequiredMixin, FilterView):
     """FilterView with pagination."""
 
     paginate_by = 30
@@ -28,3 +31,33 @@ class PaginationFilterView(FilterView):
         ]
         context |= self.extra_context
         return context
+
+
+class CancelUrlMixin:
+    """Mixin to add cancel url to django generics views."""
+
+    cancel_url = None
+
+    def get_context_data(self, *args, **kwargs) -> dict:
+        """Adds given url to the context."""
+        context = super().get_context_data(*args, **kwargs)
+        context["cancel_url"] = self.cancel_url
+        return context
+
+
+class ViewTitleMixin:
+    """Mixin to view title to django generics views."""
+
+    title = None
+
+    def get_context_data(self, *args, **kwargs) -> dict:
+        """Adds given title to the context."""
+        context = super().get_context_data(*args, **kwargs)
+        context["view_title"] = self.title
+        return context
+
+
+class BaseCreateView(
+    LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, CreateView
+):
+    template_name = "base_crud/base_create.html"

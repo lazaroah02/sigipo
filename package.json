@@ -29,6 +29,7 @@
       "es6": true
     },
     "globals": {
+      "bootstrap": true,
       "django": "readonly",
       "Chart": "readonly",
       "L": true

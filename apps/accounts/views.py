@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 
 def asdf(request):
-    return render(request, "base_crud/base_crud.html", context={"crud_name": "TEST"})
+    return render(request, "base_crud/base_list.html", context={"crud_name": "TEST"})
