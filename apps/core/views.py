@@ -75,7 +75,6 @@ class GetObjectErrorMixin:
         try:
             self.object = self.get_object()
         except Http404:
-            print("asdf")
             messages.error(request, self.object_not_found_error_message)
             return redirect(self.get_cancel_url())
         return super().get(request, *args, **kwargs)
