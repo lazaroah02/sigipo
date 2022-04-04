@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import Http404, HttpRequest
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
 
@@ -101,6 +101,40 @@ class BaseUpdateView(
     template_name = "base_crud/base_update.html"
 
 
+class BaseDetailView(
+    LoginRequiredMixin,
+    GetObjectErrorMixin,
+    CancelUrlMixin,
+    ViewTitleMixin,
+    DetailView,
+):
+    """Base detail view."""
+
+    template_name = "base_crud/base_detail.html"
+    form_class = None
+
+    def get_form_for_detail(self):
+        """Returns the form_class with all the fields in readonly."""
+
+        class ReadOnlyForm(self.form_class):
+            """Helper class"""
+
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                for _, field in self.fields.items():
+                    field.widget.attrs["readonly"] = True
+
+        return ReadOnlyForm
+
+    def get_context_data(self, *args, **kwargs) -> dict:
+        """Adds given form to the context."""
+        context = super().get_context_data(*args, **kwargs)
+        form = self.get_form_for_detail()(instance=self.object)
+
+        context["form"] = form
+        return context
+
+
 class BaseDeleteView(
     LoginRequiredMixin,
     SuccessMessageMixin,
@@ -122,7 +156,7 @@ class BaseDeleteView(
             self.object = self.get_object()
             success_url = self.get_success_url()
             self.object.delete()
-            success_message = self.get_success_message(self.object)
+            success_message = self.get_success_message(self.object.__dict__)
             messages.success(self.request, success_message)
             return redirect(success_url)
         except Http404:
