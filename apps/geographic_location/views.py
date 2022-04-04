@@ -20,4 +20,5 @@ class ProvinceUpdateView(BaseUpdateView):
     success_url = reverse_lazy("geographic_location:province_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:province_list"
+    object_not_found_error_message = "Provincia no encontrada"
     title = "Editar provincia"

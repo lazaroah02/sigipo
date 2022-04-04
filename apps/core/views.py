@@ -1,6 +1,10 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView, UpdateView
+from django.http import Http404, HttpRequest
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, UpdateView
 from django_filters.views import FilterView
 
 
@@ -44,6 +48,10 @@ class CancelUrlMixin:
         context["cancel_url"] = self.cancel_url
         return context
 
+    def get_cancel_url(self):
+        """Returns cancel url."""
+        return reverse_lazy(self.cancel_url)
+
 
 class ViewTitleMixin:
     """Mixin to view title to django generics views."""
@@ -57,13 +65,66 @@ class ViewTitleMixin:
         return context
 
 
+class GetObjectErrorMixin:
+    """Generate user friendly message for object not found exception."""
+
+    object_not_found_error_message = None
+
+    def get(self, request: HttpRequest, *args, **kwargs):
+        """Override get_object to handle object not found exception."""
+        try:
+            self.object = self.get_object()
+        except Http404:
+            print("asdf")
+            messages.error(request, self.object_not_found_error_message)
+            return redirect(self.get_cancel_url())
+        return super().get(request, *args, **kwargs)
+
+
 class BaseCreateView(
     LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, CreateView
 ):
+    """Base create view."""
+
     template_name = "base_crud/base_create.html"
 
 
 class BaseUpdateView(
-    LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, UpdateView
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    GetObjectErrorMixin,
+    CancelUrlMixin,
+    ViewTitleMixin,
+    UpdateView,
 ):
+    """Base update view."""
+
     template_name = "base_crud/base_update.html"
+
+
+class BaseDeleteView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    GetObjectErrorMixin,
+    CancelUrlMixin,
+    ViewTitleMixin,
+    DeleteView,
+):
+    """Base delete view."""
+
+    template_name = "base_crud/base_delete.html"
+
+    def delete(self, request: HttpRequest, *args, **kwargs):
+        """
+        Call the delete() method on the fetched object and then redirect to the
+        success URL.
+        """
+        try:
+            self.object = self.get_object()
+            success_url = self.get_success_url()
+            self.object.delete()
+            success_message = self.get_success_message(self.object)
+            messages.success(self.request, success_message)
+            return redirect(success_url)
+        except Http404:
+            messages.error(self.request, self.object_not_found_error_message)

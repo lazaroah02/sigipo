@@ -17,6 +17,7 @@ urlpatterns = [
                 "add_url": "geographic_location:province_create",
                 "crud_instance_name": "provincia",
                 "edit_url": "geographic_location:province_update",
+                "delete_url": "geographic_location:province_delete",
             },
         ),
         name="province_list",
@@ -35,5 +36,10 @@ urlpatterns = [
         "province/update/<pk>/",
         ProvinceUpdateView.as_view(),
         name="province_update",
+    ),
+    path(
+        "province/delete/<pk>/",
+        ProvinceUpdateView.as_view(),
+        name="province_delete",
     ),
 ]
