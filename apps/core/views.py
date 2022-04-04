@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django_filters.views import FilterView
 
 
@@ -61,3 +61,9 @@ class BaseCreateView(
     LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, CreateView
 ):
     template_name = "base_crud/base_create.html"
+
+
+class BaseUpdateView(
+    LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, UpdateView
+):
+    template_name = "base_crud/base_update.html"
