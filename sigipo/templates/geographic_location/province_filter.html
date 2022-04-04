@@ -1,0 +1,18 @@
+{% extends "base_crud/base_crud.html" %}
+
+{% block crud_columns %}
+    <th class="text-center">Nombre</th>
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.name }}</td>
+            <td>
+                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

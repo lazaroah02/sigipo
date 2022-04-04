@@ -10,115 +10,51 @@
         <h1>{{ crud_name }}</h1>
         <div class="table-responsive">
             <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col">
-                            <input id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"/>
-                        </div>
-                        <div class="col">
-                            <input id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"/>
-                        </div>
-                        <div class="col">
-                            <input id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"/>
-                        </div>
-                        <div class="col">
-                            <input id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"/>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>
-                        </div>
-                    </div>
+                <div class="table-filters">
+                    {% block table_filters %}
+                    <h2>Filtro(s):</h2>
+                        <form method="get" class="row">
+                            {% block model_filters %}
+                                {% for field in filter.form.visible_fields %}
+                                    <div class="col">{{ field }}</div>
+                                {% endfor %}
+                            {% endblock model_filters %}
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-info mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                            </div>
+                            <div class="col-auto">
+                                <a href="?" class="btn btn-warning mb-3"><i class="fa-solid fa-ban"></i> Quitar filtros</a>
+                            </div>
+                        </form>
+                        <hr/>
+                    {% endblock table_filters %}
                 </div>
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name <i class="fa fa-sort"></i></th>
-                            <th>Address</th>
-                            <th>City <i class="fa fa-sort"></i></th>
-                            <th>Pin Code</th>
-                            <th>Country <i class="fa fa-sort"></i></th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Thomas Hardy</td>
-                            <td>89 Chiaroscuro Rd.</td>
-                            <td>Portland</td>
-                            <td>97219</td>
-                            <td>USA</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Maria Anders</td>
-                            <td>Obere Str. 57</td>
-                            <td>Berlin</td>
-                            <td>12209</td>
-                            <td>Germany</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Dominique Perrier</td>
-                            <td>25, rue Lauriston</td>
-                            <td>Paris</td>
-                            <td>75016</td>
-                            <td>France</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Martin Blank</td>
-                            <td>Via Monte Bianco 34</td>
-                            <td>Turin</td>
-                            <td>10100</td>
-                            <td>Italy</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                {% block table %}
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                {% block table_columns %}
+                                    {% block crud_columns %}
+                                    {% endblock crud_columns %}
+                                    <th class="text-center">Acciones</th>
+                                {% endblock table_columns %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% block table_body %}{% endblock table_body %}
+                        </tbody>
+                    </table>
+                {% endblock table %}
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">
+                        P&aacute;gina <b>{{ page_obj.number }}</b> de <b>{{ page_obj.paginator.num_pages }}</b>
+                    </div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                        <li class="page-item {% if page_obj.number == 1 %}disabled{% endif %}"><a class="page-link" href="?page=1&{{ parameters }}"><i class="fa fa-angle-double-left"></i></a></li>
+                        {% for page_number in pagination_range %}
+                            <li class="page-item {% if page_number == page_obj.number %}active{% endif %}"><a href="?page={{ page_number }}&{{ parameters }}" class="page-link">{{ page_number }}</a></li>
+                        {% endfor %}
+                        <li class="page-item {% if page_obj.number == paginator.num_pages %}disabled{% endif %}"><a href="?page={{ paginator.num_pages }}&{{ parameters }}" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
                     </ul>
                 </div>
             </div>
