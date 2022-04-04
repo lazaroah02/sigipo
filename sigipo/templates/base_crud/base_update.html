@@ -1,0 +1,6 @@
+{% extends "base_crud/base_create.html" %}
+
+{% block action-buttons %}
+    <button type="submit" class="btn btn-info"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+    <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
+{% endblock action-buttons %}

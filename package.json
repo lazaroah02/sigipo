@@ -22,13 +22,17 @@
       ]
     },
     "ignorePatterns": [
-      "bootstrap.bundle.min.js"
+      "bootstrap.bundle.min.js",
+      "jquery-3.6.0.min.js",
+      "select2.min.js"
     ],
     "env": {
       "browser": true,
       "es6": true
     },
     "globals": {
+      "bootstrap": true,
+      "jQuery": true,
       "django": "readonly",
       "Chart": "readonly",
       "L": true

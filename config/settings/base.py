@@ -56,11 +56,14 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "django_version_checks",
+    "django_filters",
+    "django_select2",
 ]
 
 LOCAL_APPS = [
     "apps.accounts.apps.AccountsConfig",
     "apps.core.apps.CoreConfig",
+    "apps.geographic_location.apps.GeographicLocationConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -76,6 +79,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 TEMPLATES = [
     {
@@ -159,3 +164,7 @@ AUTH_USER_MODEL = "accounts.User"
 VERSION_CHECKS = {
     "python": ">=3.10.0,<3.11",
 }
+
+SELECT2_JS = ""
+SELECT2_CSS = ""
+SELECT2_I18N_PATH = ""

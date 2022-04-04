@@ -27,6 +27,10 @@ repos:
     - --fix
     additional_dependencies:
     - eslint@8.12.0
+- repo: https://github.com/Riverside-Healthcare/djLint
+  rev: 0.7.6
+  hooks:
+    - id: djlint-django
 - repo: https://github.com/thibaudcolas/curlylint
   rev: v0.13.1
   hooks:
