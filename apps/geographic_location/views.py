@@ -51,9 +51,9 @@ class ProvinceDeleteView(BaseDeleteView):
 class MunicipalityCreateView(BaseCreateView):
     model = Municipality
     form_class = MunicipalityForm
-    success_url = reverse_lazy("geographic_location:province_list")
+    success_url = reverse_lazy("geographic_location:municipality_list")
     success_message = "%(name)s guardado correctamente."
-    cancel_url = "geographic_location:province_list"
+    cancel_url = "geographic_location:municipality_list"
     title = "Añadir municipio"
 
 
@@ -77,7 +77,7 @@ class MunicipalityUpdateView(BaseUpdateView):
 
 class MunicipalityDeleteView(BaseDeleteView):
     model = Municipality
-    success_url = reverse_lazy("geographic_location:province_list")
+    success_url = reverse_lazy("geographic_location:municipality_list")
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"

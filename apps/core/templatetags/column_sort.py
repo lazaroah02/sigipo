@@ -12,7 +12,7 @@ def create_header_column(
     Generate the column with the link to sort.
     """
     url_start = context["url_lookup"]
-    print(url_start)
+    sort_url = context["url_lookup"]
     order_up = True
     first_sort = True
     if f"o={field_to_sort}" in url_start:
@@ -25,14 +25,29 @@ def create_header_column(
         url_start = url_start.replace(f"&o=-{field_to_sort}", "")
         url_start = url_start.replace(f"o=-{field_to_sort}", "")
     url_start = (url_start + "&") if url_start != "" else ""
-    print(url_start)
+    url_start = url_start if not url_start.startswith("&") else url_start[1:]
+    url_start = (
+        url_start if not url_start.endswith("&") else url_start[: len(url_start) - 1]
+    )
+    if f"o=-{field_to_sort}" in sort_url:
+        sort_url = sort_url.replace(f"&o=-{field_to_sort}", f"&o={field_to_sort}")
+        sort_url = sort_url.replace(f"o=-{field_to_sort}", f"o={field_to_sort}")
+    elif f"o={field_to_sort}" in sort_url:
+        sort_url = sort_url.replace(f"&o={field_to_sort}", f"&o=-{field_to_sort}")
+        sort_url = sort_url.replace(f"o={field_to_sort}", f"o=-{field_to_sort}")
+    else:
+        sort_url = (
+            sort_url if not sort_url.endswith("&") else sort_url[: len(sort_url) - 1]
+        )
+        sort_url = sort_url if len(sort_url) == 0 else sort_url + "&"
+        sort_url += f"o={field_to_sort}"
     return format_html(
         """
         <th class="column-sorted {classes}">
             <div>
                 {column_name}
                 <div class="sort-options {show_sort}">
-                    <a href="?{url_start}o={order}{field_to_sort}" role="button" title="{ordering_text}"><i class="fa-solid fa-sort{sort_direction}"></i></a>
+                    <a href="?{sort_url}" role="button" title="{ordering_text}"><i class="fa-solid fa-sort{sort_direction}"></i></a>
                 </div>
                 <div class="sort-options">
                     <a href="?{url_start}" class="{hide_cancel}" role="button" title="Quitar del orden"><i class="fa-solid fa-ban"></i></a>
@@ -40,7 +55,6 @@ def create_header_column(
             </div>
         </th>""",
         url_start=url_start,
-        order="" if order_up else "-",
         sort_direction="" if first_sort else "-up" if not order_up else "-down",
         field_to_sort=field_to_sort,
         column_name=column_name,
@@ -48,4 +62,5 @@ def create_header_column(
         classes=clases,
         hide_cancel="hidden" if first_sort else "",
         show_sort="show" if not first_sort else "",
+        sort_url=sort_url,
     )
