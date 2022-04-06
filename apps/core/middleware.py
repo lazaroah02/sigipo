@@ -20,5 +20,5 @@ class UserBasedExceptionMiddleware:
         return response
 
     def process_exception(self, request, exception):
-        if request.user.is_superuser and not settings.DEBUG:
+        if request.user.is_superuser and not settings.DEBUG:  # pragma: no cover
             return technical_500_response(request, *sys.exc_info())

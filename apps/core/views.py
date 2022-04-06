@@ -14,6 +14,11 @@ class PaginationFilterView(LoginRequiredMixin, FilterView):
     paginate_by = 30
     extra_context: dict = None
 
+    def get_ordering(self):
+        """Return the field or fields to use for ordering the queryset."""
+        ordering = self.request.GET.getlist(key="o", default=None)
+        return ordering if len(ordering) > 0 else None
+
     def get_context_data(self, *args, **kwargs) -> dict:
         """
         Save the url lookup filters to use it in the url links.
@@ -22,10 +27,10 @@ class PaginationFilterView(LoginRequiredMixin, FilterView):
         </a>
         """
         _request_copy = self.request.GET.copy()
-        _request_copy.__mutable = True
         parameters = _request_copy.pop("page", True) and _request_copy.urlencode()
         context = super().get_context_data(*args, **kwargs)
         context["parameters"] = parameters
+        context["url_lookup"] = self.request.GET.urlencode()
         num_pages = context["paginator"].num_pages
         current_page = context["page_obj"].number
         context["pagination_range"] = [
@@ -152,12 +157,9 @@ class BaseDeleteView(
         Call the delete() method on the fetched object and then redirect to the
         success URL.
         """
-        try:
-            self.object = self.get_object()
-            success_url = self.get_success_url()
-            self.object.delete()
-            success_message = self.get_success_message(self.object.__dict__)
-            messages.success(self.request, success_message)
-            return redirect(success_url)
-        except Http404:
-            messages.error(self.request, self.object_not_found_error_message)
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.delete()
+        success_message = self.get_success_message(self.object.__dict__)
+        messages.success(self.request, success_message)
+        return redirect(success_url)

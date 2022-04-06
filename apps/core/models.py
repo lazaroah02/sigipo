@@ -13,7 +13,8 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class SingletonModel(models.Model):
+# ! Skipped from coverage until used
+class SingletonModel(models.Model):  # pragma: no cover
     def delete(self, *args, **kwargs):
         pass
 
