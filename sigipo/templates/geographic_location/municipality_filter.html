@@ -1,8 +1,8 @@
 {% extends "base_crud/base_list.html" %}
-
+{% load column_sort %}
 {% block crud_columns %}
-    <th class="text-center">Nombre</th>
-    <th class="text-center">Provincia</th>
+    {% create_header_column 'name' 'Nombre' %}
+    {% create_header_column 'province' 'Provincia' %}
 {% endblock crud_columns %}
 
 {% block table_body %}

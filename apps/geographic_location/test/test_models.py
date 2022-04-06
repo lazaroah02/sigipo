@@ -1,5 +1,4 @@
-from django.test import TestCase
-
+from apps.core.test import TestCase
 from apps.geographic_location.factories import MunicipalityFactory, ProvinceFactory
 
 
