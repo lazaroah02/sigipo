@@ -11,14 +11,19 @@ from apps.geographic_location.views import ProvinceDeleteView
 
 
 class CancelUrlMixinTestCase(TestCase):
+    """Test case for CancelUrlMixin."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
+
         class Helper(CancelUrlMixin, ContextMixin):
             cancel_url = "admin:login"
 
         cls.mixin = Helper()
 
     def test_mixin_get_context_data(self):
+        """Test that get_context_data in CancelUrlMixin returns the cancel url."""
         self.assertIn("cancel_url", self.mixin.get_context_data())
         self.assertEqual(
             self.mixin.get_context_data()["cancel_url"],
@@ -26,6 +31,7 @@ class CancelUrlMixinTestCase(TestCase):
         )
 
     def test_mixin_get_cancel_url(self):
+        """Test that get_cancel_url in CancelUrlMixin returns the cancel url."""
         self.assertEqual(
             reverse_lazy("admin:login"),
             self.mixin.get_cancel_url(),
@@ -33,14 +39,19 @@ class CancelUrlMixinTestCase(TestCase):
 
 
 class ViewTitleMixinTestCase(TestCase):
+    """Test case for ViewTitleMixin."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
+
         class Helper(ViewTitleMixin, ContextMixin):
             title = "randomtitle"
 
         cls.mixin = Helper()
 
     def test_mixin_get_context_data(self):
+        """Test that get_context_data in ViewTitleMixin returns the title of the view."""
         self.assertIn("view_title", self.mixin.get_context_data())
         self.assertEqual(
             self.mixin.get_context_data()["view_title"],
@@ -49,8 +60,11 @@ class ViewTitleMixinTestCase(TestCase):
 
 
 class GetObjectErrorMixinTestCase(TestCase):
+    """Test case for GetObjectErrorMixin."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         province = ProvinceFactory.create()
         Province.objects.filter(pk=province.pk).delete()
         cls.invalid_pk = province.pk
@@ -58,9 +72,11 @@ class GetObjectErrorMixinTestCase(TestCase):
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test that GetObjectErrorMixin redirects to the cancel_url and alert the user."""
         response = self.client.get(
             reverse("geographic_location:province_detail", args=(self.invalid_pk,))
         )
@@ -77,15 +93,20 @@ class GetObjectErrorMixinTestCase(TestCase):
 
 
 class BaseDetailViewTestCase(TestCase):
+    """Test case for BaseDetailView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.province_pk = ProvinceFactory.create().pk
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get_context_data(self):
+        """Test that BaseDetailView makes the form readonly."""
         response = self.client.get(
             reverse("geographic_location:province_detail", args=(self.province_pk,))
         )
@@ -94,15 +115,20 @@ class BaseDetailViewTestCase(TestCase):
 
 
 class BaseDeleteViewTestCase(TestCase):
+    """Test case for BaseDeleteView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.province = ProvinceFactory.create()
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_delete(self):
+        """Test that BaseDeleteView alert the user when an instance is deleted."""
         response = self.client.post(
             reverse("geographic_location:province_delete", args=(self.province.pk,))
         )

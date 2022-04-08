@@ -15,15 +15,20 @@ class TimeStampedModel(models.Model):
 
 # ! Skipped from coverage until used
 class SingletonModel(models.Model):  # pragma: no cover
+    """Model to handele single row models."""
+
     def delete(self, *args, **kwargs):
+        """Avoids instance from being deleted."""
         pass
 
     @classmethod
     def load(cls):
+        """Create an instance or returns the existing one."""
         obj, created = cls.objects.get_or_create(pk=1)
         return obj
 
     def save(self, *args, **kwargs):
+        """Save the instance without create new ones."""
         self.pk = 1
         super().save(*args, **kwargs)
 

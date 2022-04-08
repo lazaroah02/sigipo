@@ -5,8 +5,11 @@ from apps.core.test import TestCase
 
 
 class TemplateTagTestCase(TestCase):
+    """Test case for create_header_column."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.context_empty = {"url_lookup": ""}
         cls.context_lookup = {"url_lookup": "random=1"}
         cls.context_asc_lookup_exists = {"url_lookup": "o=field_to_sort"}
@@ -17,6 +20,7 @@ class TemplateTagTestCase(TestCase):
         }
 
     def test_create_header_column_empty(self):
+        """Test the links creation when the sort is the first in request."""
         column_html = create_header_column(
             self.context_empty, "field_to_sort", "column_name"
         )
@@ -28,6 +32,7 @@ class TemplateTagTestCase(TestCase):
         )
 
     def test_create_header_column_asc_lookup_exists(self):
+        """Test the links creation when the sort is already in request (asc)."""
         column_html = create_header_column(
             self.context_asc_lookup_exists, "field_to_sort", "column_name"
         )
@@ -43,6 +48,7 @@ class TemplateTagTestCase(TestCase):
         )
 
     def test_create_header_column_desc_lookup_exists(self):
+        """Test the links creation when the sort is already in request (desc)."""
         column_html = create_header_column(
             self.context_desc_lookup_exists, "field_to_sort", "column_name"
         )
@@ -58,6 +64,7 @@ class TemplateTagTestCase(TestCase):
         )
 
     def test_create_header_column_lookup(self):
+        """Test the links creation when the request contains a previous sort."""
         column_html = create_header_column(
             self.context_lookup, "field_to_sort", "column_name"
         )
@@ -73,6 +80,7 @@ class TemplateTagTestCase(TestCase):
         )
 
     def test_create_header_column_lookup_mix(self):
+        """Test the links creation when the request contains a previous sort and current sort is in request."""
         column_html = create_header_column(
             self.context_lookup_mix, "field_to_sort", "column_name"
         )
@@ -88,6 +96,7 @@ class TemplateTagTestCase(TestCase):
         )
 
     def test_create_header_column_lookup_mix_complex(self):
+        """Test the links creation when the request contains a previous sort and current sort is in request and has another sort after."""
         column_html = create_header_column(
             self.context_lookup_mix_complex, "field_to_sort", "column_name"
         )

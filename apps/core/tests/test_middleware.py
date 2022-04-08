@@ -10,8 +10,11 @@ from apps.geographic_location.models import Province
 
 
 class BaseDeleteViewTestCase(TestCase):
+    """Test case for core middleware"""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         province = ProvinceFactory.create()
         Province.objects.filter(pk=province.pk).delete()
         cls.invalid_pk = province.pk
@@ -22,6 +25,7 @@ class BaseDeleteViewTestCase(TestCase):
         )
 
     def test_delete_superuser(self):
+        """Test that super user get INTERNAL_SERVER_ERROR."""
         self.client.force_login(self.superuser)
         response = self.client.post(
             reverse("geographic_location:province_delete", args=(self.invalid_pk,))
@@ -29,6 +33,7 @@ class BaseDeleteViewTestCase(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
 
     def test_delete_normal_user(self):
+        """Test that normal user get redirected."""
         self.client.force_login(self.user_normal)
         response = self.client.post(
             reverse("geographic_location:province_delete", args=(self.invalid_pk,))

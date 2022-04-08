@@ -2,7 +2,7 @@ from django.db.models import CASCADE, CharField, ForeignKey, Model
 
 
 class Province(Model):
-    """Provincia."""
+    """Model representation of a province."""
 
     name = CharField(verbose_name="Nombre", max_length=128)
 
@@ -12,11 +12,12 @@ class Province(Model):
         ordering = ["pk"]
 
     def __str__(self):
+        """Returns the name of the province."""
         return self.name
 
 
 class Municipality(Model):
-    """Municipio."""
+    """Model representation of a municipality."""
 
     province = ForeignKey(Province, verbose_name="Provincia", on_delete=CASCADE)
     name = CharField(verbose_name="Nombre", max_length=128)
@@ -27,4 +28,5 @@ class Municipality(Model):
         ordering = ["pk"]
 
     def __str__(self):
+        """Returns the name of the municipality."""
         return self.name

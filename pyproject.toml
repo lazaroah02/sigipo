@@ -8,3 +8,21 @@ profile = "black"
 ignore="H016,H023,H030,H031"
 quiet=true
 indent=2
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = true
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+exclude = ["setup.py", "docs", "build", "*/migrations", ".ipynb_checkpoints"]
+ignore-regex = []
+verbose = 1
+quiet = false
+whitelist-regex = []
+color = true

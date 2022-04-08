@@ -5,6 +5,8 @@ from apps.geographic_location.models import Municipality, Province
 
 
 class ProvinceFilter(FilterSet):
+    """Filters to search for provinces."""
+
     name = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
@@ -20,6 +22,8 @@ class ProvinceFilter(FilterSet):
 
 
 class MunicipalityFilter(FilterSet):
+    """Filters to search for municipalities."""
+
     name = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(

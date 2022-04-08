@@ -10,4 +10,5 @@ class User(AbstractUser):
         ordering = ["username"]
 
     def __str__(self) -> str:
+        """Define the str representation for the user."""
         return self.get_full_name() or self.username

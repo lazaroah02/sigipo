@@ -4,6 +4,8 @@ from apps.geographic_location.models import Municipality, Province
 
 
 class MunicipalityAdmin(ModelAdmin):
+    """Municipality Django Admin view."""
+
     list_display = (
         "name",
         "province",

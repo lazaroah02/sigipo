@@ -6,6 +6,8 @@ from apps.geographic_location.models import Municipality, Province
 
 
 class ProvinceFactory(DjangoModelFactory):
+    """Factory to handle province creation."""
+
     class Meta:
         model = Province
 
@@ -31,6 +33,8 @@ class ProvinceFactory(DjangoModelFactory):
 
 
 class MunicipalityFactory(DjangoModelFactory):
+    """Factory to handle municipality creation."""
+
     class Meta:
         model = Municipality
 

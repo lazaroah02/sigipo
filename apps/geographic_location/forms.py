@@ -5,6 +5,8 @@ from apps.geographic_location.widgets import ProvinceWidget
 
 
 class ProvinceForm(ModelForm):
+    """Model to handle province creation and edition."""
+
     name = CharField(
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",
@@ -16,6 +18,8 @@ class ProvinceForm(ModelForm):
 
 
 class MunicipalityForm(ModelForm):
+    """Model to handle municipality creation and edition."""
+
     name = CharField(
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",

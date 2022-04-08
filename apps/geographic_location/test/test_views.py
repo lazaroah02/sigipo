@@ -21,15 +21,20 @@ from apps.geographic_location.views import (
 
 
 class ProvinceDetailViewTestCase(TestCase):
+    """Test case for ProvinceDetailView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.province = ProvinceFactory.create()
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for ProvinceDetailView."""
         response = self.client.get(
             reverse("geographic_location:province_detail", args=(self.province.pk,))
         )
@@ -40,21 +45,27 @@ class ProvinceDetailViewTestCase(TestCase):
 
 
 class ProvinceDeleteViewTestCase(TestCase):
+    """Test case for ProvinceDeleteView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.province = ProvinceFactory.create()
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_post(self):
+        """Test the post method for ProvinceDeleteView."""
         self.client.post(
             reverse("geographic_location:province_delete", args=(self.province.pk,))
         )
         self.assertFalse(Province.objects.filter(pk=self.province.pk).exists())
 
     def test_get(self):
+        """Test the get method for ProvinceDeleteView."""
         response = self.client.get(
             reverse("geographic_location:province_delete", args=(self.province.pk,))
         )
@@ -63,20 +74,26 @@ class ProvinceDeleteViewTestCase(TestCase):
 
 
 class ProvinceCreateViewTestCase(TestCase):
+    """Test case for ProvinceCreateView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for ProvinceCreateView."""
         response = self.client.get(reverse("geographic_location:province_create"))
         self.assertIn("form", response.context)
         self.assertTrue(isinstance(response.context["form"], ProvinceForm))
         self.assertIn(reverse(ProvinceCreateView.cancel_url), response.content.decode())
 
     def test_post(self):
+        """Test the post method for ProvinceCreateView."""
         count_before_test = Province.objects.count()
         response = self.client.post(
             reverse("geographic_location:province_create"), {"name": "TestProvince"}
@@ -92,15 +109,20 @@ class ProvinceCreateViewTestCase(TestCase):
 
 
 class ProvinceUpdateViewTestCase(TestCase):
+    """Test case for ProvinceUpdateView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.user = UserFactory.create()
         cls.province = ProvinceFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for ProvinceUpdateView."""
         response = self.client.get(
             reverse("geographic_location:province_update", args=(self.province.pk,))
         )
@@ -109,6 +131,7 @@ class ProvinceUpdateViewTestCase(TestCase):
         self.assertIn(reverse(ProvinceUpdateView.cancel_url), response.content.decode())
 
     def test_post(self):
+        """Test the post method for ProvinceUpdateView."""
         response = self.client.post(
             reverse("geographic_location:province_update", args=(self.province.pk,)),
             {"name": "TestProvince"},
@@ -125,15 +148,20 @@ class ProvinceUpdateViewTestCase(TestCase):
 
 
 class MunicipalityDetailViewTestCase(TestCase):
+    """Test case for MunicipalityDetailView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.municipality = MunicipalityFactory.create()
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for MunicipalityDetailView."""
         response = self.client.get(
             reverse(
                 "geographic_location:municipality_detail", args=(self.municipality.pk,)
@@ -148,15 +176,20 @@ class MunicipalityDetailViewTestCase(TestCase):
 
 
 class MunicipalityDeleteViewTestCase(TestCase):
+    """Test case for MunicipalityDeleteView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.municipality = MunicipalityFactory.create()
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_post(self):
+        """Test the post method for MunicipalityDeleteView."""
         self.client.post(
             reverse(
                 "geographic_location:municipality_delete", args=(self.municipality.pk,)
@@ -165,6 +198,7 @@ class MunicipalityDeleteViewTestCase(TestCase):
         self.assertFalse(Municipality.objects.filter(pk=self.municipality.pk).exists())
 
     def test_get(self):
+        """Test the get method for MunicipalityDeleteView."""
         response = self.client.get(
             reverse(
                 "geographic_location:municipality_delete", args=(self.municipality.pk,)
@@ -177,21 +211,27 @@ class MunicipalityDeleteViewTestCase(TestCase):
 
 
 class MunicipalityCreateViewTestCase(TestCase):
+    """Test case for MunicipalityCreateView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.user = UserFactory.create()
         cls.province = ProvinceFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for MunicipalityCreateView."""
         response = self.client.get(reverse("geographic_location:municipality_create"))
         self.assertIn("form", response.context)
         self.assertTrue(isinstance(response.context["form"], MunicipalityForm))
         self.assertIn(reverse(ProvinceCreateView.cancel_url), response.content.decode())
 
     def test_post(self):
+        """Test the post method for MunicipalityCreateView."""
         count_before_test = Municipality.objects.count()
         response = self.client.post(
             reverse("geographic_location:municipality_create"),
@@ -208,16 +248,21 @@ class MunicipalityCreateViewTestCase(TestCase):
 
 
 class MunicipalityUpdateViewTestCase(TestCase):
+    """Test case for MunicipalityUpdateView."""
+
     @classmethod
     def setUpTestData(cls):
+        """Common test data."""
         cls.user = UserFactory.create()
         cls.province = ProvinceFactory.create()
         cls.municipality = MunicipalityFactory.create()
 
     def setUp(self) -> None:
+        """Extra initialization."""
         self.client.force_login(self.user)
 
     def test_get(self):
+        """Test the get method for MunicipalityUpdateView."""
         response = self.client.get(
             reverse(
                 "geographic_location:municipality_update", args=(self.municipality.pk,)
@@ -230,6 +275,7 @@ class MunicipalityUpdateViewTestCase(TestCase):
         )
 
     def test_post(self):
+        """Test the post method for MunicipalityUpdateView."""
         response = self.client.post(
             reverse(
                 "geographic_location:municipality_update", args=(self.municipality.pk,)
