@@ -31,13 +31,15 @@ class PaginationFilterView(LoginRequiredMixin, FilterView):
         context = super().get_context_data(*args, **kwargs)
         context["parameters"] = parameters
         context["url_lookup"] = self.request.GET.urlencode()
-        num_pages = context["paginator"].num_pages
         current_page = context["page_obj"].number
-        context["pagination_range"] = [
-            page_number
-            for page_number in range(current_page - 2, current_page + 2)
-            if page_number >= 1 and page_number <= num_pages
-        ]
+        paginator = context["paginator"]
+        pagination_range = paginator.get_elided_page_range(
+            current_page, on_each_side=2, on_ends=0
+        )
+        pagination_range = list(
+            filter(lambda element: element != paginator.ELLIPSIS, pagination_range)
+        )
+        context["pagination_range"] = pagination_range
         context |= self.extra_context
         return context
 

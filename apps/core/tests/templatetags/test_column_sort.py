@@ -12,6 +12,9 @@ class TemplateTagTestCase(TestCase):
         cls.context_asc_lookup_exists = {"url_lookup": "o=field_to_sort"}
         cls.context_desc_lookup_exists = {"url_lookup": "o=-field_to_sort"}
         cls.context_lookup_mix = {"url_lookup": "o=field_to_sort&random=1"}
+        cls.context_lookup_mix_complex = {
+            "url_lookup": "random=2&o=field_to_sort&random=1"
+        }
 
     def test_create_header_column_empty(self):
         column_html = create_header_column(
@@ -81,5 +84,20 @@ class TemplateTagTestCase(TestCase):
         )
         self.assertIn(
             '<a href="?random=1" class="" role="button" title="Quitar del orden"><i class="fa-solid fa-ban"></i></a>',
+            column_html,
+        )
+
+    def test_create_header_column_lookup_mix_complex(self):
+        column_html = create_header_column(
+            self.context_lookup_mix_complex, "field_to_sort", "column_name"
+        )
+        self.assertIn('<th class="column-sorted text-center">', column_html)
+        self.assertIn("column_name", column_html)
+        self.assertIn(
+            '<a href="?random=2&amp;o=-field_to_sort&amp;random=1" role="button" title="Alternar orden"><i class="fa-solid fa-sort-up"></i></a>',
+            column_html,
+        )
+        self.assertIn(
+            '<a href="?random=2&amp;random=1" class="" role="button" title="Quitar del orden"><i class="fa-solid fa-ban"></i></a>',
             column_html,
         )

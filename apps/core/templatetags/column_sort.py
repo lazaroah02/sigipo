@@ -15,32 +15,30 @@ def create_header_column(
     sort_url = context["url_lookup"]
     order_up = True
     first_sort = True
-    if f"o={field_to_sort}" in url_start:
-        order_up = False
+    if f"o=-{field_to_sort}" in sort_url:
         first_sort = False
-        url_start = url_start.replace(f"&o={field_to_sort}", "")
-        url_start = url_start.replace(f"o={field_to_sort}", "")
-    if f"o=-{field_to_sort}" in url_start:
-        first_sort = False
+        sort_url = sort_url.replace(f"&o=-{field_to_sort}", f"&o={field_to_sort}")
+        sort_url = sort_url.replace(f"o=-{field_to_sort}", f"o={field_to_sort}")
         url_start = url_start.replace(f"&o=-{field_to_sort}", "")
         url_start = url_start.replace(f"o=-{field_to_sort}", "")
-    url_start = (url_start + "&") if url_start != "" else ""
+    elif f"o={field_to_sort}" in sort_url:
+        order_up = False
+        first_sort = False
+        sort_url = sort_url.replace(f"&o={field_to_sort}", f"&o=-{field_to_sort}")
+        sort_url = sort_url.replace(f"o={field_to_sort}", f"o=-{field_to_sort}")
+        url_start = url_start.replace(f"&o={field_to_sort}", "")
+        url_start = url_start.replace(f"o={field_to_sort}", "")
+    else:
+        sort_url = (
+            (sort_url + "&")
+            if len(sort_url) > 1 and not sort_url.endswith("&")
+            else sort_url
+        )
+        sort_url += f"o={field_to_sort}"
     url_start = url_start if not url_start.startswith("&") else url_start[1:]
     url_start = (
         url_start if not url_start.endswith("&") else url_start[: len(url_start) - 1]
     )
-    if f"o=-{field_to_sort}" in sort_url:
-        sort_url = sort_url.replace(f"&o=-{field_to_sort}", f"&o={field_to_sort}")
-        sort_url = sort_url.replace(f"o=-{field_to_sort}", f"o={field_to_sort}")
-    elif f"o={field_to_sort}" in sort_url:
-        sort_url = sort_url.replace(f"&o={field_to_sort}", f"&o=-{field_to_sort}")
-        sort_url = sort_url.replace(f"o={field_to_sort}", f"o=-{field_to_sort}")
-    else:
-        sort_url = (
-            sort_url if not sort_url.endswith("&") else sort_url[: len(sort_url) - 1]
-        )
-        sort_url = sort_url if len(sort_url) == 0 else sort_url + "&"
-        sort_url += f"o={field_to_sort}"
     return format_html(
         """
         <th class="column-sorted {classes}">
