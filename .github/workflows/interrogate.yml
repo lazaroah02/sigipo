@@ -28,16 +28,16 @@ jobs:
     - name: Commit badge
       run: |
         if git diff --exit-code; then
-          echo "ANYTHING_TO_COMMIT=false" >> $GITHUB_ENV
+          echo "INTERROGATE_ANYTHING_TO_COMMIT=false" >> $GITHUB_ENV
         else
-          echo "ANYTHING_TO_COMMIT=true" >> $GITHUB_ENV
+          echo "INTERROGATE_ANYTHING_TO_COMMIT=true" >> $GITHUB_ENV
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add interrogate.svg
           git commit -m "Update interrogate badge"
         fi
     - name: Push changes
-      if: ${{ env.ANYTHING_TO_COMMIT }}
+      if: ${{ env.INTERROGATE_ANYTHING_TO_COMMIT }}
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
