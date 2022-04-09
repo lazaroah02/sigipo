@@ -1,4 +1,4 @@
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory, SimpleTestCase, TestCase
 
 
 class SigipoTestCaseMixin:
@@ -9,5 +9,11 @@ class SigipoTestCaseMixin:
 
 class TestCase(SigipoTestCaseMixin, TestCase):
     """Custom test case to be used in all tests."""
+
+    pass
+
+
+class SimpleTestCase(SigipoTestCaseMixin, SimpleTestCase):
+    """Custom simple test case to be used in all tests."""
 
     pass
