@@ -1,16 +1,16 @@
 -r base.in # includes the base.in requirements file
 
-coverage==6.3.2
-django-linear-migrations==2.3.0
-django-debug-toolbar==3.2.4
-django-extensions==3.1.5
-ipython==8.2.0
-pre-commit==2.17.0
-Sphinx==4.5.0
-factory-boy==3.2.1
-pytest==7.1.1
-pytest-cov==3.0.0
-pytest-django==4.5.2
-pytest-randomly==3.11.0
-pytest-restrict==4.3.0
-pytest-xdist==2.5.0
+coverage
+django-linear-migrations
+django-debug-toolbar
+django-extensions
+ipython
+pre-commit
+Sphinx
+factory-boy
+pytest
+pytest-cov
+pytest-django
+pytest-randomly
+pytest-restrict
+pytest-xdist
