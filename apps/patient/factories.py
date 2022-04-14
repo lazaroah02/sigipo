@@ -5,7 +5,7 @@ from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyChoice, FuzzyInteger, FuzzyText
 
 from apps.geographic_location.factories import MunicipalityFactory
-from apps.patient.models import Patient
+from apps.patient.models import Patient, PatientRace
 
 
 class PatientFactory(DjangoModelFactory):
@@ -56,7 +56,7 @@ class PatientFactory(DjangoModelFactory):
         )
     )
     address = FuzzyText(length=10)
-    race = FuzzyChoice((0, 1, 2, 3, 4))
+    race = FuzzyChoice(PatientRace.values)
     medical_record = FuzzyText(length=32)
     is_oncologic = FuzzyChoice((True, False))
     age_at_diagnosis = LazyAttribute(

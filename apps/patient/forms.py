@@ -13,7 +13,7 @@ from django.forms import (
 from django_select2.forms import ModelSelect2Widget
 
 from apps.geographic_location.models import Municipality, Province
-from apps.patient.models import Patient
+from apps.patient.models import Patient, PatientRace
 
 
 class BasePatientForm(ModelForm):
@@ -41,7 +41,7 @@ class BasePatientForm(ModelForm):
         label="Dirección actual",
     )
     race = ChoiceField(
-        choices=Patient.RACE,
+        choices=PatientRace.choices,
         widget=Select(attrs={"class": "form-control"}),
         label="Raza",
     )

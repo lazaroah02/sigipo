@@ -4,6 +4,7 @@ from django.db.models import (
     BooleanField,
     CharField,
     ForeignKey,
+    IntegerChoices,
     IntegerField,
     PositiveSmallIntegerField,
     TextField,
@@ -27,16 +28,17 @@ class PatientQuerysetManager(Manager):
         return super().get_queryset().filter(is_oncologic=False)
 
 
+class PatientRace(IntegerChoices):
+    UNDEFINED = 0, "No Definido"
+    WHITE = 1, "Blanca"
+    BLACK = 2, "Negra"
+    HALF_BLOOD = 3, "Mestizo"
+    YELLOW = 4, "Amarillo"
+
+
 class Patient(TimeStampedModel):
     """Model representation of a patient."""
 
-    RACE = (
-        (0, "No Definido"),
-        (1, "Blanca"),
-        (2, "Negra"),
-        (3, "Mestizo"),
-        (4, "Amarillo"),
-    )
     identity_card = CharField(
         verbose_name="Carnet de Identidad",
         max_length=11,
@@ -45,7 +47,9 @@ class Patient(TimeStampedModel):
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
     address = TextField(verbose_name="Dirección Actual")
-    race = IntegerField(verbose_name="Raza", choices=RACE, default=0)
+    race = IntegerField(
+        verbose_name="Raza", choices=PatientRace.choices, default=PatientRace.UNDEFINED
+    )
     medical_record = CharField(verbose_name="No. Historia Clínica", max_length=32)
     residence_municipality = ForeignKey(
         Municipality,
