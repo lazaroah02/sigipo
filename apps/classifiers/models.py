@@ -1,11 +1,11 @@
-from django.db import models
+from django.db.models import CharField, Model
 
 
-class Topography(models.Model):
+class Topography(Model):
     """Model representation of a topography."""
 
-    code = models.CharField(verbose_name="Código", max_length=5)
-    description = models.CharField(verbose_name="Descripción", max_length=255)
+    code = CharField(verbose_name="Código", max_length=5)
+    description = CharField(verbose_name="Descripción", max_length=255)
 
     class Meta:
         verbose_name = "Topografía"
@@ -17,11 +17,11 @@ class Topography(models.Model):
         return f"{self.description}"
 
 
-class Morphology(models.Model):
+class Morphology(Model):
     """Model representation of a morphology."""
 
-    code = models.CharField(verbose_name="Código", max_length=10)
-    description = models.CharField(verbose_name="Descripción", max_length=255)
+    code = CharField(verbose_name="Código", max_length=10)
+    description = CharField(verbose_name="Descripción", max_length=255)
 
     class Meta:
         verbose_name = "Morfología"
