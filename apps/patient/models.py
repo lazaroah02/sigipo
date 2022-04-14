@@ -38,7 +38,7 @@ class Patient(TimeStampedModel):
         (4, "Amarillo"),
     )
     identity_card = CharField(
-        verbose_name="Carné de Identidad",
+        verbose_name="Carnet de Identidad",
         max_length=11,
         validators=[MinLengthValidator(11)],
     )
