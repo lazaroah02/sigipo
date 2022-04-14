@@ -9,7 +9,7 @@ from django_filters import (
 from django_filters.widgets import RangeWidget
 
 from apps.geographic_location.models import Municipality, Province
-from apps.patient.models import Patient
+from apps.patient.models import Patient, PatientRace
 
 
 class PatientFilter(FilterSet):
@@ -47,7 +47,7 @@ class PatientFilter(FilterSet):
         label="No. historia clínica contiene",
     )
     race = ChoiceFilter(
-        choices=Patient.RACE,
+        choices=PatientRace.choices,
         widget=Select(attrs={"class": "form-control", "placeholder": "Raza"}),
     )
     residence_municipality = ModelChoiceFilter(
