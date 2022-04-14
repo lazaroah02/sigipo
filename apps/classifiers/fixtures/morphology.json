@@ -1,0 +1,3874 @@
+[
+    {
+      "pk": 1,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "Neoplasia maligna"
+      }
+    },
+    {
+      "pk": 2,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "Tumor maligno SAI"
+      }
+    },
+    {
+      "pk": 3,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "Blastoma SAI"
+      }
+    },
+    {
+      "pk": 4,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "C\u00e1ncer"
+      }
+    },
+    {
+      "pk": 5,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "Malignidad"
+      }
+    },
+    {
+      "pk": 6,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8000/3",
+        "description": "Tumor no clasificado maligno."
+      }
+    },
+    {
+      "pk": 7,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8001/3",
+        "description": "C\u00e9lulas tumorales malignas"
+      }
+    },
+    {
+      "pk": 8,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8002/3",
+        "description": "Tumor maligno de c\u00e9lulas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 9,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8003/3",
+        "description": "Tumor maligno tipo c\u00e9lulas gigantes"
+      }
+    },
+    {
+      "pk": 10,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8004/3",
+        "description": "Tumor maligno tipo c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 11,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8005/3",
+        "description": "Tumor maligno tipo c\u00e9lulas claras"
+      }
+    },
+    {
+      "pk": 12,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8010/2",
+        "description": "Carcinoma in situ SAI"
+      }
+    },
+    {
+      "pk": 13,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8010/2",
+        "description": "Carcinoma intraepitelial SAI"
+      }
+    },
+    {
+      "pk": 14,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8010/3",
+        "description": "Carcinoma SAI"
+      }
+    },
+    {
+      "pk": 15,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8010/3",
+        "description": "Tumor epitelial maligno"
+      }
+    },
+    {
+      "pk": 16,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8012/3",
+        "description": "Carcinoma de c\u00e9lulas grandes SAI"
+      }
+    },
+    {
+      "pk": 17,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8013/3",
+        "description": "Carcinoma neuroendocrino de c\u00e9lulas grandes"
+      }
+    },
+    {
+      "pk": 18,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8020/3",
+        "description": "Carcinoma indiferenciado SAI"
+      }
+    },
+    {
+      "pk": 19,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8021/3",
+        "description": "Carcinoma anapl\u00e1sico SAI"
+      }
+    },
+    {
+      "pk": 20,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8030/3",
+        "description": "Carcinoma de c\u00e9lulas gigantes y c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 21,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8031/3",
+        "description": "Carcinoma de c\u00e9lulas gigantes"
+      }
+    },
+    {
+      "pk": 22,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8032/3",
+        "description": "Carcinoma de c\u00e9lulas fusiformes SAI"
+      }
+    },
+    {
+      "pk": 23,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8033/3",
+        "description": "Carcinoma seudosarcomatoso"
+      }
+    },
+    {
+      "pk": 24,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8033/3",
+        "description": "Carcinoma sarcomatoide"
+      }
+    },
+    {
+      "pk": 25,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8041/3",
+        "description": "Carcinoma de c\u00e9lulas peque\u00f1as SAI"
+      }
+    },
+    {
+      "pk": 26,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8041/3",
+        "description": "Carcinoma de c\u00e9lulas de reserva"
+      }
+    },
+    {
+      "pk": 27,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8041/3",
+        "description": "Carcinoma de c\u00e9lulas redondas"
+      }
+    },
+    {
+      "pk": 28,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8041/3",
+        "description": "Carcinoma neuroendocrino de c\u00e9lulas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 29,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8042/3",
+        "description": "Carcinoma de c\u00e9lulas en grano de avena"
+      }
+    },
+    {
+      "pk": 30,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8043/3",
+        "description": "Carcinoma de c\u00e9lulas peque\u00f1as c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 31,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8044/3",
+        "description": "Carcinoma de c\u00e9lulas peque\u00f1as c\u00e9lulas intermedias"
+      }
+    },
+    {
+      "pk": 32,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8045/3",
+        "description": "Carcinoma combinado de c\u00e9lulas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 33,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8045/3",
+        "description": "Carcinoma mixto de c\u00e9lulas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 34,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8045/3",
+        "description": "Adenocarcinoma combinado de c\u00e9lulas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 35,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8045/3",
+        "description": "Carcinoma combinado de c\u00e9lulas peque\u00f1as y c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 36,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8045/3",
+        "description": "Carcinoma combinado de c\u00e9lulas peque\u00f1as y c\u00e9lulas grandes"
+      }
+    },
+    {
+      "pk": 37,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8051/3",
+        "description": "Carcinoma verrugoso SAI"
+      }
+    },
+    {
+      "pk": 38,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8051/3",
+        "description": "Carcinoma condilomatoso"
+      }
+    },
+    {
+      "pk": 39,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8051/3",
+        "description": "Carcinoma epidermoide verrugoso"
+      }
+    },
+    {
+      "pk": 40,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8051/3",
+        "description": "Carcinoma verrugoso"
+      }
+    },
+    {
+      "pk": 41,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8051/3",
+        "description": "Carcinoma verrugoso de c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 42,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8052/2",
+        "description": "Carcinoma papilar de c\u00e9lulas escamosas no invasivo"
+      }
+    },
+    {
+      "pk": 43,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8052/2",
+        "description": "Carcinoma papilar de c\u00e9lulas escamosas in situ"
+      }
+    },
+    {
+      "pk": 44,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8052/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas papilares"
+      }
+    },
+    {
+      "pk": 45,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8052/3",
+        "description": "Carcinoma epidermoide papilar"
+      }
+    },
+    {
+      "pk": 46,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/2",
+        "description": "Carcinoma in situ de c\u00e9lulas escamosas SAI"
+      }
+    },
+    {
+      "pk": 47,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/2",
+        "description": "Carcinoma epidermoide in situ SAI"
+      }
+    },
+    {
+      "pk": 48,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/2",
+        "description": "Carcinoma itraepid\u00e9rmico SAI"
+      }
+    },
+    {
+      "pk": 49,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/2",
+        "description": "Carcinoma intraepitelial de c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 50,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas SAI"
+      }
+    },
+    {
+      "pk": 51,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/3",
+        "description": "Carcinoma epidermoide SAI"
+      }
+    },
+    {
+      "pk": 52,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/3",
+        "description": "Carcinoma escamoso"
+      }
+    },
+    {
+      "pk": 53,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8070/3",
+        "description": "Epitelioma de c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 54,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8071/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas queratinizantes SAI"
+      }
+    },
+    {
+      "pk": 55,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8071/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas c\u00e9lulas grandes queratinizantes"
+      }
+    },
+    {
+      "pk": 56,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8071/3",
+        "description": "Carcinoma epidermoide queratinizante"
+      }
+    },
+    {
+      "pk": 57,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8072/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas c\u00e9lulas grandes no queratinizantes SAI"
+      }
+    },
+    {
+      "pk": 58,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8072/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas no queratinizantes SAI"
+      }
+    },
+    {
+      "pk": 59,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8072/3",
+        "description": "Carcinoma epidermoide c\u00e9lulas granes no queratinizante"
+      }
+    },
+    {
+      "pk": 60,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8073/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas c\u00e9lulas peque\u00f1as no queratizantes"
+      }
+    },
+    {
+      "pk": 61,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8073/3",
+        "description": "Carcinoma epidermoide c\u00e9lulas peque\u00f1as no queratizantes"
+      }
+    },
+    {
+      "pk": 62,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8074/3",
+        "description": "Carcinoma de c\u00e9lulas esacamosas c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 63,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8074/3",
+        "description": "Carcinoma epidermoide c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 64,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8074/3",
+        "description": "Carcinoma de c\u00e9lulas esacamosas sarcomatoide"
+      }
+    },
+    {
+      "pk": 65,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8075/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas adenoide"
+      }
+    },
+    {
+      "pk": 66,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8075/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas acantol\u00edtico"
+      }
+    },
+    {
+      "pk": 67,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8075/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas seudoglandular"
+      }
+    },
+    {
+      "pk": 68,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8076/2",
+        "description": "Carcinoma in situ de c\u00e9lulas escamosas con invasi\u00f3n dudosa del estroma"
+      }
+    },
+    {
+      "pk": 69,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8076/2",
+        "description": "Carcinoma epidermoide in situ con invasi\u00f3n dudosa del estroma"
+      }
+    },
+    {
+      "pk": 70,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8076/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas microinvasor"
+      }
+    },
+    {
+      "pk": 71,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8082/3",
+        "description": "Carcinoma linfoepitelial"
+      }
+    },
+    {
+      "pk": 72,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8082/3",
+        "description": "Carcinoma semejante a linfoepitelioma"
+      }
+    },
+    {
+      "pk": 73,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8082/3",
+        "description": "Linfoepitelioma"
+      }
+    },
+    {
+      "pk": 74,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8082/3",
+        "description": "Tumor de Schmincke"
+      }
+    },
+    {
+      "pk": 75,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8083/3",
+        "description": "Carcinoma balasoide de c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 76,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8084/3",
+        "description": "Carcinoma de c\u00e9lulas escamosas tipo c\u00e9lulas claras"
+      }
+    },
+    {
+      "pk": 77,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8090/3",
+        "description": "Carcinoma de c\u00e9lulas basales SAI"
+      }
+    },
+    {
+      "pk": 78,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8090/3",
+        "description": "Epitelioma de c\u00e9lulas basales"
+      }
+    },
+    {
+      "pk": 79,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8090/3",
+        "description": "Ulcus rodens"
+      }
+    },
+    {
+      "pk": 80,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8090/3",
+        "description": "Carcinoma de c\u00e9lulas basales pigmentadas"
+      }
+    },
+    {
+      "pk": 81,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8091/3",
+        "description": "Carcinoma superficial multifocal de c\u00e9lulas basales"
+      }
+    },
+    {
+      "pk": 82,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8091/3",
+        "description": "Carcinoma multicentrico de c\u00e9lulas basales"
+      }
+    },
+    {
+      "pk": 83,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8092/3",
+        "description": "Carcinoma infiltrante de c\u00e9lulas basales SAI"
+      }
+    },
+    {
+      "pk": 84,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8092/3",
+        "description": "Carcinoma infiltrante de c\u00e9lulas basales esclerosante"
+      }
+    },
+    {
+      "pk": 85,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8092/3",
+        "description": "Carcinoma de c\u00e9lulas basales morfea"
+      }
+    },
+    {
+      "pk": 86,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8092/3",
+        "description": "Carcinoma de c\u00e9lulas basales tipo desmopl\u00e1sico"
+      }
+    },
+    {
+      "pk": 87,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8092/3",
+        "description": "Carcinoma infiltrante de c\u00e9lulas basales no esclerosante"
+      }
+    },
+    {
+      "pk": 88,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8093/3",
+        "description": "Carcinoma de c\u00e9lulas basales fibroepitelial"
+      }
+    },
+    {
+      "pk": 89,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8093/3",
+        "description": "Carcinoma de c\u00e9lulas basales fibroepitelial tipo Pinkus"
+      }
+    },
+    {
+      "pk": 90,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8093/3",
+        "description": "Fibroepitelioma SAI"
+      }
+    },
+    {
+      "pk": 91,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8093/3",
+        "description": "Fibroepitelioma de tipo Pinkus"
+      }
+    },
+    {
+      "pk": 92,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8093/3",
+        "description": "Tumor de Pinkus"
+      }
+    },
+    {
+      "pk": 93,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8094/3",
+        "description": "Carcinoma basoescamoso"
+      }
+    },
+    {
+      "pk": 94,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8094/3",
+        "description": "Carcinoma mixto de c\u00e9lulas basales-escamosas"
+      }
+    },
+    {
+      "pk": 95,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8097/3",
+        "description": "Carcinoma de c\u00e9lulas basales nodular"
+      }
+    },
+    {
+      "pk": 96,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8097/3",
+        "description": "Carcinoma de c\u00e9lulas basales micronodular"
+      }
+    },
+    {
+      "pk": 97,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8098/3",
+        "description": "Carcinoma basal adenoide"
+      }
+    },
+    {
+      "pk": 98,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8120/2",
+        "description": "Carcinoma urotelial in situ"
+      }
+    },
+    {
+      "pk": 99,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8120/3",
+        "description": "Carcinoma urotelial SAI"
+      }
+    },
+    {
+      "pk": 100,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8120/3",
+        "description": "Carcinoma transicional"
+      }
+    },
+    {
+      "pk": 101,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8123/3",
+        "description": "Carcinoma basaloide"
+      }
+    },
+    {
+      "pk": 102,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8140/3",
+        "description": "Adenocarcinoma SAI"
+      }
+    },
+    {
+      "pk": 103,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8144/3",
+        "description": "Adenocarcinoma tipo intestinal"
+      }
+    },
+    {
+      "pk": 104,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8144/3",
+        "description": "Carcinoma tipo intestinal"
+      }
+    },
+    {
+      "pk": 105,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8145/3",
+        "description": "Carcinoma tipo difuso"
+      }
+    },
+    {
+      "pk": 106,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8145/3",
+        "description": "Adenocarcinoma tipo difuso"
+      }
+    },
+    {
+      "pk": 107,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8147/3",
+        "description": "Adenocarcinoma basocelular"
+      }
+    },
+    {
+      "pk": 108,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8200/3",
+        "description": "Carcinoma qu\u00edstico adenoide"
+      }
+    },
+    {
+      "pk": 109,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8200/3",
+        "description": "Adenocarcinoma cilindroide"
+      }
+    },
+    {
+      "pk": 110,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8200/3",
+        "description": "Carcinoma adenoqu\u00edstico"
+      }
+    },
+    {
+      "pk": 111,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8200/3",
+        "description": "Cilindroma SAI (excepto cilindroma de la piel)"
+      }
+    },
+    {
+      "pk": 112,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8200/3",
+        "description": "Adenoma bronquial cilindroide"
+      }
+    },
+    {
+      "pk": 113,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8246/3",
+        "description": "Carcinoma neuroendocrino SAI"
+      }
+    },
+    {
+      "pk": 114,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8310/3",
+        "description": "Adenocarcinoma de c\u00e9lulas claras SAI"
+      }
+    },
+    {
+      "pk": 115,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8310/3",
+        "description": "Carcinoma de c\u00e9lulas claras"
+      }
+    },
+    {
+      "pk": 116,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8310/3",
+        "description": "Adenocarcinoma de c\u00e9lulas claras mesonefroide"
+      }
+    },
+    {
+      "pk": 117,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8430/3",
+        "description": "Carcinoma mucoepidermoide"
+      }
+    },
+    {
+      "pk": 118,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8440/3",
+        "description": "Cistadenocarcinoma SAI"
+      }
+    },
+    {
+      "pk": 119,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Adenocarcinoma mucinoso"
+      }
+    },
+    {
+      "pk": 120,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Adenocarcinoma coloide"
+      }
+    },
+    {
+      "pk": 121,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Adenocarcinoma gelatinoso"
+      }
+    },
+    {
+      "pk": 122,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Adenocarcinoma mucoide"
+      }
+    },
+    {
+      "pk": 123,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Adenocarcinoma mucoso"
+      }
+    },
+    {
+      "pk": 124,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Carcinoma coloide"
+      }
+    },
+    {
+      "pk": 125,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Carcinoma gelatinoso"
+      }
+    },
+    {
+      "pk": 126,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Carcinoma mucinoso"
+      }
+    },
+    {
+      "pk": 127,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Carcinoma mucoide"
+      }
+    },
+    {
+      "pk": 128,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Carcinoma mucoso"
+      }
+    },
+    {
+      "pk": 129,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8480/3",
+        "description": "Seudomixoma del peritoneo con sitio primario desconocido"
+      }
+    },
+    {
+      "pk": 130,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8481/3",
+        "description": "Adenocarcinoma productor de mucina"
+      }
+    },
+    {
+      "pk": 131,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8481/3",
+        "description": "Adenocarcinoma secretor de mucina"
+      }
+    },
+    {
+      "pk": 132,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8481/3",
+        "description": "Carcinoma productor de mucina"
+      }
+    },
+    {
+      "pk": 133,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8481/3",
+        "description": "Carcinoma secretor de mucina"
+      }
+    },
+    {
+      "pk": 134,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8500/3",
+        "description": "Carcinoma ductal infiltrante SAI"
+      }
+    },
+    {
+      "pk": 135,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8510/3",
+        "description": "Carcinoma medular SAI"
+      }
+    },
+    {
+      "pk": 136,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8510/3",
+        "description": "Adenocarcinoma medular"
+      }
+    },
+    {
+      "pk": 137,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8525/3",
+        "description": "Adenocarcinoma polimorfo de grado bajo"
+      }
+    },
+    {
+      "pk": 138,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8525/3",
+        "description": "Adenocarcinoma del conducto terminal"
+      }
+    },
+    {
+      "pk": 139,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8550/3",
+        "description": "Carcinoma de c\u00e9lulas acinosas"
+      }
+    },
+    {
+      "pk": 140,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8550/3",
+        "description": "Adenocarcinoma acinar"
+      }
+    },
+    {
+      "pk": 141,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8550/3",
+        "description": "Adenocarcinoma de c\u00e9lulas ac\u00ednicas"
+      }
+    },
+    {
+      "pk": 142,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8550/3",
+        "description": "Carcinoma acinar"
+      }
+    },
+    {
+      "pk": 143,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8560/3",
+        "description": "Carcinoma adenoescamoso"
+      }
+    },
+    {
+      "pk": 144,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8560/3",
+        "description": "Adenocarcinoma mixto y Carcinoma de c\u00e9lulas escamosas"
+      }
+    },
+    {
+      "pk": 145,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8560/3",
+        "description": "Adenocarcinoma mixto y Carcinoma epidermoide"
+      }
+    },
+    {
+      "pk": 146,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8562/3",
+        "description": "Carcinoma epitelial mioepitelial"
+      }
+    },
+    {
+      "pk": 147,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8574/3",
+        "description": "Adenocarcinoma con diferenciaci\u00f3n neuroendocrina"
+      }
+    },
+    {
+      "pk": 148,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8574/3",
+        "description": "Carcinoma con diferenciaci\u00f3n neuroendocrina"
+      }
+    },
+    {
+      "pk": 149,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8720/3",
+        "description": "Melanoma maligno SAI (exepto melanoma juvenil)"
+      }
+    },
+    {
+      "pk": 150,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8720/3",
+        "description": "Melanoma SAI"
+      }
+    },
+    {
+      "pk": 151,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8721/3",
+        "description": "Melanoma nodular"
+      }
+    },
+    {
+      "pk": 152,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8722/3",
+        "description": "Melanoma de c\u00e9lulas en bal\u00f3n"
+      }
+    },
+    {
+      "pk": 153,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8723/3",
+        "description": "Melanoma maligno regresivo"
+      }
+    },
+    {
+      "pk": 154,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8730/3",
+        "description": "Melanoma amelan\u00f3tico"
+      }
+    },
+    {
+      "pk": 155,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8740/3",
+        "description": "Melanoma maligno en nevus de uni\u00f3n"
+      }
+    },
+    {
+      "pk": 156,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8741/3",
+        "description": "Melanoma maligno en melanosis precancerosa"
+      }
+    },
+    {
+      "pk": 157,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8742/3",
+        "description": "Melanoma maligno del l\u00e9ntigo"
+      }
+    },
+    {
+      "pk": 158,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8742/3",
+        "description": "Melanoma maligno en peca melan\u00f3tica de Hutchinson"
+      }
+    },
+    {
+      "pk": 159,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8743/3",
+        "description": "Melanoma de diseminacion superficial"
+      }
+    },
+    {
+      "pk": 160,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8744/3",
+        "description": "Melanoma lentiginoso acral maligno"
+      }
+    },
+    {
+      "pk": 161,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8745/3",
+        "description": "Melanoma desmopl\u00e1sico maligno"
+      }
+    },
+    {
+      "pk": 162,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8745/3",
+        "description": "Melanoma desmopl\u00e1sico amelan\u00f3tico"
+      }
+    },
+    {
+      "pk": 163,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8745/3",
+        "description": "Melanoma neurotr\u00f3pico maligno"
+      }
+    },
+    {
+      "pk": 164,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8746/3",
+        "description": "Melanoma lentiginoso mucoso"
+      }
+    },
+    {
+      "pk": 165,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8761/3",
+        "description": "Melanoma maligno en nevus pigmentado gigante"
+      }
+    },
+    {
+      "pk": 166,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8761/3",
+        "description": "Melanoma maligno en Nevus melanoc\u00edtico cong\u00e9nito"
+      }
+    },
+    {
+      "pk": 167,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8770/3",
+        "description": "Melanoma mixto de c\u00e9lulas epitelioides y fusiformes"
+      }
+    },
+    {
+      "pk": 168,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8771/3",
+        "description": "Melanoma de c\u00e9lulas epiteliodes"
+      }
+    },
+    {
+      "pk": 169,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8772/3",
+        "description": "Melanoma de c\u00e9lulas fusiformes SAI"
+      }
+    },
+    {
+      "pk": 170,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8773/3",
+        "description": "Melanoma de c\u00e9lulas fusiformes tipo A"
+      }
+    },
+    {
+      "pk": 171,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8774/3",
+        "description": "Melanoma de c\u00e9lulas fusiformes tipo B"
+      }
+    },
+    {
+      "pk": 172,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8780/3",
+        "description": "Nevu azul maligno"
+      }
+    },
+    {
+      "pk": 173,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8814/3",
+        "description": "Fibrosarcoma infantil"
+      }
+    },
+    {
+      "pk": 174,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8814/3",
+        "description": "Fibrosarcoma cong\u00e9nito"
+      }
+    },
+    {
+      "pk": 175,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8830/3",
+        "description": "Histiocitoma fibroso maligno"
+      }
+    },
+    {
+      "pk": 176,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8830/3",
+        "description": "Fibroxantoma maligno"
+      }
+    },
+    {
+      "pk": 177,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8900/3",
+        "description": "Rabdomiosarcoma SAI"
+      }
+    },
+    {
+      "pk": 178,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8900/3",
+        "description": "Rabdosarcoma"
+      }
+    },
+    {
+      "pk": 179,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8901/3",
+        "description": "Rabdomiosarcoma pleom\u00f3rfico tipo adulto"
+      }
+    },
+    {
+      "pk": 180,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8901/3",
+        "description": "Rabdomiosarcoma pleom\u00f3rfico SAI"
+      }
+    },
+    {
+      "pk": 181,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8902/3",
+        "description": "Rabdomiosarcoma tipo mixto"
+      }
+    },
+    {
+      "pk": 182,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8902/3",
+        "description": "Rabdomiosarcoma embrionario y rabdomiosarcoma alveolar mixto"
+      }
+    },
+    {
+      "pk": 183,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8910/3",
+        "description": "Rabdomiosarcoma embrionario SAI"
+      }
+    },
+    {
+      "pk": 184,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8910/3",
+        "description": "Rabdomiosarcoma embrionario pleom\u00f3rfico"
+      }
+    },
+    {
+      "pk": 185,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8910/3",
+        "description": "Sarcoma botrioides"
+      }
+    },
+    {
+      "pk": 186,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8910/3",
+        "description": "Sarcoma botrioideo"
+      }
+    },
+    {
+      "pk": 187,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8912/3",
+        "description": "Rabdomiosarcoma de c\u00e9lulas fusiformes"
+      }
+    },
+    {
+      "pk": 188,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8920/3",
+        "description": "Rabdomiosarcoma alveolar"
+      }
+    },
+    {
+      "pk": 189,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8930/3",
+        "description": "Sarcoma del estroma endometrial SAI"
+      }
+    },
+    {
+      "pk": 190,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8930/3",
+        "description": "Sarcoma del estroma endometrial grado alto"
+      }
+    },
+    {
+      "pk": 191,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8930/3",
+        "description": "Sarcoma endometrial SAI"
+      }
+    },
+    {
+      "pk": 192,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8931/3",
+        "description": "Sarcoma del estroma endometrial grado bajo"
+      }
+    },
+    {
+      "pk": 193,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8931/3",
+        "description": "Miosis del estroma SAI"
+      }
+    },
+    {
+      "pk": 194,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8931/3",
+        "description": "Endometriosis del estroma"
+      }
+    },
+    {
+      "pk": 195,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8931/3",
+        "description": "Estromatosis endometrial"
+      }
+    },
+    {
+      "pk": 196,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8931/3",
+        "description": "Miosis del estroma endolinf\u00e1tico"
+      }
+    },
+    {
+      "pk": 197,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8933/3",
+        "description": "Adenosarcoma"
+      }
+    },
+    {
+      "pk": 198,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8934/3",
+        "description": "Carcinofibroma"
+      }
+    },
+    {
+      "pk": 199,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8935/3",
+        "description": "Sarcoma del estroma SAI"
+      }
+    },
+    {
+      "pk": 200,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8936/3",
+        "description": "Sarcoma del estroma gastrointestinal"
+      }
+    },
+    {
+      "pk": 201,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8936/3",
+        "description": "Tumor del estroma gastrointestinal maligno"
+      }
+    },
+    {
+      "pk": 202,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8936/3",
+        "description": "TEGI (GIST) maligno"
+      }
+    },
+    {
+      "pk": 203,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8940/3",
+        "description": "Tumor mixto maligno SAI"
+      }
+    },
+    {
+      "pk": 204,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8940/3",
+        "description": "Tumor mixto tipo gl\u00e1ndula salival maligno"
+      }
+    },
+    {
+      "pk": 205,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8940/3",
+        "description": "Siringoma condroide maligno"
+      }
+    },
+    {
+      "pk": 206,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8941/3",
+        "description": "Carcinoma en adenoma pleom\u00f3rfico"
+      }
+    },
+    {
+      "pk": 207,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8950/3",
+        "description": "Tumor mulleriano mixto"
+      }
+    },
+    {
+      "pk": 208,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8951/3",
+        "description": "Tumor mesod\u00e9rmico mixto"
+      }
+    },
+    {
+      "pk": 209,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8963/3",
+        "description": "Tumor rabdoide maligno"
+      }
+    },
+    {
+      "pk": 210,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8963/3",
+        "description": "Tumor rabdoide SAI"
+      }
+    },
+    {
+      "pk": 211,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8963/3",
+        "description": "Sarcoma rabdoide"
+      }
+    },
+    {
+      "pk": 212,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8971/3",
+        "description": "Pancreatoblastoma"
+      }
+    },
+    {
+      "pk": 213,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8972/3",
+        "description": "Blastoma pulmonar"
+      }
+    },
+    {
+      "pk": 214,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8972/3",
+        "description": "Neumoblastoma"
+      }
+    },
+    {
+      "pk": 215,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8973/3",
+        "description": "Blastoma pleuropulmonar"
+      }
+    },
+    {
+      "pk": 216,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8980/3",
+        "description": "Carcinosarcoma SAI"
+      }
+    },
+    {
+      "pk": 217,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8981/3",
+        "description": "Carcinoma embrionario"
+      }
+    },
+    {
+      "pk": 218,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "8991/3",
+        "description": "Sarcoma embrionario"
+      }
+    },
+    {
+      "pk": 219,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9050/3",
+        "description": "Mesotelioma maligno"
+      }
+    },
+    {
+      "pk": 220,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9050/3",
+        "description": "Mesotelioma SAI"
+      }
+    },
+    {
+      "pk": 221,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9051/3",
+        "description": "Mesotelioma fibroso maligno"
+      }
+    },
+    {
+      "pk": 222,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9051/3",
+        "description": "Mesotelioma desmopl\u00e1sico"
+      }
+    },
+    {
+      "pk": 223,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9051/3",
+        "description": "Mesotelioma fibroso SAI"
+      }
+    },
+    {
+      "pk": 224,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9051/3",
+        "description": "Mesotelioma fusiforme"
+      }
+    },
+    {
+      "pk": 225,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9051/3",
+        "description": "Mesotelioma sarcomatoide"
+      }
+    },
+    {
+      "pk": 226,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9052/3",
+        "description": "Mesotelioma epitelioide maligno"
+      }
+    },
+    {
+      "pk": 227,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9052/3",
+        "description": "Mesotelioma epitelioide SAI"
+      }
+    },
+    {
+      "pk": 228,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9053/3",
+        "description": "Mesotelioma bif\u00e1sico maligno"
+      }
+    },
+    {
+      "pk": 229,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9053/3",
+        "description": "Mesotelioma bif\u00e1sico SAI"
+      }
+    },
+    {
+      "pk": 230,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9060/3",
+        "description": "Disgreminoma"
+      }
+    },
+    {
+      "pk": 231,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9061/3",
+        "description": "Seminoma SAI"
+      }
+    },
+    {
+      "pk": 232,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9062/3",
+        "description": "Seminoma anapl\u00e1sico"
+      }
+    },
+    {
+      "pk": 233,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9062/3",
+        "description": "Seminoma con \u00edndice mit\u00f3tico alto"
+      }
+    },
+    {
+      "pk": 234,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9063/3",
+        "description": "Seminoma espermatoc\u00edtico"
+      }
+    },
+    {
+      "pk": 235,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9063/3",
+        "description": "Espermatocinoma"
+      }
+    },
+    {
+      "pk": 236,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9064/3",
+        "description": "Germinoma"
+      }
+    },
+    {
+      "pk": 237,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9064/3",
+        "description": "Tumor de c\u00e9lulas germinales SAI"
+      }
+    },
+    {
+      "pk": 238,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9065/3",
+        "description": "Tumor de c\u00e9lulas germinales no seminomatoso"
+      }
+    },
+    {
+      "pk": 239,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9070/3",
+        "description": "Carcinoma embrionario SAI"
+      }
+    },
+    {
+      "pk": 240,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9070/3",
+        "description": "Adenocarcinoma embrionario"
+      }
+    },
+    {
+      "pk": 241,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Tumor del saco embrionario"
+      }
+    },
+    {
+      "pk": 242,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Tumor hepatoide del saco endod\u00e9rmico"
+      }
+    },
+    {
+      "pk": 243,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Tumor vitelino polivesicular"
+      }
+    },
+    {
+      "pk": 244,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Tumor del seno endod\u00e9rmico"
+      }
+    },
+    {
+      "pk": 245,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Orquioblastoma"
+      }
+    },
+    {
+      "pk": 246,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9071/3",
+        "description": "Carcinoma embrionario infantil"
+      }
+    },
+    {
+      "pk": 247,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9072/3",
+        "description": "Poliembrioma"
+      }
+    },
+    {
+      "pk": 248,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9072/3",
+        "description": "Carcinoma embrionario tipo poliembrionario"
+      }
+    },
+    {
+      "pk": 249,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9080/3",
+        "description": "Teratoma maligno SAI"
+      }
+    },
+    {
+      "pk": 250,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9080/3",
+        "description": "Teratoma embrionario"
+      }
+    },
+    {
+      "pk": 251,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9080/3",
+        "description": "Teratoblastoma maligno"
+      }
+    },
+    {
+      "pk": 252,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9080/3",
+        "description": "Teratoma inmaduro maligno"
+      }
+    },
+    {
+      "pk": 253,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9080/3",
+        "description": "Teratoma inmaduro SAI"
+      }
+    },
+    {
+      "pk": 254,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9081/3",
+        "description": "Teratocarcinoma"
+      }
+    },
+    {
+      "pk": 255,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9081/3",
+        "description": "Carcinoma y teratoma embrionario mixto"
+      }
+    },
+    {
+      "pk": 256,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9082/3",
+        "description": "Teratoma maligno indeferenciado"
+      }
+    },
+    {
+      "pk": 257,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9082/3",
+        "description": "Teratoma maligno anapl\u00e1sico"
+      }
+    },
+    {
+      "pk": 258,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9083/3",
+        "description": "Teratoma maligno itermedio"
+      }
+    },
+    {
+      "pk": 259,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9084/3",
+        "description": "Teratoma con transformaci\u00f3n maligna"
+      }
+    },
+    {
+      "pk": 260,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9084/3",
+        "description": "Quiste dermoide con transormaci\u00f3n maligna"
+      }
+    },
+    {
+      "pk": 261,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9084/3",
+        "description": "Quiste dermoide con tumor secundario"
+      }
+    },
+    {
+      "pk": 262,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9085/3",
+        "description": "Tumor mixto de c\u00e9lulas germinales"
+      }
+    },
+    {
+      "pk": 263,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9085/3",
+        "description": "Teratoma y seminoma mixto"
+      }
+    },
+    {
+      "pk": 264,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9100/3",
+        "description": "Coriocarcinoma SAI"
+      }
+    },
+    {
+      "pk": 265,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9100/3",
+        "description": "Corioepitelioma"
+      }
+    },
+    {
+      "pk": 266,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9100/3",
+        "description": "Corionepitelioma"
+      }
+    },
+    {
+      "pk": 267,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9105/3",
+        "description": "Tumor trofobl\u00e1stico epitelioide"
+      }
+    },
+    {
+      "pk": 268,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9110/3",
+        "description": "Mesonefroma maligno"
+      }
+    },
+    {
+      "pk": 269,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9110/3",
+        "description": "Adenocarcinoma meson\u00e9frico"
+      }
+    },
+    {
+      "pk": 270,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9110/3",
+        "description": "Carcinoma del conducto de Wolff"
+      }
+    },
+    {
+      "pk": 271,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9110/3",
+        "description": "Mesonefroma SAI"
+      }
+    },
+    {
+      "pk": 272,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9260/3",
+        "description": "Sarcoma de Ewing"
+      }
+    },
+    {
+      "pk": 273,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9260/3",
+        "description": "Tumor de Ewing"
+      }
+    },
+    {
+      "pk": 274,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9364/3",
+        "description": "Tumor neuroectod\u00e9rmico perif\u00e9rico"
+      }
+    },
+    {
+      "pk": 275,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9364/3",
+        "description": "Tumor neuroectod\u00e9rmico SAI"
+      }
+    },
+    {
+      "pk": 276,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9364/3",
+        "description": "Tumor neuroectod\u00e9rmico perif\u00e9rico primitivo SAI"
+      }
+    },
+    {
+      "pk": 277,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9364/3",
+        "description": "TNEPP (PPNET)"
+      }
+    },
+    {
+      "pk": 278,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9365/3",
+        "description": "Tumor de Askin"
+      }
+    },
+    {
+      "pk": 279,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9590/3",
+        "description": "Linfoma maligno SAI"
+      }
+    },
+    {
+      "pk": 280,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9590/3",
+        "description": "Linfoma SAI"
+      }
+    },
+    {
+      "pk": 281,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9590/3",
+        "description": "Microglioma"
+      }
+    },
+    {
+      "pk": 282,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno no Hodgkin SAI"
+      }
+    },
+    {
+      "pk": 283,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma no Hodgkin SAI"
+      }
+    },
+    {
+      "pk": 284,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma de c\u00e9lulas B"
+      }
+    },
+    {
+      "pk": 285,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno c\u00e9lulas hendidas SAI"
+      }
+    },
+    {
+      "pk": 286,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as hendidas difuso"
+      }
+    },
+    {
+      "pk": 287,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as no hendidas difuso"
+      }
+    },
+    {
+      "pk": 288,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno c\u00e9lulas indiferenciadas no Burkitt"
+      }
+    },
+    {
+      "pk": 289,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno tipo de c\u00e9lulas indiferenciadas SAI"
+      }
+    },
+    {
+      "pk": 290,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno difuso SAI"
+      }
+    },
+    {
+      "pk": 291,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno linfoc\u00edtico diferenciaci\u00f3n intermedia nodular"
+      }
+    },
+    {
+      "pk": 292,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno linfoc\u00edtico pobremente diferenciacisdo difuso"
+      }
+    },
+    {
+      "pk": 293,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as hendidas SAI"
+      }
+    },
+    {
+      "pk": 294,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfosarcoma SAI"
+      }
+    },
+    {
+      "pk": 295,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Linfosarcoma difuso"
+      }
+    },
+    {
+      "pk": 296,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Sarcoma de c\u00e9lulas reticulares SAI"
+      }
+    },
+    {
+      "pk": 297,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Reticulosarcoma SAI"
+      }
+    },
+    {
+      "pk": 298,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Reticulosarcoma difuso"
+      }
+    },
+    {
+      "pk": 299,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9591/3",
+        "description": "Sarcoma de c\u00e9lulas reticulares difuso"
+      }
+    },
+    {
+      "pk": 300,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9596/3",
+        "description": "Lifoma Hodgkin y no Hodgkin compuesto"
+      }
+    },
+    {
+      "pk": 301,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9650/3",
+        "description": "Linfoma de Hodgkin SAI"
+      }
+    },
+    {
+      "pk": 302,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9650/3",
+        "description": "Enfermedad de Hodgkin SAI"
+      }
+    },
+    {
+      "pk": 303,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9650/3",
+        "description": "Linfoma maligno Hodgkin"
+      }
+    },
+    {
+      "pk": 304,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9651/3",
+        "description": "Linfoma de Hodgkin rico en linfocitos"
+      }
+    },
+    {
+      "pk": 305,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9651/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico rico en linfocitos"
+      }
+    },
+    {
+      "pk": 306,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9651/3",
+        "description": "Enfermedad de Hodgkin predominio linfoc\u00edtico SAI"
+      }
+    },
+    {
+      "pk": 307,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9651/3",
+        "description": "Enfermedad de Hodgkin predominio linfoc\u00edtico difusa"
+      }
+    },
+    {
+      "pk": 308,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9651/3",
+        "description": "Enfermedad de Hodgkin predominio linfoc\u00edtico histioc\u00edtico"
+      }
+    },
+    {
+      "pk": 309,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9652/3",
+        "description": "Linfoma de Hodgkin celularidad mixta SAI"
+      }
+    },
+    {
+      "pk": 310,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9652/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico celularidad mixta SAI"
+      }
+    },
+    {
+      "pk": 311,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9653/3",
+        "description": "Linfoma de Hodgkin depleci\u00f3n linfoc\u00edtica SAI"
+      }
+    },
+    {
+      "pk": 312,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9653/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico depleci\u00f3n linfoc\u00edtica SAI"
+      }
+    },
+    {
+      "pk": 313,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9654/3",
+        "description": "Linfoma de Hodgkin depleci\u00f3n linfoc\u00edtica fibrosis difusa"
+      }
+    },
+    {
+      "pk": 314,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9654/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico depleci\u00f3n linfoc\u00edtica fibrosis difusa"
+      }
+    },
+    {
+      "pk": 315,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9655/3",
+        "description": "Linfoma de Hodgkin depleci\u00f3n linfoc\u00edtica reticular"
+      }
+    },
+    {
+      "pk": 316,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9655/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico depleci\u00f3n linfoc\u00edtica reticular"
+      }
+    },
+    {
+      "pk": 317,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9659/3",
+        "description": "Linfoma de Hodgkin predominio linfocito nodular"
+      }
+    },
+    {
+      "pk": 318,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9659/3",
+        "description": "Linfoma de Hodgkin predominio linfoc\u00edtico nodular"
+      }
+    },
+    {
+      "pk": 319,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9659/3",
+        "description": "Paragranuloma de Hodgkin nodular"
+      }
+    },
+    {
+      "pk": 320,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9659/3",
+        "description": "Paragranuloma de Hodgkin SAI"
+      }
+    },
+    {
+      "pk": 321,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9661/3",
+        "description": "Granuloma de Hodgkin"
+      }
+    },
+    {
+      "pk": 322,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9662/3",
+        "description": "Sarcoma de Hodgkin"
+      }
+    },
+    {
+      "pk": 323,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9663/3",
+        "description": "Linfoma de Hodgkin esclerosis nodular SAI"
+      }
+    },
+    {
+      "pk": 324,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9663/3",
+        "description": "Enfermedad de Hodgkin esclerosis nodular SAI"
+      }
+    },
+    {
+      "pk": 325,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9663/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico esclerosis nodular SAI"
+      }
+    },
+    {
+      "pk": 326,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9664/3",
+        "description": "Linfoma de Hodgkin esclerosis nodular fase celular"
+      }
+    },
+    {
+      "pk": 327,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9664/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico esclerosis nodular fase celular"
+      }
+    },
+    {
+      "pk": 328,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9665/3",
+        "description": "Linfoma de Hodgkin esclerosis nodular grado 1"
+      }
+    },
+    {
+      "pk": 329,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9665/3",
+        "description": "Enfermedad de Hodgkin esclerosis nodular celularidad mixta"
+      }
+    },
+    {
+      "pk": 330,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9665/3",
+        "description": "Enfermedad de Hodgkin esclerosis nodular predominio linfoc\u00edtico"
+      }
+    },
+    {
+      "pk": 331,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9665/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico esclerosis nodular grado 1"
+      }
+    },
+    {
+      "pk": 332,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9667/3",
+        "description": "Linfoma de Hodgkin esclerosis nodular grado 2"
+      }
+    },
+    {
+      "pk": 333,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9667/3",
+        "description": "Enfermedad de Hodgkin esclerosis nodular depleci\u00f3n linfoc\u00edtica"
+      }
+    },
+    {
+      "pk": 334,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9667/3",
+        "description": "Enfermedad de Hodgkin esclerosis nodular variante sincitial"
+      }
+    },
+    {
+      "pk": 335,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9667/3",
+        "description": "Linfoma de Hodgkin cl\u00e1sico esclerosis nodular grado 2"
+      }
+    },
+    {
+      "pk": 336,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico c\u00e9lulas B peque\u00f1as SAI"
+      }
+    },
+    {
+      "pk": 337,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as SAI"
+      }
+    },
+    {
+      "pk": 338,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as difuso"
+      }
+    },
+    {
+      "pk": 339,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico SAI"
+      }
+    },
+    {
+      "pk": 340,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico bien diferenciado difuso"
+      }
+    },
+    {
+      "pk": 341,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico difuso SAI"
+      }
+    },
+    {
+      "pk": 342,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico peque\u00f1o SAI"
+      }
+    },
+    {
+      "pk": 343,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9670/3",
+        "description": "Linfoma maligno linfoc\u00edtico peque\u00f1o difuso"
+      }
+    },
+    {
+      "pk": 344,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9671/3",
+        "description": "Linfoma maligno linfoplasmac\u00edtico"
+      }
+    },
+    {
+      "pk": 345,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9671/3",
+        "description": "Linfoma maligno linfoplasmocitoide"
+      }
+    },
+    {
+      "pk": 346,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9671/3",
+        "description": "Inmunocitoma"
+      }
+    },
+    {
+      "pk": 347,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9671/3",
+        "description": "Linfoma maligno plasmacitoide"
+      }
+    },
+    {
+      "pk": 348,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9671/3",
+        "description": "Linfoma plasmac\u00edtico"
+      }
+    },
+    {
+      "pk": 349,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9673/3",
+        "description": "Linfoma de c\u00e9lulas del manto (incluye todas las variantes:bl\u00e1sticas pleom\u00f3rficas y peque\u00f1as)"
+      }
+    },
+    {
+      "pk": 350,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9673/3",
+        "description": "Linfoma maligno centroc\u00edtico"
+      }
+    },
+    {
+      "pk": 351,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9673/3",
+        "description": "Linfoma maligno linfoc\u00edtico diferenciaci\u00f3n intermedia difuso"
+      }
+    },
+    {
+      "pk": 352,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9673/3",
+        "description": "Linfoma de la zona del manto"
+      }
+    },
+    {
+      "pk": 353,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9673/3",
+        "description": "P\u00f3liposis linfomatosa maligna"
+      }
+    },
+    {
+      "pk": 354,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9675/3",
+        "description": "Linfoma maligno c\u00e9lulas peque\u00f1as y grandes mezcladas difuso"
+      }
+    },
+    {
+      "pk": 355,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9675/3",
+        "description": "Linfoma maligno centrobl\u00e1stico centroc\u00edtico"
+      }
+    },
+    {
+      "pk": 356,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9675/3",
+        "description": "Linfoma maligno centrobl\u00e1stico centroc\u00edtico difuso"
+      }
+    },
+    {
+      "pk": 357,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9675/3",
+        "description": "Linfoma maligno linfoc\u00edtico histioc\u00edtico mixto difuso"
+      }
+    },
+    {
+      "pk": 358,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9675/3",
+        "description": "Linfoma maligno tipo de c\u00e9lulas mixtas difuso"
+      }
+    },
+    {
+      "pk": 359,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9678/3",
+        "description": "Linfoma de efusi\u00f3n primaria"
+      }
+    },
+    {
+      "pk": 360,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9679/3",
+        "description": "Linfoma mediastinal c\u00e9lulas B grandes"
+      }
+    },
+    {
+      "pk": 361,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9679/3",
+        "description": "Linfoma t\u00edmico de c\u00e9lulas B grandes"
+      }
+    },
+    {
+      "pk": 362,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas B grandes difuso SAI"
+      }
+    },
+    {
+      "pk": 363,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma difuso c\u00e9lulas B grandes SAI"
+      }
+    },
+    {
+      "pk": 364,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas B grandes SAI"
+      }
+    },
+    {
+      "pk": 365,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas B grandes difuso centrobl\u00e1stico"
+      }
+    },
+    {
+      "pk": 366,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes SAI"
+      }
+    },
+    {
+      "pk": 367,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes difuso SAI"
+      }
+    },
+    {
+      "pk": 368,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes hendidas"
+      }
+    },
+    {
+      "pk": 369,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno de c\u00e9lulas grandes hendido"
+      }
+    },
+    {
+      "pk": 370,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes hendido difuso"
+      }
+    },
+    {
+      "pk": 371,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes hendido y no hendido"
+      }
+    },
+    {
+      "pk": 372,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes no hendido SAI"
+      }
+    },
+    {
+      "pk": 373,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes no hendido difuso"
+      }
+    },
+    {
+      "pk": 374,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno histioc\u00edtico"
+      }
+    },
+    {
+      "pk": 375,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno histioc\u00edtico difuso"
+      }
+    },
+    {
+      "pk": 376,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno no hendido"
+      }
+    },
+    {
+      "pk": 377,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno no hendido difuso SAI"
+      }
+    },
+    {
+      "pk": 378,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma anapl\u00e1sico de c\u00e9lulas B grandes"
+      }
+    },
+    {
+      "pk": 379,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma de c\u00e9lulas B grandes rico en c\u00e9lulas T"
+      }
+    },
+    {
+      "pk": 380,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma de c\u00e9lulas B grandes rico en c\u00e9lulas T/rico en histiocitos"
+      }
+    },
+    {
+      "pk": 381,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma de c\u00e9lulas B grandes rico en histiocitos"
+      }
+    },
+    {
+      "pk": 382,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma intravascular de c\u00e9lulas B grandes"
+      }
+    },
+    {
+      "pk": 383,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Angioendoteliomatosis"
+      }
+    },
+    {
+      "pk": 384,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma angiotr\u00f3pico"
+      }
+    },
+    {
+      "pk": 385,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma intravascular de c\u00e9lulas B"
+      }
+    },
+    {
+      "pk": 386,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno centrobl\u00e1stico SAI"
+      }
+    },
+    {
+      "pk": 387,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9680/3",
+        "description": "Linfoma maligno centrobl\u00e1stico difuso"
+      }
+    },
+    {
+      "pk": 388,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9684/3",
+        "description": "Linfoma maligno c\u00e9lulas B grandes difuso inmunobl\u00e1stico SAI"
+      }
+    },
+    {
+      "pk": 389,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9684/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes inmunobl\u00e1stico"
+      }
+    },
+    {
+      "pk": 390,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9684/3",
+        "description": "Linfoma maligno inmunobl\u00e1stico SAI"
+      }
+    },
+    {
+      "pk": 391,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9684/3",
+        "description": "Linfoma plasmabl\u00e1stico"
+      }
+    },
+    {
+      "pk": 392,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9684/3",
+        "description": "Sarcoma inmunobl\u00e1stico"
+      }
+    },
+    {
+      "pk": 393,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9687/3",
+        "description": "Linfoma de Burkitt incluye todas las variantes"
+      }
+    },
+    {
+      "pk": 394,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9687/3",
+        "description": "Linfoma maligno indiferenciado tipo Burkitt"
+      }
+    },
+    {
+      "pk": 395,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9687/3",
+        "description": "Linfoma maligno no hendido peque\u00f1o tipo Burkitt"
+      }
+    },
+    {
+      "pk": 396,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9687/3",
+        "description": "Tumor de Burkitt"
+      }
+    },
+    {
+      "pk": 397,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9687/3",
+        "description": "Linfoma similar a linfoma de Burkitt"
+      }
+    },
+    {
+      "pk": 398,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linfoma folicular SAI"
+      }
+    },
+    {
+      "pk": 399,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linfoma maligno centrobl\u00e1stico centroc\u00edtico folicular"
+      }
+    },
+    {
+      "pk": 400,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linfoma maligno centro del fol\u00edculo"
+      }
+    },
+    {
+      "pk": 401,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linfoma maligno centro del fol\u00edculo folicular SAI"
+      }
+    },
+    {
+      "pk": 402,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linfoma maligno folicular SAI"
+      }
+    },
+    {
+      "pk": 403,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "Linoma maligno linfoc\u00edtico nodular SAI"
+      }
+    },
+    {
+      "pk": 404,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9690/3",
+        "description": "linfoma maligno nodular SAI"
+      }
+    },
+    {
+      "pk": 405,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9691/3",
+        "description": "Linfoma folicular grado 2"
+      }
+    },
+    {
+      "pk": 406,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9691/3",
+        "description": "Linfoma maligno folicular con c\u00e9lulas peque\u00f1as hendidas y grandes mezcladas folicular"
+      }
+    },
+    {
+      "pk": 407,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9691/3",
+        "description": "Linfoma maligno linfoc\u00edtico histioc\u00edtio mixto nodular"
+      }
+    },
+    {
+      "pk": 408,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9691/3",
+        "description": "Linfoma maligno tipo c\u00e9lulas mixtas folicular"
+      }
+    },
+    {
+      "pk": 409,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9691/3",
+        "description": "Linfoma maligno tipo c\u00e9lulas mixtas nodular"
+      }
+    },
+    {
+      "pk": 410,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9695/3",
+        "description": "Linfoma folicular grado 1"
+      }
+    },
+    {
+      "pk": 411,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9695/3",
+        "description": "Linfoma folicular c\u00e9lulas hendidas peque\u00f1as"
+      }
+    },
+    {
+      "pk": 412,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9695/3",
+        "description": "Linfoma maligno c\u00e9lulas hendidas peque\u00f1as folicular"
+      }
+    },
+    {
+      "pk": 413,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9695/3",
+        "description": "Linfoma maligno linfoc\u00edtico pobremente diferenciado nodular"
+      }
+    },
+    {
+      "pk": 414,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma folicular grado 3"
+      }
+    },
+    {
+      "pk": 415,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes folicular SAI"
+      }
+    },
+    {
+      "pk": 416,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes no hendidas folicular"
+      }
+    },
+    {
+      "pk": 417,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno c\u00e9lulas grandes hendidas folicular"
+      }
+    },
+    {
+      "pk": 418,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno c\u00e9lulas no hendidas folicular"
+      }
+    },
+    {
+      "pk": 419,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno centrobl\u00e1stico folicular"
+      }
+    },
+    {
+      "pk": 420,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno histioc\u00edtico nodular"
+      }
+    },
+    {
+      "pk": 421,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9698/3",
+        "description": "Linfoma maligno linfoc\u00edtico bien diferenciado nodular"
+      }
+    },
+    {
+      "pk": 422,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de c\u00e9lulas B de la zona marginal SAI"
+      }
+    },
+    {
+      "pk": 423,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de c\u00e9lulas B monocitoides"
+      }
+    },
+    {
+      "pk": 424,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de la zona marginal nodal"
+      }
+    },
+    {
+      "pk": 425,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma del tejido linfoide asociado a bronquio"
+      }
+    },
+    {
+      "pk": 426,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma TLAB (MALT)"
+      }
+    },
+    {
+      "pk": 427,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de tejido linfoide asociado a mucosa"
+      }
+    },
+    {
+      "pk": 428,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma TLAM (BALT)"
+      }
+    },
+    {
+      "pk": 429,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de tejido linfoide asociado a piel"
+      }
+    },
+    {
+      "pk": 430,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma TLAP (SALT)"
+      }
+    },
+    {
+      "pk": 431,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9699/3",
+        "description": "Linfoma de la zona marginal SAI"
+      }
+    },
+    {
+      "pk": 432,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T maduras SAI"
+      }
+    },
+    {
+      "pk": 433,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T SAI"
+      }
+    },
+    {
+      "pk": 434,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T perif\u00e9ricas SAI"
+      }
+    },
+    {
+      "pk": 435,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T perif\u00e9ricas c\u00e9lulas grandes"
+      }
+    },
+    {
+      "pk": 436,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T perif\u00e9ricas c\u00e9lulas medianas y grandes pleom\u00f3rficas"
+      }
+    },
+    {
+      "pk": 437,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de c\u00e9lulas T perif\u00e9ricas c\u00e9lulas peque\u00f1as pleom\u00f3rficas"
+      }
+    },
+    {
+      "pk": 438,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de la zona T"
+      }
+    },
+    {
+      "pk": 439,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma linfoepitelioide"
+      }
+    },
+    {
+      "pk": 440,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9702/3",
+        "description": "Linfoma de Lennert"
+      }
+    },
+    {
+      "pk": 441,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9705/3",
+        "description": "Linfoma angioinmunobl\u00e1stico de c\u00e9lulas T"
+      }
+    },
+    {
+      "pk": 442,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9705/3",
+        "description": "Linfoma angioinmunobl\u00e1stico"
+      }
+    },
+    {
+      "pk": 443,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9705/3",
+        "description": "Linfoma de c\u00e9lulas T perif\u00e9ricas LADI (AILD) (Linfadenopatia angioinmuno bl\u00e1stica con disproteinemia"
+      }
+    },
+    {
+      "pk": 444,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9714/3",
+        "description": "Linfoma anapl\u00e1sico de c\u00e9lulas grandes tipo c\u00e9lulas T y c\u00e9lulas nulas"
+      }
+    },
+    {
+      "pk": 445,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9714/3",
+        "description": "Linfoma de c\u00e9lulas grandes (Ki-1+)"
+      }
+    },
+    {
+      "pk": 446,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9714/3",
+        "description": "Linfoma anapl\u00e1sico de c\u00e9lulas grandes SAI"
+      }
+    },
+    {
+      "pk": 447,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9714/3",
+        "description": "Linfoma anapl\u00e1sico de c\u00e9lulas grandes CD30+"
+      }
+    },
+    {
+      "pk": 448,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9716/3",
+        "description": "Linfoma hepatoespl\u00e9nico de c\u00e9lulas ganma y delta"
+      }
+    },
+    {
+      "pk": 449,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9717/3",
+        "description": "Linfoma intestinal de c\u00e9lulas T"
+      }
+    },
+    {
+      "pk": 450,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9717/3",
+        "description": "Linfoma intestinal de c\u00e9lulas T tipo enteropat\u00eda"
+      }
+    },
+    {
+      "pk": 451,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9717/3",
+        "description": "Linfoma de c\u00e9lulas T asociado a enteropat\u00eda"
+      }
+    },
+    {
+      "pk": 452,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Linfoma de c\u00e9lulas NK/T nasal y tipo nasal"
+      }
+    },
+    {
+      "pk": 453,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Linfoma angioc\u00e9ntrico de c\u00e9lulas T"
+      }
+    },
+    {
+      "pk": 454,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Linfoma de c\u00e9lulas T/NK"
+      }
+    },
+    {
+      "pk": 455,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Reticulosis maligna SAI"
+      }
+    },
+    {
+      "pk": 456,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Reticulosis maligna de la l\u00ednea media"
+      }
+    },
+    {
+      "pk": 457,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9719/3",
+        "description": "Reticulosis polim\u00f3rfica"
+      }
+    },
+    {
+      "pk": 458,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9727/3",
+        "description": "Linfoma linfobl\u00e1stico de c\u00e9lulas precursoras"
+      }
+    },
+    {
+      "pk": 459,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9727/3",
+        "description": "Linfoblastoma"
+      }
+    },
+    {
+      "pk": 460,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9727/3",
+        "description": "Linfoma maligno c\u00e9lulas espirales"
+      }
+    },
+    {
+      "pk": 461,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9727/3",
+        "description": "Linfoma maligno linfobl\u00e1stico"
+      }
+    },
+    {
+      "pk": 462,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9728/3",
+        "description": "Linfoma linfobl\u00e1stico de c\u00e9lulas B precursoras"
+      }
+    },
+    {
+      "pk": 463,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9729/3",
+        "description": "Linfoma linfobl\u00e1stico de c\u00e9lulas T precursoras"
+      }
+    },
+    {
+      "pk": 464,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9734/3",
+        "description": "Plasmacitoma extramedular (no se presenta en hueso)"
+      }
+    },
+    {
+      "pk": 465,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9740/3",
+        "description": "Sarcoma de mastocitos"
+      }
+    },
+    {
+      "pk": 466,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9740/3",
+        "description": "Mastocitoma maligno"
+      }
+    },
+    {
+      "pk": 467,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9740/3",
+        "description": "Tumor maligno de mastocitos"
+      }
+    },
+    {
+      "pk": 468,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9741/3",
+        "description": "Mastocitosis maligna"
+      }
+    },
+    {
+      "pk": 469,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9741/3",
+        "description": "Enfermedad de los mastocitos del tejido sist\u00e9mico"
+      }
+    },
+    {
+      "pk": 470,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9750/3",
+        "description": "Histiocitosis maligna"
+      }
+    },
+    {
+      "pk": 471,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9750/3",
+        "description": "Reticulosis medular histioc\u00edtica"
+      }
+    },
+    {
+      "pk": 472,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9754/3",
+        "description": "Histiocitosis de c\u00e9lulas de Langerhans diseminada"
+      }
+    },
+    {
+      "pk": 473,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9754/3",
+        "description": "Histiocitosis de c\u00e9lulas de Langerhans generalizada"
+      }
+    },
+    {
+      "pk": 474,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9754/3",
+        "description": "Enfermedad de Letterer Siwe"
+      }
+    },
+    {
+      "pk": 475,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9754/3",
+        "description": "Histiocitosis X progresiva aguda"
+      }
+    },
+    {
+      "pk": 476,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9754/3",
+        "description": "Reticuloendoteliosis no lip\u00eddica"
+      }
+    },
+    {
+      "pk": 477,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9755/3",
+        "description": "Sarcoma histioc\u00edtico"
+      }
+    },
+    {
+      "pk": 478,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9755/3",
+        "description": "Linfoma histioc\u00edtico verdadero"
+      }
+    },
+    {
+      "pk": 479,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9756/3",
+        "description": "Sarcoma de c\u00e9lulas de Langerhans"
+      }
+    },
+    {
+      "pk": 480,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9757/3",
+        "description": "Sarcoma de c\u00e9lulas dendr\u00edticas interdigitantes"
+      }
+    },
+    {
+      "pk": 481,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9757/3",
+        "description": "Sarcoma de c\u00e9lulas interdigitantes SAI"
+      }
+    },
+    {
+      "pk": 482,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9757/3",
+        "description": "Sarcoma de c\u00e9lulas dendr\u00edticas"
+      }
+    },
+    {
+      "pk": 483,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9758/3",
+        "description": "Sarcoma folicular de c\u00e9lulas dendr\u00edticas"
+      }
+    },
+    {
+      "pk": 484,
+      "model": "classifiers.morphology",
+      "fields": {
+        "code": "9758/3",
+        "description": "Tumor folicular de c\u00e9lulas dendr\u00edticas)"
+      }
+    }
+  ]
