@@ -35,6 +35,7 @@ class MunicipalityForm(ModelForm):
                     "data-placeholder": "Provincias",
                     "data-language": "es",
                     "data-theme": "bootstrap4",
+                    "data-width": "style",
                 },
             ),
         }

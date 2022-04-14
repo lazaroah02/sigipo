@@ -10,24 +10,35 @@
     <div class="container">
         <div class="card card-container">
             <div class="card-header">
-                <h4>Filtro(s):</h4>
+                <div class="row">
+                    <div class="col">
+                        <h4>Filtro(s):</h4>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                            Mostrar/Ocultar
+                          </button>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                {% block table_filters %}
-                    <form method="get" class="row">
-                        {% block model_filters %}
-                            {% for field in filter.form.visible_fields %}
-                                <div class="col">{{ field }}</div>
-                            {% endfor %}
-                        {% endblock model_filters %}
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-info mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>
-                        </div>
-                        <div class="col-auto">
-                            <a href="?" class="btn btn-warning mb-3"><i class="fa-solid fa-ban"></i> Quitar filtros</a>
-                        </div>
-                    </form>
-                {% endblock table_filters %}
+            <div class="collapse" id="collapseFilters">
+                <div class="card-body">
+                    {% block table_filters %}
+                        <form method="get" class="row">
+                            {% block model_filters %}
+                                {% for field in filter.form.visible_fields %}
+                                    <div class="col">{{ field }}</div>
+                                {% endfor %}
+                            {% endblock model_filters %}
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-info mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                            </div>
+                            <div class="col-auto">
+                                <a href="?" class="btn btn-warning mb-3"><i class="fa-solid fa-ban"></i> Quitar filtros</a>
+                            </div>
+                        </form>
+                    {% endblock table_filters %}
+                </div>
             </div>
             <div class="card-footer text-muted">
                 <a href="{% url add_url %}" class="btn btn-success" role="button"><i class="fa-solid fa-plus"></i> Añadir {{ crud_instance_name }}</a>

@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # path("accounts/", include("apps.accounts.urls")),
     path("geographic_location/", include("apps.geographic_location.urls")),
+    path("patient/", include("apps.patient.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
 ]

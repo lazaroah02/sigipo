@@ -13,7 +13,7 @@ De instalar Python directamente continue en la sección 2.
 **(1)**. Instalar Python 3.10.
 
 La mejor manera de hacer esto es con [pyenv](https://github.com/pyenv/pyenv).
-Siga sus instrucciones para configurarlo para su consola. También puede compilar directamente [Python](https://www.python.org/downloads/source/). Instale siempre la versión *más reciente* de Python.
+Siga sus [instrucciones para configurarlo](https://realpython.com/intro-to-pyenv/) para su consola. También puede compilar directamente [Python](https://www.python.org/downloads/source/). Instale siempre la versión *más reciente* de Python.
 
 **(2)** Cree un entorno virtual de Python y actívelo:
 ```sh
