@@ -40,6 +40,8 @@ pytest
 python manage.py migrate
 python manage.py loaddata province
 python manage.py loaddata municipality
+python manage.py loaddata topography
+python manage.py loaddata morphology
 ```
 
 Esto creará la base de datos y cargará algunos datos.
