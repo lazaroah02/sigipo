@@ -3,28 +3,19 @@
     const topology = await fetch("/?data=county").then((response) =>
       response.json()
     );
-
-    const data = [
-      ["cu-ho", 10],
-      ["be-3534", 11],
-      ["be-3528", 12],
-      ["be-3529", 13],
-      ["be-3532", 14],
-      ["be-489", 15],
-      ["be-3535", 16],
-      ["be-490", 17],
-      ["be-3526", 18],
-      ["be-3527", 19],
-      ["be-3533", 20],
-    ];
-
+    const dataBorn = await fetch("/?data=born").then((response) =>
+      response.json()
+    );
+    const dataResidence = await fetch("/?data=residence").then((response) =>
+      response.json()
+    );
     Highcharts.mapChart("map-born", {
       chart: {
         map: topology,
       },
 
       title: {
-        text: "Registros por provincia",
+        text: "Registros por provincia natal",
       },
 
       subtitle: {
@@ -46,7 +37,7 @@
 
       series: [
         {
-          data: data,
+          data: dataBorn,
           name: "Provincia natal",
           states: {
             hover: {
@@ -66,7 +57,7 @@
       },
 
       title: {
-        text: "Registros por provincia",
+        text: "Registros por provincia de residencia",
       },
 
       subtitle: {
@@ -86,7 +77,7 @@
 
       series: [
         {
-          data: data,
+          data: dataResidence,
           name: "Provincia de residencia",
           states: {
             hover: {
