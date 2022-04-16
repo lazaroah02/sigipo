@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block scripts %}
+<script src="{% static 'js/external/highchart-map.min.js' %}"></script>
+<script src="{% static 'js/external/highchart-maps-exporting.min.js' %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+<div id="container"></div>
+{% endblock content %}
+
+{% block endloads %}
+<script src="{% static 'js/internal/dashboard-map.js' %}"></script>
+{% endblock endloads %}
