@@ -18,17 +18,59 @@
       ["be-3533", 20],
     ];
 
-    Highcharts.mapChart("container", {
+    Highcharts.mapChart("map-born", {
       chart: {
         map: topology,
       },
 
       title: {
-        text: "Highcharts Maps basic demo",
+        text: "Registros por provincia",
       },
 
       subtitle: {
-        text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/be/be-all.topo.json">Belgium</a>',
+        text: "",
+      },
+
+      mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+          verticalAlign: "bottom",
+        },
+      },
+
+      colorAxis: {
+        min: 0,
+        minColor: "#FF9090",
+        maxColor: "#900000",
+      },
+
+      series: [
+        {
+          data: data,
+          name: "Provincia natal",
+          states: {
+            hover: {
+              color: "#D4AF37",
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            format: "{point.name}",
+          },
+        },
+      ],
+    });
+    Highcharts.mapChart("map-residence", {
+      chart: {
+        map: topology,
+      },
+
+      title: {
+        text: "Registros por provincia",
+      },
+
+      subtitle: {
+        text: "",
       },
 
       mapNavigation: {
@@ -45,10 +87,10 @@
       series: [
         {
           data: data,
-          name: "Random data",
+          name: "Provincia de residencia",
           states: {
             hover: {
-              color: "#BADA55",
+              color: "#D4AF37",
             },
           },
           dataLabels: {
