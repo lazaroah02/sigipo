@@ -22,6 +22,8 @@
       ]
     },
     "ignorePatterns": [
+      "highchart-map.min.js",
+      "highchart-maps-exporting.min.js",
       "bootstrap.bundle.min.js",
       "jquery-3.6.0.min.js",
       "select2.min.js"
@@ -31,11 +33,15 @@
       "es6": true
     },
     "globals": {
+      "Highcharts": true,
       "bootstrap": true,
       "jQuery": true,
       "django": "readonly",
       "Chart": "readonly",
       "L": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022
     }
   },
   "devDependencies": {

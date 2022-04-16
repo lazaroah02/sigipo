@@ -66,6 +66,7 @@ LOCAL_APPS = [
     "apps.geographic_location.apps.GeographicLocationConfig",
     "apps.patient.apps.PatientConfig",
     "apps.classifiers.apps.ClassifiersConfig",
+    "apps.dashboard.apps.DashboardConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
