@@ -1,12 +1,12 @@
 (function () {
   async function loadMap() {
-    const topology = await fetch("/?data=county").then((response) =>
+    const topology = await fetch("?data=county").then((response) =>
       response.json()
     );
-    const dataBorn = await fetch("/?data=born").then((response) =>
+    const dataBorn = await fetch("?data=born").then((response) =>
       response.json()
     );
-    const dataResidence = await fetch("/?data=residence").then((response) =>
+    const dataResidence = await fetch("?data=residence").then((response) =>
       response.json()
     );
     Highcharts.mapChart("map-born", {
