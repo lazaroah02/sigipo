@@ -21,14 +21,14 @@ urlpatterns = [
             filterset_class=PatientFilter,
             extra_context={
                 "crud_name": "Pacientes",
-                "crud_instance_name": "provincia",
+                "crud_instance_name": "paciente",
                 "add_url": "patient:oncologic_create",
                 "detail_url": "patient:oncologic_detail",
                 "edit_url": "patient:oncologic_update",
                 "delete_url": "patient:oncologic_delete",
             },
-            queryset=Patient.objects.filter(is_oncologic=True).select_related(
-                "residence_municipality", "born_municipality"
+            queryset=Patient.objects.only_oncologic().select_related(
+                "residence_municipality__province", "born_municipality__province"
             ),
         ),
         name="oncologic_list",

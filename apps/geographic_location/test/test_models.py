@@ -30,5 +30,5 @@ class MunicipalityTestCase(TestCase):
         """Test that municipality str method returns the municipality name."""
         self.assertEqual(
             str(self.municipality),
-            self.municipality.name,
+            f"{self.municipality.name} - {self.municipality.province.name}",
         )

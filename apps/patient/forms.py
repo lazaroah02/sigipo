@@ -12,7 +12,7 @@ from django.forms import (
 )
 from django_select2.forms import ModelSelect2Widget
 
-from apps.geographic_location.models import Municipality, Province
+from apps.geographic_location.models import Municipality
 from apps.patient.models import Patient, PatientRace
 
 
@@ -68,25 +68,8 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap4",
                 "data-width": "style",
             },
-            search_fields=["name__icontains"],
-            dependent_fields={"residence_province": "province"},
+            search_fields=["name__icontains", "province__name__icontains"],
         ),
-    )
-    residence_province = forms.ModelChoiceField(
-        queryset=Province.objects.all(),
-        label="Provincia de residencia",
-        widget=ModelSelect2Widget(
-            attrs={
-                "class": "form-control",
-                "data-placeholder": "Provincia de residencia",
-                "data-language": "es",
-                "data-theme": "bootstrap4",
-                "data-width": "style",
-            },
-            search_fields=["name__icontains"],
-            max_results=500,
-        ),
-        required=False,
     )
     born_municipality = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -99,25 +82,10 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap4",
                 "data-width": "style",
             },
-            search_fields=["name__icontains"],
-            dependent_fields={"residence_province": "province"},
+            search_fields=["name__icontains", "province__name__icontains"],
         ),
     )
-    born_province = forms.ModelChoiceField(
-        queryset=Province.objects.all(),
-        label="Provincia natal",
-        widget=ModelSelect2Widget(
-            attrs={
-                "class": "form-control",
-                "data-placeholder": "Provincia natal",
-                "data-language": "es",
-                "data-theme": "bootstrap4",
-                "data-width": "style",
-            },
-            search_fields=["name__icontains"],
-        ),
-        required=False,
-    )
+
     field_order = [
         "identity_card",
         "first_name",
@@ -127,7 +95,7 @@ class BasePatientForm(ModelForm):
         "medical_record",
         "age_at_diagnosis",
         "residence_municipality",
-        "residence_province",
+        "born_municipality",
     ]
 
     class Meta:
