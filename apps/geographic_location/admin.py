@@ -1,8 +1,10 @@
 from django.contrib.admin import ModelAdmin, site
+from django.shortcuts import register
 
 from apps.geographic_location.models import Municipality, Province
 
 
+@register(Municipality)
 class MunicipalityAdmin(ModelAdmin):
     """Municipality Django Admin view."""
 
@@ -23,4 +25,3 @@ class MunicipalityAdmin(ModelAdmin):
 
 
 site.register(Province)
-site.register(Municipality, MunicipalityAdmin)
