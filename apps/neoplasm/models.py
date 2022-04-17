@@ -153,6 +153,7 @@ class Neoplasm(Model):
     medic_that_report = CharField(
         verbose_name="Médico que reporta", max_length=128, blank=True
     )
+    objects = NeoplasmQuerysetManager()
 
     class Meta:
         verbose_name = "Neoplasia"
