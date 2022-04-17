@@ -3,3 +3,5 @@ Pillow
 django-version-checks
 django-filter
 django-select2
+python-dotenv
+psycopg2-binary
