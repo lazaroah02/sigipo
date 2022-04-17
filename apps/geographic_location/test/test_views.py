@@ -167,7 +167,8 @@ class MunicipalityDetailViewTestCase(TestCase):
                 "geographic_location:municipality_detail", args=(self.municipality.pk,)
             )
         )
-        self.assertIn(str(self.municipality), response.content.decode())
+        self.assertIn(self.municipality.name, response.content.decode())
+        self.assertIn(self.municipality.province.name, response.content.decode())
         self.assertIn("form", response.context)
         self.assertIn("readonly", response.content.decode())
         self.assertIn(
@@ -254,7 +255,7 @@ class MunicipalityUpdateViewTestCase(TestCase):
     def setUpTestData(cls):
         """Common test data."""
         cls.user = UserFactory.create()
-        cls.province = ProvinceFactory.create()
+        cls.province = ProvinceFactory.create(name="TestProvince")
         cls.municipality = MunicipalityFactory.create()
 
     def setUp(self) -> None:
@@ -290,5 +291,5 @@ class MunicipalityUpdateViewTestCase(TestCase):
             MunicipalityUpdateView.success_message % {"name": "TestMunicipality"},
         )
         self.municipality.refresh_from_db()
-        self.assertEqual(str(self.municipality), "TestMunicipality")
+        self.assertEqual(str(self.municipality), "TestMunicipality - TestProvince")
         self.assertEqual(self.municipality.province.pk, self.province.pk)

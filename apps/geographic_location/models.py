@@ -1,4 +1,5 @@
 from django.db.models import CASCADE, CharField, ForeignKey, Model
+from django.db.models.manager import Manager
 
 
 class Province(Model):
@@ -16,11 +17,20 @@ class Province(Model):
         return self.name
 
 
+class MunicipalityQuerysetManager(Manager):
+    """Manager to handle Municipality."""
+
+    def get_queryset(self):
+        """Fetch related provinces."""
+        return super().get_queryset().select_related("province")
+
+
 class Municipality(Model):
     """Model representation of a municipality."""
 
     province = ForeignKey(Province, verbose_name="Provincia", on_delete=CASCADE)
     name = CharField(verbose_name="Nombre", max_length=128)
+    objects = MunicipalityQuerysetManager()
 
     class Meta:
         verbose_name = "Municipio"
@@ -29,4 +39,4 @@ class Municipality(Model):
 
     def __str__(self):
         """Returns the name of the municipality."""
-        return self.name
+        return f"{self.name} - {self.province.name}"
