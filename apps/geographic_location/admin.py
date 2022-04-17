@@ -23,4 +23,8 @@ class MunicipalityAdmin(ModelAdmin):
     list_display_links = ("name",)
 
 
-register(Province)
+@register(Province)
+class ProvinceAdmin(ModelAdmin):
+    """Province Django Admin view."""
+
+    pass

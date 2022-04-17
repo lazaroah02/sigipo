@@ -142,7 +142,7 @@ class Neoplasm(Model):
         verbose_name="Etapa clínica", choices=NeoplasmClinicalStageChoices.choices
     )
     is_pregnant = BooleanField(verbose_name="¿Embarazada?", default=False)
-    trimester = IntegerField(verbose_name="Trimestre", blank=True)
+    trimester = IntegerField(verbose_name="Trimestre", blank=True, null=True)
     is_vih = BooleanField(verbose_name="¿Es VIH+?", default=False)
     source_of_info = IntegerField(
         verbose_name="Fuente de información",
@@ -160,4 +160,4 @@ class Neoplasm(Model):
         ordering = ["pk"]
 
     def __str__(self):
-        return f"{self.subject}"
+        return f"{self.patient}"

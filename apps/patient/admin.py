@@ -15,4 +15,4 @@ class PatientAdmin(ModelAdmin):
         "last_name",
     )
     list_select_related = ("born_municipality", "residence_municipality")
-    list_display_links = ("first_name", "last_name")
+    list_display_links = ("identity_card", "first_name", "last_name")
