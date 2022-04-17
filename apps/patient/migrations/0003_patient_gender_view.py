@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
                 SELECT row_number() OVER () as id,
                     (
                         SELECT
-                            Count(*)
+                            CAST(Count(*) AS INTEGER)
                         FROM
                             patient_patient
                             WHERE
@@ -23,12 +23,12 @@ class Migration(migrations.Migration):
                     ) AS female_count,
                     (
                         SELECT
-                            Count(*)
+                            CAST(Count(*) AS INTEGER)
                         FROM
                             patient_patient
                         WHERE
                             MOD(CAST(SUBSTRING(patient_patient.identity_card,10,1) AS INT), 2) = 0
-                    ) AS male_count ;
+                    ) AS male_count;
                 """,
             ],
             reverse_sql=[

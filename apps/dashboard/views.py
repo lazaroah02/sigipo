@@ -6,6 +6,7 @@ from django.db.models import Case, Count, F, Value, When
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 
+from apps.dashboard.models import GenderCountView
 from apps.patient.models import Patient
 
 MATCH_PROVINCE_CODE = Case(
@@ -32,6 +33,15 @@ class Dashboard(TemplateView):
     """View to handle dashboard."""
 
     template_name = "dashboard/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        return (
+            GenderCountView.objects.annotate(
+                total_count=F("female_count") + F("male_count")
+            )
+            .values("female_count", "male_count", "total_count")
+            .first()
+        )
 
     def get(self, request, *args, **kwargs):
         match request.GET.get("data"):
