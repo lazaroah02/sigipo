@@ -1,4 +1,17 @@
-from django.db.models import IntegerChoices
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    CharField,
+    DateField,
+    ForeignKey,
+    IntegerChoices,
+    IntegerField,
+    Model,
+    SmallIntegerField,
+)
+
+from apps.classifiers.models import Morphology, Topography
+from apps.patient.models import Patient
 
 
 class NeoplasmLateralityChoices(IntegerChoices):
@@ -70,3 +83,73 @@ class NeoplasmSourceOfInfoChoices(IntegerChoices):
     HEMATOLOGY = 2, "Hematología"
     HOSPITAL_DISCHARGE = 3, "Egreso hospitalario"
     DECEASED_RECORD = 4, "Registro de fallecidos"
+
+
+class Neoplasm(Model):
+    """
+    Model representation of a neoplasm
+    """
+
+    subject = ForeignKey(
+        Patient,
+        on_delete=CASCADE,
+        verbose_name="Sujeto",
+    )
+    date_of_diagnosis = DateField(verbose_name="Fecha de diagnóstico", blank=True)
+    date_of_diagnosis_flag = BooleanField()
+    primary_site = ForeignKey(
+        Topography,
+        verbose_name="Sitio primario",
+        on_delete=CASCADE,
+        null=True,
+        blank=True,
+    )
+    laterality = IntegerField(
+        verbose_name="Lateralidad",
+        choices=NeoplasmLateralityChoices.choices,
+        blank=True,
+    )
+    diagnostic_confirmation = IntegerField(
+        verbose_name="Confirmación del Diagnóstico",
+        choices=NeoplasmDiagnosticConfirmationChoices.choices,
+    )
+    histologic_type = ForeignKey(
+        Morphology,
+        verbose_name="Tipo histológico",
+        on_delete=CASCADE,
+        null=True,
+        blank=True,
+    )
+    differentiation_grade = SmallIntegerField(
+        verbose_name="Grado de diferenciación",
+        choices=NeoplasmDifferentiationGradesChoices.choices,
+        blank=True,
+    )
+    clinical_extension = SmallIntegerField(
+        verbose_name="Extensión clínica",
+        choices=NeoplasmClinicalExtensionsChoices.choices,
+        blank=True,
+    )
+    clinical_stage = SmallIntegerField(
+        verbose_name="Etapa clínica", choices=NeoplasmClinicalStageChoices.choices
+    )
+    is_pregnant = BooleanField(verbose_name="¿Embarazada?", default=False)
+    trimester = IntegerField(verbose_name="Trimestre", blank=True)
+    is_vih = BooleanField(verbose_name="¿Es VIH+?", default=False)
+    source_of_info = IntegerField(
+        verbose_name="Fuente de información",
+        choices=NeoplasmSourceOfInfoChoices.choices,
+        blank=True,
+    )
+    date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
+    medic_that_report = CharField(
+        verbose_name="Médico que reporta", max_length=128, blank=True
+    )
+
+    class Meta:
+        verbose_name = "Neoplasia"
+        verbose_name_plural = "Neoplasias"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"{self.subject}"
