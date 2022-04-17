@@ -1,5 +1,5 @@
-from django.contrib.admin import site
+from django.contrib.admin import register
 
 from apps.classifiers.models import Morphology, Topography
 
-site.register((Morphology, Topography))
+register((Morphology, Topography))

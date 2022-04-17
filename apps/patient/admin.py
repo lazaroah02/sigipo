@@ -1,5 +1,4 @@
-from django.contrib.admin import ModelAdmin
-from django.shortcuts import register
+from django.contrib.admin import ModelAdmin, register
 
 from apps.patient.models import Patient
 

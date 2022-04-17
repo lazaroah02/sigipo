@@ -105,7 +105,6 @@ class Neoplasm(Model):
         verbose_name="Paciente",
     )
     date_of_diagnosis = DateField(verbose_name="Fecha de diagnóstico", blank=True)
-    date_of_diagnosis_flag = BooleanField()
     primary_site = ForeignKey(
         Topography,
         verbose_name="Sitio primario",

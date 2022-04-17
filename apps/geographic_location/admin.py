@@ -1,5 +1,4 @@
-from django.contrib.admin import ModelAdmin, site
-from django.shortcuts import register
+from django.contrib.admin import ModelAdmin, register
 
 from apps.geographic_location.models import Municipality, Province
 
@@ -24,4 +23,4 @@ class MunicipalityAdmin(ModelAdmin):
     list_display_links = ("name",)
 
 
-site.register(Province)
+register(Province)

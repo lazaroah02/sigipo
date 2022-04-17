@@ -30,7 +30,6 @@ class Migration(migrations.Migration):
                     "date_of_diagnosis",
                     models.DateField(blank=True, verbose_name="Fecha de diagnóstico"),
                 ),
-                ("date_of_diagnosis_flag", models.BooleanField()),
                 (
                     "laterality",
                     models.IntegerField(
