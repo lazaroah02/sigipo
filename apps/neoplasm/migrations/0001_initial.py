@@ -172,11 +172,11 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "subject",
+                    "patient",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to="patient.patient",
-                        verbose_name="Sujeto",
+                        verbose_name="Paciente",
                     ),
                 ),
             ],

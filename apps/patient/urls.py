@@ -27,9 +27,7 @@ urlpatterns = [
                 "edit_url": "patient:oncologic_update",
                 "delete_url": "patient:oncologic_delete",
             },
-            queryset=Patient.objects.only_oncologic().select_related(
-                "residence_municipality__province", "born_municipality__province"
-            ),
+            queryset=Patient.objects.only_oncologic(),
         ),
         name="oncologic_list",
     ),

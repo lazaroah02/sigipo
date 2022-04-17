@@ -9,6 +9,7 @@ from django.db.models import (
     Model,
     SmallIntegerField,
 )
+from django.db.models.manager import Manager
 
 from apps.classifiers.models import Morphology, Topography
 from apps.patient.models import Patient
@@ -85,15 +86,23 @@ class NeoplasmSourceOfInfoChoices(IntegerChoices):
     DECEASED_RECORD = 4, "Registro de fallecidos"
 
 
+class NeoplasmQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
 class Neoplasm(Model):
     """
     Model representation of a neoplasm
     """
 
-    subject = ForeignKey(
+    patient = ForeignKey(
         Patient,
         on_delete=CASCADE,
-        verbose_name="Sujeto",
+        verbose_name="Paciente",
     )
     date_of_diagnosis = DateField(verbose_name="Fecha de diagnóstico", blank=True)
     date_of_diagnosis_flag = BooleanField()
