@@ -19,7 +19,7 @@ class ProvinceFactory(DjangoModelFactory):
             "Matanzas",
             "Villa Clara",
             "Cienfuegos",
-            "Sáncti Spíritus",
+            "Sancti Spíritus",
             "Ciego de Ávila",
             "Camagüey",
             "Las Tunas",

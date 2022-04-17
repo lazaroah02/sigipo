@@ -28,13 +28,19 @@ python -m pip install -U pip wheel
 pip install -r requirements/development.txt
 ```
 
-**(4)** Ejecutar las pruebas:
+**(4)** Cree su archivo `.env` a partir del ejemplo:
 
 ```sh
-pytest
+cp .env.example .env
 ```
 
-**(5)** Configurar la base de datos de desarrollo:
+El archivo `.env` es para secretos que no están en el control de código fuente. Nunca agregue secretos reales a `.env.example`, solo valores ficticios.
+
+**(5)** Cree su base de datos en PostgreSQL:
+
+Edite el archivo `.env` de acuerdo con el nombre de su base de datos, contraseña y otras configuraciones.
+
+**(6)** Configurar la base de datos de desarrollo:
 
 ```sh
 python manage.py migrate
@@ -44,15 +50,21 @@ python manage.py loaddata topography
 python manage.py loaddata morphology
 ```
 
+**(7)** Ejecutar las pruebas:
+
+```sh
+pytest
+```
+
 Esto creará la base de datos y cargará algunos datos.
 
-**(6)** Ejecutar el servidor de desarrollo.
+**(8)** Ejecutar el servidor de desarrollo.
 
 ```sh
 python manage.py runserver
 ```
 
-**(7)** Instalar [pre-commit](https://pre-commit.com/) en su repositorio local:
+**(9)** Instalar [pre-commit](https://pre-commit.com/) en su repositorio local:
 
 ```sh
 pre-commit install

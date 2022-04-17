@@ -12,6 +12,19 @@ from apps.geographic_location.models import Municipality, Province
 from apps.patient.models import Patient, PatientRace
 
 
+class CustomRangeWidget(RangeWidget):
+    """Widget to set different placeholder to each field."""
+
+    def __init__(self, attrs=None):
+        super().__init__(attrs)
+        self.widgets[0].attrs.update(
+            {"class": "form-control", "placeholder": "Edad de diagnostico mínima"}
+        )
+        self.widgets[1].attrs.update(
+            {"class": "form-control", "placeholder": "Edad de diagnostico máxima"}
+        )
+
+
 class PatientFilter(FilterSet):
     """Filters to search for patients."""
 
@@ -79,10 +92,8 @@ class PatientFilter(FilterSet):
         label="Provincia natal",
     )
     age_at_diagnosis = RangeFilter(
-        widget=RangeWidget(
-            attrs={"class": "form-control", "placeholder": "Edad de diagnostico"}
-        ),
         label="Edad de diagnostico",
+        widget=CustomRangeWidget,
     )
 
     class Meta:

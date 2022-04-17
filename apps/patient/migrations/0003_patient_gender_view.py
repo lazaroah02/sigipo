@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                         FROM
                             patient_patient
                             WHERE
-                                MOD(CAST(SUBSTRING(patient_patient.identity_card,10,1) AS INT), 2) <> 0
+                                MOD(CAST(SUBSTRING(patient_patient.identity_card,10,1) AS INT), 2) <> 0 AND patient_patient.is_oncologic
                     ) AS female_count,
                     (
                         SELECT
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                         FROM
                             patient_patient
                         WHERE
-                            MOD(CAST(SUBSTRING(patient_patient.identity_card,10,1) AS INT), 2) = 0
+                            MOD(CAST(SUBSTRING(patient_patient.identity_card,10,1) AS INT), 2) = 0 AND patient_patient.is_oncologic
                     ) AS male_count;
                 """,
             ],
