@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin, site
+from django.contrib.admin import ModelAdmin, register
 
 from apps.geographic_location.models import Municipality, Province
 
 
+@register(Municipality)
 class MunicipalityAdmin(ModelAdmin):
     """Municipality Django Admin view."""
 
@@ -22,5 +23,8 @@ class MunicipalityAdmin(ModelAdmin):
     list_display_links = ("name",)
 
 
-site.register(Province)
-site.register(Municipality, MunicipalityAdmin)
+@register(Province)
+class ProvinceAdmin(ModelAdmin):
+    """Province Django Admin view."""
+
+    pass

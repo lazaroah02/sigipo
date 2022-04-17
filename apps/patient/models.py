@@ -21,11 +21,21 @@ class PatientQuerysetManager(Manager):
 
     def only_oncologic(self):
         """Fetch only the oncologic patients."""
-        return super().get_queryset().filter(is_oncologic=True)
+        return (
+            super()
+            .get_queryset()
+            .select_related("born_municipality", "residence_municipality")
+            .filter(is_oncologic=True)
+        )
 
     def only_no_oncologic(self):
         """Fetch only the no oncologic patients."""
-        return super().get_queryset().filter(is_oncologic=False)
+        return (
+            super()
+            .get_queryset()
+            .select_related("born_municipality", "residence_municipality")
+            .filter(is_oncologic=False)
+        )
 
 
 class PatientRace(IntegerChoices):

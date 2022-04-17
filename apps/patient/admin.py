@@ -1,8 +1,9 @@
-from django.contrib.admin import ModelAdmin, site
+from django.contrib.admin import ModelAdmin, register
 
 from apps.patient.models import Patient
 
 
+@register(Patient)
 class PatientAdmin(ModelAdmin):
     """Municipality Django Admin view."""
 
@@ -14,7 +15,4 @@ class PatientAdmin(ModelAdmin):
         "last_name",
     )
     list_select_related = ("born_municipality", "residence_municipality")
-    list_display_links = ("first_name", "last_name")
-
-
-site.register(Patient, PatientAdmin)
+    list_display_links = ("identity_card", "first_name", "last_name")
