@@ -11,7 +11,7 @@ class TopographyFactory(DjangoModelFactory):
         model = Topography
 
     code = FuzzyText(length=5)
-    description = FuzzyText(length=200)
+    description = FuzzyText(length=20)
 
 
 class MorphologyFactory(DjangoModelFactory):
@@ -21,4 +21,4 @@ class MorphologyFactory(DjangoModelFactory):
         model = Morphology
 
     code = FuzzyText(length=5)
-    description = FuzzyText(length=200)
+    description = FuzzyText(length=20)

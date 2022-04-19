@@ -17,7 +17,7 @@ class NeoplasmCreateView(BaseCreateView):
     model = Neoplasm
     form_class = NeoplasmForm
     success_url = reverse_lazy("neoplasm:neoplasm_list")
-    success_message = "%(primary_site__description)s guardada correctamente."
+    success_message = "%(primary_site)s guardada correctamente."
     cancel_url = "neoplasm:neoplasm_list"
     title = "Añadir neoplasia"
 
@@ -38,7 +38,7 @@ class NeoplasmUpdateView(BaseUpdateView):
     model = Neoplasm
     form_class = NeoplasmForm
     success_url = reverse_lazy("neoplasm:neoplasm_list")
-    success_message = "%(primary_site__description)s guardada correctamente."
+    success_message = "%(primary_site)s guardada correctamente."
     cancel_url = "neoplasm:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Editar neoplasia"
@@ -49,7 +49,7 @@ class NeoplasmDeleteView(BaseDeleteView):
 
     model = Neoplasm
     success_url = reverse_lazy("neoplasm:neoplasm_list")
-    success_message = "%(primary_site__description)s eliminada satisfactoriamente."
+    success_message = "%(primary_site)s eliminada satisfactoriamente."
     cancel_url = "neoplasm:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Eliminar neoplasia"

@@ -1,0 +1,30 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+{% block crud_columns %}
+    {% create_header_column 'patient' 'Paciente' %}
+    {% create_header_column 'primary_site' 'Sitio primario' %}
+    {% create_header_column 'histologic_type' 'Tipo histológico' %}
+    {% create_header_column 'clinical_stage' 'Etapa clínica' %}
+    {% create_header_column 'medic_that_report' 'Médico que reporta' %}
+    {% create_header_column 'date_of_report' 'Fecha del reporte' %}
+    {% create_header_column 'date_of_diagnosis' 'Sitio primario' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.patient }}</td>
+            <td>{{ obj.primary_site }}</td>
+            <td>{{ obj.histologic_type }}</td>
+            <td>{{ obj.get_clinical_stage_display }}</td>
+            <td>{{ obj.medic_that_report }}</td>
+            <td>{{ obj.date_of_report }}</td>
+            <td>{{ obj.date_of_diagnosis }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
