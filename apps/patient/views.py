@@ -12,7 +12,7 @@ from apps.patient.models import Patient
 
 # * Patient Views
 class PatientCreateView(BaseCreateView):
-    """View to handle province creation."""
+    """View to handle patient creation."""
 
     model = Patient
     form_class = OncologicPatientForm
@@ -23,7 +23,7 @@ class PatientCreateView(BaseCreateView):
 
 
 class PatientDetailView(BaseDetailView):
-    """View to handle province details."""
+    """View to handle patient details."""
 
     model = Patient
     form_class = OncologicPatientForm
@@ -33,7 +33,7 @@ class PatientDetailView(BaseDetailView):
 
 
 class PatientUpdateView(BaseUpdateView):
-    """View to handle province edition."""
+    """View to handle patient edition."""
 
     model = Patient
     form_class = OncologicPatientForm
@@ -45,7 +45,7 @@ class PatientUpdateView(BaseUpdateView):
 
 
 class PatientDeleteView(BaseDeleteView):
-    """View to handle province delete."""
+    """View to handle patient delete."""
 
     model = Patient
     success_url = reverse_lazy("patient:oncologic_list")
