@@ -101,11 +101,13 @@ class NeoplasmForm(ModelForm):
         choices=NeoplasmDifferentiationGradesChoices.choices,
         widget=Select(attrs={"class": "form-control"}),
         label="Grado de diferenciación",
+        required=False,
     )
     clinical_extension = ChoiceField(
         choices=NeoplasmClinicalExtensionsChoices.choices,
         widget=Select(attrs={"class": "form-control"}),
         label="Extensión clínica",
+        required=False,
     )
     clinical_stage = ChoiceField(
         choices=NeoplasmClinicalStageChoices.choices,
@@ -116,9 +118,12 @@ class NeoplasmForm(ModelForm):
         choices=NeoplasmSourceOfInfoChoices.choices,
         widget=Select(attrs={"class": "form-control"}),
         label="Fuente de información",
+        required=False,
     )
     is_pregnant = BooleanField(
-        label="¿Embarazada?", widget=CheckboxInput(attrs={"class": "form-check-input"})
+        label="¿Embarazada?",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
     )
     trimester = ChoiceField(
         choices=(
@@ -130,7 +135,9 @@ class NeoplasmForm(ModelForm):
         label="Trimestre",
     )
     is_vih = BooleanField(
-        label="¿Es VIH+?", widget=CheckboxInput(attrs={"class": "form-check-input"})
+        label="¿Es VIH+?",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
     )
     date_of_report = DateField(
         widget=DateInput(
@@ -141,12 +148,14 @@ class NeoplasmForm(ModelForm):
             }
         ),
         label="Fecha del reporte",
+        required=False,
     )
     medic_that_report = CharField(
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Médico que reporta"}
         ),
         label="Médico que reporta",
+        required=False,
     )
 
     class Meta:
