@@ -20,6 +20,7 @@ class NeoplasmCreateView(BaseCreateView):
     success_message = "%(primary_site)s guardada correctamente."
     cancel_url = "neoplasm:neoplasm_list"
     title = "Añadir neoplasia"
+    template_name = "neoplasm/neoplasm_create.html"
 
 
 class NeoplasmDetailView(BaseDetailView):
@@ -30,6 +31,7 @@ class NeoplasmDetailView(BaseDetailView):
     cancel_url = "neoplasm:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Detalles de neoplasia"
+    template_name = "neoplasm/neoplasm_detail.html"
 
 
 class NeoplasmUpdateView(BaseUpdateView):
@@ -42,6 +44,7 @@ class NeoplasmUpdateView(BaseUpdateView):
     cancel_url = "neoplasm:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Editar neoplasia"
+    template_name = "neoplasm/neoplasm_update.html"
 
 
 class NeoplasmDeleteView(BaseDeleteView):
