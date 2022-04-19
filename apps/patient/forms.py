@@ -1,9 +1,9 @@
-from django import forms
 from django.forms import (
     BooleanField,
     CharField,
     ChoiceField,
     HiddenInput,
+    ModelChoiceField,
     ModelForm,
     NumberInput,
     Select,
@@ -57,7 +57,7 @@ class BasePatientForm(ModelForm):
         ),
         label="Edad al momento del diagnóstico",
     )
-    residence_municipality = forms.ModelChoiceField(
+    residence_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
         label="Municipio de residencia",
         widget=ModelSelect2Widget(
@@ -71,7 +71,7 @@ class BasePatientForm(ModelForm):
             search_fields=["name__icontains", "province__name__icontains"],
         ),
     )
-    born_municipality = forms.ModelChoiceField(
+    born_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
         label="Municipio natal",
         widget=ModelSelect2Widget(

@@ -6,6 +6,7 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
+from apps.neoplasm.models import Neoplasm
 from apps.patient.forms import OncologicPatientForm
 from apps.patient.models import Patient
 
@@ -14,7 +15,7 @@ from apps.patient.models import Patient
 class PatientCreateView(BaseCreateView):
     """View to handle patient creation."""
 
-    model = Patient
+    model = Neoplasm
     form_class = OncologicPatientForm
     success_url = reverse_lazy("patient:oncologic_list")
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
