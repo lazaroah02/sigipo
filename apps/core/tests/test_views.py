@@ -8,6 +8,7 @@ from apps.core.views import CancelUrlMixin, ViewTitleMixin
 from apps.geographic_location.factories import ProvinceFactory
 from apps.geographic_location.models import Province
 from apps.geographic_location.views import ProvinceDeleteView
+from apps.neoplasm.factories import NeoplasmFactory
 
 
 class CancelUrlMixinTestCase(TestCase):
@@ -99,6 +100,7 @@ class BaseDetailViewTestCase(TestCase):
     def setUpTestData(cls):
         """Common test data."""
         cls.province_pk = ProvinceFactory.create().pk
+        cls.neoplasm_pk = NeoplasmFactory.create().pk
         cls.user = UserFactory.create()
 
     def setUp(self) -> None:
@@ -112,6 +114,14 @@ class BaseDetailViewTestCase(TestCase):
         )
         self.assertIn("form", response.context)
         self.assertIn("readonly", response.content.decode())
+
+    def test_get_context_data_disable_checkbox(self):
+        """Test that BaseDetailView makes the form readonly and checkboxes disabled."""
+        response = self.client.get(
+            reverse("neoplasm:neoplasm_detail", args=(self.neoplasm_pk,))
+        )
+        self.assertIn("form", response.context)
+        self.assertIn("disabled", response.content.decode())
 
 
 class BaseDeleteViewTestCase(TestCase):

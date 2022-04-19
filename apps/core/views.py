@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.forms import CheckboxInput
 from django.http import Http404, HttpRequest
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -130,6 +131,8 @@ class BaseDetailView(
                 super().__init__(*args, **kwargs)
                 for _, field in self.fields.items():
                     field.widget.attrs["readonly"] = True
+                    if isinstance(field.widget, CheckboxInput):
+                        field.widget.attrs["disabled"] = True
 
         return ReadOnlyForm
 

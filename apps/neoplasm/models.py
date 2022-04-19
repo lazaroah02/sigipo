@@ -91,7 +91,11 @@ class NeoplasmQuerysetManager(Manager):
 
     def get_queryset(self):
         """Fetch the related patient."""
-        return super().get_queryset().select_related("patient")
+        return (
+            super()
+            .get_queryset()
+            .select_related("patient", "primary_site", "histologic_type")
+        )
 
 
 class Neoplasm(Model):
