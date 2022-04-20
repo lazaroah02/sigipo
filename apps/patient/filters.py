@@ -7,6 +7,7 @@ from django_filters import (
     RangeFilter,
 )
 from django_filters.widgets import RangeWidget
+from django_select2.forms import ModelSelect2Widget
 
 from apps.geographic_location.models import Municipality, Province
 from apps.patient.models import Patient, PatientRace
@@ -65,29 +66,67 @@ class PatientFilter(FilterSet):
     )
     residence_municipality = ModelChoiceFilter(
         queryset=Municipality.objects.all(),
-        widget=Select(
-            attrs={"class": "form-control", "placeholder": "Municipio de residencia"}
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Municipio de residencia",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+                "province__name__icontains",
+            ],
         ),
         label="Municipio de residencia",
     )
     born_municipality = ModelChoiceFilter(
         queryset=Municipality.objects.all(),
-        widget=Select(
-            attrs={"class": "form-control", "placeholder": "Municipio natal"}
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Municipio natal",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+                "province__name__icontains",
+            ],
         ),
         label="Municipio natal",
     )
     residence_municipality__province = ModelChoiceFilter(
         queryset=Province.objects.all(),
-        widget=Select(
-            attrs={"class": "form-control", "placeholder": "Provincia de residencia"}
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Provincia de residencia",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
         ),
         label="Provincia de residencia",
     )
     born_municipality__province = ModelChoiceFilter(
         queryset=Province.objects.all(),
-        widget=Select(
-            attrs={"class": "form-control", "placeholder": "Provincia natal"}
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Provincia natal",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
         ),
         label="Provincia natal",
     )
