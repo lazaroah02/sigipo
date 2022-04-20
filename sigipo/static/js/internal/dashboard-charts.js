@@ -9,12 +9,12 @@
     );
 
     const lessThan20 = topTen.map((location) => location["less_than_20"]);
-    const lessIn20 = topTen.map((location) => location["less_in_20s"]);
-    const lessIn30 = topTen.map((location) => location["patient_in_30s"]);
-    const lessIn40 = topTen.map((location) => location["patient_in_40s"]);
-    const lessIn50 = topTen.map((location) => location["patient_in_50s"]);
-    const lessIn60 = topTen.map((location) => location["patient_in_60s"]);
-    const lessIn70 = topTen.map((location) => location["patient_in_70s"]);
+    const patientIn20 = topTen.map((location) => location["patient_in_20s"]);
+    const patientIn30 = topTen.map((location) => location["patient_in_30s"]);
+    const patientIn40 = topTen.map((location) => location["patient_in_40s"]);
+    const patientIn50 = topTen.map((location) => location["patient_in_50s"]);
+    const patientIn60 = topTen.map((location) => location["patient_in_60s"]);
+    const patientIn70 = topTen.map((location) => location["patient_in_70s"]);
     const moreThan80 = topTen.map(
       (location) => location["patient_more_than_80s"]
     );
@@ -53,12 +53,12 @@
       },
       series: [
         { name: "<20", data: lessThan20 },
-        { name: "20-29", data: lessIn20 },
-        { name: "30-39", data: lessIn30 },
-        { name: "40-49", data: lessIn40 },
-        { name: "50-59", data: lessIn50 },
-        { name: "60-69", data: lessIn60 },
-        { name: "70-79", data: lessIn70 },
+        { name: "20-29", data: patientIn20 },
+        { name: "30-39", data: patientIn30 },
+        { name: "40-49", data: patientIn40 },
+        { name: "50-59", data: patientIn50 },
+        { name: "60-69", data: patientIn60 },
+        { name: "70-79", data: patientIn70 },
         { name: ">80", data: moreThan80 },
       ],
     });

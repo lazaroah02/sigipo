@@ -29,30 +29,14 @@ MATCH_PROVINCE_CODE = Case(
     When(province_name="Isla de la Juventud", then=Value("cu-ij")),
 )
 
-less_than_20_count = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__lt=20), distinct=True
-)
-patient_in_20s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(20, 29)), distinct=True
-)
-patient_in_30s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(30, 39)), distinct=True
-)
-patient_in_40s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(40, 49)), distinct=True
-)
-patient_in_50s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(50, 59)), distinct=True
-)
-patient_in_60s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(60, 69)), distinct=True
-)
-patient_in_70s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__range=(70, 79)), distinct=True
-)
-patient_more_than_80s = Count(
-    "patient", filter=Q(patient__age_at_diagnosis__gte=80), distinct=True
-)
+less_than_20_count = Count("patient", filter=Q(patient__age_at_diagnosis__lt=20))
+patient_in_20s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(20, 29)))
+patient_in_30s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(30, 39)))
+patient_in_40s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(40, 49)))
+patient_in_50s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(50, 59)))
+patient_in_60s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(60, 69)))
+patient_in_70s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(70, 79)))
+patient_more_than_80s = Count("patient", filter=Q(patient__age_at_diagnosis__gte=80))
 
 
 class Dashboard(TemplateView):
