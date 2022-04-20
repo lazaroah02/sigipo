@@ -53,9 +53,16 @@
       </div>
     </div>
   </div>
+
+  <div class="row m-auto mt-2">
+    <div class="col">
+      <div id="chart-top-10"></div>
+    </div>
+  </div>
 </div>
 {% endblock content %}
 
 {% block endloads %}
 <script src="{% static 'js/internal/dashboard-map.js' %}"></script>
+<script src="{% static 'js/internal/dashboard-charts.js' %}"></script>
 {% endblock endloads %}

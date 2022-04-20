@@ -32,6 +32,9 @@ MATCH_PROVINCE_CODE = Case(
 less_than_20_count = Count(
     "patient", filter=Q(patient__age_at_diagnosis__lt=20), distinct=True
 )
+patient_in_20s = Count(
+    "patient", filter=Q(patient__age_at_diagnosis__range=(20, 29)), distinct=True
+)
 patient_in_30s = Count(
     "patient", filter=Q(patient__age_at_diagnosis__range=(30, 39)), distinct=True
 )
@@ -113,6 +116,7 @@ class Dashboard(TemplateView):
                     .annotate(
                         num_subjects=Count("patient"),
                         less_than_20=less_than_20_count,
+                        patient_in_20s=patient_in_20s,
                         patient_in_30s=patient_in_30s,
                         patient_in_40s=patient_in_40s,
                         patient_in_50s=patient_in_50s,
