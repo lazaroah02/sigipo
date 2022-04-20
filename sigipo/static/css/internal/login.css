@@ -1,0 +1,30 @@
+body {
+  background-color: rgb(43, 43, 43);
+}
+.gradient-custom-2 {
+  background: #fccb90;
+
+  background: -webkit-linear-gradient(to right, #000066, #3900a6);
+
+  background: linear-gradient(to right, #000066, #3900a6);
+}
+.btn-text-white {
+  color: white;
+}
+.btn-text-white:hover {
+  color: white;
+}
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}
+.logo-img {
+  width: 185px;
+}
