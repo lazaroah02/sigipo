@@ -4,6 +4,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/internal/base-crud.css' %}"/>
 <script src="{% static 'js/internal/toast.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap4.min.css' %}"/>
 {% endblock styles %}
 
 {% block content %}
@@ -103,3 +104,9 @@
     {% endif %}
 
 {% endblock content %}
+
+{% block endloads %}
+<script src="{% static 'js/external/es.min.js' %}"></script>
+{{ filter.form.media.css }}
+{{ filter.form.media.js }}
+{% endblock endloads %}
