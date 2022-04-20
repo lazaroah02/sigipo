@@ -94,4 +94,4 @@ class Patient(TimeStampedModel):
 
     def __str__(self):
         """Returns the name of the patient."""
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} ({self.medical_record})"

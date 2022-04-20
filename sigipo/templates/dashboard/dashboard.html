@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block scripts %}
+<script src="{% static 'js/external/highcharts.min.js' %}"></script>
 <script src="{% static 'js/external/highchart-map.min.js' %}"></script>
 <script src="{% static 'js/external/highchart-maps-exporting.min.js' %}"></script>
 {% endblock scripts %}
@@ -52,9 +53,16 @@
       </div>
     </div>
   </div>
+
+  <div class="row m-auto mt-2 mb-4">
+    <div class="col">
+      <div id="chart-top-10"></div>
+    </div>
+  </div>
 </div>
 {% endblock content %}
 
 {% block endloads %}
 <script src="{% static 'js/internal/dashboard-map.js' %}"></script>
+<script src="{% static 'js/internal/dashboard-charts.js' %}"></script>
 {% endblock endloads %}

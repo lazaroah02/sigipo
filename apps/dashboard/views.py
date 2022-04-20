@@ -2,11 +2,12 @@ import json
 import os
 
 from django.conf import settings
-from django.db.models import Case, Count, F, Value, When
+from django.db.models import Case, Count, F, Q, Value, When
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 
 from apps.dashboard.models import GenderCountView
+from apps.neoplasm.models import Neoplasm
 from apps.patient.models import Patient
 
 MATCH_PROVINCE_CODE = Case(
@@ -27,6 +28,15 @@ MATCH_PROVINCE_CODE = Case(
     When(province_name="Guantánamo", then=Value("cu-gu")),
     When(province_name="Isla de la Juventud", then=Value("cu-ij")),
 )
+
+less_than_20_count = Count("patient", filter=Q(patient__age_at_diagnosis__lt=20))
+patient_in_20s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(20, 29)))
+patient_in_30s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(30, 39)))
+patient_in_40s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(40, 49)))
+patient_in_50s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(50, 59)))
+patient_in_60s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(60, 69)))
+patient_in_70s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(70, 79)))
+patient_more_than_80s = Count("patient", filter=Q(patient__age_at_diagnosis__gte=80))
 
 
 class Dashboard(TemplateView):
@@ -81,6 +91,24 @@ class Dashboard(TemplateView):
                         count=Count("pk"),
                     )
                     .values_list("province_code", "count")
+                )
+                return JsonResponse(data=data, safe=False)
+            case "top10":
+                data = list(
+                    Neoplasm.objects.filter(primary_site__isnull=False)
+                    .values("primary_site__code", "primary_site__description")
+                    .annotate(
+                        num_subjects=Count("patient"),
+                        less_than_20=less_than_20_count,
+                        patient_in_20s=patient_in_20s,
+                        patient_in_30s=patient_in_30s,
+                        patient_in_40s=patient_in_40s,
+                        patient_in_50s=patient_in_50s,
+                        patient_in_60s=patient_in_60s,
+                        patient_in_70s=patient_in_70s,
+                        patient_more_than_80s=patient_more_than_80s,
+                    )
+                    .order_by("-num_subjects")[:10]
                 )
                 return JsonResponse(data=data, safe=False)
         context = self.get_context_data(**kwargs)

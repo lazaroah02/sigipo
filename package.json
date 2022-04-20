@@ -22,6 +22,7 @@
       ]
     },
     "ignorePatterns": [
+      "highcharts.min.js",
       "highchart-map.min.js",
       "highchart-maps-exporting.min.js",
       "bootstrap.bundle.min.js",

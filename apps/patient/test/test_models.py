@@ -17,7 +17,7 @@ class PatientTestCase(TestCase):
         """Test that patient str method returns the patient name."""
         self.assertEqual(
             str(self.patient),
-            f"{self.patient.first_name} {self.patient.last_name}",
+            f"{self.patient.first_name} {self.patient.last_name} ({self.patient.medical_record})",
         )
 
     def test_queryset_manager_oncologic(self):
