@@ -112,5 +112,18 @@ class Dashboard(LoginRequiredMixin, TemplateView):
                     .order_by("-num_subjects")[:10]
                 )
                 return JsonResponse(data=data, safe=False)
+            case "ages":
+                data = Neoplasm.objects.filter(primary_site__isnull=False).aggregate(
+                    num_subjects=Count("patient"),
+                    less_than_20=less_than_20_count,
+                    patient_in_20s=patient_in_20s,
+                    patient_in_30s=patient_in_30s,
+                    patient_in_40s=patient_in_40s,
+                    patient_in_50s=patient_in_50s,
+                    patient_in_60s=patient_in_60s,
+                    patient_in_70s=patient_in_70s,
+                    patient_more_than_80s=patient_more_than_80s,
+                )
+                return JsonResponse(data=data, safe=False)
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
