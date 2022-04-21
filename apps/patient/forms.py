@@ -42,7 +42,7 @@ class BasePatientForm(ModelForm):
     )
     race = ChoiceField(
         choices=PatientRace.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Raza",
     )
     medical_record = CharField(
@@ -101,6 +101,21 @@ class BasePatientForm(ModelForm):
     class Meta:
         model = Patient
         fields = "__all__"
+
+    def is_valid(self) -> bool:
+        result = super().is_valid()
+        if not result:
+            for key, field in self.fields.items():
+                if "class" in field.widget.attrs:
+                    if key in self.errors:
+                        field.widget.attrs["class"] = (
+                            "is-invalid " + field.widget.attrs["class"]
+                        )
+                    else:
+                        field.widget.attrs["class"] = (
+                            "is-valid " + field.widget.attrs["class"]
+                        )
+        return result
 
 
 class OncologicPatientForm(BasePatientForm):

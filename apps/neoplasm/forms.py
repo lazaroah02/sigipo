@@ -72,12 +72,12 @@ class NeoplasmForm(ModelForm):
     )
     laterality = ChoiceField(
         choices=NeoplasmLateralityChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Lateralidad",
     )
     diagnostic_confirmation = ChoiceField(
         choices=NeoplasmDiagnosticConfirmationChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Confirmación del Diagnóstico",
     )
     histologic_type = ModelChoiceField(
@@ -99,24 +99,24 @@ class NeoplasmForm(ModelForm):
     )
     differentiation_grade = ChoiceField(
         choices=NeoplasmDifferentiationGradesChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Grado de diferenciación",
         required=False,
     )
     clinical_extension = ChoiceField(
         choices=NeoplasmClinicalExtensionsChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Extensión clínica",
         required=False,
     )
     clinical_stage = ChoiceField(
         choices=NeoplasmClinicalStageChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Etapa clínica",
     )
     source_of_info = ChoiceField(
         choices=NeoplasmSourceOfInfoChoices.choices,
-        widget=Select(attrs={"class": "form-control"}),
+        widget=Select(attrs={"class": "form-control form-select"}),
         label="Fuente de información",
         required=False,
     )
