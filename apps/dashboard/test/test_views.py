@@ -84,3 +84,24 @@ class DashboardTestCase(TestCase):
             },
             data[0],
         )
+
+    def test_get_age_data(self) -> None:
+        """Test that the view returns the correct data."""
+        Neoplasm.objects.exclude(pk=self.neoplasm.pk).delete()
+        response = self.client.get(reverse("dashboard:dashboard") + "?data=ages")
+        self.assertIsInstance(response, JsonResponse)
+        data = response.json()
+        self.assertEqual(
+            {
+                "num_subjects": 1,
+                "less_than_20": 1,
+                "patient_in_20s": 0,
+                "patient_in_30s": 0,
+                "patient_in_40s": 0,
+                "patient_in_50s": 0,
+                "patient_in_60s": 0,
+                "patient_in_70s": 0,
+                "patient_more_than_80s": 0,
+            },
+            data,
+        )
