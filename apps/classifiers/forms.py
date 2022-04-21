@@ -1,6 +1,7 @@
-from django.forms import CharField, ModelForm, TextInput
+from django.forms import CharField, TextInput
 
 from apps.classifiers.models import Morphology, Topography
+from apps.core.forms import ModelForm
 
 
 class MorphologyForm(ModelForm):

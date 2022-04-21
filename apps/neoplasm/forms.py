@@ -5,12 +5,12 @@ from django.forms import (
     ChoiceField,
     DateField,
     ModelChoiceField,
-    ModelForm,
 )
 from django.forms.widgets import DateInput, Select, TextInput
 from django_select2.forms import ModelSelect2Widget
 
 from apps.classifiers.models import Morphology, Topography
+from apps.core.forms import ModelForm
 from apps.neoplasm.models import (
     Neoplasm,
     NeoplasmClinicalExtensionsChoices,

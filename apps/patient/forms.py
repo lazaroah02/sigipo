@@ -4,7 +4,6 @@ from django.forms import (
     ChoiceField,
     HiddenInput,
     ModelChoiceField,
-    ModelForm,
     NumberInput,
     Select,
     Textarea,
@@ -12,6 +11,7 @@ from django.forms import (
 )
 from django_select2.forms import ModelSelect2Widget
 
+from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
 from apps.patient.models import Patient, PatientRace
 
@@ -101,21 +101,6 @@ class BasePatientForm(ModelForm):
     class Meta:
         model = Patient
         fields = "__all__"
-
-    def is_valid(self) -> bool:
-        result = super().is_valid()
-        if not result:
-            for key, field in self.fields.items():
-                if "class" in field.widget.attrs:
-                    if key in self.errors:
-                        field.widget.attrs["class"] = (
-                            "is-invalid " + field.widget.attrs["class"]
-                        )
-                    else:
-                        field.widget.attrs["class"] = (
-                            "is-valid " + field.widget.attrs["class"]
-                        )
-        return result
 
 
 class OncologicPatientForm(BasePatientForm):
