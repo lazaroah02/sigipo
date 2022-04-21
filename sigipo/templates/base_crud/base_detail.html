@@ -25,7 +25,7 @@
             <div class="card-footer text-muted">
                 <div class="action-buttons">
                     {% block action-buttons %}
-                        <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Atras</a>
+                        <a href="{% url cancel_url %}{% if url_lookup %}?{{ url_lookup }}{% endif %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Atras</a>
                     {% endblock action-buttons %}
                 </div>
             </div>

@@ -8,28 +8,28 @@ class NeoplasmFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="patient__identity_card__icontains",
+        lookup_expr="icontains",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="patient__first_name__icontains",
+        lookup_expr="icontains",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="patient__last_name__icontains",
+        lookup_expr="icontains",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="patient__medical_record__icontains",
+        lookup_expr="icontains",
         widget=TextInput(
             attrs={
                 "class": "form-control",

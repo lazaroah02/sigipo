@@ -53,7 +53,15 @@ class CancelUrlMixin:
     def get_context_data(self, *args, **kwargs) -> dict:
         """Adds given url to the context."""
         context = super().get_context_data(*args, **kwargs)
-        context["cancel_url"] = self.cancel_url
+        if not self.request.GET.get("return_to", False):
+            context["cancel_url"] = self.cancel_url
+        else:
+            _request_copy = self.request.GET.copy()
+            parameters = (
+                _request_copy.pop("return_to", True) and _request_copy.urlencode()
+            )
+            context["cancel_url"] = self.request.GET.get("return_to")
+            context["url_lookup"] = parameters
         return context
 
     def get_cancel_url(self):

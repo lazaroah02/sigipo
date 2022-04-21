@@ -14,16 +14,16 @@
         <div class="col">
             {% block model_filters %}
                 <div class="row">
-                {% for field in filter.form.visible_fields %}
-                    {% if forloop.counter <= 3 %}
-                    <div class="col">
-                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                        {{ field }}
-                    </div>
-                    {% endif %}
-                {% endfor %}
+                    {% for field in filter.form.visible_fields %}
+                        {% if forloop.counter <= 3 %}
+                        <div class="col">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 <hr/>
-            </div>
                 <div class="row">
                     {% for field in filter.form.visible_fields %}
                         {% if forloop.counter > 3 and forloop.counter <= 5 %}
