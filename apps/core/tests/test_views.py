@@ -11,20 +11,25 @@ from apps.geographic_location.views import ProvinceDeleteView
 from apps.neoplasm.factories import NeoplasmFactory
 
 
+class Helper(CancelUrlMixin, ContextMixin):
+    class RequestHelper:
+        GET = {}
+
+    cancel_url = "admin:login"
+    request = RequestHelper()
+
+
 class CancelUrlMixinTestCase(TestCase):
     """Test case for CancelUrlMixin."""
 
     @classmethod
     def setUpTestData(cls):
         """Common test data."""
-
-        class Helper(CancelUrlMixin, ContextMixin):
-            cancel_url = "admin:login"
-
         cls.mixin = Helper()
 
     def test_mixin_get_context_data(self):
         """Test that get_context_data in CancelUrlMixin returns the cancel url."""
+
         self.assertIn("cancel_url", self.mixin.get_context_data())
         self.assertEqual(
             self.mixin.get_context_data()["cancel_url"],
@@ -122,6 +127,18 @@ class BaseDetailViewTestCase(TestCase):
         )
         self.assertIn("form", response.context)
         self.assertIn("disabled", response.content.decode())
+
+    def test_mixin_get_context_data_width_return_to(self):
+        """Test that get_context_data in CancelUrlMixin returns the cancel url and the url lookups."""
+        response = self.client.get(
+            reverse(
+                "neoplasm:neoplasm_detail",
+                args=(self.neoplasm_pk,),
+            )
+            + "?return_to=neoplasm:neoplasm_list&page=1"
+        )
+        self.assertIn("url_lookup", response.context)
+        self.assertEqual(response.context["url_lookup"], "page=1")
 
 
 class BaseDeleteViewTestCase(TestCase):
