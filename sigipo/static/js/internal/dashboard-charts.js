@@ -62,6 +62,76 @@
         { name: ">80", data: moreThan80 },
       ],
     });
+    const ages = await fetch("?data=ages").then((response) => response.json());
+    Highcharts.chart("chart-ages", {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: "pie",
+      },
+      title: {
+        text: "Porcentaje de diagnósticos por edades.",
+      },
+      tooltip: {
+        pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+      },
+      accessibility: {
+        point: {
+          valueSuffix: "%",
+        },
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: "pointer",
+          dataLabels: {
+            enabled: true,
+            format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+          },
+        },
+      },
+      series: [
+        {
+          name: "Porcentaje",
+          colorByPoint: true,
+          data: [
+            {
+              name: "<20",
+              y: ages["less_than_20"] / ages["num_subjects"],
+            },
+            {
+              name: "20-29",
+              y: ages["patient_in_20s"] / ages["num_subjects"],
+            },
+            {
+              name: "30-39",
+              y: ages["patient_in_30s"] / ages["num_subjects"],
+            },
+            {
+              name: "40-49",
+              y: ages["patient_in_40s"] / ages["num_subjects"],
+            },
+            {
+              name: "50-59",
+              y: ages["patient_in_50s"] / ages["num_subjects"],
+            },
+            {
+              name: "60-69",
+              y: ages["patient_in_60s"] / ages["num_subjects"],
+            },
+            {
+              name: "70-79",
+              y: ages["patient_in_70s"] / ages["num_subjects"],
+            },
+            {
+              name: ">80",
+              y: ages["patient_more_than_80s"] / ages["num_subjects"],
+            },
+          ],
+        },
+      ],
+    });
   }
   loadCharts();
 })();

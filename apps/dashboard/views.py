@@ -2,6 +2,7 @@ import json
 import os
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Case, Count, F, Q, Value, When
 from django.http import JsonResponse
 from django.views.generic import TemplateView
@@ -39,7 +40,7 @@ patient_in_70s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(70,
 patient_more_than_80s = Count("patient", filter=Q(patient__age_at_diagnosis__gte=80))
 
 
-class Dashboard(TemplateView):
+class Dashboard(LoginRequiredMixin, TemplateView):
     """View to handle dashboard."""
 
     template_name = "dashboard/dashboard.html"
@@ -109,6 +110,19 @@ class Dashboard(TemplateView):
                         patient_more_than_80s=patient_more_than_80s,
                     )
                     .order_by("-num_subjects")[:10]
+                )
+                return JsonResponse(data=data, safe=False)
+            case "ages":
+                data = Neoplasm.objects.filter(primary_site__isnull=False).aggregate(
+                    num_subjects=Count("patient"),
+                    less_than_20=less_than_20_count,
+                    patient_in_20s=patient_in_20s,
+                    patient_in_30s=patient_in_30s,
+                    patient_in_40s=patient_in_40s,
+                    patient_in_50s=patient_in_50s,
+                    patient_in_60s=patient_in_60s,
+                    patient_in_70s=patient_in_70s,
+                    patient_more_than_80s=patient_more_than_80s,
                 )
                 return JsonResponse(data=data, safe=False)
         context = self.get_context_data(**kwargs)

@@ -1,5 +1,6 @@
-from django.forms import CharField, ModelForm, TextInput
+from django.forms import CharField, TextInput
 
+from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality, Province
 from apps.geographic_location.widgets import ProvinceWidget
 

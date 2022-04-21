@@ -26,11 +26,17 @@
             <div class="card rounded-3 text-black">
               <div class="row g-0">
                 <div class="col-lg-6">
-                  <div class="card-body p-md-5 mx-md-4">
+                  <div class="card-body p-md-2 mx-md-4">
 
-                    <div class="text-center">
-                      <img class="logo-img" height="185" width="185" src="{% static 'images/ribbon.png' %}" alt="logo"/>
+                    <div class="text-center m-2">
+                      <img class="logo-img" height="96" width="96" src="{% static 'images/ribbon.png' %}" alt="logo"/>
                       <h4 class="mt-1 mb-5 pb-1">Sistema Informático Integral de gestión del paciente Oncológico</h4>
+
+                      {% if form.errors %}
+                          <div class="alert alert-danger">
+                            Usuario o contraseña incorrectos.
+                          </div>
+                      {% endif %}
                     </div>
 
                     <form method="post">

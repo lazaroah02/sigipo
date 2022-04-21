@@ -13,7 +13,7 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td>{{ obj.patient }}</td>
+            <td><a href="{% url "patient:oncologic_detail" obj.pk %}?return_to=neoplasm:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
             <td>{{ obj.primary_site }}</td>
             <td>{{ obj.histologic_type }}</td>
             <td>{{ obj.get_clinical_stage_display }}</td>
@@ -21,9 +21,9 @@
             <td>{{ obj.date_of_report }}</td>
             <td>{{ obj.date_of_diagnosis }}</td>
             <td>
-                <a href="{% url detail_url obj.pk %}" class="view" title="View" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                <a href="{% url edit_url obj.pk %}" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="{% url delete_url obj.pk %}" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
               </td>
         </tr>
     {% endfor %}
