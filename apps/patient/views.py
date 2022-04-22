@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy
 
+from apps.cancer_registry.models import Neoplasm
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.neoplasm.models import Neoplasm
 from apps.patient.forms import OncologicPatientForm
 from apps.patient.models import Patient
 

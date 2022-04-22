@@ -1,5 +1,5 @@
+from apps.cancer_registry.factories import NeoplasmFactory
 from apps.core.test import TestCase
-from apps.neoplasm.factories import NeoplasmFactory
 
 
 class NeoplasmTestCase(TestCase):

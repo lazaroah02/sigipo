@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, register
 
-from apps.neoplasm.models import Neoplasm
+from apps.cancer_registry.models import Neoplasm
 
 
 @register(Neoplasm)

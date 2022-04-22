@@ -1,13 +1,13 @@
 from django.urls import reverse_lazy
 
+from apps.cancer_registry.forms import NeoplasmForm
+from apps.cancer_registry.models import Neoplasm
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.neoplasm.forms import NeoplasmForm
-from apps.neoplasm.models import Neoplasm
 
 
 # * Neoplasm Views
@@ -16,11 +16,11 @@ class NeoplasmCreateView(BaseCreateView):
 
     model = Neoplasm
     form_class = NeoplasmForm
-    success_url = reverse_lazy("neoplasm:neoplasm_list")
+    success_url = reverse_lazy("cancer_registry:neoplasm_list")
     success_message = "%(primary_site)s guardada correctamente."
-    cancel_url = "neoplasm:neoplasm_list"
+    cancel_url = "cancer_registry:neoplasm_list"
     title = "Añadir neoplasia"
-    template_name = "neoplasm/neoplasm_create.html"
+    template_name = "cancer_registry/neoplasm_create.html"
 
 
 class NeoplasmDetailView(BaseDetailView):
@@ -28,10 +28,10 @@ class NeoplasmDetailView(BaseDetailView):
 
     model = Neoplasm
     form_class = NeoplasmForm
-    cancel_url = "neoplasm:neoplasm_list"
+    cancel_url = "cancer_registry:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Detalles de neoplasia"
-    template_name = "neoplasm/neoplasm_detail.html"
+    template_name = "cancer_registry/neoplasm_detail.html"
 
 
 class NeoplasmUpdateView(BaseUpdateView):
@@ -39,20 +39,20 @@ class NeoplasmUpdateView(BaseUpdateView):
 
     model = Neoplasm
     form_class = NeoplasmForm
-    success_url = reverse_lazy("neoplasm:neoplasm_list")
+    success_url = reverse_lazy("cancer_registry:neoplasm_list")
     success_message = "%(primary_site)s guardada correctamente."
-    cancel_url = "neoplasm:neoplasm_list"
+    cancel_url = "cancer_registry:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Editar neoplasia"
-    template_name = "neoplasm/neoplasm_update.html"
+    template_name = "cancer_registry/neoplasm_update.html"
 
 
 class NeoplasmDeleteView(BaseDeleteView):
     """View to handle neoplasm delete."""
 
     model = Neoplasm
-    success_url = reverse_lazy("neoplasm:neoplasm_list")
+    success_url = reverse_lazy("cancer_registry:neoplasm_list")
     success_message = "%(primary_site)s eliminada satisfactoriamente."
-    cancel_url = "neoplasm:neoplasm_list"
+    cancel_url = "cancer_registry:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Eliminar neoplasia"

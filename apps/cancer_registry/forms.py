@@ -9,9 +9,7 @@ from django.forms import (
 from django.forms.widgets import DateInput, Select, TextInput
 from django_select2.forms import ModelSelect2Widget
 
-from apps.classifiers.models import Morphology, Topography
-from apps.core.forms import ModelForm
-from apps.neoplasm.models import (
+from apps.cancer_registry.models import (
     Neoplasm,
     NeoplasmClinicalExtensionsChoices,
     NeoplasmClinicalStageChoices,
@@ -20,6 +18,8 @@ from apps.neoplasm.models import (
     NeoplasmLateralityChoices,
     NeoplasmSourceOfInfoChoices,
 )
+from apps.classifiers.models import Morphology, Topography
+from apps.core.forms import ModelForm
 from apps.patient.models import Patient
 
 
