@@ -43,45 +43,43 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="{% url 'dashboard:dashboard' %}"><i class="fa-solid fa-house"></i> Inicio</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'patient:oncologic_list' %}"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'neoplasm:neoplasm_list' %}"><i class="fa-solid fa-ribbon"></i> Neoplasias</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle"
                  href="#"
-                 id="classifiersDropDownn"
+                 id="cancerRegister"
                  role="button"
                  data-bs-toggle="dropdown"
                  aria-expanded="false">
-                 <i class="fa-solid fa-square-poll-horizontal"></i> Clasificaciones
+                 <i class="fa-solid fa-square-poll-horizontal"></i> Registro de Cáncer
               </a>
-              <ul class="dropdown-menu" aria-labelledby="classifiersDropDown">
+              <ul class="dropdown-menu" aria-labelledby="cancerRegister">
                 <li>
-                  <a class="dropdown-item" href="{% url 'classifiers:topography_list' %}">Topografías</a>
+                  <a class="dropdown-item" href="{% url 'patient:oncologic_list' %}"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'classifiers:morphology_list' %}">Morfologías</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle"
-                 href="#"
-                 id="geographicLocatioDropDownn"
-                 role="button"
-                 data-bs-toggle="dropdown"
-                 aria-expanded="false">
-                 <i class="fa-solid fa-earth-americas"></i> Ubicaci&oacute;n geogr&aacute;fica
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="geographicLocationDropDown">
-                <li>
-                  <a class="dropdown-item" href="{% url 'geographic_location:province_list' %}">Provincia</a>
+                  <a class="dropdown-item" href="{% url 'neoplasm:neoplasm_list' %}"><i class="fa-solid fa-ribbon"></i> Neoplasias</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'geographic_location:municipality_list' %}">Municipio</a>
+                  <label class="dropdown-item"><i class="fa-solid fa-square-poll-horizontal"></i> Clasificaciones <i class="fa-solid fa-angle-right"></i></label>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'classifiers:topography_list' %}">Topografías</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'classifiers:morphology_list' %}">Morfologías</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <label class="dropdown-item"> <i class="fa-solid fa-earth-americas"></i> Ubicaci&oacute;n geogr&aacute;fica <i class="fa-solid fa-angle-right"></i></label>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'geographic_location:province_list' %}">Provincia</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'geographic_location:municipality_list' %}">Municipio</a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>
