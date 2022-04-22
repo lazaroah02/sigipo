@@ -3,9 +3,9 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 
 from apps.accounts.factories import UserFactory
+from apps.cancer_registry.factories import NeoplasmFactory
+from apps.cancer_registry.models import Neoplasm
 from apps.core.test import TestCase
-from apps.neoplasm.factories import NeoplasmFactory
-from apps.neoplasm.models import Neoplasm
 from apps.patient.factories import PatientFactory
 from apps.patient.models import Patient
 

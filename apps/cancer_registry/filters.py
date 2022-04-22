@@ -1,7 +1,7 @@
 from django.forms import TextInput
 from django_filters import CharFilter, FilterSet
 
-from apps.neoplasm.models import Neoplasm
+from apps.cancer_registry.models import Neoplasm
 
 
 class NeoplasmFilter(FilterSet):

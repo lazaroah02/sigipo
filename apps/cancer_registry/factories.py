@@ -4,8 +4,7 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyText
 
-from apps.classifiers.factories import MorphologyFactory, TopographyFactory
-from apps.neoplasm.models import (
+from apps.cancer_registry.models import (
     Neoplasm,
     NeoplasmClinicalExtensionsChoices,
     NeoplasmClinicalStageChoices,
@@ -14,6 +13,7 @@ from apps.neoplasm.models import (
     NeoplasmLateralityChoices,
     NeoplasmSourceOfInfoChoices,
 )
+from apps.classifiers.factories import MorphologyFactory, TopographyFactory
 from apps.patient.factories import PatientFactory
 
 

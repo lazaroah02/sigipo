@@ -3,12 +3,12 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.base import ContextMixin
 
 from apps.accounts.factories import UserFactory
+from apps.cancer_registry.factories import NeoplasmFactory
 from apps.core.test import TestCase
 from apps.core.views import CancelUrlMixin, ViewTitleMixin
 from apps.geographic_location.factories import ProvinceFactory
 from apps.geographic_location.models import Province
 from apps.geographic_location.views import ProvinceDeleteView
-from apps.neoplasm.factories import NeoplasmFactory
 
 
 class Helper(CancelUrlMixin, ContextMixin):
@@ -123,7 +123,7 @@ class BaseDetailViewTestCase(TestCase):
     def test_get_context_data_disable_checkbox(self):
         """Test that BaseDetailView makes the form readonly and checkboxes disabled."""
         response = self.client.get(
-            reverse("neoplasm:neoplasm_detail", args=(self.neoplasm_pk,))
+            reverse("cancer_registry:neoplasm_detail", args=(self.neoplasm_pk,))
         )
         self.assertIn("form", response.context)
         self.assertIn("disabled", response.content.decode())
@@ -132,10 +132,10 @@ class BaseDetailViewTestCase(TestCase):
         """Test that get_context_data in CancelUrlMixin returns the cancel url and the url lookups."""
         response = self.client.get(
             reverse(
-                "neoplasm:neoplasm_detail",
+                "cancer_registry:neoplasm_detail",
                 args=(self.neoplasm_pk,),
             )
-            + "?return_to=neoplasm:neoplasm_list&page=1"
+            + "?return_to=cancer_registry:neoplasm_list&page=1"
         )
         self.assertIn("url_lookup", response.context)
         self.assertEqual(response.context["url_lookup"], "page=1")

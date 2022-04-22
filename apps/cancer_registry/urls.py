@@ -1,16 +1,16 @@
 from django.urls import path
 
-from apps.core.views import PaginationFilterView
-from apps.neoplasm.filters import NeoplasmFilter
-from apps.neoplasm.models import Neoplasm
-from apps.neoplasm.views import (
+from apps.cancer_registry.filters import NeoplasmFilter
+from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.views import (
     NeoplasmCreateView,
     NeoplasmDeleteView,
     NeoplasmDetailView,
     NeoplasmUpdateView,
 )
+from apps.core.views import PaginationFilterView
 
-app_name = "neoplasm"
+app_name = "cancer_registry"
 
 urlpatterns = [
     # * Neoplasm URLs
@@ -22,10 +22,10 @@ urlpatterns = [
             extra_context={
                 "crud_name": "Neoplasias",
                 "crud_instance_name": "neoplasia",
-                "add_url": "neoplasm:neoplasm_create",
-                "detail_url": "neoplasm:neoplasm_detail",
-                "edit_url": "neoplasm:neoplasm_update",
-                "delete_url": "neoplasm:neoplasm_delete",
+                "add_url": "cancer_registry:neoplasm_create",
+                "detail_url": "cancer_registry:neoplasm_detail",
+                "edit_url": "cancer_registry:neoplasm_update",
+                "delete_url": "cancer_registry:neoplasm_delete",
             },
             queryset=Neoplasm.objects.all(),
         ),

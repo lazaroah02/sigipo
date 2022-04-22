@@ -7,8 +7,8 @@ from django.db.models import Case, Count, F, Q, Value, When
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 
+from apps.cancer_registry.models import Neoplasm
 from apps.dashboard.models import GenderCountView
-from apps.neoplasm.models import Neoplasm
 from apps.patient.models import Patient
 
 MATCH_PROVINCE_CODE = Case(
