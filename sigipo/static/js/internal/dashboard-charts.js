@@ -132,6 +132,10 @@
         },
       ],
     });
+    window.chart_loaded = true;
+    if (window.map_loaded && window.chart_loaded) {
+      document.getElementById("id_loading").remove();
+    }
   }
   loadCharts();
 })();

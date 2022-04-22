@@ -8,7 +8,12 @@
 <script src="{% static 'js/external/highchart-maps-exporting.min.js' %}"></script>
 {% endblock scripts %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/internal/dashboard-loading.css' %}"/>
+{% endblock styles %}
+
 {% block content %}
+<div id="id_loading" class="loading">Loading&#8230;</div>
 <div class="containner">
   <div class="row m-auto mt-2">
     <div class="col-sm-4">
