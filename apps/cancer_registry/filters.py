@@ -1,7 +1,7 @@
 from django.forms import TextInput
 from django_filters import CharFilter, FilterSet
 
-from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.models import TNM, Neoplasm
 
 
 class NeoplasmFilter(FilterSet):
@@ -85,7 +85,7 @@ class TNMFilter(FilterSet):
     )
 
     class Meta:
-        model = Neoplasm
+        model = TNM
         fields = [
             "patient__identity_card",
             "patient__first_name",
