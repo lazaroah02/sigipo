@@ -1,7 +1,6 @@
-from http.client import NOT_FOUND
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import warning
+from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
@@ -74,7 +73,7 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
             try:
                 patient_object = Patient.objects.get(pk=kwargs["pk"])
             except Patient.DoesNotExist:
-                raise NOT_FOUND
+                raise Http404
             return {"confirmation": True, "object": patient_object}
         patient_object = None
         filter_form = PatientChangeStatusForm(self.request.GET)

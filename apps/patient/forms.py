@@ -1,7 +1,6 @@
 from django.forms import (
     BooleanField,
     CharField,
-    CheckboxInput,
     ChoiceField,
     Form,
     HiddenInput,
@@ -134,5 +133,3 @@ class PatientOncologicReadOnlyForm(OncologicPatientForm):
         super().__init__(*args, **kwargs)
         for _, field in self.fields.items():
             field.widget.attrs["readonly"] = True
-            if isinstance(field.widget, CheckboxInput):
-                field.widget.attrs["disabled"] = True
