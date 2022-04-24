@@ -2,7 +2,6 @@ from http.client import NOT_FOUND
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import warning
-from django.forms import CheckboxInput
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
@@ -14,7 +13,11 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.patient.forms import OncologicPatientForm, PatientChangeStatusForm
+from apps.patient.forms import (
+    OncologicPatientForm,
+    PatientChangeStatusForm,
+    PatientOncologicReadOnlyForm,
+)
 from apps.patient.models import Patient
 
 
@@ -84,18 +87,7 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
                     identity_card=data["identity_card"],
                     medical_record=data["medical_record"],
                 )
-
-                class ReadOnlyForm(OncologicPatientForm):
-                    """Helper class"""
-
-                    def __init__(self, *args, **kwargs):
-                        super().__init__(*args, **kwargs)
-                        for _, field in self.fields.items():
-                            field.widget.attrs["readonly"] = True
-                            if isinstance(field.widget, CheckboxInput):
-                                field.widget.attrs["disabled"] = True
-
-                detail_form = ReadOnlyForm(instance=patient_object)
+                detail_form = PatientOncologicReadOnlyForm(instance=patient_object)
             except Patient.DoesNotExist:
                 patient_object = True
         return {"filter": filter_form, "object": patient_object, "form": detail_form}

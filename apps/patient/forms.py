@@ -1,6 +1,7 @@
 from django.forms import (
     BooleanField,
     CharField,
+    CheckboxInput,
     ChoiceField,
     Form,
     HiddenInput,
@@ -124,3 +125,14 @@ class PatientChangeStatusForm(Form):
         ),
         label="No. Historia Clínica",
     )
+
+
+class PatientOncologicReadOnlyForm(OncologicPatientForm):
+    """Form tho show Oncologic patient in read only mode."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for _, field in self.fields.items():
+            field.widget.attrs["readonly"] = True
+            if isinstance(field.widget, CheckboxInput):
+                field.widget.attrs["disabled"] = True
