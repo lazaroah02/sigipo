@@ -1,4 +1,9 @@
+from http.client import NOT_FOUND
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages import warning
+from django.forms import CheckboxInput
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
@@ -62,4 +67,40 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
     template_name = "patient/change_status.html"
 
     def get_context_data(self, **kwargs):
-        return {"form": PatientChangeStatusForm(self.request.GET)}
+        if "pk" in kwargs:
+            try:
+                patient_object = Patient.objects.get(pk=kwargs["pk"])
+            except Patient.DoesNotExist:
+                raise NOT_FOUND
+            return {"confirmation": True, "object": patient_object}
+        patient_object = None
+        filter_form = PatientChangeStatusForm(self.request.GET)
+        detail_form = None
+        if filter_form.is_valid():
+            filter_form.full_clean()
+            try:
+                data = filter_form.cleaned_data
+                patient_object = Patient.objects.get(
+                    identity_card=data["identity_card"],
+                    medical_record=data["medical_record"],
+                )
+
+                class ReadOnlyForm(OncologicPatientForm):
+                    """Helper class"""
+
+                    def __init__(self, *args, **kwargs):
+                        super().__init__(*args, **kwargs)
+                        for _, field in self.fields.items():
+                            field.widget.attrs["readonly"] = True
+                            if isinstance(field.widget, CheckboxInput):
+                                field.widget.attrs["disabled"] = True
+
+                detail_form = ReadOnlyForm(instance=patient_object)
+            except Patient.DoesNotExist:
+                patient_object = True
+        return {"filter": filter_form, "object": patient_object, "form": detail_form}
+
+    def post(self, request, *args, **kwargs):
+        Patient.objects.filter(pk=kwargs["pk"]).update(is_oncologic=True)
+        warning(request, "Estado de paciente actualizado.")
+        return redirect("patient:oncologic_list")

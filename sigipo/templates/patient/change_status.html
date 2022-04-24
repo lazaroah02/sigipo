@@ -8,32 +8,60 @@
 
 {% block content %}
 <div class="container">
-    <form method="get">
-        <div class="card card-container">
-            <div class="card-header">
-                <h3 class="card-title">Cambiar denominación</h3>
+  {% if confirmation %}
+    <form method="post">
+      {% csrf_token %}
+      <div class="card card-container">
+        <div class="card-header">
+          <h3 class="card-title">Cambiar denominación</h3>
+        </div>
+        <div class="card-body">
+            {% csrf_token %}
+            <h5>¿Está seguro que desea hacer a "{{ object }}" un paciente oncológico?</h5>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="action-buttons">
+              <button type="submit" class="btn btn-info"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+              <a href="{% url 'patient:oncologic_change_status' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
             </div>
-            <div class="card-body">
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <form method="get">
+      <div class="card card-container">
+          <div class="card-header">
+              <h3 class="card-title">Cambiar denominación</h3>
+          </div>
+          <div class="card-body">
+            {% if not object or object == True %}
+              {% for field in filter.visible_fields %}
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+              {% endfor %}
+              {% if object == True %}
+                <p class="text-center fs-3 fc-dark-red"><i class="fa-solid fa-circle-exclamation"></i> No hay datos registrados.</p>
+              {% endif %}
+            {% else %}
               {% for field in form.visible_fields %}
                 <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                 {{ field }}
               {% endfor %}
-            </div>
-            <div class="card-footer text-muted">
-              <div class="action-buttons">
-                {% block action-buttons %}
+            {% endif %}
+          </div>
+          <div class="card-footer text-muted">
+            <div class="action-buttons">
+                {% if not object or object == True %}
                   <button type="submit" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
                   <a href="{% url 'patient:oncologic_list' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
-                {% endblock action-buttons %}
-              </div>
+                {% else %}
+                  <a href="{% url 'patient:oncologic_change_status_confirmation' object.pk %}" class="btn btn-info"><i class="fa-solid fa-floppy-disk"></i> Guardar</a>
+                  <a href="{% url 'patient:oncologic_change_status' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
+                {% endif %}
             </div>
-        </div>
+          </div>
+      </div>
     </form>
+  {% endif %}
 </div>
 {% endblock content %}
-
-{% block endloads %}
-<script src="{% static 'js/external/es.min.js' %}"></script>
-{{ form.media.css }}
-{{ form.media.js }}
-{% endblock endloads %}

@@ -57,4 +57,9 @@ urlpatterns = [
         PatientChangeStatus.as_view(),
         name="oncologic_change_status",
     ),
+    path(
+        "change_status/<pk>/",
+        PatientChangeStatus.as_view(),
+        name="oncologic_change_status_confirmation",
+    ),
 ]

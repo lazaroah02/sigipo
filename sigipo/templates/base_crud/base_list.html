@@ -91,7 +91,7 @@
         <div class="position-fixed bottom-0 end-0 p-3 z-index-top">
             <div class="toast-container">
                 {% for message in messages %}
-                    <div class="toast hide auto-show-toast {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}bg-danger{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}bg-success{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}bg.warning{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}bg-info{% else %}bg-secondary{% endif %}" role="alert" aria-live="polite" aria-atomic="true" data-bs-autohide="true">
+                    <div class="toast hide auto-show-toast {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}bg-danger{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}bg-success{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}bg-warning{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}bg-info{% else %}bg-secondary{% endif %}" role="alert" aria-live="polite" aria-atomic="true" data-bs-autohide="true">
                         <div class="toast-header">
                         <strong class="me-auto">Sigipo</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

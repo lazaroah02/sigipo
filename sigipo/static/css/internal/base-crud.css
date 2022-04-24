@@ -1,6 +1,3 @@
-.fc-dark-red {
-  color: darkred;
-}
 .fa-sort-up:hover::before {
   content: "\f0dc";
 }
