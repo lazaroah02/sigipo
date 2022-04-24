@@ -1,4 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 from apps.cancer_registry.models import Neoplasm
 from apps.core.views import (
@@ -7,7 +9,7 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.patient.forms import OncologicPatientForm
+from apps.patient.forms import OncologicPatientForm, PatientChangeStatusForm
 from apps.patient.models import Patient
 
 
@@ -54,3 +56,10 @@ class PatientDeleteView(BaseDeleteView):
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
     title = "Eliminar paciente"
+
+
+class PatientChangeStatus(LoginRequiredMixin, TemplateView):
+    template_name = "patient/change_status.html"
+
+    def get_context_data(self, **kwargs):
+        return {"form": PatientChangeStatusForm(self.request.GET)}
