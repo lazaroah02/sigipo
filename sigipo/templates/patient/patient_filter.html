@@ -83,3 +83,8 @@
         </tr>
     {% endfor %}
 {% endblock table_body %}
+
+{% block crud_actions %}
+    {{ block.super }}
+    <a href="{% url 'patient:oncologic_change_status' %}" class="btn btn-primary" role="button"><i class="fa-solid fa-rotate"></i> Cambiar denominación</a>
+{% endblock crud_actions %}

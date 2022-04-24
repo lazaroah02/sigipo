@@ -4,6 +4,7 @@ from apps.core.views import PaginationFilterView
 from apps.patient.filters import PatientFilter
 from apps.patient.models import Patient
 from apps.patient.views import (
+    PatientChangeStatus,
     PatientCreateView,
     PatientDeleteView,
     PatientDetailView,
@@ -50,5 +51,15 @@ urlpatterns = [
         "oncologic/delete/<pk>/",
         PatientDeleteView.as_view(),
         name="oncologic_delete",
+    ),
+    path(
+        "change_status/",
+        PatientChangeStatus.as_view(),
+        name="oncologic_change_status",
+    ),
+    path(
+        "change_status/<pk>/",
+        PatientChangeStatus.as_view(),
+        name="oncologic_change_status_confirmation",
     ),
 ]

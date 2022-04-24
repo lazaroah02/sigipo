@@ -2,6 +2,7 @@ from django.forms import (
     BooleanField,
     CharField,
     ChoiceField,
+    Form,
     HiddenInput,
     ModelChoiceField,
     NumberInput,
@@ -107,3 +108,28 @@ class OncologicPatientForm(BasePatientForm):
     is_oncologic = BooleanField(
         widget=HiddenInput(attrs={"value": "true"}), required=False
     )
+
+
+class PatientChangeStatusForm(Form):
+    identity_card = CharField(
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Carnet de identidad"}
+        ),
+        label="Carnet de identidad",
+        max_length=11,
+    )
+    medical_record = CharField(
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "No. Historia Clínica"}
+        ),
+        label="No. Historia Clínica",
+    )
+
+
+class PatientOncologicReadOnlyForm(OncologicPatientForm):
+    """Form tho show Oncologic patient in read only mode."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for _, field in self.fields.items():
+            field.widget.attrs["readonly"] = True
