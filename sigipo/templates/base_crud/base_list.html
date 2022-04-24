@@ -42,7 +42,9 @@
                 </div>
             </div>
             <div class="card-footer text-muted">
-                <a href="{% url add_url %}" class="btn btn-success" role="button"><i class="fa-solid fa-plus"></i> Añadir {{ crud_instance_name }}</a>
+                {% block crud_actions %}
+                    <a href="{% url add_url %}" class="btn btn-success" role="button"><i class="fa-solid fa-plus"></i> Añadir {{ crud_instance_name }}</a>
+                {% endblock crud_actions %}
             </div>
         </div>
         <hr/>
