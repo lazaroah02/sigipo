@@ -13,7 +13,7 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td><a href="{% url "patient:oncologic_detail" obj.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
+            <td><a href="{% url "patient:oncologic_detail" obj.patient.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
             <td>{{ obj.primary_site }}</td>
             <td>{{ obj.histologic_type }}</td>
             <td>{{ obj.get_clinical_stage_display }}</td>

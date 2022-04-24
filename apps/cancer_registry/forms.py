@@ -213,7 +213,7 @@ class TNMForm(ModelForm):
         required=False,
     )
     is_recurrent = BooleanField(
-        label="Post-Recurrente",
+        label="Recurrente",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
         required=False,
     )
