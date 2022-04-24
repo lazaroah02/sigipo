@@ -1,12 +1,16 @@
 from django.urls import path
 
-from apps.cancer_registry.filters import NeoplasmFilter
-from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.filters import NeoplasmFilter, TNMFilter
+from apps.cancer_registry.models import TNM, Neoplasm
 from apps.cancer_registry.views import (
     NeoplasmCreateView,
     NeoplasmDeleteView,
     NeoplasmDetailView,
     NeoplasmUpdateView,
+    TNMCreateView,
+    TNMDeleteView,
+    TNMDetailView,
+    TNMUpdateView,
 )
 from apps.core.views import PaginationFilterView
 
@@ -50,5 +54,43 @@ urlpatterns = [
         "neoplasm/delete/<pk>/",
         NeoplasmDeleteView.as_view(),
         name="neoplasm_delete",
+    ),
+    # * TNM URLs
+    path(
+        "tnm/list/",
+        PaginationFilterView.as_view(
+            model=TNM,
+            filterset_class=TNMFilter,
+            extra_context={
+                "crud_name": "TNMs",
+                "crud_instance_name": "TNM",
+                "add_url": "cancer_registry:tnm_create",
+                "detail_url": "cancer_registry:tnm_detail",
+                "edit_url": "cancer_registry:tnm_update",
+                "delete_url": "cancer_registry:tnm_delete",
+            },
+            queryset=TNM.objects.all(),
+        ),
+        name="tnm_list",
+    ),
+    path(
+        "tnm/create/",
+        TNMCreateView.as_view(),
+        name="tnm_create",
+    ),
+    path(
+        "tnm/detail/<pk>/",
+        TNMDetailView.as_view(),
+        name="tnm_detail",
+    ),
+    path(
+        "tnm/update/<pk>/",
+        TNMUpdateView.as_view(),
+        name="tnm_update",
+    ),
+    path(
+        "tnm/delete/<pk>/",
+        TNMDeleteView.as_view(),
+        name="tnm_delete",
     ),
 ]

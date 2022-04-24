@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 
-from apps.cancer_registry.forms import NeoplasmForm
-from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.forms import NeoplasmForm, TNMForm
+from apps.cancer_registry.models import TNM, Neoplasm
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
@@ -56,3 +56,54 @@ class NeoplasmDeleteView(BaseDeleteView):
     cancel_url = "cancer_registry:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Eliminar neoplasia"
+
+
+# * TNM Views
+class TNMCreateView(BaseCreateView):
+    """View to handle tnm creation."""
+
+    model = TNM
+    form_class = TNMForm
+    success_url = reverse_lazy("cancer_registry:tnm_list")
+    success_message = (
+        "%(patient)s %(tumor)s %(nodule)s %(metastasis)s guardado correctamente."
+    )
+    cancel_url = "cancer_registry:tnm_list"
+    title = "Añadir TNM"
+
+
+class TNMDetailView(BaseDetailView):
+    """View to handle tnm details."""
+
+    model = TNM
+    form_class = TNMForm
+    cancel_url = "cancer_registry:tnm_list"
+    object_not_found_error_message = "TNM no encontrada"
+    title = "Detalles de TNM"
+
+
+class TNMUpdateView(BaseUpdateView):
+    """View to handle tnm edition."""
+
+    model = TNM
+    form_class = TNMForm
+    success_url = reverse_lazy("cancer_registry:tnm_list")
+    success_message = (
+        "%(patient)s %(tumor)s %(nodule)s %(metastasis)s guardado correctamente."
+    )
+    cancel_url = "cancer_registry:tnm_list"
+    object_not_found_error_message = "TNM no encontrada"
+    title = "Editar TNM"
+
+
+class TNMDeleteView(BaseDeleteView):
+    """View to handle tnm delete."""
+
+    model = TNM
+    success_url = reverse_lazy("cancer_registry:tnm_list")
+    success_message = (
+        "%(tumor)s %(nodule)s %(metastasis)s eliminada satisfactoriamente."
+    )
+    cancel_url = "cancer_registry:tnm_list"
+    object_not_found_error_message = "TNM no encontrada"
+    title = "Eliminar TNM"

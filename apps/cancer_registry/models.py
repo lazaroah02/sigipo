@@ -8,6 +8,7 @@ from django.db.models import (
     IntegerField,
     Model,
     SmallIntegerField,
+    TextChoices,
 )
 from django.db.models.manager import Manager
 
@@ -166,3 +167,75 @@ class Neoplasm(Model):
 
     def __str__(self):
         return f"{self.patient}"
+
+
+class TumorChoices(TextChoices):
+    TX = "TX" "TX"
+    T0 = "T0", "T0"
+    TIS = "Tis", "Tis"
+    T1 = "T1", "T1"
+    T2 = "T2", "T2"
+    T3 = "T3", "T3"
+    T4 = "T4", "T4"
+
+
+class NoduleChoices(TextChoices):
+    NX = "NX", "NX"
+    N0 = "N0", "N0"
+    N1 = "N1", "N1"
+    N2 = "N2", "N2"
+    N3 = "N3", "N3"
+
+
+class MetastasisChoices(TextChoices):
+    MX = "MX", "MX"
+    M0 = "M0", "M0"
+    M1 = "M1", "M1"
+
+
+class TNMQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
+class TNM(Model):
+    """
+    Model representation of a TNM (Tumor, nodule, metastasis)
+    """
+
+    patient = ForeignKey(
+        Patient,
+        on_delete=CASCADE,
+        verbose_name="Paciente",
+    )
+    tumor = CharField(
+        verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
+    )
+    nodule = CharField(
+        verbose_name="Nódulo", choices=NoduleChoices.choices, max_length=10, blank=True
+    )
+    metastasis = CharField(
+        verbose_name="Metástasis",
+        choices=MetastasisChoices.choices,
+        max_length=10,
+        blank=True,
+    )
+    is_clinical = BooleanField(verbose_name="Clínico", default=False, blank=True)
+    is_pathological = BooleanField(verbose_name="Patológico", default=False, blank=True)
+    is_recurrent = BooleanField(verbose_name="Recurrente", default=False, blank=True)
+    is_posttreatment = BooleanField(
+        verbose_name="Post-tratamiento", default=False, blank=True
+    )
+    is_autopsy = BooleanField(verbose_name="Autopsia", default=False, blank=True)
+    objects = TNMQuerysetManager()
+
+    class Meta:
+        verbose_name = "TNM"
+        verbose_name_plural = "TNMs"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"{self.patient} {self.tumor} {self.nodule} {self.metastasis}"

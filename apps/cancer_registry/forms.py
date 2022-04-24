@@ -10,6 +10,8 @@ from django.forms.widgets import DateInput, Select, TextInput
 from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import (
+    TNM,
+    MetastasisChoices,
     Neoplasm,
     NeoplasmClinicalExtensionsChoices,
     NeoplasmClinicalStageChoices,
@@ -17,6 +19,8 @@ from apps.cancer_registry.models import (
     NeoplasmDifferentiationGradesChoices,
     NeoplasmLateralityChoices,
     NeoplasmSourceOfInfoChoices,
+    NoduleChoices,
+    TumorChoices,
 )
 from apps.classifiers.models import Morphology, Topography
 from apps.core.forms import ModelForm
@@ -160,4 +164,70 @@ class NeoplasmForm(ModelForm):
 
     class Meta:
         model = Neoplasm
+        fields = "__all__"
+
+
+class TNMForm(ModelForm):
+    patient = ModelChoiceField(
+        queryset=Patient.objects.only_oncologic(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Paciente",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "first_name__icontains",
+                "last_name__icontains",
+                "identity_card__icontains",
+                "medical_record__icontains",
+            ],
+        ),
+        label="Paciente",
+    )
+    tumor = ChoiceField(
+        choices=TumorChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Tumor",
+    )
+    nodule = ChoiceField(
+        choices=NoduleChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Nódulo",
+    )
+    metastasis = ChoiceField(
+        choices=MetastasisChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Nódulo",
+    )
+    is_clinical = BooleanField(
+        label="Clínico",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    is_pathological = BooleanField(
+        label="Patológico",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    is_recurrent = BooleanField(
+        label="Recurrente",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    is_posttreatment = BooleanField(
+        label="Post-tratamiento",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    is_autopsy = BooleanField(
+        label="Autopsia",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+
+    class Meta:
+        model = TNM
         fields = "__all__"
