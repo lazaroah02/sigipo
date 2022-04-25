@@ -1,4 +1,4 @@
-from django.db.models import CASCADE, AutoField, DateField, ForeignKey, TextChoices
+from django.db.models import CASCADE, AutoField, ForeignKey, TextChoices
 from multiselectfield import MultiSelectField
 
 from apps.core.models import TimeStampedModel
@@ -27,7 +27,6 @@ class PatientOncologicStudy(TimeStampedModel):
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     sample_number = AutoField(primary_key=True)
-    date = DateField(auto_now_add=True)
     tests = MultiSelectField(
         choices=OncologicStudyChoices.choices,
         min_choices=1,

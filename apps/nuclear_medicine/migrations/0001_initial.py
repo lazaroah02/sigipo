@@ -20,7 +20,6 @@ class Migration(migrations.Migration):
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("updated_at", models.DateTimeField(auto_now=True)),
                 ("sample_number", models.AutoField(primary_key=True, serialize=False)),
-                ("date", models.DateField(auto_now_add=True)),
                 (
                     "tests",
                     multiselectfield.db.fields.MultiSelectField(
