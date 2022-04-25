@@ -37,7 +37,7 @@ class PatientOncologicStudy(TimeStampedModel):
     class Meta:
         verbose_name = "Estudio oncológico RIA-IRMA"
         verbose_name_plural = "Estudios oncológicos RIA-IRMA"
-        ordering = ["pk"]
+        ordering = ["created_at"]
 
     def __str__(self):
         return "Muestra " + str(self.sample_number) + " " + str(self.tests)
