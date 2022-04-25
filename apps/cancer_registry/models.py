@@ -99,6 +99,14 @@ class NeoplasmQuerysetManager(Manager):
         )
 
 
+class TreatmentPerformedChoices(IntegerChoices):
+    SURGERY = 1, "Cirugía"
+    CHEMOTHERAPY = 2, "Quimioterapia"
+    RADIOTHERAPY = 3, "Radioterapia"
+    HORMONE_THERAPY = 4, "Hormonoterapia"
+    NONE_TREATMENT = 0, "Ninguno"
+
+
 class Neoplasm(Model):
     """
     Model representation of a neoplasm
@@ -157,6 +165,12 @@ class Neoplasm(Model):
     date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
     medic_that_report = CharField(
         verbose_name="Médico que reporta", max_length=128, blank=True
+    )
+    treatment_performed = IntegerField(
+        verbose_name="Tratamiento realizado",
+        blank=True,
+        null=True,
+        choices=TreatmentPerformedChoices.choices,
     )
     objects = NeoplasmQuerysetManager()
 

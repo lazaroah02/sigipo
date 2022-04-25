@@ -15,6 +15,7 @@ from apps.cancer_registry.models import (
     NeoplasmLateralityChoices,
     NeoplasmSourceOfInfoChoices,
     NoduleChoices,
+    TreatmentPerformedChoices,
     TumorChoices,
 )
 from apps.classifiers.factories import MorphologyFactory, TopographyFactory
@@ -42,6 +43,7 @@ class NeoplasmFactory(DjangoModelFactory):
     trimester = FuzzyChoice((None, 1, 2, 3))
     is_pregnant = FuzzyChoice((True, False))
     is_vih = FuzzyChoice((True, False))
+    treatment_performed = FuzzyChoice(TreatmentPerformedChoices.values)
 
 
 class TNMFactory(DjangoModelFactory):
