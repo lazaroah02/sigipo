@@ -5,3 +5,4 @@ django-filter
 django-select2
 python-dotenv
 psycopg2-binary
+django-multiselectfield
