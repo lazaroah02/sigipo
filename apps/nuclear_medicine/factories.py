@@ -11,5 +11,5 @@ class OncologicStudyFactory(DjangoModelFactory):
     class Meta:
         model = PatientOncologicStudy
 
-    province = SubFactory(PatientFactory)
-    test = "TSH"
+    patient = SubFactory(PatientFactory)
+    tests = "TSH"

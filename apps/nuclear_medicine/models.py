@@ -40,4 +40,4 @@ class PatientOncologicStudy(TimeStampedModel):
         ordering = ["created_at"]
 
     def __str__(self):
-        return "Muestra " + str(self.sample_number) + " " + str(self.tests)
+        return f"Muestra {str(self.sample_number)} {str(self.tests)}"
