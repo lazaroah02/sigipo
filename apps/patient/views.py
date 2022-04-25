@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
-from apps.cancer_registry.models import Neoplasm
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
@@ -13,6 +12,7 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.patient.forms import (
+    NuclearMedicinePatientForm,
     OncologicPatientForm,
     PatientChangeStatusForm,
     PatientOncologicReadOnlyForm,
@@ -24,7 +24,7 @@ from apps.patient.models import Patient
 class PatientCreateView(BaseCreateView):
     """View to handle patient creation."""
 
-    model = Neoplasm
+    model = Patient
     form_class = OncologicPatientForm
     success_url = reverse_lazy("patient:oncologic_list")
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
@@ -95,3 +95,37 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
         Patient.objects.filter(pk=kwargs["pk"]).update(is_oncologic=True)
         warning(request, "Estado de paciente actualizado.")
         return redirect("patient:oncologic_list")
+
+
+# * Nuclear Medicine Patient Views
+class NuclearMedicinePatientCreateView(PatientCreateView):
+    """View to handle nuclear medicine patient creation."""
+
+    model = Patient
+    form_class = NuclearMedicinePatientForm
+    success_url = reverse_lazy("patient:patient_list")
+    cancel_url = "patient:patient_list"
+
+
+class NuclearMedicinePatientDetailView(PatientDetailView):
+    """View to handle nuclear medicine patient details."""
+
+    form_class = NuclearMedicinePatientForm
+    cancel_url = "patient:patient_list"
+
+
+class NuclearMedicinePatientUpdateView(PatientUpdateView):
+    """View to handle nuclear medicine patient edition."""
+
+    model = Patient
+    form_class = NuclearMedicinePatientForm
+    success_url = reverse_lazy("patient:patient_list")
+    cancel_url = "patient:patient_list"
+
+
+class NuclearMedicinePatientDeleteView(BaseDeleteView):
+    """View to handle nuclear medicine patient delete."""
+
+    model = Patient
+    success_url = reverse_lazy("patient:patient_list")
+    cancel_url = "patient:patient_list"

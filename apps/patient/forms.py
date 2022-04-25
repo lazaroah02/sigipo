@@ -111,7 +111,7 @@ class OncologicPatientForm(BasePatientForm):
     )
 
 
-class PatientForm(BasePatientForm):
+class NuclearMedicinePatientForm(BasePatientForm):
     is_oncologic = BooleanField(
         label="¿Es ontológico?",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
