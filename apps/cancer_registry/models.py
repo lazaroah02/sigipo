@@ -168,7 +168,7 @@ class Neoplasm(Model):
     )
     treatment_performed = IntegerField(
         verbose_name="Tratamiento realizado",
-        black=True,
+        blank=True,
         null=True,
         choices=TreatmentPerformedChoices.choices,
     )
