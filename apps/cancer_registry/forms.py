@@ -20,6 +20,7 @@ from apps.cancer_registry.models import (
     NeoplasmLateralityChoices,
     NeoplasmSourceOfInfoChoices,
     NoduleChoices,
+    TreatmentPerformedChoices,
     TumorChoices,
 )
 from apps.classifiers.models import Morphology, Topography
@@ -159,6 +160,12 @@ class NeoplasmForm(ModelForm):
             attrs={"class": "form-control", "placeholder": "Médico que reporta"}
         ),
         label="Médico que reporta",
+        required=False,
+    )
+    treatment_performed = ChoiceField(
+        choices=TreatmentPerformedChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Tratamiento realizado",
         required=False,
     )
 
