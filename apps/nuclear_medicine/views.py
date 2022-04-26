@@ -6,8 +6,7 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.geographic_location.forms import ProvinceForm
-from apps.nuclear_medicine.forms import OncologicStudyForm
+from apps.nuclear_medicine.forms import OncologicStudyDetailForm, OncologicStudyForm
 from apps.nuclear_medicine.models import PatientOncologicStudy
 
 
@@ -27,7 +26,7 @@ class OncologicStudyDetailView(BaseDetailView):
     """View to handle oncologic study details."""
 
     model = PatientOncologicStudy
-    form_class = ProvinceForm
+    form_class = OncologicStudyDetailForm
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrada"
     title = "Detalles de estudio oncológico"
@@ -37,7 +36,7 @@ class OncologicStudyUpdateView(BaseUpdateView):
     """View to handle oncologic study edition."""
 
     model = PatientOncologicStudy
-    form_class = ProvinceForm
+    form_class = OncologicStudyForm
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"
