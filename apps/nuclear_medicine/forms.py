@@ -82,10 +82,9 @@ class OncologicStudyDetailForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if kwargs.get("instance") and kwargs["instance"].pk:
-            self.fields["created_date"].widget.attrs = {
-                "type": "date",
-                "class": "form-control",
-                "placeholder": "Fecha",
-                "value": kwargs["instance"].created_at.date,
-            }
+        self.fields["created_date"].widget.attrs = {
+            "type": "date",
+            "class": "form-control",
+            "placeholder": "Fecha",
+            "value": kwargs["instance"].created_at.date,
+        }
