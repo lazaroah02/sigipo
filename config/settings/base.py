@@ -37,6 +37,7 @@ LOCAL_APPS = [
     "apps.classifiers.apps.ClassifiersConfig",
     "apps.dashboard.apps.DashboardConfig",
     "apps.cancer_registry.apps.CancerRegistryConfig",
+    "apps.nuclear_medicine.apps.NuclearMedicineConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

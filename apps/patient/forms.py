@@ -1,6 +1,7 @@
 from django.forms import (
     BooleanField,
     CharField,
+    CheckboxInput,
     ChoiceField,
     Form,
     HiddenInput,
@@ -107,6 +108,14 @@ class BasePatientForm(ModelForm):
 class OncologicPatientForm(BasePatientForm):
     is_oncologic = BooleanField(
         widget=HiddenInput(attrs={"value": "true"}), required=False
+    )
+
+
+class NuclearMedicinePatientForm(BasePatientForm):
+    is_oncologic = BooleanField(
+        label="¿Es oncológico?",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
     )
 
 

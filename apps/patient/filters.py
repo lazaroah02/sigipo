@@ -1,5 +1,6 @@
-from django.forms import Select, TextInput
+from django.forms import NullBooleanSelect, Select, TextInput
 from django_filters import (
+    BooleanFilter,
     CharFilter,
     ChoiceFilter,
     FilterSet,
@@ -62,7 +63,9 @@ class PatientFilter(FilterSet):
     )
     race = ChoiceFilter(
         choices=PatientRace.choices,
-        widget=Select(attrs={"class": "form-control", "placeholder": "Raza"}),
+        widget=Select(
+            attrs={"class": "form-control form-select", "placeholder": "Raza"}
+        ),
     )
     residence_municipality = ModelChoiceFilter(
         queryset=Municipality.objects.all(),
@@ -146,4 +149,30 @@ class PatientFilter(FilterSet):
             "residence_municipality",
             "born_municipality",
             "age_at_diagnosis",
+        ]
+
+
+class NuclearMedicinePatientFilter(PatientFilter):
+    is_oncologic = BooleanFilter(
+        widget=NullBooleanSelect(
+            attrs={
+                "class": "form-control form-select",
+                "placeholder": "¿Es oncológico?",
+            }
+        ),
+        label="¿Es oncológico?",
+    )
+
+    class Meta:
+        model = Patient
+        fields = [
+            "identity_card",
+            "first_name",
+            "last_name",
+            "medical_record",
+            "race",
+            "residence_municipality",
+            "born_municipality",
+            "age_at_diagnosis",
+            "is_oncologic",
         ]
