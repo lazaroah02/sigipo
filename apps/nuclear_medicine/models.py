@@ -1,4 +1,5 @@
 from django.db.models import CASCADE, AutoField, ForeignKey, TextChoices
+from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
 from apps.core.models import TimeStampedModel
@@ -22,6 +23,14 @@ class OncologicStudyChoices(TextChoices):
     ALF = "ALF", "ALF"
 
 
+class OncologicStudyQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
 class PatientOncologicStudy(TimeStampedModel):
     """Model representation of oncologic study."""
 
@@ -33,6 +42,7 @@ class PatientOncologicStudy(TimeStampedModel):
         max_choices=14,
         max_length=250,
     )
+    objects = OncologicStudyQuerysetManager()
 
     class Meta:
         verbose_name = "Estudio oncológico RIA-IRMA"
