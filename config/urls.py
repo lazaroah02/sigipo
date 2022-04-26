@@ -12,6 +12,7 @@ urlpatterns = [
     path("geographic_location/", include("apps.geographic_location.urls")),
     path("cancer_registry/", include("apps.cancer_registry.urls")),
     path("patient/", include("apps.patient.urls")),
+    path("nuclear_medicine/", include("apps.nuclear_medicine.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
 ]
