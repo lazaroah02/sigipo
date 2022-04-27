@@ -153,7 +153,6 @@ class NeoplasmForm(ModelForm):
             }
         ),
         label="Fecha del reporte",
-        required=False,
     )
     medic_that_report = CharField(
         widget=TextInput(

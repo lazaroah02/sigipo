@@ -1,9 +1,47 @@
-from django.forms import CharField, DateField, ModelChoiceField, TextInput
+from django.forms import (
+    CharField,
+    CheckboxSelectMultiple,
+    DateField,
+    ModelChoiceField,
+    TextInput,
+)
+from django.utils.safestring import mark_safe
 from django_select2.forms import ModelSelect2Widget
+from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.core.forms import ModelForm
-from apps.nuclear_medicine.models import PatientOncologicStudy
+from apps.nuclear_medicine.models import OncologicStudyChoices, PatientOncologicStudy
 from apps.patient.models import Patient
+
+
+class CustomCheckboxSelectMultiple(CheckboxSelectMultiple):
+    def __init__(self, attrs=None, choices=()):
+        self.ignore_check = True
+        super().__init__(attrs, choices)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        return mark_safe(
+            html.replace("<ul", "<div")
+            .replace("</ul>", "</div>")
+            .replace("</li>", "</div>")
+            .replace("<li>", '<div class="form-check">')
+            .replace("<input", '<input class="form-check-input"')
+        )
+
+
+class CustomReadOnlyCheckboxSelectMultiple(CustomCheckboxSelectMultiple):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        return mark_safe(html.replace("<input", "<input disabled"))
+
+
+class CustomReadOnlyMultiSelectFormField(MultiSelectFormField):
+    widget = CustomReadOnlyCheckboxSelectMultiple
+
+
+class CustomMultiSelectFormField(MultiSelectFormField):
+    widget = CustomCheckboxSelectMultiple
 
 
 class OncologicStudyForm(ModelForm):
@@ -25,6 +63,13 @@ class OncologicStudyForm(ModelForm):
             ],
         ),
         label="Paciente",
+    )
+    tests = CustomMultiSelectFormField(
+        required=True,
+        label="Pruebas",
+        choices=OncologicStudyChoices.choices,
+        max_length=250,
+        max_choices=14,
     )
 
     class Meta:
@@ -51,6 +96,13 @@ class OncologicStudyDetailForm(ModelForm):
             ],
         ),
         label="Paciente",
+    )
+    tests = CustomReadOnlyMultiSelectFormField(
+        required=True,
+        label="Pruebas",
+        choices=OncologicStudyChoices.choices,
+        max_length=250,
+        max_choices=14,
     )
     sample_number = CharField(
         widget=TextInput(
