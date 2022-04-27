@@ -71,7 +71,7 @@ class BaseStudyForm(ModelForm):
     )
 
 
-class OncologicStudyForm(ModelForm):
+class OncologicStudyForm(BaseStudyForm):
     tests = CustomMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -167,7 +167,7 @@ class HormonalStudyDetailForm(BaseStudyDetailForm):
         fields = "__all__"
 
 
-class HormonalStudyForm(ModelForm):
+class HormonalStudyForm(BaseStudyForm):
     tests = CustomMultiSelectFormField(
         required=True,
         label="Pruebas",
