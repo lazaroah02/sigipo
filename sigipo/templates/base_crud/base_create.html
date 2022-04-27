@@ -25,7 +25,7 @@
                 {% endfor %}
                 {% for field in form.visible_fields %}
                     <div class="mb-3">
-                        {% if field.field.widget.input_type == 'checkbox' %}
+                        {% if field.field.widget.input_type == 'checkbox' and not field.field.widget.ignore_check %}
                             <div class="form-check">
                                 {{ field }}
                                 <label for="{{ field.id_for_label }}" class="flexCheckDefault">{{ field.label }}</label>
