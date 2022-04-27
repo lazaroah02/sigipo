@@ -60,8 +60,8 @@ urlpatterns = [
             model=PatientHormonalStudy,
             filterset_class=HormonalStudyFilter,
             extra_context={
-                "crud_name": "Estudio oncológico",
-                "crud_instance_name": "estudio oncológico",
+                "crud_name": "Estudio hormonal",
+                "crud_instance_name": "estudio hormonal",
                 "add_url": "nuclear_medicine:hormonal_study_create",
                 "detail_url": "nuclear_medicine:hormonal_study_detail",
                 "edit_url": "nuclear_medicine:hormonal_study_update",
