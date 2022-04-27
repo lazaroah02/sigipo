@@ -51,3 +51,50 @@ class PatientOncologicStudy(TimeStampedModel):
 
     def __str__(self):
         return f"Muestra {str(self.sample_number)} {str(self.tests)}"
+
+
+class HormonalStudyChoices(TextChoices):
+    TSG = "TSH", "TSH"
+    T3 = "T3", "T3"
+    T4 = "T4", "T4"
+    T3F = "T3F", "T3F"
+    T4F = "T4F", "T4F"
+    TRL = "PRL", "PRL"
+    FSH = "FSH", "FSH"
+    LH = "LH", "LH"
+    PRG = "PRG", "PRG"
+    E2 = "E2", "E2"
+    CORT = "CORT", "CORT"
+    INS = "INS", "INS"
+    TEST = "TEST", "TEST"
+    TGH = "GH", "GH"
+
+
+class HormonalStudyQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
+class PatientHormonalStudy(TimeStampedModel):
+    """Model representation of hormonal study."""
+
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    sample_number = AutoField(primary_key=True)
+    tests = MultiSelectField(
+        choices=HormonalStudyChoices.choices,
+        min_choices=1,
+        max_choices=14,
+        max_length=250,
+    )
+    objects = HormonalStudyQuerysetManager()
+
+    class Meta:
+        verbose_name = "Estudio hormonal RIA-IRMA"
+        verbose_name_plural = "Estudios hormonales RIA-IRMA"
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"Muestra {str(self.sample_number)} {str(self.tests)}"

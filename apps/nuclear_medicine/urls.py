@@ -1,9 +1,13 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView
-from apps.nuclear_medicine.filters import OncologicStudyFilter
-from apps.nuclear_medicine.models import PatientOncologicStudy
+from apps.nuclear_medicine.filters import HormonalStudyFilter, OncologicStudyFilter
+from apps.nuclear_medicine.models import PatientHormonalStudy, PatientOncologicStudy
 from apps.nuclear_medicine.views import (
+    HormonalStudyCreateView,
+    HormonalStudyDeleteView,
+    HormonalStudyDetailView,
+    HormonalStudyUpdateView,
     OncologicStudyCreateView,
     OncologicStudyDeleteView,
     OncologicStudyDetailView,
@@ -48,5 +52,42 @@ urlpatterns = [
         "oncologic_study/delete/<pk>/",
         OncologicStudyDeleteView.as_view(),
         name="oncologic_study_delete",
+    ),
+    # * Hormonal Study URLs
+    path(
+        "hormonal_study/list/",
+        PaginationFilterView.as_view(
+            model=PatientHormonalStudy,
+            filterset_class=HormonalStudyFilter,
+            extra_context={
+                "crud_name": "Estudio hormonal",
+                "crud_instance_name": "estudio hormonal",
+                "add_url": "nuclear_medicine:hormonal_study_create",
+                "detail_url": "nuclear_medicine:hormonal_study_detail",
+                "edit_url": "nuclear_medicine:hormonal_study_update",
+                "delete_url": "nuclear_medicine:hormonal_study_delete",
+            },
+        ),
+        name="hormonal_study_list",
+    ),
+    path(
+        "hormonal_study/create/",
+        HormonalStudyCreateView.as_view(),
+        name="hormonal_study_create",
+    ),
+    path(
+        "hormonal_study/detail/<pk>/",
+        HormonalStudyDetailView.as_view(),
+        name="hormonal_study_detail",
+    ),
+    path(
+        "hormonal_study/update/<pk>/",
+        HormonalStudyUpdateView.as_view(),
+        name="hormonal_study_update",
+    ),
+    path(
+        "hormonal_study/delete/<pk>/",
+        HormonalStudyDeleteView.as_view(),
+        name="hormonal_study_delete",
     ),
 ]

@@ -10,7 +10,12 @@ from django_select2.forms import ModelSelect2Widget
 from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.core.forms import ModelForm
-from apps.nuclear_medicine.models import OncologicStudyChoices, PatientOncologicStudy
+from apps.nuclear_medicine.models import (
+    HormonalStudyChoices,
+    OncologicStudyChoices,
+    PatientHormonalStudy,
+    PatientOncologicStudy,
+)
 from apps.patient.models import Patient
 
 
@@ -44,7 +49,7 @@ class CustomMultiSelectFormField(MultiSelectFormField):
     widget = CustomCheckboxSelectMultiple
 
 
-class OncologicStudyForm(ModelForm):
+class BaseStudyForm(ModelForm):
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
         widget=ModelSelect2Widget(
@@ -64,6 +69,9 @@ class OncologicStudyForm(ModelForm):
         ),
         label="Paciente",
     )
+
+
+class OncologicStudyForm(BaseStudyForm):
     tests = CustomMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -77,7 +85,7 @@ class OncologicStudyForm(ModelForm):
         fields = "__all__"
 
 
-class OncologicStudyDetailForm(ModelForm):
+class BaseStudyDetailForm(ModelForm):
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
         widget=ModelSelect2Widget(
@@ -96,13 +104,6 @@ class OncologicStudyDetailForm(ModelForm):
             ],
         ),
         label="Paciente",
-    )
-    tests = CustomReadOnlyMultiSelectFormField(
-        required=True,
-        label="Pruebas",
-        choices=OncologicStudyChoices.choices,
-        max_length=250,
-        max_choices=14,
     )
     sample_number = CharField(
         widget=TextInput(
@@ -128,10 +129,6 @@ class OncologicStudyDetailForm(ModelForm):
         "tests",
     ]
 
-    class Meta:
-        model = PatientOncologicStudy
-        fields = "__all__"
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["created_date"].widget.attrs = {
@@ -140,3 +137,45 @@ class OncologicStudyDetailForm(ModelForm):
             "placeholder": "Fecha",
             "value": kwargs["instance"].created_at.date,
         }
+
+
+class OncologicStudyDetailForm(BaseStudyDetailForm):
+    tests = CustomReadOnlyMultiSelectFormField(
+        required=True,
+        label="Pruebas",
+        choices=OncologicStudyChoices.choices,
+        max_length=250,
+        max_choices=14,
+    )
+
+    class Meta:
+        model = PatientOncologicStudy
+        fields = "__all__"
+
+
+class HormonalStudyDetailForm(BaseStudyDetailForm):
+    tests = CustomReadOnlyMultiSelectFormField(
+        required=True,
+        label="Pruebas",
+        choices=HormonalStudyChoices.choices,
+        max_length=250,
+        max_choices=14,
+    )
+
+    class Meta:
+        model = PatientHormonalStudy
+        fields = "__all__"
+
+
+class HormonalStudyForm(BaseStudyForm):
+    tests = CustomMultiSelectFormField(
+        required=True,
+        label="Pruebas",
+        choices=HormonalStudyChoices.choices,
+        max_length=250,
+        max_choices=14,
+    )
+
+    class Meta:
+        model = PatientHormonalStudy
+        fields = "__all__"
