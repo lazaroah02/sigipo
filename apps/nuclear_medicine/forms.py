@@ -3,6 +3,7 @@ from django.forms import (
     CheckboxSelectMultiple,
     DateField,
     ModelChoiceField,
+    NumberInput,
     TextInput,
 )
 from django.utils.safestring import mark_safe
@@ -179,3 +180,161 @@ class HormonalStudyForm(BaseStudyForm):
     class Meta:
         model = PatientHormonalStudy
         fields = "__all__"
+
+
+class OncologicResultForm(ModelForm):
+    oncologic_study = ModelChoiceField(
+        queryset=PatientOncologicStudy.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Estudio Oncológico",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+                "sample_number",
+            ],
+        ),
+        label="Estudio Oncológico",
+    )
+    tsh = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "TSH"}),
+        label="TSH",
+    )
+    t3 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3"}),
+        label="T3",
+    )
+    t4 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4"}),
+        label="T4",
+    )
+    tg = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "TG"}),
+        label="TG",
+    )
+    anti_tg = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "ANTI-TG"}),
+        label="ANTI-TG",
+    )
+    anti_tipo = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "ANTI-TIPO"}),
+        label="ANTI-TIPO",
+    )
+    calcit = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CALCIT"}),
+        label="CALCIT",
+    )
+    ca19_9 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 19-9"}),
+        label="CA 19-9",
+    )
+    ca15_3 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 15-3"}),
+        label="CA 15-3",
+    )
+    ca125 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 125"}),
+        label="CA 125",
+    )
+    cea = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CEA"}),
+        label="CEA",
+    )
+    alf = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "ALF"}),
+        label="ALF",
+    )
+    psa = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "PSA"}),
+        label="PSA",
+    )
+    psafree = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "PSA FREE"}),
+        label="PSA FREE",
+    )
+
+
+class HormonalResultForm(ModelForm):
+    oncologic_study = ModelChoiceField(
+        queryset=PatientHormonalStudy.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Estudio hormonal",
+                "data-language": "es",
+                "data-theme": "bootstrap4",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+                "sample_number",
+            ],
+        ),
+        label="Estudio hormonal",
+    )
+    tsh = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "TSH"}),
+        label="TSH",
+    )
+    t3 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3"}),
+        label="T3",
+    )
+    t4 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4"}),
+        label="T4",
+    )
+    t3f = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3F"}),
+        label="T3F",
+    )
+    t4f = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4F"}),
+        label="T4F",
+    )
+    prl = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "PRL"}),
+        label="PRL",
+    )
+    fsh = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "FSH"}),
+        label="FSH",
+    )
+    lh = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "LH"}),
+        label="LH",
+    )
+    prg = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "PRG"}),
+        label="PRG",
+    )
+    e2 = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "E2"}),
+        label="E2",
+    )
+    cort = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CORT"}),
+        label="CORT",
+    )
+    ins = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "INS"}),
+        label="INS",
+    )
+    test = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "TEST"}),
+        label="TEST",
+    )
+    gh = CharField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "GH"}),
+        label="GH",
+    )
