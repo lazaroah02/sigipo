@@ -1,0 +1,25 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+
+{% block crud_columns %}
+    {% create_header_column 'oncologic_study__patient' 'Paciente' %}
+    {% create_header_column 'oncologic_study__sample_number' 'Número de muestra' %}
+    {% create_header_column 'created_at' 'Fecha' %}
+    {% create_header_column 'oncologic_study__tests' 'Pruebas' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.oncologic_study.patient }}</td>
+            <td>{{ obj.oncologic_study.sample_number }}</td>
+            <td>{{ obj.created_at }}</td>
+            <td>{{ obj.oncologic_study.tests }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

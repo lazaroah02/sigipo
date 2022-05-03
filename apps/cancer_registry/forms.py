@@ -36,7 +36,7 @@ class NeoplasmForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Paciente",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -65,7 +65,7 @@ class NeoplasmForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Sitio primario",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -92,7 +92,7 @@ class NeoplasmForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Tipo histológico",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -181,7 +181,7 @@ class TNMForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Paciente",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[

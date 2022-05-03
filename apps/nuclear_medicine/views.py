@@ -9,10 +9,15 @@ from apps.core.views import (
 from apps.nuclear_medicine.forms import (
     HormonalStudyDetailForm,
     HormonalStudyForm,
+    OncologicResultForm,
     OncologicStudyDetailForm,
     OncologicStudyForm,
 )
-from apps.nuclear_medicine.models import PatientHormonalStudy, PatientOncologicStudy
+from apps.nuclear_medicine.models import (
+    OncologicResult,
+    PatientHormonalStudy,
+    PatientOncologicStudy,
+)
 
 
 # * OncologicStudy Views
@@ -103,3 +108,48 @@ class HormonalStudyDeleteView(BaseDeleteView):
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrado"
     title = "Eliminar estudio hormonal"
+
+
+# * OncologicResult Views
+class OncologicResultCreateView(BaseCreateView):
+    """View to handle oncologic result creation."""
+
+    model = OncologicResult
+    form_class = OncologicResultForm
+    success_url = reverse_lazy("nuclear_medicine:oncologic_result_list")
+    success_message = "Resultado oncológico guardado correctamente."
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    title = "Añadir resultado oncológico"
+
+
+class OncologicResultDetailView(BaseDetailView):
+    """View to handle oncologic result details."""
+
+    model = OncologicResult
+    form_class = OncologicResultForm
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    object_not_found_error_message = "Resultado oncológico no encontrada"
+    title = "Detalles de resultado oncológico"
+
+
+class OncologicResultUpdateView(BaseUpdateView):
+    """View to handle oncologic result edition."""
+
+    model = OncologicResult
+    form_class = OncologicStudyForm
+    success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
+    success_message = "Estudio oncológico guardado correctamente."
+    cancel_url = "nuclear_medicine:oncologic_study_list"
+    object_not_found_error_message = "Estudio oncológico no encontrado"
+    title = "Editar estudio oncológico"
+
+
+class OncologicResultDeleteView(BaseDeleteView):
+    """View to handle oncologic result delete."""
+
+    model = OncologicResult
+    success_url = reverse_lazy("nuclear_medicine:oncologic_result_list")
+    success_message = "Resultado oncológico eliminado satisfactoriamente."
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    object_not_found_error_message = "Resultado oncológico no encontrado"
+    title = "Eliminar resultado oncológico"

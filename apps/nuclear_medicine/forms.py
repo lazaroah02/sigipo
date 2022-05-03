@@ -2,6 +2,7 @@ from django.forms import (
     CharField,
     CheckboxSelectMultiple,
     DateField,
+    FloatField,
     ModelChoiceField,
     NumberInput,
     TextInput,
@@ -12,7 +13,9 @@ from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.core.forms import ModelForm
 from apps.nuclear_medicine.models import (
+    HormonalResult,
     HormonalStudyChoices,
+    OncologicResult,
     OncologicStudyChoices,
     PatientHormonalStudy,
     PatientOncologicStudy,
@@ -58,7 +61,7 @@ class BaseStudyForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Paciente",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -94,7 +97,7 @@ class BaseStudyDetailForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Paciente",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -190,7 +193,7 @@ class OncologicResultForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Estudio Oncológico",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -203,62 +206,80 @@ class OncologicResultForm(ModelForm):
         ),
         label="Estudio Oncológico",
     )
-    tsh = CharField(
+    tsh = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "TSH"}),
         label="TSH",
+        required=False,
     )
-    t3 = CharField(
+    t3 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3"}),
         label="T3",
+        required=False,
     )
-    t4 = CharField(
+    t4 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4"}),
         label="T4",
+        required=False,
     )
-    tg = CharField(
+    tg = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "TG"}),
         label="TG",
+        required=False,
     )
-    anti_tg = CharField(
+    anti_tg = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "ANTI-TG"}),
         label="ANTI-TG",
+        required=False,
     )
-    anti_tipo = CharField(
+    anti_tipo = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "ANTI-TIPO"}),
         label="ANTI-TIPO",
+        required=False,
     )
-    calcit = CharField(
+    calcit = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CALCIT"}),
         label="CALCIT",
+        required=False,
     )
-    ca19_9 = CharField(
+    ca19_9 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 19-9"}),
         label="CA 19-9",
+        required=False,
     )
-    ca15_3 = CharField(
+    ca15_3 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 15-3"}),
         label="CA 15-3",
+        required=False,
     )
-    ca125 = CharField(
+    ca125 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CA 125"}),
         label="CA 125",
+        required=False,
     )
-    cea = CharField(
+    cea = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CEA"}),
         label="CEA",
+        required=False,
     )
-    alf = CharField(
+    alf = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "ALF"}),
         label="ALF",
+        required=False,
     )
-    psa = CharField(
+    psa = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "PSA"}),
         label="PSA",
+        required=False,
     )
-    psafree = CharField(
+    psafree = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "PSA FREE"}),
         label="PSA FREE",
+        required=False,
     )
+
+    class Meta:
+        model = OncologicResult
+        fields = "__all__"
 
 
 class HormonalResultForm(ModelForm):
@@ -269,7 +290,7 @@ class HormonalResultForm(ModelForm):
                 "class": "form-control",
                 "data-placeholder": "Estudio hormonal",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -282,59 +303,76 @@ class HormonalResultForm(ModelForm):
         ),
         label="Estudio hormonal",
     )
-    tsh = CharField(
+    tsh = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "TSH"}),
         label="TSH",
+        required=False,
     )
-    t3 = CharField(
+    t3 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3"}),
         label="T3",
     )
-    t4 = CharField(
+    t4 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4"}),
         label="T4",
+        required=False,
     )
-    t3f = CharField(
+    t3f = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3F"}),
         label="T3F",
+        required=False,
     )
-    t4f = CharField(
+    t4f = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4F"}),
         label="T4F",
+        required=False,
     )
-    prl = CharField(
+    prl = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "PRL"}),
         label="PRL",
+        required=False,
     )
-    fsh = CharField(
+    fsh = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "FSH"}),
         label="FSH",
+        required=False,
     )
-    lh = CharField(
+    lh = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "LH"}),
         label="LH",
+        required=False,
     )
-    prg = CharField(
+    prg = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "PRG"}),
         label="PRG",
+        required=False,
     )
-    e2 = CharField(
+    e2 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "E2"}),
         label="E2",
+        required=False,
     )
-    cort = CharField(
+    cort = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "CORT"}),
         label="CORT",
+        required=False,
     )
-    ins = CharField(
+    ins = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "INS"}),
         label="INS",
+        required=False,
     )
-    test = CharField(
+    test = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "TEST"}),
         label="TEST",
+        required=False,
     )
-    gh = CharField(
+    gh = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "GH"}),
         label="GH",
+        required=False,
     )
+
+    class Meta:
+        model = HormonalResult
+        fields = "__all__"
