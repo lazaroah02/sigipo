@@ -50,7 +50,7 @@ class PatientOncologicStudy(TimeStampedModel):
         ordering = ["created_at"]
 
     def __str__(self):
-        return f"Muestra {str(self.sample_number)} {str(self.tests)}"
+        return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
 
 class HormonalStudyChoices(TextChoices):
@@ -97,7 +97,7 @@ class PatientHormonalStudy(TimeStampedModel):
         ordering = ["created_at"]
 
     def __str__(self):
-        return f"Muestra {str(self.sample_number)} {str(self.tests)}"
+        return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
 
 class HormonalResultQuerysetManager(Manager):
