@@ -112,7 +112,7 @@ urlpatterns = [
             filterset_class=OncologicResultFilter,
             extra_context={
                 "crud_name": "Resultado oncológico",
-                "crud_instance_name": "estudio oncológico",
+                "crud_instance_name": "resultado oncológico",
                 "add_url": "nuclear_medicine:oncologic_result_create",
                 "detail_url": "nuclear_medicine:oncologic_result_detail",
                 "edit_url": "nuclear_medicine:oncologic_result_update",
