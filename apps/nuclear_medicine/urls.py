@@ -1,13 +1,31 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView
-from apps.nuclear_medicine.filters import HormonalStudyFilter, OncologicStudyFilter
-from apps.nuclear_medicine.models import PatientHormonalStudy, PatientOncologicStudy
+from apps.nuclear_medicine.filters import (
+    HormonalResultFilter,
+    HormonalStudyFilter,
+    OncologicResultFilter,
+    OncologicStudyFilter,
+)
+from apps.nuclear_medicine.models import (
+    HormonalResult,
+    OncologicResult,
+    PatientHormonalStudy,
+    PatientOncologicStudy,
+)
 from apps.nuclear_medicine.views import (
+    HormonalResultCreateView,
+    HormonalResultDeleteView,
+    HormonalResultDetailView,
+    HormonalResultUpdateView,
     HormonalStudyCreateView,
     HormonalStudyDeleteView,
     HormonalStudyDetailView,
     HormonalStudyUpdateView,
+    OncologicResultCreateView,
+    OncologicResultDeleteView,
+    OncologicResultDetailView,
+    OncologicResultUpdateView,
     OncologicStudyCreateView,
     OncologicStudyDeleteView,
     OncologicStudyDetailView,
@@ -89,5 +107,83 @@ urlpatterns = [
         "hormonal_study/delete/<pk>/",
         HormonalStudyDeleteView.as_view(),
         name="hormonal_study_delete",
+    ),
+    # * Oncologic result URLs
+    path(
+        "oncologic_result/list/",
+        PaginationFilterView.as_view(
+            queryset=OncologicResult.objects.select_related(
+                "oncologic_study__patient"
+            ).all(),
+            filterset_class=OncologicResultFilter,
+            extra_context={
+                "crud_name": "Resultado oncológico",
+                "crud_instance_name": "resultado oncológico",
+                "add_url": "nuclear_medicine:oncologic_result_create",
+                "detail_url": "nuclear_medicine:oncologic_result_detail",
+                "edit_url": "nuclear_medicine:oncologic_result_update",
+                "delete_url": "nuclear_medicine:oncologic_result_delete",
+            },
+        ),
+        name="oncologic_result_list",
+    ),
+    path(
+        "oncologic_result/create/",
+        OncologicResultCreateView.as_view(),
+        name="oncologic_result_create",
+    ),
+    path(
+        "oncologic_result/detail/<pk>/",
+        OncologicResultDetailView.as_view(),
+        name="oncologic_result_detail",
+    ),
+    path(
+        "oncologic_result/update/<pk>/",
+        OncologicResultUpdateView.as_view(),
+        name="oncologic_result_update",
+    ),
+    path(
+        "oncologic_result/delete/<pk>/",
+        OncologicResultDeleteView.as_view(),
+        name="oncologic_result_delete",
+    ),
+    # * Hormonal result URLs
+    path(
+        "hormonal_result/list/",
+        PaginationFilterView.as_view(
+            queryset=HormonalResult.objects.select_related(
+                "hormonal_study__patient"
+            ).all(),
+            filterset_class=HormonalResultFilter,
+            extra_context={
+                "crud_name": "Resultado hormonal",
+                "crud_instance_name": "resultado hormonal",
+                "add_url": "nuclear_medicine:hormonal_result_create",
+                "detail_url": "nuclear_medicine:hormonal_result_detail",
+                "edit_url": "nuclear_medicine:hormonal_result_update",
+                "delete_url": "nuclear_medicine:hormonal_result_delete",
+            },
+        ),
+        name="hormonal_result_list",
+    ),
+    path(
+        "hormonal_result/create/",
+        HormonalResultCreateView.as_view(),
+        name="hormonal_result_create",
+    ),
+    path(
+        "hormonal_result/detail/<pk>/",
+        HormonalResultDetailView.as_view(),
+        name="hormonal_result_detail",
+    ),
+    path(
+        "hormonal_result/update/<pk>/",
+        HormonalResultUpdateView.as_view(),
+        name="hormonal_result_update",
+    ),
+    path(
+        "hormonal_result/delete/<pk>/",
+        HormonalResultDeleteView.as_view(),
+        name="hormonal_result_delete",
     ),
 ]

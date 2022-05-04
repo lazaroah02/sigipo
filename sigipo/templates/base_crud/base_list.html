@@ -4,7 +4,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/internal/base-crud.css' %}"/>
 <script src="{% static 'js/internal/toast.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap4.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap5.min.css' %}"/>
 {% endblock styles %}
 
 {% block content %}
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" id="collapseFilters">
+            <div class="collapse {% if filter.form.has_changed %}show{% endif %}" id="collapseFilters">
                 <div class="card-body">
                     {% block table_filters %}
                         <form method="get" class="row">
@@ -112,4 +112,5 @@
 {{ filter.form.media.css }}
 {{ filter.form.media.js }}
 <script src="{% static 'js/internal/remove-empty-filter.js' %}"></script>
+<script src="{% static 'js/internal/select2-focus-fix.js' %}"></script>
 {% endblock endloads %}

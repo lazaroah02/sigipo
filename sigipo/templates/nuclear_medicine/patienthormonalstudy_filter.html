@@ -2,7 +2,7 @@
 {% load column_sort %}
 
 {% block crud_columns %}
-    {% create_header_column 'patient' 'Patient' %}
+    {% create_header_column 'patient' 'Paciente' %}
     {% create_header_column 'sample_number' 'Número de muestra' %}
     {% create_header_column 'created_at' 'Fecha' %}
     {% create_header_column 'tests' 'Pruebas' %}
@@ -11,7 +11,7 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td>{{ obj.patient }}</td>
+            <td><a href="{% url "patient:patient_detail" obj.patient.pk %}?return_to=nuclear_medicine:hormonal_study_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
             <td>{{ obj.sample_number }}</td>
             <td>{{ obj.created_at }}</td>
             <td>{{ obj.tests }}</td>

@@ -27,7 +27,8 @@
       "highchart-maps-exporting.min.js",
       "bootstrap.bundle.min.js",
       "jquery-3.6.0.min.js",
-      "select2.min.js"
+      "select2.min.js",
+      "select2-focus-fix.js"
     ],
     "env": {
       "browser": true,

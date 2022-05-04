@@ -7,12 +7,19 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.nuclear_medicine.forms import (
+    HormonalResultForm,
     HormonalStudyDetailForm,
     HormonalStudyForm,
+    OncologicResultForm,
     OncologicStudyDetailForm,
     OncologicStudyForm,
 )
-from apps.nuclear_medicine.models import PatientHormonalStudy, PatientOncologicStudy
+from apps.nuclear_medicine.models import (
+    HormonalResult,
+    OncologicResult,
+    PatientHormonalStudy,
+    PatientOncologicStudy,
+)
 
 
 # * OncologicStudy Views
@@ -103,3 +110,93 @@ class HormonalStudyDeleteView(BaseDeleteView):
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrado"
     title = "Eliminar estudio hormonal"
+
+
+# * OncologicResult Views
+class OncologicResultCreateView(BaseCreateView):
+    """View to handle oncologic result creation."""
+
+    model = OncologicResult
+    form_class = OncologicResultForm
+    success_url = reverse_lazy("nuclear_medicine:oncologic_result_list")
+    success_message = "Resultado oncológico guardado correctamente."
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    title = "Añadir resultado oncológico"
+
+
+class OncologicResultDetailView(BaseDetailView):
+    """View to handle oncologic result details."""
+
+    model = OncologicResult
+    form_class = OncologicResultForm
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    object_not_found_error_message = "Resultado oncológico no encontrada"
+    title = "Detalles de resultado oncológico"
+
+
+class OncologicResultUpdateView(BaseUpdateView):
+    """View to handle oncologic result edition."""
+
+    model = OncologicResult
+    form_class = OncologicResultForm
+    success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
+    success_message = "Estudio oncológico guardado correctamente."
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    object_not_found_error_message = "Estudio oncológico no encontrado"
+    title = "Editar estudio oncológico"
+
+
+class OncologicResultDeleteView(BaseDeleteView):
+    """View to handle oncologic result delete."""
+
+    model = OncologicResult
+    success_url = reverse_lazy("nuclear_medicine:oncologic_result_list")
+    success_message = "Resultado oncológico eliminado satisfactoriamente."
+    cancel_url = "nuclear_medicine:oncologic_result_list"
+    object_not_found_error_message = "Resultado oncológico no encontrado"
+    title = "Eliminar resultado oncológico"
+
+
+# * HormonalResult Views
+class HormonalResultCreateView(BaseCreateView):
+    """View to handle hormonal result creation."""
+
+    model = HormonalResult
+    form_class = HormonalResultForm
+    success_url = reverse_lazy("nuclear_medicine:hormonal_result_list")
+    success_message = "Resultado hormonal guardado correctamente."
+    cancel_url = "nuclear_medicine:hormonal_result_list"
+    title = "Añadir resultado hormonal"
+
+
+class HormonalResultDetailView(BaseDetailView):
+    """View to handle hormonal result details."""
+
+    model = HormonalResult
+    form_class = HormonalResultForm
+    cancel_url = "nuclear_medicine:hormonal_result_list"
+    object_not_found_error_message = "Resultado hormonal no encontrada"
+    title = "Detalles de resultado hormonal"
+
+
+class HormonalResultUpdateView(BaseUpdateView):
+    """View to handle hormonal result edition."""
+
+    model = HormonalResult
+    form_class = HormonalStudyForm
+    success_url = reverse_lazy("nuclear_medicine:hormonal_study_list")
+    success_message = "Estudio hormonal guardado correctamente."
+    cancel_url = "nuclear_medicine:hormonal_result_list"
+    object_not_found_error_message = "Estudio hormonal no encontrado"
+    title = "Editar estudio hormonal"
+
+
+class HormonalResultDeleteView(BaseDeleteView):
+    """View to handle hormonal result delete."""
+
+    model = HormonalResult
+    success_url = reverse_lazy("nuclear_medicine:hormonal_result_list")
+    success_message = "Resultado hormonal eliminado satisfactoriamente."
+    cancel_url = "nuclear_medicine:hormonal_result_list"
+    object_not_found_error_message = "Resultado hormonal no encontrado"
+    title = "Eliminar resultado hormonal"

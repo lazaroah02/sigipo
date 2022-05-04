@@ -3,7 +3,7 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/internal/forms.css' %}"/>
-<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap4.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap5.min.css' %}"/>
 {% endblock styles %}
 
 {% block content %}
@@ -71,4 +71,5 @@
 <script src="{% static 'js/external/es.min.js' %}"></script>
 {{ form.media.css }}
 {{ form.media.js }}
+<script src="{% static 'js/internal/select2-focus-fix.js' %}"></script>
 {% endblock endloads %}

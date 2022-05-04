@@ -74,7 +74,7 @@ class PatientFilter(FilterSet):
                 "class": "form-control",
                 "data-placeholder": "Municipio de residencia",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -91,7 +91,7 @@ class PatientFilter(FilterSet):
                 "class": "form-control",
                 "data-placeholder": "Municipio natal",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -108,7 +108,7 @@ class PatientFilter(FilterSet):
                 "class": "form-control",
                 "data-placeholder": "Provincia de residencia",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[
@@ -124,7 +124,7 @@ class PatientFilter(FilterSet):
                 "class": "form-control",
                 "data-placeholder": "Provincia natal",
                 "data-language": "es",
-                "data-theme": "bootstrap4",
+                "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
             search_fields=[

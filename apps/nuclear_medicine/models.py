@@ -1,4 +1,11 @@
-from django.db.models import CASCADE, AutoField, ForeignKey, TextChoices
+from django.db.models import (
+    CASCADE,
+    AutoField,
+    FloatField,
+    ForeignKey,
+    OneToOneField,
+    TextChoices,
+)
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
@@ -50,7 +57,7 @@ class PatientOncologicStudy(TimeStampedModel):
         ordering = ["created_at"]
 
     def __str__(self):
-        return f"Muestra {str(self.sample_number)} {str(self.tests)}"
+        return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
 
 class HormonalStudyChoices(TextChoices):
@@ -97,4 +104,78 @@ class PatientHormonalStudy(TimeStampedModel):
         ordering = ["created_at"]
 
     def __str__(self):
-        return f"Muestra {str(self.sample_number)} {str(self.tests)}"
+        return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
+
+
+class HormonalResultQuerysetManager(Manager):
+    """Manager to handle hormonal_study."""
+
+    def get_queryset(self):
+        """Fetch the related hormonal_study."""
+        return super().get_queryset().select_related("hormonal_study")
+
+
+class HormonalResult(TimeStampedModel):
+    hormonal_study = OneToOneField(
+        PatientHormonalStudy, blank=False, null=False, on_delete=CASCADE
+    )
+    tsh = FloatField(blank=True, null=True)
+    t3 = FloatField(blank=True, null=True)
+    t4 = FloatField(blank=True, null=True)
+    t3f = FloatField(blank=True, null=True)
+    t4f = FloatField(blank=True, null=True)
+    prl = FloatField(blank=True, null=True)
+    fsh = FloatField(blank=True, null=True)
+    lh = FloatField(blank=True, null=True)
+    prg = FloatField(blank=True, null=True)
+    e2 = FloatField(blank=True, null=True)
+    cort = FloatField(blank=True, null=True)
+    ins = FloatField(blank=True, null=True)
+    test = FloatField(blank=True, null=True)
+    gh = FloatField(blank=True, null=True)
+    objects = HormonalResultQuerysetManager()
+
+    class Meta:
+        verbose_name = "Resultado hormonal RIA-IRMA"
+        verbose_name_plural = "Resultados hormonales RIA-IRMA"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Resultado de {str(self.hormonal_study)}"
+
+
+class OncologicResultQuerysetManager(Manager):
+    """Manager to handle oncologic_study."""
+
+    def get_queryset(self):
+        """Fetch the related oncologic_study."""
+        return super().get_queryset().select_related("oncologic_study")
+
+
+class OncologicResult(TimeStampedModel):
+    oncologic_study = OneToOneField(
+        PatientOncologicStudy, blank=False, null=False, on_delete=CASCADE
+    )
+    tsh = FloatField(blank=True, null=True)
+    t3 = FloatField(blank=True, null=True)
+    t4 = FloatField(blank=True, null=True)
+    tg = FloatField(blank=True, null=True)
+    anti_tg = FloatField(blank=True, null=True)
+    anti_tipo = FloatField(blank=True, null=True)
+    calcit = FloatField(blank=True, null=True)
+    ca19_9 = FloatField(blank=True, null=True)
+    ca15_3 = FloatField(blank=True, null=True)
+    ca125 = FloatField(blank=True, null=True)
+    cea = FloatField(blank=True, null=True)
+    alf = FloatField(blank=True, null=True)
+    psa = FloatField(blank=True, null=True)
+    psafree = FloatField(blank=True, null=True)
+    objects = OncologicResultQuerysetManager()
+
+    class Meta:
+        verbose_name = "Resultado oncología RIA-IRMA"
+        verbose_name_plural = "Resultados oncología RIA-IRMA"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Resultado de {str(self.oncologic_study)}"
