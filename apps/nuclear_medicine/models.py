@@ -1,4 +1,11 @@
-from django.db.models import CASCADE, AutoField, FloatField, ForeignKey, TextChoices
+from django.db.models import (
+    CASCADE,
+    AutoField,
+    FloatField,
+    ForeignKey,
+    OneToOneField,
+    TextChoices,
+)
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
@@ -109,7 +116,7 @@ class HormonalResultQuerysetManager(Manager):
 
 
 class HormonalResult(TimeStampedModel):
-    hormonal_study = ForeignKey(
+    hormonal_study = OneToOneField(
         PatientHormonalStudy, blank=False, null=False, on_delete=CASCADE
     )
     tsh = FloatField(blank=True, null=True)
@@ -146,7 +153,7 @@ class OncologicResultQuerysetManager(Manager):
 
 
 class OncologicResult(TimeStampedModel):
-    oncologic_study = ForeignKey(
+    oncologic_study = OneToOneField(
         PatientOncologicStudy, blank=False, null=False, on_delete=CASCADE
     )
     tsh = FloatField(blank=True, null=True)
