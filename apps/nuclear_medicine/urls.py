@@ -164,7 +164,7 @@ urlpatterns = [
                 "delete_url": "nuclear_medicine:hormonal_result_delete",
             },
         ),
-        name="oncologic_result_list",
+        name="hormonal_result_list",
     ),
     path(
         "hormonal_result/create/",
