@@ -19,7 +19,7 @@ class OncologicStudyTestCase(TestCase):
         """Test that OncologicStudy str method returns the sample number and tests."""
         self.assertEqual(
             str(self.study),
-            f"Muestra {str(self.study.sample_number)} {str(self.study.tests)}",
+            f"Muestra {str(self.study.sample_number).zfill(2)} {str(self.study.tests)}",
         )
 
 
@@ -35,7 +35,7 @@ class HormonalStudyTestCase(TestCase):
         """Test that HormonalStudy str method returns the sample number and tests."""
         self.assertEqual(
             str(self.study),
-            f"Muestra {str(self.study.sample_number)} {str(self.study.tests)}",
+            f"Muestra {str(self.study.sample_number).zfill(2)} {str(self.study.tests)}",
         )
 
 
@@ -51,7 +51,7 @@ class HormonalResultTestCase(TestCase):
         """Test that HormonalResult str method returns the sample number and tests."""
         self.assertEqual(
             str(self.result),
-            f"Resultado de Muestra {str(self.result.hormonal_study.sample_number)} {str(self.result.hormonal_study.tests)}",
+            f"Resultado de Muestra {str(self.result.hormonal_study.sample_number).zfill(2)} {str(self.result.hormonal_study.tests)}",
         )
 
 
@@ -67,5 +67,5 @@ class OncologicResultTestCase(TestCase):
         """Test that OncologicResult str method returns the sample number and tests."""
         self.assertEqual(
             str(self.result),
-            f"Resultado de Muestra {str(self.result.oncologic_study.sample_number)} {str(self.result.oncologic_study.tests)}",
+            f"Resultado de Muestra {str(self.result.oncologic_study.sample_number).zfill(2)} {str(self.result.oncologic_study.tests)}",
         )
