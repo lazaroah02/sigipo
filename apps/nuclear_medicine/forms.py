@@ -311,6 +311,7 @@ class HormonalResultForm(ModelForm):
     t3 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T3"}),
         label="T3",
+        required=False,
     )
     t4 = FloatField(
         widget=NumberInput(attrs={"class": "form-control", "placeholder": "T4"}),
