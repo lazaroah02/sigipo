@@ -165,7 +165,7 @@ class HormonalResultCreateView(BaseCreateView):
     form_class = HormonalResultForm
     success_url = reverse_lazy("nuclear_medicine:hormonal_result_list")
     success_message = "Resultado hormonal guardado correctamente."
-    cancel_url = "nuclear_medicinehormonal_result_list"
+    cancel_url = "nuclear_medicine:hormonal_result_list"
     title = "Añadir resultado hormonal"
 
 
