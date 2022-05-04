@@ -283,7 +283,7 @@ class OncologicResultForm(ModelForm):
 
 
 class HormonalResultForm(ModelForm):
-    oncologic_study = ModelChoiceField(
+    hormonal_study = ModelChoiceField(
         queryset=PatientHormonalStudy.objects.all(),
         widget=ModelSelect2Widget(
             attrs={
