@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="collapse" id="collapseFilters">
+            <div class="collapse {% if filter.form.has_changed %}show{% endif %}" id="collapseFilters">
                 <div class="card-body">
                     {% block table_filters %}
                         <form method="get" class="row">
