@@ -102,11 +102,20 @@
                 <li>
                   <label class="dropdown-item"><i class="fa-solid fa-flask-vial"></i> RIA-IRMA <i class="fa-solid fa-angle-right"></i></label>
                   <ul class="dropdown-menu dropdown-submenu">
+                    <li><h6 class="dropdown-header">Estudios</h6></li>
                     <li>
                       <a class="dropdown-item" href="{% url 'nuclear_medicine:oncologic_study_list' %}">Estudio oncológico</a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="{% url 'nuclear_medicine:hormonal_study_list' %}">Estudio hormonal</a>
+                    </li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li><h6 class="dropdown-header">Resultados</h6></li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'nuclear_medicine:oncologic_result_list' %}">Resultado oncológico</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'nuclear_medicine:hormonal_result_list' %}">Resultado hormonal</a>
                     </li>
                   </ul>
                 </li>
