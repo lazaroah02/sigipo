@@ -1,5 +1,5 @@
 from django.forms import TextInput
-from django_filters import CharFilter, FilterSet
+from django_filters import CharFilter, FilterSet, NumberFilter
 
 from apps.nuclear_medicine.models import (
     HormonalResult,
@@ -43,6 +43,15 @@ class OncologicStudyFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
+    sample_number = NumberFilter(
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "No. de muestra",
+            }
+        ),
+        label="No. de muestra",
+    )
 
     class Meta:
         model = PatientOncologicStudy
@@ -51,6 +60,7 @@ class OncologicStudyFilter(FilterSet):
             "patient__first_name",
             "patient__last_name",
             "patient__medical_record",
+            "sample_number",
         ]
 
 
@@ -88,6 +98,15 @@ class HormonalStudyFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
+    sample_number = NumberFilter(
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "No. de muestra",
+            }
+        ),
+        label="No. de muestra",
+    )
 
     class Meta:
         model = PatientHormonalStudy
@@ -96,6 +115,7 @@ class HormonalStudyFilter(FilterSet):
             "patient__first_name",
             "patient__last_name",
             "patient__medical_record",
+            "sample_number",
         ]
 
 
@@ -133,6 +153,15 @@ class HormonalResultFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
+    hormonal_study__sample_number = NumberFilter(
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "No. de muestra",
+            }
+        ),
+        label="No. de muestra",
+    )
 
     class Meta:
         model = HormonalResult
@@ -141,6 +170,7 @@ class HormonalResultFilter(FilterSet):
             "hormonal_study__patient__first_name",
             "hormonal_study__patient__last_name",
             "hormonal_study__patient__medical_record",
+            "hormonal_study__sample_number",
         ]
 
 
@@ -178,6 +208,15 @@ class OncologicResultFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
+    oncologic_study__sample_number = NumberFilter(
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "No. de muestra",
+            }
+        ),
+        label="No. de muestra",
+    )
 
     class Meta:
         model = OncologicResult
@@ -186,4 +225,5 @@ class OncologicResultFilter(FilterSet):
             "oncologic_study__patient__first_name",
             "oncologic_study__patient__last_name",
             "oncologic_study__patient__medical_record",
+            "oncologic_study__sample_number",
         ]
