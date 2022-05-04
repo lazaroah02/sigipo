@@ -2,16 +2,22 @@ from django.urls import path
 
 from apps.core.views import PaginationFilterView
 from apps.nuclear_medicine.filters import (
+    HormonalResultFilter,
     HormonalStudyFilter,
     OncologicResultFilter,
     OncologicStudyFilter,
 )
 from apps.nuclear_medicine.models import (
+    HormonalResult,
     OncologicResult,
     PatientHormonalStudy,
     PatientOncologicStudy,
 )
 from apps.nuclear_medicine.views import (
+    HormonalResultCreateView,
+    HormonalResultDeleteView,
+    HormonalResultDetailView,
+    HormonalResultUpdateView,
     HormonalStudyCreateView,
     HormonalStudyDeleteView,
     HormonalStudyDetailView,
@@ -140,5 +146,44 @@ urlpatterns = [
         "oncologic_result/delete/<pk>/",
         OncologicResultDeleteView.as_view(),
         name="oncologic_result_delete",
+    ),
+    # * Hormonal result URLs
+    path(
+        "hormonal_result/list/",
+        PaginationFilterView.as_view(
+            queryset=HormonalResult.objects.select_related(
+                "hormonal_study__patient"
+            ).all(),
+            filterset_class=HormonalResultFilter,
+            extra_context={
+                "crud_name": "Resultado hormonal",
+                "crud_instance_name": "resultado hormonal",
+                "add_url": "nuclear_medicine:hormonal_result_create",
+                "detail_url": "nuclear_medicine:hormonal_result_detail",
+                "edit_url": "nuclear_medicine:hormonal_result_update",
+                "delete_url": "nuclear_medicine:hormonal_result_delete",
+            },
+        ),
+        name="oncologic_result_list",
+    ),
+    path(
+        "hormonal_result/create/",
+        HormonalResultCreateView.as_view(),
+        name="hormonal_result_create",
+    ),
+    path(
+        "hormonal_result/detail/<pk>/",
+        HormonalResultDetailView.as_view(),
+        name="hormonal_result_detail",
+    ),
+    path(
+        "hormonal_result/update/<pk>/",
+        HormonalResultUpdateView.as_view(),
+        name="hormonal_result_update",
+    ),
+    path(
+        "hormonal_result/delete/<pk>/",
+        HormonalResultDeleteView.as_view(),
+        name="hormonal_result_delete",
     ),
 ]
