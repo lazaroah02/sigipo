@@ -4,14 +4,18 @@ from apps.core.views import PaginationFilterView
 from apps.nuclear_medicine.filters import (
     HormonalResultFilter,
     HormonalStudyFilter,
+    IodineDetectionFilter,
     OncologicResultFilter,
     OncologicStudyFilter,
+    SerialIodineDetectionFilter,
 )
 from apps.nuclear_medicine.models import (
     HormonalResult,
+    IodineDetection,
     OncologicResult,
     PatientHormonalStudy,
     PatientOncologicStudy,
+    SerialIodineDetection,
 )
 from apps.nuclear_medicine.views import (
     HormonalResultCreateView,
@@ -22,6 +26,10 @@ from apps.nuclear_medicine.views import (
     HormonalStudyDeleteView,
     HormonalStudyDetailView,
     HormonalStudyUpdateView,
+    IodineDetectionCreateView,
+    IodineDetectionDeleteView,
+    IodineDetectionDetailView,
+    IodineDetectionUpdateView,
     OncologicResultCreateView,
     OncologicResultDeleteView,
     OncologicResultDetailView,
@@ -30,6 +38,10 @@ from apps.nuclear_medicine.views import (
     OncologicStudyDeleteView,
     OncologicStudyDetailView,
     OncologicStudyUpdateView,
+    SerialIodineDetectionCreateView,
+    SerialIodineDetectionDeleteView,
+    SerialIodineDetectionDetailView,
+    SerialIodineDetectionUpdateView,
 )
 
 app_name = "nuclear_medicine"
@@ -185,5 +197,79 @@ urlpatterns = [
         "hormonal_result/delete/<pk>/",
         HormonalResultDeleteView.as_view(),
         name="hormonal_result_delete",
+    ),
+    # * IodineDetection result URLs
+    path(
+        "iodine_detection/list/",
+        PaginationFilterView.as_view(
+            queryset=IodineDetection.objects.all(),
+            filterset_class=IodineDetectionFilter,
+            extra_context={
+                "crud_name": "Detección de yodo",
+                "crud_instance_name": "detección de yodo",
+                "add_url": "nuclear_medicine:iodine_detection_create",
+                "detail_url": "nuclear_medicine:iodine_detection_detail",
+                "edit_url": "nuclear_medicine:iodine_detection_update",
+                "delete_url": "nuclear_medicine:iodine_detection_delete",
+            },
+        ),
+        name="iodine_detection_list",
+    ),
+    path(
+        "iodine_detection/create/",
+        IodineDetectionCreateView.as_view(),
+        name="iodine_detection_create",
+    ),
+    path(
+        "iodine_detection/detail/<pk>/",
+        IodineDetectionDetailView.as_view(),
+        name="iodine_detection_detail",
+    ),
+    path(
+        "iodine_detection/update/<pk>/",
+        IodineDetectionUpdateView.as_view(),
+        name="iodine_detection_update",
+    ),
+    path(
+        "iodine_detection/delete/<pk>/",
+        IodineDetectionDeleteView.as_view(),
+        name="iodine_detection_delete",
+    ),
+    # * SerialIodineDetection result URLs
+    path(
+        "serial_iodine_detection/list/",
+        PaginationFilterView.as_view(
+            queryset=SerialIodineDetection.objects.all(),
+            filterset_class=SerialIodineDetectionFilter,
+            extra_context={
+                "crud_name": "Detección de yodo seriada",
+                "crud_instance_name": "detección de yodo seriada",
+                "add_url": "nuclear_medicine:serial_iodine_detection_create",
+                "detail_url": "nuclear_medicine:serial_iodine_detection_detail",
+                "edit_url": "nuclear_medicine:serial_iodine_detection_update",
+                "delete_url": "nuclear_medicine:serial_iodine_detection_delete",
+            },
+        ),
+        name="serial_iodine_detection_list",
+    ),
+    path(
+        "serial_iodine_detection/create/",
+        SerialIodineDetectionCreateView.as_view(),
+        name="serial_iodine_detection_create",
+    ),
+    path(
+        "serial_iodine_detection/detail/<pk>/",
+        SerialIodineDetectionDetailView.as_view(),
+        name="serial_iodine_detection_detail",
+    ),
+    path(
+        "serial_iodine_detection/update/<pk>/",
+        SerialIodineDetectionUpdateView.as_view(),
+        name="serial_iodine_detection_update",
+    ),
+    path(
+        "serial_iodine_detection/delete/<pk>/",
+        SerialIodineDetectionDeleteView.as_view(),
+        name="serial_iodine_detection_delete",
     ),
 ]
