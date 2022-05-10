@@ -1,0 +1,29 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+
+{% block crud_columns %}
+    {% create_header_column 'patient' 'Paciente' %}
+    {% create_header_column 'two_hours' '2 horas' %}
+    {% create_header_column 'twenty_four_hours' '24 horas' %}
+    {% create_header_column 'forty_eight_hours' '48 horas' %}
+    {% create_header_column 'seventy_two_hours' '72 horas' %}
+    {% create_header_column 'ninety_six_hours' '96 horas' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td><a href="{% url "patient:patient_detail" obj.patient.pk %}?return_to=nuclear_medicine:serial_iodine_detection_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
+            <td>{{ obj.two_hours }}</td>
+            <td>{{ obj.twenty_four_hours }}</td>
+            <td>{{ obj.forty_eight_hours }}</td>
+            <td>{{ obj.seventy_two_hours }}</td>
+            <td>{{ obj.ninety_six_hours }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
