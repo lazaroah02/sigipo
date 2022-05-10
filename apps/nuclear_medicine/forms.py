@@ -15,10 +15,12 @@ from apps.core.forms import ModelForm
 from apps.nuclear_medicine.models import (
     HormonalResult,
     HormonalStudyChoices,
+    IodineDetection,
     OncologicResult,
     OncologicStudyChoices,
     PatientHormonalStudy,
     PatientOncologicStudy,
+    SerialIodineDetection,
 )
 from apps.patient.models import Patient
 
@@ -376,4 +378,101 @@ class HormonalResultForm(ModelForm):
 
     class Meta:
         model = HormonalResult
+        fields = "__all__"
+
+
+class IodineDetectionForm(ModelForm):
+    patient = ModelChoiceField(
+        queryset=Patient.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Paciente",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+            ],
+        ),
+        label="Paciente",
+    )
+    two_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "2 horas"}),
+        label="2 horas",
+        required=False,
+    )
+    twenty_four_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "24 horas"}),
+        label="24 horas",
+        required=False,
+    )
+
+    class Meta:
+        model = IodineDetection
+        fields = "__all__"
+
+
+class SerialIodineDetectionForm(ModelForm):
+    patient = ModelChoiceField(
+        queryset=Patient.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Paciente",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+            ],
+        ),
+        label="Paciente",
+    )
+    two_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "2 horas"}),
+        label="2 horas",
+        required=False,
+    )
+    four_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "4 horas"}),
+        label="4 horas",
+        required=False,
+    )
+    eight_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "8 horas"}),
+        label="8 horas",
+        required=False,
+    )
+    twenty_four_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "24 horas"}),
+        label="24 horas",
+        required=False,
+    )
+    forty_eight_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "48 horas"}),
+        label="48 horas",
+        required=False,
+    )
+    seventy_two_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "72 horas"}),
+        label="72 horas",
+        required=False,
+    )
+    ninety_six_hours = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "96 horas"}),
+        label="96 horas",
+        required=False,
+    )
+
+    class Meta:
+        model = SerialIodineDetection
         fields = "__all__"
