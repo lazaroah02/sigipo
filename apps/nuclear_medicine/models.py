@@ -181,10 +181,19 @@ class OncologicResult(TimeStampedModel):
         return f"Resultado de {str(self.oncologic_study)}"
 
 
+class IodineDetectionQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
 class IodineDetection(TimeStampedModel):
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     two_hours = FloatField()
     twenty_four_hours = FloatField()
+    objects = IodineDetectionQuerysetManager()
 
     class Meta:
         verbose_name = "Detección de yodo"
@@ -204,6 +213,7 @@ class SerialIodineDetection(TimeStampedModel):
     forty_eight_hours = FloatField()
     seventy_two_hours = FloatField()
     ninety_six_hours = FloatField()
+    objects = IodineDetectionQuerysetManager()
 
     class Meta:
         verbose_name = "Detección de yodo"
