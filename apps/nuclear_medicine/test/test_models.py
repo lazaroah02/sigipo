@@ -2,8 +2,10 @@ from apps.core.test import TestCase
 from apps.nuclear_medicine.factories import (
     HormonalResultFactory,
     HormonalStudyFactory,
+    IodineDetectionFactory,
     OncologicResultFactory,
     OncologicStudyFactory,
+    SerialIodineDetectionFactory,
 )
 
 
@@ -68,4 +70,36 @@ class OncologicResultTestCase(TestCase):
         self.assertEqual(
             str(self.result),
             f"Resultado de Muestra {str(self.result.oncologic_study.sample_number).zfill(2)} {str(self.result.oncologic_study.tests)}",
+        )
+
+
+class SerialIodineDetectionTestCase(TestCase):
+    """Test case for SerialIodineDetection model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.iodine_detection = SerialIodineDetectionFactory.create()
+
+    def test_study_str(self):
+        """Test that SerialIodineDetection str method returns the patient name."""
+        self.assertEqual(
+            str(self.iodine_detection),
+            f"Detección de yodo seriada de {str(self.iodine_detection.patient)}",
+        )
+
+
+class IodineDetectionTestCase(TestCase):
+    """Test case for IodineDetection model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.iodine_detection = IodineDetectionFactory.create()
+
+    def test_study_str(self):
+        """Test that IodineDetection str method returns the patient name."""
+        self.assertEqual(
+            str(self.iodine_detection),
+            f"Detección de yodo de {str(self.iodine_detection.patient)}",
         )

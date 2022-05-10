@@ -211,4 +211,4 @@ class SerialIodineDetection(TimeStampedModel):
         ordering = ["pk"]
 
     def __str__(self):
-        return f"Detección de yodo de {str(self.patient)}"
+        return f"Detección de yodo seriada de {str(self.patient)}"
