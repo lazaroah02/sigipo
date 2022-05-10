@@ -222,6 +222,7 @@ class IodineDetectionDetailView(BaseDetailView):
     """View to handle iodine detection details."""
 
     model = IodineDetection
+    form_class = IodineDetectionForm
     cancel_url = "nuclear_medicine:iodine_detection_list"
     object_not_found_error_message = "Detección de yodo no encontrada"
     title = "Detalles de detección de yodo"
@@ -266,6 +267,7 @@ class SerialIodineDetectionDetailView(BaseDetailView):
     """View to handle serial iodine detection details."""
 
     model = SerialIodineDetection
+    form_class = SerialIodineDetectionForm
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
     object_not_found_error_message = "Detección de yodo seriada no encontrada"
     title = "Detalles de detección de yodo seriada "

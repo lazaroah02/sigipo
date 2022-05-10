@@ -191,8 +191,8 @@ class IodineDetectionQuerysetManager(Manager):
 
 class IodineDetection(TimeStampedModel):
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    two_hours = FloatField()
-    twenty_four_hours = FloatField()
+    two_hours = FloatField(blank=True, null=True)
+    twenty_four_hours = FloatField(blank=True, null=True)
     objects = IodineDetectionQuerysetManager()
 
     class Meta:
@@ -206,13 +206,13 @@ class IodineDetection(TimeStampedModel):
 
 class SerialIodineDetection(TimeStampedModel):
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    two_hours = FloatField()
-    four_hours = FloatField()
-    eight_hours = FloatField()
-    twenty_four_hours = FloatField()
-    forty_eight_hours = FloatField()
-    seventy_two_hours = FloatField()
-    ninety_six_hours = FloatField()
+    two_hours = FloatField(blank=True, null=True)
+    four_hours = FloatField(blank=True, null=True)
+    eight_hours = FloatField(blank=True, null=True)
+    twenty_four_hours = FloatField(blank=True, null=True)
+    forty_eight_hours = FloatField(blank=True, null=True)
+    seventy_two_hours = FloatField(blank=True, null=True)
+    ninety_six_hours = FloatField(blank=True, null=True)
     objects = IodineDetectionQuerysetManager()
 
     class Meta:
