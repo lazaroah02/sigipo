@@ -179,3 +179,36 @@ class OncologicResult(TimeStampedModel):
 
     def __str__(self):
         return f"Resultado de {str(self.oncologic_study)}"
+
+
+class IodineDetection(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    two_hours = FloatField()
+    twenty_four_hours = FloatField()
+
+    class Meta:
+        verbose_name = "Detección de yodo"
+        verbose_name_plural = "Detección de yodo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Detección de yodo de {str(self.patient)}"
+
+
+class SerialIodineDetection(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    two_hours = FloatField()
+    four_hours = FloatField()
+    eight_hours = FloatField()
+    twenty_four_hours = FloatField()
+    forty_eight_hours = FloatField()
+    seventy_two_hours = FloatField()
+    ninety_six_hours = FloatField()
+
+    class Meta:
+        verbose_name = "Detección de yodo"
+        verbose_name_plural = "Detección de yodo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Detección de yodo de {str(self.patient)}"
