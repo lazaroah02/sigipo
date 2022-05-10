@@ -179,3 +179,46 @@ class OncologicResult(TimeStampedModel):
 
     def __str__(self):
         return f"Resultado de {str(self.oncologic_study)}"
+
+
+class IodineDetectionQuerysetManager(Manager):
+    """Manager to handle patient."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return super().get_queryset().select_related("patient")
+
+
+class IodineDetection(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    two_hours = FloatField(blank=True, null=True)
+    twenty_four_hours = FloatField(blank=True, null=True)
+    objects = IodineDetectionQuerysetManager()
+
+    class Meta:
+        verbose_name = "Detección de yodo"
+        verbose_name_plural = "Detección de yodo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Detección de yodo de {str(self.patient)}"
+
+
+class SerialIodineDetection(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    two_hours = FloatField(blank=True, null=True)
+    four_hours = FloatField(blank=True, null=True)
+    eight_hours = FloatField(blank=True, null=True)
+    twenty_four_hours = FloatField(blank=True, null=True)
+    forty_eight_hours = FloatField(blank=True, null=True)
+    seventy_two_hours = FloatField(blank=True, null=True)
+    ninety_six_hours = FloatField(blank=True, null=True)
+    objects = IodineDetectionQuerysetManager()
+
+    class Meta:
+        verbose_name = "Detección de yodo"
+        verbose_name_plural = "Detección de yodo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Detección de yodo seriada de {str(self.patient)}"

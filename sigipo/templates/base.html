@@ -119,7 +119,17 @@
                     </li>
                   </ul>
                 </li>
-
+                <li>
+                  <label class="dropdown-item"><i class="fa-solid fa-vial-circle-check"></i> Detecci&oacute;n de yodo <i class="fa-solid fa-angle-right"></i></label>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'nuclear_medicine:serial_iodine_detection_list' %}">Seriada</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'nuclear_medicine:iodine_detection_list' %}">No seriada</a>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>

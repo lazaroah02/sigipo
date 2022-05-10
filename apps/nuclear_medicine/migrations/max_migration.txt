@@ -1,1 +1,1 @@
-0004_auto_20220504_0031
+0007_alter_serialiodinedetection_seventy_two_hours
