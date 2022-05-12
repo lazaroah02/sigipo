@@ -20,8 +20,8 @@ from apps.nuclear_medicine.models import (
     HormonalResult,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 
@@ -30,7 +30,7 @@ from apps.nuclear_medicine.models import (
 class OncologicStudyCreateView(BaseCreateView):
     """View to handle oncologic study creation."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyForm
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
@@ -41,7 +41,7 @@ class OncologicStudyCreateView(BaseCreateView):
 class OncologicStudyDetailView(BaseDetailView):
     """View to handle oncologic study details."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyDetailForm
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrada"
@@ -51,7 +51,7 @@ class OncologicStudyDetailView(BaseDetailView):
 class OncologicStudyUpdateView(BaseUpdateView):
     """View to handle oncologic study edition."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyForm
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
@@ -63,7 +63,7 @@ class OncologicStudyUpdateView(BaseUpdateView):
 class OncologicStudyDeleteView(BaseDeleteView):
     """View to handle oncologic study delete."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"

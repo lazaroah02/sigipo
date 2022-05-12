@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             name="oncologic_study",
             field=models.OneToOneField(
                 on_delete=django.db.models.deletion.CASCADE,
-                to="nuclear_medicine.patientoncologicstudy",
+                to="nuclear_medicine.OncologicStudy",
             ),
         ),
     ]

@@ -13,8 +13,8 @@ from apps.nuclear_medicine.models import (
     HormonalResult,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 from apps.nuclear_medicine.views import (
@@ -50,7 +50,7 @@ urlpatterns = [
     path(
         "oncologic_study/list/",
         PaginationFilterView.as_view(
-            model=PatientOncologicStudy,
+            model=OncologicStudy,
             filterset_class=OncologicStudyFilter,
             extra_context={
                 "crud_name": "Estudio oncológico",

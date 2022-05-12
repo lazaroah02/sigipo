@@ -5,8 +5,8 @@ from apps.nuclear_medicine.models import (
     HormonalResult,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 
@@ -56,7 +56,7 @@ class OncologicStudyFilter(FilterSet):
     )
 
     class Meta:
-        model = PatientOncologicStudy
+        model = OncologicStudy
         fields = [
             "patient__identity_card",
             "patient__first_name",

@@ -38,7 +38,7 @@ class OncologicStudyQuerysetManager(Manager):
         return super().get_queryset().select_related("patient")
 
 
-class PatientOncologicStudy(TimeStampedModel):
+class OncologicStudy(TimeStampedModel):
     """Model representation of oncologic study."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
@@ -154,7 +154,7 @@ class OncologicResultQuerysetManager(Manager):
 
 class OncologicResult(TimeStampedModel):
     oncologic_study = OneToOneField(
-        PatientOncologicStudy, blank=False, null=False, on_delete=CASCADE
+        OncologicStudy, blank=False, null=False, on_delete=CASCADE
     )
     tsh = FloatField(blank=True, null=True)
     t3 = FloatField(blank=True, null=True)

@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                     "oncologic_study",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="nuclear_medicine.patientoncologicstudy",
+                        to="nuclear_medicine.OncologicStudy",
                     ),
                 ),
             ],

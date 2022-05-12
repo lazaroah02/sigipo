@@ -6,8 +6,8 @@ from apps.nuclear_medicine.models import (
     HormonalResult,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 from apps.patient.factories import PatientFactory
@@ -17,7 +17,7 @@ class OncologicStudyFactory(DjangoModelFactory):
     """Factory to handle OncologicStudy creation."""
 
     class Meta:
-        model = PatientOncologicStudy
+        model = OncologicStudy
 
     patient = SubFactory(PatientFactory)
     tests = "TSH"
