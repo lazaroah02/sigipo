@@ -1,15 +1,20 @@
 from django.db.models import (
     CASCADE,
     AutoField,
+    CharField,
     FloatField,
     ForeignKey,
+    ManyToManyField,
+    Model,
     OneToOneField,
     TextChoices,
+    TextField,
 )
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
 from apps.core.models import TimeStampedModel
+from apps.drugs.models import Drug
 from apps.patient.models import Patient
 
 
@@ -222,3 +227,45 @@ class SerialIodineDetection(TimeStampedModel):
 
     def __str__(self):
         return f"Detección de yodo seriada de {str(self.patient)}"
+
+
+class Study(Model):
+    name = CharField(max_length=500, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Estudio"
+        verbose_name_plural = "Estudios"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return self.name
+
+
+class RadioIsotope(Model):
+    name = CharField(max_length=500, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Radio isótopo"
+        verbose_name_plural = "Radio isótopo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return self.name
+
+
+class Gammagraphy(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    requested_study = ManyToManyField(Study, blank=False)
+    drug = ForeignKey(Drug, null=False, blank=False, on_delete=CASCADE)
+    radio_isotope = ForeignKey(RadioIsotope, null=False, blank=False, on_delete=CASCADE)
+    dose = FloatField()
+    report = TextField(max_length=5000, blank=False, null=False)
+    observation = TextField(max_length=5000, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Gammagrafía"
+        verbose_name_plural = "Gammagrafias"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Gammagrafía de {str(self.patient)}"

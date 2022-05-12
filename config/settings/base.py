@@ -37,6 +37,7 @@ LOCAL_APPS = [
     "apps.classifiers.apps.ClassifiersConfig",
     "apps.dashboard.apps.DashboardConfig",
     "apps.cancer_registry.apps.CancerRegistryConfig",
+    "apps.drugs.apps.DrugsConfig",
     "apps.nuclear_medicine.apps.NuclearMedicineConfig",
 ]
 
