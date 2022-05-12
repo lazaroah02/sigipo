@@ -1,6 +1,6 @@
 from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyFloat
+from factory.fuzzy import FuzzyFloat, FuzzyText
 
 from apps.nuclear_medicine.models import (
     HormonalResult,
@@ -8,7 +8,9 @@ from apps.nuclear_medicine.models import (
     OncologicResult,
     OncologicStudy,
     PatientHormonalStudy,
+    RadioIsotope,
     SerialIodineDetection,
+    Study,
 )
 from apps.patient.factories import PatientFactory
 
@@ -78,3 +80,21 @@ class SerialIodineDetectionFactory(DjangoModelFactory):
     forty_eight_hours = FuzzyFloat(0, 100)
     seventy_two_hours = FuzzyFloat(0, 100)
     ninety_six_hours = FuzzyFloat(0, 100)
+
+
+class StudyFactory(DjangoModelFactory):
+    """Factory to handle Study creation."""
+
+    class Meta:
+        model = Study
+
+    name = FuzzyText(length=5)
+
+
+class RadioIsotopeFactory(DjangoModelFactory):
+    """Factory to handle RadioIsotope creation."""
+
+    class Meta:
+        model = RadioIsotope
+
+    name = FuzzyText(length=5)

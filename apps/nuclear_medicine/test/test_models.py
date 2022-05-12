@@ -5,7 +5,9 @@ from apps.nuclear_medicine.factories import (
     IodineDetectionFactory,
     OncologicResultFactory,
     OncologicStudyFactory,
+    RadioIsotopeFactory,
     SerialIodineDetectionFactory,
+    StudyFactory,
 )
 
 
@@ -102,4 +104,36 @@ class IodineDetectionTestCase(TestCase):
         self.assertEqual(
             str(self.iodine_detection),
             f"Detección de yodo de {str(self.iodine_detection.patient)}",
+        )
+
+
+class StudyTestCase(TestCase):
+    """Test case for Study model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.study = StudyFactory.create()
+
+    def test_study_str(self):
+        """Test that Study str method returns the name."""
+        self.assertEqual(
+            str(self.study),
+            f"{str(self.study.name)}",
+        )
+
+
+class RadioIsotopeTestCase(TestCase):
+    """Test case for RadioIsotope model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.radio_isotope = RadioIsotopeFactory.create()
+
+    def test_study_str(self):
+        """Test that RadioIsotope str method returns name."""
+        self.assertEqual(
+            str(self.radio_isotope),
+            f"{str(self.radio_isotope.name)}",
         )
