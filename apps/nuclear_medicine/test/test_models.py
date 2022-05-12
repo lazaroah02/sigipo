@@ -1,5 +1,6 @@
 from apps.core.test import TestCase
 from apps.nuclear_medicine.factories import (
+    GammagraphyFactory,
     HormonalResultFactory,
     HormonalStudyFactory,
     IodineDetectionFactory,
@@ -131,9 +132,26 @@ class RadioIsotopeTestCase(TestCase):
         """Common test data."""
         cls.radio_isotope = RadioIsotopeFactory.create()
 
-    def test_study_str(self):
+    def test_radio_isotope_str(self):
         """Test that RadioIsotope str method returns name."""
         self.assertEqual(
             str(self.radio_isotope),
             f"{str(self.radio_isotope.name)}",
+        )
+
+
+class GammagraphyTestCase(TestCase):
+    """Test case for Gammagraphy model."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.gammagraphy1 = GammagraphyFactory.create()
+        cls.study = StudyFactory.create()
+        cls.gammagraphy2 = GammagraphyFactory.create(requested_study=(cls.study,))
+
+    def test_gammagraphy_str(self):
+        """Test that Gammagraphy str method returns name."""
+        self.assertEqual(
+            str(self.gammagraphy1), f"Gammagrafía de {str(self.gammagraphy1.patient)}"
         )

@@ -1,8 +1,10 @@
-from factory import SubFactory
+from factory import SubFactory, post_generation
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyFloat, FuzzyText
 
+from apps.drugs.factories import DrugFactory
 from apps.nuclear_medicine.models import (
+    Gammagraphy,
     HormonalResult,
     IodineDetection,
     OncologicResult,
@@ -98,3 +100,26 @@ class RadioIsotopeFactory(DjangoModelFactory):
         model = RadioIsotope
 
     name = FuzzyText(length=5)
+
+
+class GammagraphyFactory(DjangoModelFactory):
+    """Factory to handle Gammagraphy creation."""
+
+    class Meta:
+        model = Gammagraphy
+
+    patient = SubFactory(PatientFactory)
+    drug = SubFactory(DrugFactory)
+    radio_isotope = SubFactory(RadioIsotopeFactory)
+    dose = FuzzyFloat(0, 100)
+    report = FuzzyText(length=10)
+    observation = FuzzyText(length=10)
+
+    @post_generation
+    def requested_study(self, create, extracted, **kwargs):
+        if extracted:
+            # A list of groups were passed in, use them
+            for study in extracted:
+                self.requested_study.add(study)
+        else:
+            self.requested_study.add(StudyFactory.create())
