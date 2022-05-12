@@ -16,3 +16,4 @@ class Drug(Model):
     class Meta:
         verbose_name = "Fármaco"
         verbose_name_plural = "Fármacos"
+        ordering = ["pk"]
