@@ -12,7 +12,7 @@ class DrugFilter(FilterSet):
         ),
     )
     type = ChoiceFilter(
-        DrugTypeChoices.choices,
+        choices=DrugTypeChoices.choices,
         widget=Select(
             attrs={"class": "form-control form-select", "placeholder": "Raza"}
         ),
