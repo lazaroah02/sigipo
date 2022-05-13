@@ -1,0 +1,21 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+
+{% block crud_columns %}
+    {% create_header_column 'name' 'Nombre' %}
+    {% create_header_column 'type' 'Tipe' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.type }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
