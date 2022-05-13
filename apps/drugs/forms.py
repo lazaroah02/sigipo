@@ -14,7 +14,7 @@ class DrugForm(ModelForm):
     type = CharField(
         widget=Select(
             choices=DrugTypeChoices.choices,
-            attrs={"class": "form-control form-select", "placeholder": "Raza"},
+            attrs={"class": "form-control form-select", "placeholder": "Tipo"},
         ),
     )
 
