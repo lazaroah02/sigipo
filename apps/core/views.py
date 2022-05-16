@@ -103,6 +103,10 @@ class BaseCreateView(
 
     template_name = "base_crud/base_create.html"
 
+    def __init__(self, **kwargs):
+        self.title = f"Añadir {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
+
 
 class BaseUpdateView(
     LoginRequiredMixin,
@@ -116,6 +120,10 @@ class BaseUpdateView(
 
     template_name = "base_crud/base_update.html"
 
+    def __init__(self, **kwargs):
+        self.title = f"Editar {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
+
 
 class BaseDetailView(
     LoginRequiredMixin,
@@ -128,6 +136,10 @@ class BaseDetailView(
 
     template_name = "base_crud/base_detail.html"
     form_class = None
+
+    def __init__(self, **kwargs):
+        self.title = f"Detalles de {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
 
     def get_form_for_detail(self):
         """Returns the form_class with all the fields in readonly."""
@@ -164,6 +176,10 @@ class BaseDeleteView(
     """Base delete view."""
 
     template_name = "base_crud/base_delete.html"
+
+    def __init__(self, **kwargs):
+        self.title = f"Eliminar {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
 
     def delete(self, request: HttpRequest, *args, **kwargs):
         """

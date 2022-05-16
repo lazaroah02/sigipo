@@ -29,7 +29,6 @@ class PatientCreateView(BaseCreateView):
     success_url = reverse_lazy("patient:oncologic_list")
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
-    title = "Añadir paciente"
 
 
 class PatientDetailView(BaseDetailView):
@@ -39,7 +38,6 @@ class PatientDetailView(BaseDetailView):
     form_class = OncologicPatientForm
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    title = "Detalles de paciente"
 
 
 class PatientUpdateView(BaseUpdateView):
@@ -51,7 +49,6 @@ class PatientUpdateView(BaseUpdateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    title = "Editar paciente"
 
 
 class PatientDeleteView(BaseDeleteView):
@@ -62,7 +59,6 @@ class PatientDeleteView(BaseDeleteView):
     success_message = "%(first_name)s %(last_name)s eliminado satisfactoriamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    title = "Eliminar paciente"
 
 
 class PatientChangeStatus(LoginRequiredMixin, TemplateView):

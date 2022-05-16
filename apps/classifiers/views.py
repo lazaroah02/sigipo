@@ -19,7 +19,6 @@ class MorphologyCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:morphology_list")
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
-    title = "Añadir morfología"
 
 
 class MorphologyDetailView(BaseDetailView):
@@ -29,7 +28,6 @@ class MorphologyDetailView(BaseDetailView):
     form_class = MorphologyForm
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrada"
-    title = "Detalles de morfología"
 
 
 class MorphologyUpdateView(BaseUpdateView):
@@ -41,7 +39,6 @@ class MorphologyUpdateView(BaseUpdateView):
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
-    title = "Editar morfología"
 
 
 class MorphologyDeleteView(BaseDeleteView):
@@ -52,7 +49,6 @@ class MorphologyDeleteView(BaseDeleteView):
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
-    title = "Eliminar morfología"
 
 
 # * Topography Views
@@ -64,7 +60,6 @@ class TopographyCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:topography_list")
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
-    title = "Añadir topografía"
 
 
 class TopographyDetailView(BaseDetailView):
@@ -74,7 +69,6 @@ class TopographyDetailView(BaseDetailView):
     form_class = TopographyForm
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrada"
-    title = "Detalles de topografía"
 
 
 class TopographyUpdateView(BaseUpdateView):
@@ -86,7 +80,6 @@ class TopographyUpdateView(BaseUpdateView):
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
-    title = "Editar topografía"
 
 
 class TopographyDeleteView(BaseDeleteView):
@@ -97,4 +90,3 @@ class TopographyDeleteView(BaseDeleteView):
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
-    title = "Eliminar topografía"
