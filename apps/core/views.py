@@ -241,7 +241,7 @@ def getUrl(crud_class):
             crud_class.as_view(),
             name=f"{model_name}_detail",
         )
-    elif issubclass(crud_class, BaseDeleteView):
+    else:
         model_name = crud_class.model.__name__.lower()
         return path(
             f"{model_name}/delete/<pk>/",
