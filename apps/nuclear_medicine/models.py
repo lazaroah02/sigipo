@@ -216,8 +216,8 @@ class SerialIodineDetection(TimeStampedModel):
     objects = IodineDetectionQuerysetManager()
 
     class Meta:
-        verbose_name = "Detección de yodo"
-        verbose_name_plural = "Detección de yodo"
+        verbose_name = "Detección de yodo seriada"
+        verbose_name_plural = "Detección de yodo seriada"
         ordering = ["pk"]
 
     def __str__(self):

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.core.views import PaginationFilterView
+from apps.core.views import PaginationFilterView, getUrl
 from apps.patient.filters import NuclearMedicinePatientFilter, PatientFilter
 from apps.patient.models import Patient
 from apps.patient.views import (
@@ -25,8 +25,6 @@ urlpatterns = [
             model=Patient,
             filterset_class=PatientFilter,
             extra_context={
-                "crud_name": "Pacientes",
-                "crud_instance_name": "paciente",
                 "add_url": "patient:oncologic_create",
                 "detail_url": "patient:oncologic_detail",
                 "edit_url": "patient:oncologic_update",
@@ -72,36 +70,12 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Patient,
             filterset_class=NuclearMedicinePatientFilter,
-            extra_context={
-                "crud_name": "Pacientes",
-                "crud_instance_name": "paciente",
-                "add_url": "patient:patient_create",
-                "detail_url": "patient:patient_detail",
-                "edit_url": "patient:patient_update",
-                "delete_url": "patient:patient_delete",
-            },
             queryset=Patient.objects.all(),
         ),
         name="patient_list",
     ),
-    path(
-        "patient/create/",
-        NuclearMedicinePatientCreateView.as_view(),
-        name="patient_create",
-    ),
-    path(
-        "patient/detail/<pk>/",
-        NuclearMedicinePatientDetailView.as_view(),
-        name="patient_detail",
-    ),
-    path(
-        "patient/update/<pk>/",
-        NuclearMedicinePatientUpdateView.as_view(),
-        name="patient_update",
-    ),
-    path(
-        "patient/delete/<pk>/",
-        NuclearMedicinePatientDeleteView.as_view(),
-        name="patient_delete",
-    ),
+    getUrl(NuclearMedicinePatientCreateView),
+    getUrl(NuclearMedicinePatientDetailView),
+    getUrl(NuclearMedicinePatientUpdateView),
+    getUrl(NuclearMedicinePatientDeleteView),
 ]

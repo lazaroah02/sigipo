@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import CheckboxInput
 from django.http import Http404, HttpRequest
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from django.urls import path, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
@@ -30,6 +30,7 @@ class PaginationFilterView(LoginRequiredMixin, FilterView):
         _request_copy = self.request.GET.copy()
         parameters = _request_copy.pop("page", True) and _request_copy.urlencode()
         context = super().get_context_data(*args, **kwargs)
+        self.extra_context = self.extra_context or {}
         context["parameters"] = parameters
         context["url_lookup"] = self.request.GET.urlencode()
         current_page = context["page_obj"].number
@@ -37,10 +38,34 @@ class PaginationFilterView(LoginRequiredMixin, FilterView):
         pagination_range = paginator.get_elided_page_range(
             current_page, on_each_side=2, on_ends=0
         )
+        if self.model is not None:
+            CURRENT_MODEL = self.model
+            MODEL_NAME = self.model.__name__.lower()
+        else:
+            CURRENT_MODEL = self.queryset.model
+            MODEL_NAME = self.queryset.model.__name__.lower()
         pagination_range = list(
             filter(lambda element: element != paginator.ELLIPSIS, pagination_range)
         )
         context["pagination_range"] = pagination_range
+        APP_NAME = (
+            context.get("app_name", None) or CURRENT_MODEL._meta.app_label.lower()
+        )
+        context["crud_name"] = (
+            CURRENT_MODEL._meta.verbose_name_plural.capitalize() or context["crud_name"]
+        )
+        context["crud_instance_name"] = (
+            CURRENT_MODEL._meta.verbose_name.lower() or context["crud_instance_name"]
+        )
+        context["add_url"] = f"{APP_NAME}:{MODEL_NAME}_create" or context["add_url"]
+        context["detail_url"] = (
+            f"{APP_NAME}:{MODEL_NAME}_detail" or context["detail_url"]
+        )
+        context["edit_url"] = f"{APP_NAME}:{MODEL_NAME}_update" or context["edit_url"]
+        context["delete_url"] = (
+            f"{APP_NAME}:{MODEL_NAME}_delete" or context["delete_url"]
+        )
+
         context |= self.extra_context
         return context
 
@@ -103,6 +128,10 @@ class BaseCreateView(
 
     template_name = "base_crud/base_create.html"
 
+    def __init__(self, **kwargs):
+        self.title = f"Añadir {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
+
 
 class BaseUpdateView(
     LoginRequiredMixin,
@@ -116,6 +145,10 @@ class BaseUpdateView(
 
     template_name = "base_crud/base_update.html"
 
+    def __init__(self, **kwargs):
+        self.title = f"Editar {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
+
 
 class BaseDetailView(
     LoginRequiredMixin,
@@ -128,6 +161,10 @@ class BaseDetailView(
 
     template_name = "base_crud/base_detail.html"
     form_class = None
+
+    def __init__(self, **kwargs):
+        self.title = f"Detalles de {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
 
     def get_form_for_detail(self):
         """Returns the form_class with all the fields in readonly."""
@@ -165,6 +202,10 @@ class BaseDeleteView(
 
     template_name = "base_crud/base_delete.html"
 
+    def __init__(self, **kwargs):
+        self.title = f"Eliminar {self.model._meta.verbose_name.lower()}"
+        super().__init__(**kwargs)
+
     def delete(self, request: HttpRequest, *args, **kwargs):
         """
         Call the delete() method on the fetched object and then redirect to the
@@ -176,3 +217,34 @@ class BaseDeleteView(
         success_message = self.get_success_message(self.object.__dict__)
         messages.success(self.request, success_message)
         return redirect(success_url)
+
+
+def getUrl(crud_class):
+    if issubclass(crud_class, BaseCreateView):
+        model_name = crud_class.model.__name__.lower()
+        return path(
+            f"{model_name}/create/",
+            crud_class.as_view(),
+            name=f"{model_name}_create",
+        )
+    elif issubclass(crud_class, BaseUpdateView):
+        model_name = crud_class.model.__name__.lower()
+        return path(
+            f"{model_name}/update/<pk>/",
+            crud_class.as_view(),
+            name=f"{model_name}_update",
+        )
+    elif issubclass(crud_class, BaseDetailView):
+        model_name = crud_class.model.__name__.lower()
+        return path(
+            f"{model_name}/detail/<pk>/",
+            crud_class.as_view(),
+            name=f"{model_name}_detail",
+        )
+    else:
+        model_name = crud_class.model.__name__.lower()
+        return path(
+            f"{model_name}/delete/<pk>/",
+            crud_class.as_view(),
+            name=f"{model_name}_delete",
+        )
