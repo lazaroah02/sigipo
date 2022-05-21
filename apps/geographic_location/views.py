@@ -19,7 +19,6 @@ class ProvinceCreateView(BaseCreateView):
     success_url = reverse_lazy("geographic_location:province_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:province_list"
-    title = "Añadir provincia"
 
 
 class ProvinceDetailView(BaseDetailView):
@@ -29,7 +28,6 @@ class ProvinceDetailView(BaseDetailView):
     form_class = ProvinceForm
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
-    title = "Detalles de provincia"
 
 
 class ProvinceUpdateView(BaseUpdateView):
@@ -41,7 +39,6 @@ class ProvinceUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
-    title = "Editar provincia"
 
 
 class ProvinceDeleteView(BaseDeleteView):
@@ -52,7 +49,6 @@ class ProvinceDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
-    title = "Eliminar provincia"
 
 
 # * Municipality View
@@ -64,7 +60,6 @@ class MunicipalityCreateView(BaseCreateView):
     success_url = reverse_lazy("geographic_location:municipality_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:municipality_list"
-    title = "Añadir municipio"
 
 
 class MunicipalityDetailView(BaseDetailView):
@@ -74,7 +69,6 @@ class MunicipalityDetailView(BaseDetailView):
     form_class = MunicipalityForm
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
-    title = "Detalles de municipio"
 
 
 class MunicipalityUpdateView(BaseUpdateView):
@@ -86,7 +80,6 @@ class MunicipalityUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
-    title = "Editar municipio"
 
 
 class MunicipalityDeleteView(BaseDeleteView):
@@ -97,4 +90,3 @@ class MunicipalityDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
-    title = "Eliminar municipio"
