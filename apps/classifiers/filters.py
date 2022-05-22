@@ -64,7 +64,7 @@ class StudyFilter(FilterSet):
 
 
 class RadioIsotopeFilter(FilterSet):
-    """Filters to search for studies."""
+    """Filters to search for radio isotopes."""
 
     name = CharFilter(
         lookup_expr="icontains",
