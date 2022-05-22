@@ -228,6 +228,19 @@ class SerialIodineDetection(TimeStampedModel):
         return f"Detección de yodo seriada de {str(self.patient)}"
 
 
+class GammagraphyQuerysetManager(Manager):
+    """Manager to handle patient, drug,radio_isotope, requested_study ."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return (
+            super()
+            .get_queryset()
+            .select_related("patient", "radio_isotope", "drug")
+            .prefetch_related("requested_study")
+        )
+
+
 class Gammagraphy(TimeStampedModel):
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     requested_study = ManyToManyField(Study, blank=False)
@@ -236,6 +249,7 @@ class Gammagraphy(TimeStampedModel):
     dose = FloatField()
     report = TextField(max_length=5000, blank=False, null=False)
     observation = TextField(max_length=5000, blank=False, null=False)
+    objects = GammagraphyQuerysetManager()
 
     class Meta:
         verbose_name = "Gammagrafía"
