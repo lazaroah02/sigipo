@@ -1,7 +1,12 @@
 from django.urls import reverse_lazy
 
-from apps.classifiers.forms import MorphologyForm, TopographyForm
-from apps.classifiers.models import Morphology, Topography
+from apps.classifiers.forms import (
+    MorphologyForm,
+    RadioIsotopeForm,
+    StudyForm,
+    TopographyForm,
+)
+from apps.classifiers.models import Morphology, RadioIsotope, Study, Topography
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
@@ -90,3 +95,85 @@ class TopographyDeleteView(BaseDeleteView):
     success_message = "%(description)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
+
+
+# * Study Views
+class StudyCreateView(BaseCreateView):
+    """View to handle study creation."""
+
+    model = Study
+    form_class = StudyForm
+    success_url = reverse_lazy("classifiers:study_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:study_list"
+
+
+class StudyDetailView(BaseDetailView):
+    """View to handle study details."""
+
+    model = Study
+    form_class = StudyForm
+    cancel_url = "classifiers:study_list"
+    object_not_found_error_message = "Estudio no encontrada"
+
+
+class StudyUpdateView(BaseUpdateView):
+    """View to handle study edition."""
+
+    model = Study
+    form_class = StudyForm
+    success_url = reverse_lazy("classifiers:study_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:study_list"
+    object_not_found_error_message = "Estudio no encontrado"
+
+
+class StudyDeleteView(BaseDeleteView):
+    """View to handle study delete."""
+
+    model = Study
+    success_url = reverse_lazy("classifiers:study_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:study_list"
+    object_not_found_error_message = "Estudio no encontrado"
+
+
+# * RadioIsotope Views
+class RadioIsotopeCreateView(BaseCreateView):
+    """View to handle study creation."""
+
+    model = RadioIsotope
+    form_class = RadioIsotopeForm
+    success_url = reverse_lazy("classifiers:radioisotope_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:radioisotope_list"
+
+
+class RadioIsotopeDetailView(BaseDetailView):
+    """View to handle study details."""
+
+    model = RadioIsotope
+    form_class = RadioIsotopeForm
+    cancel_url = "classifiers:radioisotope_list"
+    object_not_found_error_message = "Radio isótopo no encontrada"
+
+
+class RadioIsotopeUpdateView(BaseUpdateView):
+    """View to handle study edition."""
+
+    model = RadioIsotope
+    form_class = RadioIsotopeForm
+    success_url = reverse_lazy("classifiers:radioisotope_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:radioisotope_list"
+    object_not_found_error_message = "Radio isótopo no encontrado"
+
+
+class RadioIsotopeDeleteView(BaseDeleteView):
+    """View to handle study delete."""
+
+    model = RadioIsotope
+    success_url = reverse_lazy("classifiers:radioisotope_list")
+    success_message = "%(name)s guardada correctamente."
+    cancel_url = "classifiers:radioisotope_list"
+    object_not_found_error_message = "Radio isótopo no encontrado"
