@@ -2,6 +2,7 @@ from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
 from apps.nuclear_medicine.filters import (
+    GammagraphyFilter,
     HormonalResultFilter,
     HormonalStudyFilter,
     IodineDetectionFilter,
@@ -10,6 +11,7 @@ from apps.nuclear_medicine.filters import (
     SerialIodineDetectionFilter,
 )
 from apps.nuclear_medicine.models import (
+    Gammagraphy,
     HormonalResult,
     IodineDetection,
     OncologicResult,
@@ -18,6 +20,10 @@ from apps.nuclear_medicine.models import (
     SerialIodineDetection,
 )
 from apps.nuclear_medicine.views import (
+    GammagraphyCreateView,
+    GammagraphyDeleteView,
+    GammagraphyDetailView,
+    GammagraphyUpdateView,
     HormonalResultCreateView,
     HormonalResultDeleteView,
     HormonalResultDetailView,
@@ -127,4 +133,17 @@ urlpatterns = [
     getUrl(SerialIodineDetectionDetailView),
     getUrl(SerialIodineDetectionUpdateView),
     getUrl(SerialIodineDetectionDeleteView),
+    # * Gammagraphy result URLs
+    path(
+        "gammagraphy/list/",
+        PaginationFilterView.as_view(
+            model=Gammagraphy,
+            filterset_class=GammagraphyFilter,
+        ),
+        name="gammagraphy_list",
+    ),
+    getUrl(GammagraphyCreateView),
+    getUrl(GammagraphyDetailView),
+    getUrl(GammagraphyUpdateView),
+    getUrl(GammagraphyDeleteView),
 ]
