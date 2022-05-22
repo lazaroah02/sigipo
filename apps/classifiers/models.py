@@ -31,3 +31,27 @@ class Morphology(Model):
     def __str__(self):
         """String representation of morphology."""
         return f"{self.description}"
+
+
+class Study(Model):
+    name = CharField(max_length=500, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Estudio"
+        verbose_name_plural = "Estudios"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return self.name
+
+
+class RadioIsotope(Model):
+    name = CharField(max_length=500, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "Radio isótopo"
+        verbose_name_plural = "Radio isótopo"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return self.name

@@ -1,11 +1,9 @@
 from django.db.models import (
     CASCADE,
     AutoField,
-    CharField,
     FloatField,
     ForeignKey,
     ManyToManyField,
-    Model,
     OneToOneField,
     TextChoices,
     TextField,
@@ -13,6 +11,7 @@ from django.db.models import (
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
+from apps.classifiers.models import RadioIsotope, Study
 from apps.core.models import TimeStampedModel
 from apps.drugs.models import Drug
 from apps.patient.models import Patient
@@ -227,30 +226,6 @@ class SerialIodineDetection(TimeStampedModel):
 
     def __str__(self):
         return f"Detección de yodo seriada de {str(self.patient)}"
-
-
-class Study(Model):
-    name = CharField(max_length=500, blank=False, null=False)
-
-    class Meta:
-        verbose_name = "Estudio"
-        verbose_name_plural = "Estudios"
-        ordering = ["pk"]
-
-    def __str__(self):
-        return self.name
-
-
-class RadioIsotope(Model):
-    name = CharField(max_length=500, blank=False, null=False)
-
-    class Meta:
-        verbose_name = "Radio isótopo"
-        verbose_name_plural = "Radio isótopo"
-        ordering = ["pk"]
-
-    def __str__(self):
-        return self.name
 
 
 class Gammagraphy(TimeStampedModel):
