@@ -13,7 +13,7 @@ from django.utils.safestring import mark_safe
 from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
 from multiselectfield.forms.fields import MultiSelectFormField
 
-from apps.classifiers.models import RadioIsotope
+from apps.classifiers.models import RadioIsotope, Study
 from apps.core.forms import ModelForm
 from apps.drugs.models import Drug
 from apps.nuclear_medicine.models import (
@@ -504,7 +504,7 @@ class GammagraphyForm(ModelForm):
         label="Paciente",
     )
     requested_study = ModelMultipleChoiceField(
-        queryset=Drug.objects.all(),
+        queryset=Study.objects.all(),
         widget=ModelSelect2MultipleWidget(
             attrs={
                 "class": "form-control",
