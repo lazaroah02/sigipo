@@ -33,7 +33,6 @@ class DashboardTestCase(TestCase):
 
     def test_get_template(self) -> None:
         """Test that the view returns the response."""
-        Patient.objects.exclude(pk=self.patient.pk).delete()
         response = self.client.get(reverse("dashboard:dashboard"))
         self.assertIsInstance(response, TemplateResponse)
 

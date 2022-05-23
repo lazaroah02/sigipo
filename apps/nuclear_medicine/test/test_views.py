@@ -34,9 +34,7 @@ class OncologicStudyViewTestCase(TestCase):
     def test_detail_view(self):
         """Test the get method for OncologicStudyDetailView."""
         response = self.client.get(
-            reverse(
-                "nuclear_medicine:patientoncologicstudy_detail", args=(self.study.pk,)
-            )
+            reverse("nuclear_medicine:oncologicstudy_detail", args=(self.study.pk,))
         )
         self.assertIn(str(self.study.created_at.year), response.content.decode())
         self.assertIn(str(self.study.created_at.day), response.content.decode())
