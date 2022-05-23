@@ -3,13 +3,17 @@ from django.db.models import (
     AutoField,
     FloatField,
     ForeignKey,
+    ManyToManyField,
     OneToOneField,
     TextChoices,
+    TextField,
 )
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
 
+from apps.classifiers.models import RadioIsotope, Study
 from apps.core.models import TimeStampedModel
+from apps.drugs.models import Drug
 from apps.patient.models import Patient
 
 
@@ -38,7 +42,7 @@ class OncologicStudyQuerysetManager(Manager):
         return super().get_queryset().select_related("patient")
 
 
-class PatientOncologicStudy(TimeStampedModel):
+class OncologicStudy(TimeStampedModel):
     """Model representation of oncologic study."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
@@ -154,7 +158,7 @@ class OncologicResultQuerysetManager(Manager):
 
 class OncologicResult(TimeStampedModel):
     oncologic_study = OneToOneField(
-        PatientOncologicStudy, blank=False, null=False, on_delete=CASCADE
+        OncologicStudy, blank=False, null=False, on_delete=CASCADE
     )
     tsh = FloatField(blank=True, null=True)
     t3 = FloatField(blank=True, null=True)
@@ -222,3 +226,35 @@ class SerialIodineDetection(TimeStampedModel):
 
     def __str__(self):
         return f"Detección de yodo seriada de {str(self.patient)}"
+
+
+class GammagraphyQuerysetManager(Manager):
+    """Manager to handle patient, drug,radio_isotope, requested_study ."""
+
+    def get_queryset(self):
+        """Fetch the related patient."""
+        return (
+            super()
+            .get_queryset()
+            .select_related("patient", "radio_isotope", "drug")
+            .prefetch_related("requested_study")
+        )
+
+
+class Gammagraphy(TimeStampedModel):
+    patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
+    requested_study = ManyToManyField(Study, blank=False)
+    drug = ForeignKey(Drug, null=False, blank=False, on_delete=CASCADE)
+    radio_isotope = ForeignKey(RadioIsotope, null=False, blank=False, on_delete=CASCADE)
+    dose = FloatField()
+    report = TextField(max_length=5000, blank=False, null=False)
+    observation = TextField(max_length=5000, blank=False, null=False)
+    objects = GammagraphyQuerysetManager()
+
+    class Meta:
+        verbose_name = "Gammagrafía"
+        verbose_name_plural = "Gammagrafias"
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Gammagrafía de {str(self.patient)}"

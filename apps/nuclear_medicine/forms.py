@@ -4,22 +4,27 @@ from django.forms import (
     DateField,
     FloatField,
     ModelChoiceField,
+    ModelMultipleChoiceField,
     NumberInput,
+    Textarea,
     TextInput,
 )
 from django.utils.safestring import mark_safe
-from django_select2.forms import ModelSelect2Widget
+from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
 from multiselectfield.forms.fields import MultiSelectFormField
 
+from apps.classifiers.models import RadioIsotope, Study
 from apps.core.forms import ModelForm
+from apps.drugs.models import Drug
 from apps.nuclear_medicine.models import (
+    Gammagraphy,
     HormonalResult,
     HormonalStudyChoices,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     OncologicStudyChoices,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 from apps.patient.models import Patient
@@ -87,7 +92,7 @@ class OncologicStudyForm(BaseStudyForm):
     )
 
     class Meta:
-        model = PatientOncologicStudy
+        model = OncologicStudy
         fields = "__all__"
 
 
@@ -155,7 +160,7 @@ class OncologicStudyDetailForm(BaseStudyDetailForm):
     )
 
     class Meta:
-        model = PatientOncologicStudy
+        model = OncologicStudy
         fields = "__all__"
 
 
@@ -189,7 +194,7 @@ class HormonalStudyForm(BaseStudyForm):
 
 class OncologicResultForm(ModelForm):
     oncologic_study = ModelChoiceField(
-        queryset=PatientOncologicStudy.objects.all(),
+        queryset=OncologicStudy.objects.all(),
         widget=ModelSelect2Widget(
             attrs={
                 "class": "form-control",
@@ -475,4 +480,93 @@ class SerialIodineDetectionForm(ModelForm):
 
     class Meta:
         model = SerialIodineDetection
+        fields = "__all__"
+
+
+class GammagraphyForm(ModelForm):
+    patient = ModelChoiceField(
+        queryset=Patient.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Paciente",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "first_name__icontains",
+                "last_name__icontains",
+                "identity_card__icontains",
+                "medical_record__icontains",
+            ],
+        ),
+        label="Paciente",
+    )
+    requested_study = ModelMultipleChoiceField(
+        queryset=Study.objects.all(),
+        widget=ModelSelect2MultipleWidget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Estudio(s)",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Estudio(s)",
+    )
+    drug = ModelChoiceField(
+        queryset=Drug.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Fármaco",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Fármaco",
+    )
+    radio_isotope = ModelChoiceField(
+        queryset=RadioIsotope.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Radio isótopo",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Radio isótopo",
+    )
+    dose = FloatField(
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "Dosis"}),
+        label="Dosis",
+        required=False,
+    )
+    report = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Reporte"}),
+        label="Reporte",
+    )
+    observation = CharField(
+        widget=Textarea(
+            attrs={"class": "form-control", "placeholder": "Observaciones"}
+        ),
+        label="Observaciones",
+    )
+
+    class Meta:
+        model = Gammagraphy
         fields = "__all__"

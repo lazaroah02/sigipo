@@ -1,1 +1,1 @@
-0008_alter_serialiodinedetection_options
+0001_initial

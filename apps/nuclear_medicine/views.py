@@ -7,6 +7,7 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.nuclear_medicine.forms import (
+    GammagraphyForm,
     HormonalResultForm,
     HormonalStudyDetailForm,
     HormonalStudyForm,
@@ -17,11 +18,12 @@ from apps.nuclear_medicine.forms import (
     SerialIodineDetectionForm,
 )
 from apps.nuclear_medicine.models import (
+    Gammagraphy,
     HormonalResult,
     IodineDetection,
     OncologicResult,
+    OncologicStudy,
     PatientHormonalStudy,
-    PatientOncologicStudy,
     SerialIodineDetection,
 )
 
@@ -30,7 +32,7 @@ from apps.nuclear_medicine.models import (
 class OncologicStudyCreateView(BaseCreateView):
     """View to handle oncologic study creation."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyForm
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
@@ -40,7 +42,7 @@ class OncologicStudyCreateView(BaseCreateView):
 class OncologicStudyDetailView(BaseDetailView):
     """View to handle oncologic study details."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyDetailForm
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrada"
@@ -49,7 +51,7 @@ class OncologicStudyDetailView(BaseDetailView):
 class OncologicStudyUpdateView(BaseUpdateView):
     """View to handle oncologic study edition."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     form_class = OncologicStudyForm
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
@@ -60,7 +62,7 @@ class OncologicStudyUpdateView(BaseUpdateView):
 class OncologicStudyDeleteView(BaseDeleteView):
     """View to handle oncologic study delete."""
 
-    model = PatientOncologicStudy
+    model = OncologicStudy
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"
@@ -270,3 +272,44 @@ class SerialIodineDetectionDeleteView(BaseDeleteView):
     success_message = "Detección de yodo seriada eliminada satisfactoriamente."
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
     object_not_found_error_message = "Detección de yodo seriada no encontrada"
+
+
+# * Gammagraphy Views
+class GammagraphyCreateView(BaseCreateView):
+    """View to handle gammagraphy creation."""
+
+    model = Gammagraphy
+    form_class = GammagraphyForm
+    success_url = reverse_lazy("nuclear_medicine:gammagraphy_list")
+    success_message = "Gammagrafía guardada correctamente."
+    cancel_url = "nuclear_medicine:gammagraphy_list"
+
+
+class GammagraphyDetailView(BaseDetailView):
+    """View to handle gammagraphy details."""
+
+    model = Gammagraphy
+    form_class = GammagraphyForm
+    cancel_url = "nuclear_medicine:gammagraphy_list"
+    object_not_found_error_message = "Gammagrafía no encontrada"
+
+
+class GammagraphyUpdateView(BaseUpdateView):
+    """View to handle gammagraphy edition."""
+
+    model = Gammagraphy
+    form_class = GammagraphyForm
+    success_url = reverse_lazy("nuclear_medicine:gammagraphy_list")
+    success_message = "Gammagrafía guardada correctamente."
+    cancel_url = "nuclear_medicine:gammagraphy_list"
+    object_not_found_error_message = "Gammagrafía no encontrada"
+
+
+class GammagraphyDeleteView(BaseDeleteView):
+    """View to handle gammagraphy delete."""
+
+    model = Gammagraphy
+    success_url = reverse_lazy("nuclear_medicine:gammagraphy_list")
+    success_message = "Gammagrafía eliminada satisfactoriamente."
+    cancel_url = "nuclear_medicine:gammagraphy_list"
+    object_not_found_error_message = "Gammagrafía no encontrada"

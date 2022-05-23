@@ -1,12 +1,25 @@
 from django.urls import path
 
-from apps.classifiers.filters import MorphologyFilter, TopographyFilter
-from apps.classifiers.models import Morphology, Topography
+from apps.classifiers.filters import (
+    MorphologyFilter,
+    RadioIsotopeFilter,
+    StudyFilter,
+    TopographyFilter,
+)
+from apps.classifiers.models import Morphology, RadioIsotope, Study, Topography
 from apps.classifiers.views import (
     MorphologyCreateView,
     MorphologyDeleteView,
     MorphologyDetailView,
     MorphologyUpdateView,
+    RadioIsotopeCreateView,
+    RadioIsotopeDeleteView,
+    RadioIsotopeDetailView,
+    RadioIsotopeUpdateView,
+    StudyCreateView,
+    StudyDeleteView,
+    StudyDetailView,
+    StudyUpdateView,
     TopographyCreateView,
     TopographyDeleteView,
     TopographyDetailView,
@@ -42,4 +55,30 @@ urlpatterns = [
     getUrl(TopographyDetailView),
     getUrl(TopographyUpdateView),
     getUrl(TopographyDeleteView),
+    # * Study URLs
+    path(
+        "study/list/",
+        PaginationFilterView.as_view(
+            model=Study,
+            filterset_class=StudyFilter,
+        ),
+        name="study_list",
+    ),
+    getUrl(StudyCreateView),
+    getUrl(StudyDetailView),
+    getUrl(StudyUpdateView),
+    getUrl(StudyDeleteView),
+    # * RadioIsotope URLs
+    path(
+        "radioisotope/list/",
+        PaginationFilterView.as_view(
+            model=RadioIsotope,
+            filterset_class=RadioIsotopeFilter,
+        ),
+        name="radioisotope_list",
+    ),
+    getUrl(RadioIsotopeCreateView),
+    getUrl(RadioIsotopeDetailView),
+    getUrl(RadioIsotopeUpdateView),
+    getUrl(RadioIsotopeDeleteView),
 ]
