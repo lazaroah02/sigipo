@@ -1,7 +1,12 @@
 # Register your models here.
 from django.contrib.admin import ModelAdmin, register
 
-from apps.nuclear_medicine.models import HormonalStudy, OncologicStudy
+from apps.nuclear_medicine.models import (
+    HormonalResult,
+    HormonalStudy,
+    OncologicResult,
+    OncologicStudy,
+)
 
 
 @register(HormonalStudy)
@@ -20,3 +25,21 @@ class OncologicStudyAdmin(ModelAdmin):
     list_display = ("patient",)
     list_select_related = ("patient",)
     list_display_links = ("patient",)
+
+
+@register(HormonalResult)
+class HormonalResultAdmin(ModelAdmin):
+    """HormonalResult Django Admin view."""
+
+    list_display = ("hormonal_study",)
+    list_select_related = ("hormonal_study",)
+    list_display_links = ("hormonal_study",)
+
+
+@register(OncologicResult)
+class OncologicResultAdmin(ModelAdmin):
+    """OncologicResult Django Admin view."""
+
+    list_display = ("oncologic_study",)
+    list_select_related = ("oncologic_study",)
+    list_display_links = ("oncologic_study",)
