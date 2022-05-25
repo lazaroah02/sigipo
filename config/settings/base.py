@@ -39,6 +39,7 @@ LOCAL_APPS = [
     "apps.cancer_registry.apps.CancerRegistryConfig",
     "apps.drugs.apps.DrugsConfig",
     "apps.nuclear_medicine.apps.NuclearMedicineConfig",
+    "apps.chemotherapy.apps.ChemotherapyConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
