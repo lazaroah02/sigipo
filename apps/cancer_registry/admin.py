@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, register
 
-from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.models import TNM, Neoplasm
 
 
 @register(Neoplasm)
@@ -18,5 +18,15 @@ class NeoplasmAdmin(ModelAdmin):
     list_select_related = (
         "patient",
         "primary_site",
+        "histologic_type",
     )
+    list_display_links = ("patient",)
+
+
+@register(TNM)
+class TNMAdmin(ModelAdmin):
+    """TNM Django Admin view."""
+
+    list_display = ("patient",)
+    list_select_related = ("patient",)
     list_display_links = ("patient",)
