@@ -2,10 +2,13 @@
 from django.contrib.admin import ModelAdmin, register
 
 from apps.nuclear_medicine.models import (
+    Gammagraphy,
     HormonalResult,
     HormonalStudy,
+    IodineDetection,
     OncologicResult,
     OncologicStudy,
+    SerialIodineDetection,
 )
 
 
@@ -43,3 +46,33 @@ class OncologicResultAdmin(ModelAdmin):
     list_display = ("oncologic_study",)
     list_select_related = ("oncologic_study",)
     list_display_links = ("oncologic_study",)
+
+
+@register(IodineDetection)
+class IodineDetectionAdmin(ModelAdmin):
+    """IodineDetection Django Admin view."""
+
+    list_display = ("patient",)
+    list_select_related = ("patient",)
+    list_display_links = ("patient",)
+
+
+@register(SerialIodineDetection)
+class SerialIodineDetectionAdmin(ModelAdmin):
+    """SerialIodineDetection Django Admin view."""
+
+    list_display = ("patient",)
+    list_select_related = ("patient",)
+    list_display_links = ("patient",)
+
+
+@register(Gammagraphy)
+class GammagraphyAdmin(ModelAdmin):
+    """Gammagraphy Django Admin view."""
+
+    list_display = ("patient",)
+    list_select_related = (
+        "patient",
+        "radio_isotope",
+    )
+    list_display_links = ("patient",)
