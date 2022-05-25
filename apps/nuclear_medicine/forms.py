@@ -19,12 +19,12 @@ from apps.drugs.models import Drug
 from apps.nuclear_medicine.models import (
     Gammagraphy,
     HormonalResult,
+    HormonalStudy,
     HormonalStudyChoices,
     IodineDetection,
     OncologicResult,
     OncologicStudy,
     OncologicStudyChoices,
-    PatientHormonalStudy,
     SerialIodineDetection,
 )
 from apps.patient.models import Patient
@@ -174,7 +174,7 @@ class HormonalStudyDetailForm(BaseStudyDetailForm):
     )
 
     class Meta:
-        model = PatientHormonalStudy
+        model = HormonalStudy
         fields = "__all__"
 
 
@@ -188,7 +188,7 @@ class HormonalStudyForm(BaseStudyForm):
     )
 
     class Meta:
-        model = PatientHormonalStudy
+        model = HormonalStudy
         fields = "__all__"
 
 
@@ -291,7 +291,7 @@ class OncologicResultForm(ModelForm):
 
 class HormonalResultForm(ModelForm):
     hormonal_study = ModelChoiceField(
-        queryset=PatientHormonalStudy.objects.all(),
+        queryset=HormonalStudy.objects.all(),
         widget=ModelSelect2Widget(
             attrs={
                 "class": "form-control",

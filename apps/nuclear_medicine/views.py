@@ -20,10 +20,10 @@ from apps.nuclear_medicine.forms import (
 from apps.nuclear_medicine.models import (
     Gammagraphy,
     HormonalResult,
+    HormonalStudy,
     IodineDetection,
     OncologicResult,
     OncologicStudy,
-    PatientHormonalStudy,
     SerialIodineDetection,
 )
 
@@ -73,7 +73,7 @@ class OncologicStudyDeleteView(BaseDeleteView):
 class HormonalStudyCreateView(BaseCreateView):
     """View to handle hormonal study creation."""
 
-    model = PatientHormonalStudy
+    model = HormonalStudy
     form_class = HormonalStudyForm
     success_url = reverse_lazy("nuclear_medicine:hormonal_study_list")
     success_message = "Estudio hormonal guardado correctamente."
@@ -83,7 +83,7 @@ class HormonalStudyCreateView(BaseCreateView):
 class HormonalStudyDetailView(BaseDetailView):
     """View to handle hormonal study details."""
 
-    model = PatientHormonalStudy
+    model = HormonalStudy
     form_class = HormonalStudyDetailForm
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrada"
@@ -92,7 +92,7 @@ class HormonalStudyDetailView(BaseDetailView):
 class HormonalStudyUpdateView(BaseUpdateView):
     """View to handle hormonal study edition."""
 
-    model = PatientHormonalStudy
+    model = HormonalStudy
     form_class = HormonalStudyForm
     success_url = reverse_lazy("nuclear_medicine:hormonal_study_list")
     success_message = "Estudio hormonal guardado correctamente."
@@ -103,7 +103,7 @@ class HormonalStudyUpdateView(BaseUpdateView):
 class HormonalStudyDeleteView(BaseDeleteView):
     """View to handle hormonal study delete."""
 
-    model = PatientHormonalStudy
+    model = HormonalStudy
     success_url = reverse_lazy("nuclear_medicine:hormonal_study_list")
     success_message = "Estudio hormonal eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:hormonal_study_list"

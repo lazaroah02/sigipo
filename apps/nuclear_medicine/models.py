@@ -89,7 +89,7 @@ class HormonalStudyQuerysetManager(Manager):
         return super().get_queryset().select_related("patient")
 
 
-class PatientHormonalStudy(TimeStampedModel):
+class HormonalStudy(TimeStampedModel):
     """Model representation of hormonal study."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
@@ -121,7 +121,7 @@ class HormonalResultQuerysetManager(Manager):
 
 class HormonalResult(TimeStampedModel):
     hormonal_study = OneToOneField(
-        PatientHormonalStudy, blank=False, null=False, on_delete=CASCADE
+        HormonalStudy, blank=False, null=False, on_delete=CASCADE
     )
     tsh = FloatField(blank=True, null=True)
     t3 = FloatField(blank=True, null=True)
