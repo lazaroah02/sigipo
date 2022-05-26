@@ -4,10 +4,10 @@ from django_filters import CharFilter, FilterSet, NumberFilter
 from apps.nuclear_medicine.models import (
     Gammagraphy,
     HormonalResult,
+    HormonalStudy,
     IodineDetection,
     OncologicResult,
     OncologicStudy,
-    PatientHormonalStudy,
     SerialIodineDetection,
 )
 
@@ -112,7 +112,7 @@ class HormonalStudyFilter(FilterSet):
     )
 
     class Meta:
-        model = PatientHormonalStudy
+        model = HormonalStudy
         fields = [
             "patient__identity_card",
             "patient__first_name",

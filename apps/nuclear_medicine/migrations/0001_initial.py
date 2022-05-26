@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="PatientHormonalStudy",
+            name="HormonalStudy",
             fields=[
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("updated_at", models.DateTimeField(auto_now=True)),
@@ -239,7 +239,7 @@ class Migration(migrations.Migration):
                     "hormonal_study",
                     models.OneToOneField(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to="nuclear_medicine.patienthormonalstudy",
+                        to="nuclear_medicine.hormonalstudy",
                     ),
                 ),
             ],
