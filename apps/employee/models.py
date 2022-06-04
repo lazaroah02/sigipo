@@ -22,6 +22,11 @@ class Doctor(Model):
     )
     group = ForeignKey(Group, verbose_name="Grupo de trabajo", on_delete=CASCADE)
 
+    class Meta:
+        verbose_name = "Doctor"
+        verbose_name_plural = "Doctor"
+        ordering = ["personal_record_number"]
+
     def __str__(self):
         """Returns the name of the patient."""
         return f"{self.first_name} {self.last_name} ({self.personal_record_number})"
