@@ -1,4 +1,5 @@
 from django.db.models import CASCADE, CharField, ForeignKey, Model
+from django.db.models.manager import Manager
 
 
 # Create your models here.
@@ -14,6 +15,14 @@ class Group(Model):
         ordering = ["pk"]
 
 
+class DoctorQuerysetManager(Manager):
+    """Manager to handle group."""
+
+    def get_queryset(self):
+        """Select related group."""
+        return super().get_queryset().select_related("group")
+
+
 class Doctor(Model):
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
@@ -21,6 +30,7 @@ class Doctor(Model):
         verbose_name="Número de registro", max_length=255, primary_key=True
     )
     group = ForeignKey(Group, verbose_name="Grupo de trabajo", on_delete=CASCADE)
+    objects = DoctorQuerysetManager()
 
     class Meta:
         verbose_name = "Doctor"
