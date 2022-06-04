@@ -11,12 +11,12 @@ class NeoplasmTestCase(TestCase):
         cls.neoplasm = NeoplasmFactory.create(
             patient__first_name="Test",
             patient__last_name="Test",
-            patient__medical_record="Test",
+            patient__identity_card="123456",
         )
 
     def test_neoplasm_str(self):
         """Test that neoplasm str method returns the patient name."""
         self.assertEqual(
             str(self.neoplasm),
-            "Test Test (Test)",
+            "Test Test (123456)",
         )
