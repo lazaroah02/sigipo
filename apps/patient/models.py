@@ -14,6 +14,7 @@ from django.db.models.manager import Manager
 
 from apps.core.models import TimeStampedModel
 from apps.geographic_location.models import Municipality
+from apps.patient.validators import only_numbers_validator
 
 
 class PatientQuerysetManager(Manager):
@@ -52,7 +53,7 @@ class Patient(TimeStampedModel):
     identity_card = CharField(
         verbose_name="Carnet de Identidad",
         max_length=11,
-        validators=[MinLengthValidator(11)],
+        validators=[MinLengthValidator(11), only_numbers_validator],
     )
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
@@ -87,8 +88,8 @@ class Patient(TimeStampedModel):
         ordering = ["updated_at"]
         constraints = [
             UniqueConstraint(
-                fields=["identity_card", "medical_record"],
-                name="patient_medical_record_identity_card_constraints",
+                fields=["identity_card"],
+                name="patient_identity_card_constraints",
             )
         ]
 
