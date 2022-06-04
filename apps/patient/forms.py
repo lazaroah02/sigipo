@@ -27,6 +27,7 @@ class BasePatientForm(ModelForm):
         ),
         label="Carnet de identidad",
         max_length=11,
+        min_length=6,
     )
     first_name = CharField(
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
