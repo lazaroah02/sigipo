@@ -27,6 +27,7 @@ THIRD_PARTY_APPS = [
     "django_version_checks",
     "django_filters",
     "django_select2",
+    "models2puml",
 ]
 
 LOCAL_APPS = [

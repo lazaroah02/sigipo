@@ -5,9 +5,9 @@ from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyText
 
 from apps.cancer_registry.models import (
-    TNM,
     MetastasisChoices,
     Neoplasm,
+    NeoplasmClassificationChoices,
     NeoplasmClinicalExtensionsChoices,
     NeoplasmClinicalStageChoices,
     NeoplasmDiagnosticConfirmationChoices,
@@ -17,6 +17,7 @@ from apps.cancer_registry.models import (
     NoduleChoices,
     TreatmentPerformedChoices,
     TumorChoices,
+    TumorClassificationChoices,
 )
 from apps.classifiers.factories import MorphologyFactory, TopographyFactory
 from apps.patient.factories import PatientFactory
@@ -44,20 +45,8 @@ class NeoplasmFactory(DjangoModelFactory):
     is_pregnant = FuzzyChoice((True, False))
     is_vih = FuzzyChoice((True, False))
     treatment_performed = FuzzyChoice(TreatmentPerformedChoices.values)
-
-
-class TNMFactory(DjangoModelFactory):
-    """Factory to handle TNM creation."""
-
-    class Meta:
-        model = TNM
-
-    patient = SubFactory(PatientFactory)
     tumor = FuzzyChoice(TumorChoices.values)
     nodule = FuzzyChoice(NoduleChoices.values)
     metastasis = FuzzyChoice(MetastasisChoices.values)
-    is_clinical = FuzzyChoice((True, False))
-    is_pathological = FuzzyChoice((True, False))
-    is_recurrent = FuzzyChoice((True, False))
-    is_posttreatment = FuzzyChoice((True, False))
-    is_autopsy = FuzzyChoice((True, False))
+    neoplasm_classification = FuzzyChoice(NeoplasmClassificationChoices.values)
+    tumor_classification = FuzzyChoice(TumorClassificationChoices.values)
