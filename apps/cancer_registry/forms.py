@@ -1,12 +1,11 @@
 from django.forms import (
     BooleanField,
-    CharField,
     CheckboxInput,
     ChoiceField,
     DateField,
     ModelChoiceField,
 )
-from django.forms.widgets import DateInput, Select, TextInput
+from django.forms.widgets import DateInput, Select
 from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import (
@@ -26,6 +25,7 @@ from apps.cancer_registry.models import (
 )
 from apps.classifiers.models import Morphology, Topography
 from apps.core.forms import ModelForm
+from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
 
@@ -180,12 +180,24 @@ class NeoplasmForm(ModelForm):
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Clasificación",
     )
-    medic_that_report = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Médico que reporta"}
+    medic_that_report = ModelChoiceField(
+        queryset=Doctor.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Médico que reporta",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "first_name__icontains",
+                "last_name__icontains",
+                "personal_record_number__icontains",
+            ],
         ),
-        label="Médico que reporta",
         required=False,
+        label="Médico que reporta",
     )
     treatment_performed = ChoiceField(
         choices=TreatmentPerformedChoices.choices,

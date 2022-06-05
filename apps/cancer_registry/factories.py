@@ -2,7 +2,7 @@ import datetime as dt
 
 from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyText
+from factory.fuzzy import FuzzyChoice, FuzzyDate
 
 from apps.cancer_registry.models import (
     MetastasisChoices,
@@ -20,6 +20,7 @@ from apps.cancer_registry.models import (
     TumorClassificationChoices,
 )
 from apps.classifiers.factories import MorphologyFactory, TopographyFactory
+from apps.employee.factories import DoctorFactory
 from apps.patient.factories import PatientFactory
 
 
@@ -32,7 +33,7 @@ class NeoplasmFactory(DjangoModelFactory):
     patient = SubFactory(PatientFactory)
     primary_site = SubFactory(TopographyFactory)
     histologic_type = SubFactory(MorphologyFactory)
-    medic_that_report = FuzzyText()
+    medic_that_report = SubFactory(DoctorFactory)
     date_of_report = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
     date_of_diagnosis = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
     laterality = FuzzyChoice(NeoplasmLateralityChoices.values)

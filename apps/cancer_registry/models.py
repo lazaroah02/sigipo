@@ -13,6 +13,7 @@ from django.db.models import (
 from django.db.models.manager import Manager
 
 from apps.classifiers.models import Morphology, Topography
+from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
 
@@ -197,8 +198,12 @@ class Neoplasm(Model):
         blank=True,
     )
     date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
-    medic_that_report = CharField(
-        verbose_name="Médico que reporta", max_length=128, blank=True
+    medic_that_report = ForeignKey(
+        Doctor,
+        verbose_name="Médico que reporta",
+        on_delete=CASCADE,
+        null=True,
+        blank=True,
     )
     tumor = CharField(
         verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
