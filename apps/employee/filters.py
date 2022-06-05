@@ -42,7 +42,6 @@ class DoctorFilter(FilterSet):
             },
             search_fields=[
                 "name__icontains",
-                "province__name__icontains",
             ],
         ),
         label="Grupo de trabajo",

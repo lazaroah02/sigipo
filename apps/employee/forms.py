@@ -21,10 +21,6 @@ class GroupForm(ModelForm):
 class DoctorForm(ModelForm):
     """Model to handle Doctor creation and edition."""
 
-    name = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
-        label="Nombre",
-    )
     first_name = CharField(
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",
