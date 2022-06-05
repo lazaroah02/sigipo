@@ -39,6 +39,6 @@ class ValidatorTestCase(TestCase):
         }
         form = OncologicPatientForm(data=data)
         self.assertTrue(form.is_valid())
-        data["identity_card"] = "1"
+        data["identity_card"] = "1111111"
         form = OncologicPatientForm(data=data)
         self.assertFalse(form.is_valid())
