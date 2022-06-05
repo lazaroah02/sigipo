@@ -5,7 +5,7 @@
 #
 #    pip-compile-multi
 #
-asgiref==3.5.0
+asgiref==3.5.2
     # via django
 django==3.2.13
     # via
@@ -23,15 +23,15 @@ django-multiselectfield==0.1.12
     # via -r requirements/base.in
 django-select2==7.10.0
     # via -r requirements/base.in
-django-version-checks==1.5.0
+django-version-checks==1.6.0
     # via -r requirements/base.in
 packaging==21.3
     # via django-version-checks
-pillow==9.1.0
+pillow==9.1.1
     # via -r requirements/base.in
 psycopg2-binary==2.9.3
     # via -r requirements/base.in
-pyparsing==3.0.8
+pyparsing==3.0.9
     # via packaging
 python-dotenv==0.20.0
     # via -r requirements/base.in
