@@ -142,6 +142,46 @@ class TumorClassificationChoices(IntegerChoices):
     METASTASIS = 2, "Metástasis sin tumor primario conocido"
 
 
+class AcuteLymphoidLeukemiaChoices(IntegerChoices):
+    L1 = 1, "L1"
+    L2 = 2, "L2"
+    L3 = 3, "L3"
+
+
+class ChronicLymphoidLeukemiaChoices(IntegerChoices):
+    _0 = 1, "0"
+    _I = 2, "I"
+    II = 3, "II"
+    III = 4, "III"
+    IV = 5, "IV"
+
+
+class AcuteMyeloidLeukemiaChoices(IntegerChoices):
+    M0 = 0, "M0"
+    M1 = 1, "M1"
+    M2 = 2, "M2"
+    M3 = 3, "M3"
+    M4 = 4, "M4"
+    M5 = 5, "M5"
+    M6 = 6, "M6"
+    M7 = 7, "M7"
+
+
+class MultipleMyelomaChoices(IntegerChoices):
+    IA = 1, "Ia"
+    IB = 2, "Ib"
+    IIA = 3, "IIa"
+    IIB = 4, "IIb"
+    IIIA = 5, "IIIa"
+    IIIB = 6, "IIIb"
+
+
+class ChronicMyeloidLeukemiaChoices(IntegerChoices):
+    STABLE = 1, "Estable"
+    ACCELERATED = 2, "Acelerada"
+    BLAST_CRISIS = 3, "Crisis blástica "
+
+
 class Neoplasm(Model):
     """
     Model representation of a neoplasm
@@ -241,6 +281,42 @@ class Neoplasm(Model):
         on_delete=CASCADE,
         blank=True,
         null=True,
+    )
+    hematological_transformation = BooleanField(
+        verbose_name="Transformación hematológica", default=False
+    )
+    date_of_first_symptoms = DateField(
+        verbose_name="Fecha de primeros síntomas", blank=True
+    )
+    acute_lymphoid_leukemia = IntegerField(
+        verbose_name="Leucemia linfoide aguda (FAB)",
+        blank=True,
+        null=True,
+        choices=AcuteLymphoidLeukemiaChoices.choices,
+    )
+    chronic_lymphoid_leukemia = IntegerField(
+        verbose_name="Leucemia linfoide crónica (Rail)",
+        blank=True,
+        null=True,
+        choices=ChronicLymphoidLeukemiaChoices.choices,
+    )
+    acute_myeloid_leukemia = IntegerField(
+        verbose_name="Leucemia mieloide aguda (FAB)",
+        blank=True,
+        null=True,
+        choices=AcuteMyeloidLeukemiaChoices.choices,
+    )
+    multiple_myeloma = IntegerField(
+        verbose_name="Mieloma múltiple (Durie-Salmon)",
+        blank=True,
+        null=True,
+        choices=MultipleMyelomaChoices.choices,
+    )
+    chronic_myeloid_leukemia = IntegerField(
+        verbose_name="Leucemia mieloide crónica",
+        blank=True,
+        null=True,
+        choices=ChronicMyeloidLeukemiaChoices.choices,
     )
     objects = NeoplasmQuerysetManager()
 

@@ -9,7 +9,12 @@ from django.forms.widgets import DateInput, Select
 from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import (
+    AcuteLymphoidLeukemiaChoices,
+    AcuteMyeloidLeukemiaChoices,
+    ChronicLymphoidLeukemiaChoices,
+    ChronicMyeloidLeukemiaChoices,
     MetastasisChoices,
+    MultipleMyelomaChoices,
     Neoplasm,
     NeoplasmClassificationChoices,
     NeoplasmClinicalExtensionsChoices,
@@ -218,6 +223,51 @@ class NeoplasmForm(ModelForm):
         choices=TreatmentPerformedChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Tratamiento realizado",
+        required=False,
+    )
+    hematological_transformation = BooleanField(
+        label="Transformación hematológica",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    date_of_first_symptoms = date_of_report = DateField(
+        widget=DateInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Fecha de primeros síntomas",
+                "type": "date",
+            }
+        ),
+        label="Fecha de primeros síntomas",
+    )
+    acute_lymphoid_leukemia = ChoiceField(
+        choices=AcuteLymphoidLeukemiaChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Leucemia linfoide aguda (FAB)",
+        required=False,
+    )
+    chronic_lymphoid_leukemia = ChoiceField(
+        choices=ChronicLymphoidLeukemiaChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Leucemia linfoide crónica (Rail)",
+        required=False,
+    )
+    acute_myeloid_leukemia = ChoiceField(
+        choices=AcuteMyeloidLeukemiaChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Leucemia mieloide aguda (FAB)",
+        required=False,
+    )
+    multiple_myeloma = ChoiceField(
+        choices=MultipleMyelomaChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Mieloma múltiple (Durie-Salmon)",
+        required=False,
+    )
+    chronic_myeloid_leukemia = ChoiceField(
+        choices=ChronicMyeloidLeukemiaChoices.choices,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Leucemia mieloide crónica",
         required=False,
     )
 
