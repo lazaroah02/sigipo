@@ -16,10 +16,10 @@ class MorphologyTestCase(TestCase):
         cls.morphology = MorphologyFactory.create()
 
     def test_Morphology_str(self):
-        """Test that morphology str method returns the morphology description."""
+        """Test that morphology str method returns the morphology name."""
         self.assertEqual(
             str(self.morphology),
-            f"{self.morphology.description}",
+            f"{self.morphology.name}",
         )
 
 
@@ -32,10 +32,10 @@ class TopographyTestCase(TestCase):
         cls.topography = TopographyFactory.create()
 
     def test_Morphology_str(self):
-        """Test that morphology str method returns the topography description."""
+        """Test that morphology str method returns the topography name."""
         self.assertEqual(
             str(self.topography),
-            f"{self.topography.description}",
+            f"{self.topography.name}",
         )
 
 

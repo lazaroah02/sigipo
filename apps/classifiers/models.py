@@ -4,8 +4,7 @@ from django.db.models import CharField, Model
 class Topography(Model):
     """Model representation of a topography."""
 
-    code = CharField(verbose_name="Código", max_length=5)
-    description = CharField(verbose_name="Descripción", max_length=255)
+    name = CharField(verbose_name="Nombre", max_length=255)
 
     class Meta:
         verbose_name = "Topografía"
@@ -14,14 +13,13 @@ class Topography(Model):
 
     def __str__(self):
         """String representation of topography."""
-        return f"{self.description}"
+        return f"{self.name}"
 
 
 class Morphology(Model):
     """Model representation of a morphology."""
 
-    code = CharField(verbose_name="Código", max_length=10)
-    description = CharField(verbose_name="Descripción", max_length=255)
+    name = CharField(verbose_name="Nombre", max_length=255)
 
     class Meta:
         verbose_name = "Morfología"
@@ -30,7 +28,7 @@ class Morphology(Model):
 
     def __str__(self):
         """String representation of morphology."""
-        return f"{self.description}"
+        return f"{self.name}"
 
 
 class Study(Model):

@@ -69,8 +69,8 @@ class DashboardTestCase(TestCase):
         self.assertEqual(len(data), 1)
         self.assertEqual(
             {
-                "primary_site__code": self.neoplasm.primary_site.code,
-                "primary_site__description": self.neoplasm.primary_site.description,
+                "primary_site__pk": self.neoplasm.primary_site.pk,
+                "primary_site__name": self.neoplasm.primary_site.name,
                 "less_than_20": 1,
                 "num_subjects": 1,
                 "patient_in_20s": 0,

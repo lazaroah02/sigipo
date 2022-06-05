@@ -97,7 +97,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
             case "top10":
                 data = list(
                     Neoplasm.objects.filter(primary_site__isnull=False)
-                    .values("primary_site__code", "primary_site__description")
+                    .values("primary_site__pk", "primary_site__name")
                     .annotate(
                         num_subjects=Count("patient"),
                         less_than_20=less_than_20_count,

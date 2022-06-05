@@ -70,8 +70,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "code__icontains",
-                "description__icontains",
+                "name__icontains",
             ],
         ),
         label="Sitio primario",
@@ -97,8 +96,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "code__icontains",
-                "description__icontains",
+                "name__icontains",
             ],
         ),
         label="Tipo histológico",

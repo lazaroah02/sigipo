@@ -7,43 +7,31 @@ from apps.classifiers.models import Morphology, RadioIsotope, Study, Topography
 class MorphologyFilter(FilterSet):
     """Filters to search for morphologies."""
 
-    code = CharFilter(
+    name = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Código contiene"}
-        ),
-    )
-    description = CharFilter(
-        lookup_expr="icontains",
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Descripción contiene"}
+            attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
     )
 
     class Meta:
         model = Morphology
-        fields = ["code", "description"]
+        fields = ["name"]
 
 
 class TopographyFilter(FilterSet):
     """Filters to search for topographies."""
 
-    code = CharFilter(
+    name = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Código contiene"}
-        ),
-    )
-    description = CharFilter(
-        lookup_expr="icontains",
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Descripción contiene"}
+            attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
     )
 
     class Meta:
         model = Topography
-        fields = ["code", "description"]
+        fields = ["name"]
 
 
 class StudyFilter(FilterSet):
