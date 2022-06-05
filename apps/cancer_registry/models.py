@@ -13,7 +13,7 @@ from django.db.models import (
 from django.db.models.manager import Manager
 
 from apps.classifiers.models import Morphology, Topography
-from apps.employee.models import Doctor
+from apps.employee.models import Doctor, Group
 from apps.patient.models import Patient
 
 
@@ -234,6 +234,13 @@ class Neoplasm(Model):
         blank=True,
         null=True,
         choices=TreatmentPerformedChoices.choices,
+    )
+    group = ForeignKey(
+        Group,
+        verbose_name="Grupo que reporta",
+        on_delete=CASCADE,
+        blank=True,
+        null=True,
     )
     objects = NeoplasmQuerysetManager()
 

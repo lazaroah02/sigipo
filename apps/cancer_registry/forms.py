@@ -25,7 +25,7 @@ from apps.cancer_registry.models import (
 )
 from apps.classifiers.models import Morphology, Topography
 from apps.core.forms import ModelForm
-from apps.employee.models import Doctor
+from apps.employee.models import Doctor, Group
 from apps.patient.models import Patient
 
 
@@ -196,6 +196,23 @@ class NeoplasmForm(ModelForm):
         ),
         required=False,
         label="Médico que reporta",
+    )
+    group = ModelChoiceField(
+        queryset=Group.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Grupo que reporta",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        required=False,
+        label="Grupo que reporta",
     )
     treatment_performed = ChoiceField(
         choices=TreatmentPerformedChoices.choices,
