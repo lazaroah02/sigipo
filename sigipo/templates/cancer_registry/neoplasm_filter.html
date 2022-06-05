@@ -7,7 +7,7 @@
     {% create_header_column 'clinical_stage' 'Etapa clínica' %}
     {% create_header_column 'medic_that_report' 'Médico que reporta' %}
     {% create_header_column 'date_of_report' 'Fecha del reporte' %}
-    {% create_header_column 'date_of_diagnosis' 'Sitio primario' %}
+    {% create_header_column 'date_of_diagnosis' 'Fecha de diagnostico' %}
 {% endblock crud_columns %}
 
 {% block table_body %}
@@ -17,7 +17,7 @@
             <td>{{ obj.primary_site }}</td>
             <td>{{ obj.histologic_type }}</td>
             <td>{{ obj.get_clinical_stage_display }}</td>
-            <td>{{ obj.medic_that_report }}</td>
+            <td>{{ obj.medic_that_report.name }}</td>
             <td>{{ obj.date_of_report }}</td>
             <td>{{ obj.date_of_diagnosis }}</td>
             <td>

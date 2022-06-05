@@ -11,10 +11,10 @@ class DrugFilter(FilterSet):
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
     )
-    type = ChoiceFilter(
+    drug_type = ChoiceFilter(
         choices=DrugTypeChoices.choices,
         widget=Select(
-            attrs={"class": "form-control form-select", "placeholder": "Raza"}
+            attrs={"class": "form-control form-select", "placeholder": "Tipo"}
         ),
     )
 
@@ -22,5 +22,5 @@ class DrugFilter(FilterSet):
         model = Drug
         fields = [
             "name",
-            "type",
+            "drug_type",
         ]

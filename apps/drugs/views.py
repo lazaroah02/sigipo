@@ -19,7 +19,6 @@ class DrugCreateView(BaseCreateView):
     success_url = reverse_lazy("drugs:drug_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "drugs:drug_list"
-    title = "Añadir fármaco"
 
 
 class DrugDetailView(BaseDetailView):
@@ -29,7 +28,6 @@ class DrugDetailView(BaseDetailView):
     form_class = DrugForm
     cancel_url = "drugs:drug_list"
     object_not_found_error_message = "Fármaco no encontrada"
-    title = "Detalles de fármaco"
 
 
 class DrugUpdateView(BaseUpdateView):
@@ -41,7 +39,6 @@ class DrugUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "drugs:drug_list"
     object_not_found_error_message = "Fármaco no encontrada"
-    title = "Editar fármaco"
 
 
 class DrugDeleteView(BaseDeleteView):
@@ -52,4 +49,3 @@ class DrugDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminado satisfactoriamente."
     cancel_url = "drugs:drug_list"
     object_not_found_error_message = "Fármaco no encontrada"
-    title = "Eliminar fármaco"

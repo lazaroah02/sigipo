@@ -1,4 +1,3 @@
-from django.core.validators import MinLengthValidator
 from django.db.models import (
     SET_NULL,
     BooleanField,
@@ -14,6 +13,7 @@ from django.db.models.manager import Manager
 
 from apps.core.models import TimeStampedModel
 from apps.geographic_location.models import Municipality
+from apps.patient.validators import IdentityCardValidator, only_numbers_validator
 
 
 class PatientQuerysetManager(Manager):
@@ -52,7 +52,7 @@ class Patient(TimeStampedModel):
     identity_card = CharField(
         verbose_name="Carnet de Identidad",
         max_length=11,
-        validators=[MinLengthValidator(11)],
+        validators=[IdentityCardValidator(6, 11), only_numbers_validator],
     )
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
@@ -87,11 +87,11 @@ class Patient(TimeStampedModel):
         ordering = ["updated_at"]
         constraints = [
             UniqueConstraint(
-                fields=["identity_card", "medical_record"],
-                name="patient_medical_record_identity_card_constraints",
+                fields=["identity_card"],
+                name="patient_identity_card_constraints",
             )
         ]
 
     def __str__(self):
         """Returns the name of the patient."""
-        return f"{self.first_name} {self.last_name} ({self.medical_record})"
+        return f"{self.first_name} {self.last_name} ({self.identity_card})"

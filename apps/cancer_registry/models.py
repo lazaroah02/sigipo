@@ -13,6 +13,7 @@ from django.db.models import (
 from django.db.models.manager import Manager
 
 from apps.classifiers.models import Morphology, Topography
+from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
 
@@ -107,6 +108,40 @@ class TreatmentPerformedChoices(IntegerChoices):
     NONE_TREATMENT = 0, "Ninguno"
 
 
+class TumorChoices(TextChoices):
+    TX = "TX" "TX"
+    T0 = "T0", "T0"
+    TIS = "Tis", "Tis"
+    T1 = "T1", "T1"
+    T2 = "T2", "T2"
+    T3 = "T3", "T3"
+    T4 = "T4", "T4"
+
+
+class NoduleChoices(TextChoices):
+    NX = "NX", "NX"
+    N0 = "N0", "N0"
+    N1 = "N1", "N1"
+    N2 = "N2", "N2"
+    N3 = "N3", "N3"
+
+
+class MetastasisChoices(TextChoices):
+    MX = "MX", "MX"
+    M0 = "M0", "M0"
+    M1 = "M1", "M1"
+
+
+class NeoplasmClassificationChoices(IntegerChoices):
+    CLINIC = 1, "Clínico"
+    PATHOLOGICAL = 2, "Patológico"
+
+
+class TumorClassificationChoices(IntegerChoices):
+    PRIMARY = 1, "Tumor primario"
+    METASTASIS = 2, "Metástasis sin tumor primario conocido"
+
+
 class Neoplasm(Model):
     """
     Model representation of a neoplasm
@@ -163,8 +198,36 @@ class Neoplasm(Model):
         blank=True,
     )
     date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
-    medic_that_report = CharField(
-        verbose_name="Médico que reporta", max_length=128, blank=True
+    medic_that_report = ForeignKey(
+        Doctor,
+        verbose_name="Médico que reporta",
+        on_delete=CASCADE,
+        null=True,
+        blank=True,
+    )
+    tumor = CharField(
+        verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
+    )
+    nodule = CharField(
+        verbose_name="Nódulo", choices=NoduleChoices.choices, max_length=10, blank=True
+    )
+    metastasis = CharField(
+        verbose_name="Metástasis",
+        choices=MetastasisChoices.choices,
+        max_length=10,
+        blank=True,
+    )
+    neoplasm_classification = IntegerField(
+        verbose_name="Clínico o Patológico",
+        blank=True,
+        null=True,
+        choices=NeoplasmClassificationChoices.choices,
+    )
+    tumor_classification = IntegerField(
+        verbose_name="Clasificación",
+        blank=True,
+        null=True,
+        choices=TumorClassificationChoices.choices,
     )
     treatment_performed = IntegerField(
         verbose_name="Tratamiento realizado",
@@ -181,75 +244,3 @@ class Neoplasm(Model):
 
     def __str__(self):
         return f"{self.patient}"
-
-
-class TumorChoices(TextChoices):
-    TX = "TX" "TX"
-    T0 = "T0", "T0"
-    TIS = "Tis", "Tis"
-    T1 = "T1", "T1"
-    T2 = "T2", "T2"
-    T3 = "T3", "T3"
-    T4 = "T4", "T4"
-
-
-class NoduleChoices(TextChoices):
-    NX = "NX", "NX"
-    N0 = "N0", "N0"
-    N1 = "N1", "N1"
-    N2 = "N2", "N2"
-    N3 = "N3", "N3"
-
-
-class MetastasisChoices(TextChoices):
-    MX = "MX", "MX"
-    M0 = "M0", "M0"
-    M1 = "M1", "M1"
-
-
-class TNMQuerysetManager(Manager):
-    """Manager to handle patient."""
-
-    def get_queryset(self):
-        """Fetch the related patient."""
-        return super().get_queryset().select_related("patient")
-
-
-class TNM(Model):
-    """
-    Model representation of a TNM (Tumor, nodule, metastasis)
-    """
-
-    patient = ForeignKey(
-        Patient,
-        on_delete=CASCADE,
-        verbose_name="Paciente",
-    )
-    tumor = CharField(
-        verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
-    )
-    nodule = CharField(
-        verbose_name="Nódulo", choices=NoduleChoices.choices, max_length=10, blank=True
-    )
-    metastasis = CharField(
-        verbose_name="Metástasis",
-        choices=MetastasisChoices.choices,
-        max_length=10,
-        blank=True,
-    )
-    is_clinical = BooleanField(verbose_name="Clínico", default=False, blank=True)
-    is_pathological = BooleanField(verbose_name="Patológico", default=False, blank=True)
-    is_recurrent = BooleanField(verbose_name="Recurrente", default=False, blank=True)
-    is_posttreatment = BooleanField(
-        verbose_name="Post-tratamiento", default=False, blank=True
-    )
-    is_autopsy = BooleanField(verbose_name="Autopsia", default=False, blank=True)
-    objects = TNMQuerysetManager()
-
-    class Meta:
-        verbose_name = "TNM"
-        verbose_name_plural = "TNMs"
-        ordering = ["pk"]
-
-    def __str__(self):
-        return f"{self.patient} {self.tumor} {self.nodule} {self.metastasis}"

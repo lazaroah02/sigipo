@@ -60,9 +60,6 @@
                   <a class="dropdown-item" href="{% url 'cancer_registry:neoplasm_list' %}"><i class="fa-solid fa-ribbon"></i> Neoplasias</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'cancer_registry:tnm_list' %}"><i class="fa-solid fa-dna"></i> TNM</a>
-                </li>
-                <li>
                   <label class="dropdown-item"><i class="fa-solid fa-square-poll-horizontal"></i> Clasificaciones <i class="fa-solid fa-angle-right"></i></label>
                   <ul class="dropdown-menu dropdown-submenu">
                     <li>
@@ -158,6 +155,24 @@
               <ul class="dropdown-menu" aria-labelledby="drugs">
                 <li>
                   <a class="dropdown-item" href="{% url 'drugs:drug_list' %}"><i class="fa-solid fa-tablets"></i> F&aacute;rmaco</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                 href="#"
+                 id="employee"
+                 role="button"
+                 data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                 <i class="fa-solid fa-hospital"></i> Hospital
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="employee">
+                <li>
+                  <a class="dropdown-item" href="{% url 'employee:group_list' %}"><i class="fa-solid fa-people-group"></i> Grupos de trabajo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'employee:doctor_list' %}"><i class="fa-solid fa-user-doctor"></i> Doctores</a>
                 </li>
               </ul>
             </li>

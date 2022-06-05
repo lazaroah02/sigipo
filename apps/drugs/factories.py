@@ -11,4 +11,4 @@ class DrugFactory(DjangoModelFactory):
         model = Drug
 
     name = FuzzyText(length=5)
-    type = FuzzyChoice(DrugTypeChoices.values)
+    drug_type = FuzzyChoice(DrugTypeChoices.values)
