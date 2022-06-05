@@ -1,0 +1,25 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+
+{% block crud_columns %}
+    {% create_header_column 'personal_record_number' 'Carnet de identidad' %}
+    {% create_header_column 'first_name' 'Nombre' %}
+    {% create_header_column 'last_name' 'Apellidos' %}
+    {% create_header_column 'group' 'Grupo' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.personal_record_number }}</td>
+            <td>{{ obj.first_name }}</td>
+            <td>{{ obj.last_name }}</td>
+            <td>{{ obj.group.name }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
