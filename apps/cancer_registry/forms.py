@@ -190,7 +190,7 @@ class NeoplasmForm(ModelForm):
         empty_label="----------",
         choices=MetastasisChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="Nódulo",
+        label="Metástasis",
         required=False,
     )
     neoplasm_classification = EmptyChoiceField(
@@ -302,6 +302,38 @@ class NeoplasmForm(ModelForm):
         label="Leucemia mieloide crónica",
         required=False,
     )
+
+    field_order = [
+        "patient",
+        "date_of_diagnosis",
+        "primary_site",
+        "laterality",
+        "histologic_type",
+        "tumor",
+        "nodule",
+        "metastasis",
+        "neoplasm_classification",
+        "tumor_classification",
+        "diagnostic_confirmation",
+        "clinical_extension",
+        "clinical_stage",
+        "differentiation_grade",
+        "is_pregnant",
+        "trimester",
+        "is_vih",
+        "hematological_transformation",
+        "date_of_first_symptoms",
+        "acute_lymphoid_leukemia",
+        "chronic_lymphoid_leukemia",
+        "acute_myeloid_leukemia",
+        "chronic_myeloid_leukemia",
+        "multiple_myeloma",
+        "source_of_info",
+        "group",
+        "medic_that_report",
+        "date_of_report",
+        "treatment_performed",
+    ]
 
     class Meta:
         model = Neoplasm

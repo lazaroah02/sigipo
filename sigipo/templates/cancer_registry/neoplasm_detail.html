@@ -1,6 +1,31 @@
 {% extends "base_crud/base_detail.html" %}
 
-{% load static i18n l10n %}
+{% load static i18n l10n form_customization %}
+
+{% block form_customization %}
+  {% if forloop.counter0 == 17 %}
+    {% close_div %}
+    <hr/>
+    <h5 class="text-center"><strong>SOLO PARA TUMORES DEL SISTEMA HEMATOPOYÉTICO Y DEL RETÍCULO ENDOTELIAL</strong></h5>
+    <hr/>
+  {% endif %}
+  {% if forloop.counter0 == 24 %}
+    {% close_div %}
+    <hr/>
+  {% endif %}
+  {% if forloop.counter0 >= 24 and forloop.counter0|divisibleby:2 or forloop.counter0 < 17 and forloop.counter0|divisibleby:2 or forloop.counter0 >= 17 and forloop.counter0 < 24 and forloop.counter|divisibleby:2 %}
+      {% create_div_row %}
+        <div class="col">
+          {{ block.super }}
+        </div>
+    {% if forloop.last %}{% close_div %}{% endif %}
+  {% else %}
+    <div class="col">
+      {{ block.super }}
+    </div>
+    {% close_div %}
+  {% endif %}
+{% endblock form_customization %}
 
 {% block endloads %}
 {{ block.super }}
