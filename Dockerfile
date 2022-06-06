@@ -15,8 +15,14 @@ ENV DB_PASSWORD ${DB_PASSWORD}
 
 WORKDIR /code
 
+# Install requirements
 RUN pip install --upgrade pip
 COPY requirements/* /code/requirements/
 RUN pip install -r requirements/production.txt
+
 COPY . /code/
 RUN mkdir /code/logs
+
+CMD ["python", "manage.py", "migrate", "--noinput"]
+
+EXPOSE 8000
