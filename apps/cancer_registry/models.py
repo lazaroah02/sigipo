@@ -89,10 +89,10 @@ class NeoplasmSourceOfInfoChoices(IntegerChoices):
 
 
 class NeoplasmQuerysetManager(Manager):
-    """Manager to handle patient."""
+    """Manager to handle related models."""
 
     def get_queryset(self):
-        """Fetch the related patient."""
+        """Fetch the related models."""
         return (
             super()
             .get_queryset()
