@@ -29,6 +29,7 @@ from apps.cancer_registry.models import (
     TumorClassificationChoices,
 )
 from apps.classifiers.models import Morphology, Topography
+from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.employee.models import Doctor, Group
 from apps.patient.models import Patient
@@ -60,9 +61,11 @@ class NeoplasmForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Fecha de diagnóstico",
                 "type": "date",
-            }
+            },
+            format="%Y-%m-%d",
         ),
         label="Fecha de diagnóstico",
+        required=False,
     )
     primary_site = ModelChoiceField(
         queryset=Topography.objects.all(),
@@ -80,15 +83,19 @@ class NeoplasmForm(ModelForm):
         ),
         label="Sitio primario",
     )
-    laterality = ChoiceField(
+    laterality = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmLateralityChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Lateralidad",
+        required=False,
     )
-    diagnostic_confirmation = ChoiceField(
+    diagnostic_confirmation = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmDiagnosticConfirmationChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Confirmación del Diagnóstico",
+        required=False,
     )
     histologic_type = ModelChoiceField(
         queryset=Morphology.objects.all(),
@@ -106,24 +113,29 @@ class NeoplasmForm(ModelForm):
         ),
         label="Tipo histológico",
     )
-    differentiation_grade = ChoiceField(
+    differentiation_grade = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmDifferentiationGradesChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Grado de diferenciación",
         required=False,
     )
-    clinical_extension = ChoiceField(
+    clinical_extension = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmClinicalExtensionsChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Extensión clínica",
         required=False,
     )
-    clinical_stage = ChoiceField(
+    clinical_stage = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmClinicalStageChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Etapa clínica",
+        required=False,
     )
-    source_of_info = ChoiceField(
+    source_of_info = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmSourceOfInfoChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Fuente de información",
@@ -154,34 +166,46 @@ class NeoplasmForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Fecha del reporte",
                 "type": "date",
-            }
+            },
+            format="%Y-%m-%d",
         ),
+        required=False,
         label="Fecha del reporte",
     )
-    tumor = ChoiceField(
+    tumor = EmptyChoiceField(
+        empty_label="----------",
         choices=TumorChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Tumor",
+        required=False,
     )
-    nodule = ChoiceField(
+    nodule = EmptyChoiceField(
+        empty_label="----------",
         choices=NoduleChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Nódulo",
+        required=False,
     )
-    metastasis = ChoiceField(
+    metastasis = EmptyChoiceField(
+        empty_label="----------",
         choices=MetastasisChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Nódulo",
+        required=False,
     )
-    neoplasm_classification = ChoiceField(
+    neoplasm_classification = EmptyChoiceField(
+        empty_label="----------",
         choices=NeoplasmClassificationChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Clínico o Patológico",
+        required=False,
     )
-    tumor_classification = ChoiceField(
+    tumor_classification = EmptyChoiceField(
+        empty_label="----------",
         choices=TumorClassificationChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Clasificación",
+        required=False,
     )
     medic_that_report = ModelChoiceField(
         queryset=Doctor.objects.all(),
@@ -219,7 +243,8 @@ class NeoplasmForm(ModelForm):
         required=False,
         label="Grupo que reporta",
     )
-    treatment_performed = ChoiceField(
+    treatment_performed = EmptyChoiceField(
+        empty_label="----------",
         choices=TreatmentPerformedChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Tratamiento realizado",
@@ -230,41 +255,48 @@ class NeoplasmForm(ModelForm):
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
         required=False,
     )
-    date_of_first_symptoms = date_of_report = DateField(
+    date_of_first_symptoms = DateField(
         widget=DateInput(
             attrs={
                 "class": "form-control",
                 "placeholder": "Fecha de primeros síntomas",
                 "type": "date",
-            }
+            },
+            format="%Y-%m-%d",
         ),
+        required=False,
         label="Fecha de primeros síntomas",
     )
-    acute_lymphoid_leukemia = ChoiceField(
+    acute_lymphoid_leukemia = EmptyChoiceField(
+        empty_label="----------",
         choices=AcuteLymphoidLeukemiaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Leucemia linfoide aguda (FAB)",
         required=False,
     )
-    chronic_lymphoid_leukemia = ChoiceField(
+    chronic_lymphoid_leukemia = EmptyChoiceField(
+        empty_label="----------",
         choices=ChronicLymphoidLeukemiaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Leucemia linfoide crónica (Rail)",
         required=False,
     )
-    acute_myeloid_leukemia = ChoiceField(
+    acute_myeloid_leukemia = EmptyChoiceField(
+        empty_label="----------",
         choices=AcuteMyeloidLeukemiaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Leucemia mieloide aguda (FAB)",
         required=False,
     )
-    multiple_myeloma = ChoiceField(
+    multiple_myeloma = EmptyChoiceField(
+        empty_label="----------",
         choices=MultipleMyelomaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Mieloma múltiple (Durie-Salmon)",
         required=False,
     )
-    chronic_myeloid_leukemia = ChoiceField(
+    chronic_myeloid_leukemia = EmptyChoiceField(
+        empty_label="----------",
         choices=ChronicMyeloidLeukemiaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Leucemia mieloide crónica",

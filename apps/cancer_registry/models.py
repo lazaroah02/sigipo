@@ -192,7 +192,11 @@ class Neoplasm(Model):
         on_delete=CASCADE,
         verbose_name="Paciente",
     )
-    date_of_diagnosis = DateField(verbose_name="Fecha de diagnóstico", blank=True)
+    date_of_diagnosis = DateField(
+        verbose_name="Fecha de diagnóstico",
+        blank=True,
+        null=True,
+    )
     primary_site = ForeignKey(
         Topography,
         verbose_name="Sitio primario",
@@ -204,10 +208,13 @@ class Neoplasm(Model):
         verbose_name="Lateralidad",
         choices=NeoplasmLateralityChoices.choices,
         blank=True,
+        null=True,
     )
     diagnostic_confirmation = IntegerField(
         verbose_name="Confirmación del Diagnóstico",
         choices=NeoplasmDiagnosticConfirmationChoices.choices,
+        blank=True,
+        null=True,
     )
     histologic_type = ForeignKey(
         Morphology,
@@ -220,14 +227,19 @@ class Neoplasm(Model):
         verbose_name="Grado de diferenciación",
         choices=NeoplasmDifferentiationGradesChoices.choices,
         blank=True,
+        null=True,
     )
     clinical_extension = SmallIntegerField(
         verbose_name="Extensión clínica",
         choices=NeoplasmClinicalExtensionsChoices.choices,
         blank=True,
+        null=True,
     )
     clinical_stage = SmallIntegerField(
-        verbose_name="Etapa clínica", choices=NeoplasmClinicalStageChoices.choices
+        verbose_name="Etapa clínica",
+        choices=NeoplasmClinicalStageChoices.choices,
+        blank=True,
+        null=True,
     )
     is_pregnant = BooleanField(verbose_name="¿Embarazada?", default=False)
     trimester = IntegerField(verbose_name="Trimestre", blank=True, null=True)
@@ -236,8 +248,13 @@ class Neoplasm(Model):
         verbose_name="Fuente de información",
         choices=NeoplasmSourceOfInfoChoices.choices,
         blank=True,
+        null=True,
     )
-    date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
+    date_of_report = DateField(
+        verbose_name="Fecha del reporte",
+        blank=True,
+        null=True,
+    )
     medic_that_report = ForeignKey(
         Doctor,
         verbose_name="Médico que reporta",
@@ -246,16 +263,25 @@ class Neoplasm(Model):
         blank=True,
     )
     tumor = CharField(
-        verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
+        verbose_name="Tumor",
+        choices=TumorChoices.choices,
+        max_length=10,
+        blank=True,
+        null=True,
     )
     nodule = CharField(
-        verbose_name="Nódulo", choices=NoduleChoices.choices, max_length=10, blank=True
+        verbose_name="Nódulo",
+        choices=NoduleChoices.choices,
+        max_length=10,
+        blank=True,
+        null=True,
     )
     metastasis = CharField(
         verbose_name="Metástasis",
         choices=MetastasisChoices.choices,
         max_length=10,
         blank=True,
+        null=True,
     )
     neoplasm_classification = IntegerField(
         verbose_name="Clínico o Patológico",
@@ -286,7 +312,9 @@ class Neoplasm(Model):
         verbose_name="Transformación hematológica", default=False
     )
     date_of_first_symptoms = DateField(
-        verbose_name="Fecha de primeros síntomas", blank=True
+        verbose_name="Fecha de primeros síntomas",
+        blank=True,
+        null=True,
     )
     acute_lymphoid_leukemia = IntegerField(
         verbose_name="Leucemia linfoide aguda (FAB)",

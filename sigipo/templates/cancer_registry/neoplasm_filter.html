@@ -16,10 +16,14 @@
             <td><a href="{% url "patient:oncologic_detail" obj.patient.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
             <td>{{ obj.primary_site }}</td>
             <td>{{ obj.histologic_type }}</td>
-            <td>{{ obj.get_clinical_stage_display }}</td>
-            <td>{{ obj.medic_that_report.name }}</td>
-            <td>{{ obj.date_of_report }}</td>
-            <td>{{ obj.date_of_diagnosis }}</td>
+            <td>{{ obj.get_clinical_stage_display|default_if_none:"" }}</td>
+            {% if obj.medic_that_report.pk %}
+                <td><a href="{% url "employee:doctor_detail" obj.medic_that_report.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.medic_that_report }}</a></td>
+            {% else %}
+                <td>{{ obj.medic_that_report|default_if_none:"" }}</td>
+            {% endif %}
+            <td>{{ obj.date_of_report|default_if_none:"" }}</td>
+            <td>{{ obj.date_of_diagnosis|default_if_none:"" }}</td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
