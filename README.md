@@ -25,7 +25,7 @@ python -m pip install -U pip wheel
 **(3)** Instalar las dependencias.
 
 ```sh
-pip install -r requirements/development.txt
+pip install -r requirements/develop.txt
 ```
 
 **(4)** Cree su archivo `.env` a partir del ejemplo:
