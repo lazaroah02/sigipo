@@ -96,7 +96,13 @@ class NeoplasmQuerysetManager(Manager):
         return (
             super()
             .get_queryset()
-            .select_related("patient", "primary_site", "histologic_type")
+            .select_related(
+                "patient",
+                "primary_site",
+                "histologic_type",
+                "medic_that_report",
+                "group",
+            )
         )
 
 
