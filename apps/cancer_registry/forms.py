@@ -329,9 +329,11 @@ class NeoplasmForm(ModelForm):
     field_order = [
         "patient",
         "date_of_diagnosis",
+        "age_at_diagnosis",
         "primary_site",
         "laterality",
         "histologic_type",
+        "psa",
         "tumor",
         "nodule",
         "metastasis",
