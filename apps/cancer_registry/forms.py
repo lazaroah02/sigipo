@@ -3,9 +3,11 @@ from django.forms import (
     CheckboxInput,
     ChoiceField,
     DateField,
+    FloatField,
+    IntegerField,
     ModelChoiceField,
 )
-from django.forms.widgets import DateInput, Select
+from django.forms.widgets import DateInput, NumberInput, Select
 from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import (
@@ -65,6 +67,26 @@ class NeoplasmForm(ModelForm):
             format="%Y-%m-%d",
         ),
         label="Fecha de diagnóstico",
+        required=False,
+    )
+    age_at_diagnosis = IntegerField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Edad al momento de diagnóstico",
+            },
+        ),
+        label="Edad al momento de diagnóstico",
+        required=False,
+    )
+    psa = FloatField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "PSA",
+            },
+        ),
+        label="PSA",
         required=False,
     )
     primary_site = ModelChoiceField(
@@ -151,6 +173,7 @@ class NeoplasmForm(ModelForm):
             (1, "Primer trimestre"),
             (2, "Segundo trimestre"),
             (3, "Tercer trimestre"),
+            (4, "Cuarto trimestre"),
         ),
         widget=Select(attrs={"class": "form-control"}),
         label="Trimestre",

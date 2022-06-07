@@ -3,6 +3,7 @@ from django.db.models import (
     BooleanField,
     CharField,
     DateField,
+    FloatField,
     ForeignKey,
     IntegerChoices,
     IntegerField,
@@ -200,6 +201,16 @@ class Neoplasm(Model):
     )
     date_of_diagnosis = DateField(
         verbose_name="Fecha de diagnóstico",
+        blank=True,
+        null=True,
+    )
+    age_at_diagnosis = IntegerField(
+        verbose_name="Edad al momento de diagnóstico",
+        blank=True,
+        null=True,
+    )
+    psa = FloatField(
+        verbose_name="PSA",
         blank=True,
         null=True,
     )
