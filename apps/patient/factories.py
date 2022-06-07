@@ -1,8 +1,8 @@
 import string
 
-from factory import LazyAttribute, SubFactory
+from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyChoice, FuzzyInteger, FuzzyText
+from factory.fuzzy import FuzzyChoice, FuzzyText
 
 from apps.geographic_location.factories import MunicipalityFactory
 from apps.patient.models import Patient, PatientRace
@@ -59,10 +59,11 @@ class PatientFactory(DjangoModelFactory):
     race = FuzzyChoice(PatientRace.values)
     medical_record = FuzzyText(length=32)
     is_oncologic = FuzzyChoice((True, False))
-    age_at_diagnosis = LazyAttribute(
-        lambda province: FuzzyInteger(0, high=100).fuzz()
-        if province.is_oncologic
-        else None
-    )
     residence_municipality = SubFactory(MunicipalityFactory)
     born_municipality = SubFactory(MunicipalityFactory)
+    street = FuzzyText(length=4)
+    number = FuzzyText(length=4)
+    building = FuzzyText(length=4)
+    apartment = FuzzyText(length=4)
+    between_streets = FuzzyText(length=4)
+    division = FuzzyText(length=4)

@@ -80,7 +80,6 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
                 data = filter_form.cleaned_data
                 patient_object = Patient.objects.get(
                     identity_card=data["identity_card"],
-                    medical_record=data["medical_record"],
                 )
                 detail_form = PatientOncologicReadOnlyForm(instance=patient_object)
             except Patient.DoesNotExist:

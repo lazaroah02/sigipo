@@ -6,7 +6,6 @@ from django.forms import (
     Form,
     HiddenInput,
     ModelChoiceField,
-    NumberInput,
     Select,
     Textarea,
     TextInput,
@@ -37,11 +36,35 @@ class BasePatientForm(ModelForm):
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Apellidos"}),
         label="Apellidos",
     )
-    address = CharField(
-        widget=Textarea(
-            attrs={"class": "form-control", "placeholder": "Dirección actual"}
-        ),
-        label="Dirección actual",
+    street = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Calle"}),
+        label="Calle",
+        required=False,
+    )
+    number = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Número"}),
+        label="Número",
+        required=False,
+    )
+    building = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Edificio"}),
+        label="Edificio",
+        required=False,
+    )
+    apartment = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Apartamento"}),
+        label="Apartamento",
+        required=False,
+    )
+    between_streets = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Entre calles"}),
+        label="Entre calles",
+        required=False,
+    )
+    division = CharField(
+        widget=Textarea(attrs={"class": "form-control", "placeholder": "Reparto"}),
+        label="Reparto",
+        required=False,
     )
     race = ChoiceField(
         choices=PatientRace.choices,
@@ -53,12 +76,6 @@ class BasePatientForm(ModelForm):
             attrs={"class": "form-control", "placeholder": "No. Historia Clínica"}
         ),
         label="No. Historia Clínica",
-    )
-    age_at_diagnosis = CharField(
-        widget=NumberInput(
-            {"class": "form-control", "placeholder": "Edad al momento del diagnóstico"}
-        ),
-        label="Edad al momento del diagnóstico",
     )
     residence_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -96,7 +113,6 @@ class BasePatientForm(ModelForm):
         "address",
         "race",
         "medical_record",
-        "age_at_diagnosis",
         "residence_municipality",
         "born_municipality",
     ]

@@ -6,7 +6,6 @@
     {% create_header_column 'first_name' 'Nombre' %}
     {% create_header_column 'last_name' 'Apellidos' %}
     {% create_header_column 'medical_record' 'No. Historia Clínica' %}
-    {% create_header_column 'age_at_diagnosis' 'Edad al momento del diagnóstico' %}
 {% endblock crud_columns %}
 
 {% block table_filters %}
@@ -74,7 +73,6 @@
             <td>{{ obj.first_name }}</td>
             <td>{{ obj.last_name }}</td>
             <td>{{ obj.medical_record }}</td>
-            <td>{{ obj.age_at_diagnosis }}</td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
