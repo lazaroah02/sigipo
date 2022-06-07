@@ -116,9 +116,7 @@ class Migration(migrations.Migration):
                 (
                     "sex",
                     models.IntegerField(
-                        blank=True,
                         choices=[(0, "No definido"), (1, "Masculino"), (2, "Femenino")],
-                        null=True,
                         verbose_name="Sexo",
                     ),
                 ),

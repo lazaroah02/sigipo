@@ -23,7 +23,7 @@ class DashboardTestCase(TestCase):
         )
         cls.neoplasm = NeoplasmFactory.create(
             patient__is_oncologic=True,
-            patient__age_at_diagnosis=19,
+            age_at_diagnosis=19,
         )
         cls.user = UserFactory.create()
 
