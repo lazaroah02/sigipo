@@ -2,6 +2,7 @@ from django.db.models import (
     SET_NULL,
     BooleanField,
     CharField,
+    DateField,
     ForeignKey,
     IntegerChoices,
     IntegerField,
@@ -44,6 +45,12 @@ class PatientRace(IntegerChoices):
     YELLOW = 4, "Amarillo"
 
 
+class SexChoices(IntegerChoices):
+    UNDEFINED = 0, "No definido"
+    MALE = 1, "Masculino"
+    FEMALE = 2, "Femenino"
+
+
 class Patient(TimeStampedModel):
     """Model representation of a patient."""
 
@@ -59,6 +66,17 @@ class Patient(TimeStampedModel):
     building = CharField(verbose_name="Edificio", max_length=255, blank=True, null=True)
     apartment = CharField(
         verbose_name="Apartamento", max_length=255, blank=True, null=True
+    )
+    sex = IntegerField(
+        verbose_name="Sexo",
+        choices=SexChoices.choices,
+        blank=True,
+        null=True,
+    )
+    date_of_birth = DateField(
+        verbose_name="Fecha de nacimiento",
+        blank=True,
+        null=True,
     )
     between_streets = CharField(
         verbose_name="Entre calles", max_length=255, blank=True, null=True

@@ -3,6 +3,8 @@ from django.forms import (
     CharField,
     CheckboxInput,
     ChoiceField,
+    DateField,
+    DateInput,
     Form,
     HiddenInput,
     ModelChoiceField,
@@ -13,7 +15,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
-from apps.patient.models import Patient, PatientRace
+from apps.patient.models import Patient, PatientRace, SexChoices
 
 
 class BasePatientForm(ModelForm):
@@ -73,6 +75,24 @@ class BasePatientForm(ModelForm):
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Raza",
     )
+    sex = ChoiceField(
+        choices=SexChoices.choices,
+        initial=SexChoices.UNDEFINED,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Sexo",
+    )
+    date_of_birth = DateField(
+        widget=DateInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Fecha de primeros síntomas",
+                "type": "date",
+            },
+            format="%Y-%m-%d",
+        ),
+        required=False,
+        label="Fecha de primeros síntomas",
+    )
     medical_record = CharField(
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "No. Historia Clínica"}
@@ -113,8 +133,15 @@ class BasePatientForm(ModelForm):
         "identity_card",
         "first_name",
         "last_name",
-        "address",
         "race",
+        "sex",
+        "date_of_birth",
+        "street",
+        "number",
+        "building",
+        "apartment",
+        "between_streets",
+        "division",
         "medical_record",
         "residence_municipality",
         "born_municipality",
