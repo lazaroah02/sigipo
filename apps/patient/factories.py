@@ -55,7 +55,6 @@ class PatientFactory(DjangoModelFactory):
             "Garcia",
         )
     )
-    address = FuzzyText(length=10)
     race = FuzzyChoice(PatientRace.values)
     medical_record = FuzzyText(length=32)
     is_oncologic = FuzzyChoice((True, False))
