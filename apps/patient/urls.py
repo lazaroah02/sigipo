@@ -13,6 +13,7 @@ from apps.patient.views import (
     PatientDeleteView,
     PatientDetailView,
     PatientUpdateView,
+    check_patient_created,
 )
 
 app_name = "patient"
@@ -71,6 +72,7 @@ urlpatterns = [
             model=Patient,
             filterset_class=NuclearMedicinePatientFilter,
             queryset=Patient.objects.all(),
+            template_name_suffix="_no_oncologic_filter",
         ),
         name="patient_list",
     ),
@@ -78,4 +80,9 @@ urlpatterns = [
     getUrl(NuclearMedicinePatientDetailView),
     getUrl(NuclearMedicinePatientUpdateView),
     getUrl(NuclearMedicinePatientDeleteView),
+    path(
+        "check_patient_created/<pk>/",
+        check_patient_created,
+        name="check_patient_created",
+    ),
 ]

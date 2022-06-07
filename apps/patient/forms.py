@@ -7,7 +7,6 @@ from django.forms import (
     HiddenInput,
     ModelChoiceField,
     Select,
-    Textarea,
     TextInput,
 )
 from django_select2.forms import ModelSelect2Widget
@@ -37,37 +36,40 @@ class BasePatientForm(ModelForm):
         label="Apellidos",
     )
     street = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Calle"}),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Calle"}),
         label="Calle",
         required=False,
     )
     number = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Número"}),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Número"}),
         label="Número",
         required=False,
     )
     building = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Edificio"}),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Edificio"}),
         label="Edificio",
         required=False,
     )
     apartment = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Apartamento"}),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Apartamento"}),
         label="Apartamento",
         required=False,
     )
     between_streets = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Entre calles"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Entre calles"}
+        ),
         label="Entre calles",
         required=False,
     )
     division = CharField(
-        widget=Textarea(attrs={"class": "form-control", "placeholder": "Reparto"}),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Reparto"}),
         label="Reparto",
         required=False,
     )
     race = ChoiceField(
         choices=PatientRace.choices,
+        initial=PatientRace.UNDEFINED,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Raza",
     )
@@ -76,6 +78,7 @@ class BasePatientForm(ModelForm):
             attrs={"class": "form-control", "placeholder": "No. Historia Clínica"}
         ),
         label="No. Historia Clínica",
+        required=False,
     )
     residence_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
@@ -130,9 +133,7 @@ class OncologicPatientForm(BasePatientForm):
 
 class NuclearMedicinePatientForm(BasePatientForm):
     is_oncologic = BooleanField(
-        label="¿Es oncológico?",
-        widget=CheckboxInput(attrs={"class": "form-check-input"}),
-        required=False,
+        widget=HiddenInput(attrs={"value": "false"}), required=False
     )
 
 
@@ -143,19 +144,22 @@ class PatientChangeStatusForm(Form):
         ),
         label="Carnet de identidad",
         max_length=11,
-    )
-    medical_record = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "No. Historia Clínica"}
-        ),
-        label="No. Historia Clínica",
+        min_length=6,
     )
 
 
 class PatientOncologicReadOnlyForm(OncologicPatientForm):
     """Form tho show Oncologic patient in read only mode."""
 
+    is_oncologic = BooleanField(
+        label="¿Es oncológico?",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for _, field in self.fields.items():
             field.widget.attrs["readonly"] = True
+            if isinstance(field.widget, CheckboxInput):
+                field.widget.attrs["disabled"] = True
