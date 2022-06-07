@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ("employee", "0001_initial"),
         ("classifiers", "0001_initial"),
-        ("patient", "0003_auto_20220604_1917"),
+        ("patient", "0002_patient_gender_view"),
     ]
 
     operations = [
@@ -363,6 +363,18 @@ class Migration(migrations.Migration):
                         to="classifiers.topography",
                         verbose_name="Sitio primario",
                     ),
+                ),
+                (
+                    "age_at_diagnosis",
+                    models.IntegerField(
+                        blank=True,
+                        null=True,
+                        verbose_name="Edad al momento de diagnóstico",
+                    ),
+                ),
+                (
+                    "psa",
+                    models.FloatField(blank=True, null=True, verbose_name="PSA"),
                 ),
             ],
             options={
