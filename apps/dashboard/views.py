@@ -30,14 +30,14 @@ MATCH_PROVINCE_CODE = Case(
     When(province_name="Isla de la Juventud", then=Value("cu-ij")),
 )
 
-less_than_20_count = Count("patient", filter=Q(patient__age_at_diagnosis__lt=20))
-patient_in_20s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(20, 29)))
-patient_in_30s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(30, 39)))
-patient_in_40s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(40, 49)))
-patient_in_50s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(50, 59)))
-patient_in_60s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(60, 69)))
-patient_in_70s = Count("patient", filter=Q(patient__age_at_diagnosis__range=(70, 79)))
-patient_more_than_80s = Count("patient", filter=Q(patient__age_at_diagnosis__gte=80))
+less_than_20_count = Count("patient", filter=Q(age_at_diagnosis__lt=20))
+patient_in_20s = Count("patient", filter=Q(age_at_diagnosis__range=(20, 29)))
+patient_in_30s = Count("patient", filter=Q(age_at_diagnosis__range=(30, 39)))
+patient_in_40s = Count("patient", filter=Q(age_at_diagnosis__range=(40, 49)))
+patient_in_50s = Count("patient", filter=Q(age_at_diagnosis__range=(50, 59)))
+patient_in_60s = Count("patient", filter=Q(age_at_diagnosis__range=(60, 69)))
+patient_in_70s = Count("patient", filter=Q(age_at_diagnosis__range=(70, 79)))
+patient_more_than_80s = Count("patient", filter=Q(age_at_diagnosis__gte=80))
 
 
 class Dashboard(LoginRequiredMixin, TemplateView):
@@ -48,7 +48,7 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         return (
             GenderCountView.objects.annotate(
-                total_count=F("female_count") + F("male_count")
+                total_count=Value(Patient.objects.only_oncologic().count())
             )
             .values("female_count", "male_count", "total_count")
             .first()
@@ -96,8 +96,10 @@ class Dashboard(LoginRequiredMixin, TemplateView):
                 return JsonResponse(data=data, safe=False)
             case "top10":
                 data = list(
-                    Neoplasm.objects.filter(primary_site__isnull=False)
-                    .values("primary_site__code", "primary_site__description")
+                    Neoplasm.objects.filter(
+                        primary_site__isnull=False, date_of_diagnosis__isnull=False
+                    )
+                    .values("primary_site__pk", "primary_site__name")
                     .annotate(
                         num_subjects=Count("patient"),
                         less_than_20=less_than_20_count,
@@ -113,7 +115,9 @@ class Dashboard(LoginRequiredMixin, TemplateView):
                 )
                 return JsonResponse(data=data, safe=False)
             case "ages":
-                data = Neoplasm.objects.filter(primary_site__isnull=False).aggregate(
+                data = Neoplasm.objects.filter(
+                    primary_site__isnull=False, date_of_diagnosis__isnull=False
+                ).aggregate(
                     num_subjects=Count("patient"),
                     less_than_20=less_than_20_count,
                     patient_in_20s=patient_in_20s,

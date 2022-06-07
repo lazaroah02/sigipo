@@ -2,11 +2,10 @@ from django.db.models import (
     SET_NULL,
     BooleanField,
     CharField,
+    DateField,
     ForeignKey,
     IntegerChoices,
     IntegerField,
-    PositiveSmallIntegerField,
-    TextField,
     UniqueConstraint,
 )
 from django.db.models.manager import Manager
@@ -46,6 +45,12 @@ class PatientRace(IntegerChoices):
     YELLOW = 4, "Amarillo"
 
 
+class SexChoices(IntegerChoices):
+    UNDEFINED = 0, "No definido"
+    MALE = 1, "Masculino"
+    FEMALE = 2, "Femenino"
+
+
 class Patient(TimeStampedModel):
     """Model representation of a patient."""
 
@@ -56,7 +61,27 @@ class Patient(TimeStampedModel):
     )
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
-    address = TextField(verbose_name="Dirección Actual")
+    street = CharField(verbose_name="Calle", max_length=255, blank=True, null=True)
+    number = CharField(verbose_name="Número", max_length=255, blank=True, null=True)
+    building = CharField(verbose_name="Edificio", max_length=255, blank=True, null=True)
+    apartment = CharField(
+        verbose_name="Apartamento", max_length=255, blank=True, null=True
+    )
+    sex = IntegerField(
+        verbose_name="Sexo",
+        choices=SexChoices.choices,
+        blank=True,
+        null=True,
+    )
+    date_of_birth = DateField(
+        verbose_name="Fecha de nacimiento",
+        blank=True,
+        null=True,
+    )
+    between_streets = CharField(
+        verbose_name="Entre calles", max_length=255, blank=True, null=True
+    )
+    division = CharField(verbose_name="Reparto", max_length=255, blank=True, null=True)
     race = IntegerField(
         verbose_name="Raza", choices=PatientRace.choices, default=PatientRace.UNDEFINED
     )
@@ -74,9 +99,6 @@ class Patient(TimeStampedModel):
         related_name="born_municipality",
         null=True,
         on_delete=SET_NULL,
-    )
-    age_at_diagnosis = PositiveSmallIntegerField(
-        verbose_name="Edad al momento del diagnóstico", blank=True, null=True
     )
     is_oncologic = BooleanField(default=False)
     objects = PatientQuerysetManager()

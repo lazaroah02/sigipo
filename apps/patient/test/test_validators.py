@@ -33,9 +33,10 @@ class ValidatorTestCase(TestCase):
             "address": "1",
             "race": "1",
             "medical_record": "1",
-            "age_at_diagnosis": "1",
             "residence_municipality": self.municipality.pk,
             "born_municipality": self.municipality.pk,
+            "sex": "1",
+            "date_of_birth": "2022-06-07",
         }
         form = OncologicPatientForm(data=data)
         self.assertTrue(form.is_valid())

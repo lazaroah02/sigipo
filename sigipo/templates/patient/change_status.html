@@ -17,11 +17,11 @@
         </div>
         <div class="card-body">
             {% csrf_token %}
-            <h5>¿Está seguro que desea hacer a "{{ object }}" un paciente oncológico?</h5>
+            <h5>¿Está seguro que desea hacer a "{{ object }}" un paciente {% if object.is_oncologic %}no {% endif %}oncológico?</h5>
         </div>
         <div class="card-footer text-muted">
             <div class="action-buttons">
-              <button type="submit" class="btn btn-info"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+              <button type="submit" class="btn btn-info"><i class="fa-solid fa-rotate"></i> Cambiar denominación</button>
               <a href="{% url 'patient:oncologic_change_status' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
             </div>
         </div>
@@ -55,7 +55,7 @@
                   <button type="submit" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
                   <a href="{% url 'patient:oncologic_list' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
                 {% else %}
-                  <a href="{% url 'patient:oncologic_change_status_confirmation' object.pk %}" class="btn btn-info"><i class="fa-solid fa-floppy-disk"></i> Guardar</a>
+                  <a href="{% url 'patient:oncologic_change_status_confirmation' object.pk %}" class="btn btn-info"><i class="fa-solid fa-rotate"></i> Cambiar denominación</a>
                   <a href="{% url 'patient:oncologic_change_status' %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Cancelar</a>
                 {% endif %}
             </div>

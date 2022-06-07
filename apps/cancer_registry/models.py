@@ -3,6 +3,7 @@ from django.db.models import (
     BooleanField,
     CharField,
     DateField,
+    FloatField,
     ForeignKey,
     IntegerChoices,
     IntegerField,
@@ -13,7 +14,7 @@ from django.db.models import (
 from django.db.models.manager import Manager
 
 from apps.classifiers.models import Morphology, Topography
-from apps.employee.models import Doctor
+from apps.employee.models import Doctor, Group
 from apps.patient.models import Patient
 
 
@@ -89,14 +90,20 @@ class NeoplasmSourceOfInfoChoices(IntegerChoices):
 
 
 class NeoplasmQuerysetManager(Manager):
-    """Manager to handle patient."""
+    """Manager to handle related models."""
 
     def get_queryset(self):
-        """Fetch the related patient."""
+        """Fetch the related models."""
         return (
             super()
             .get_queryset()
-            .select_related("patient", "primary_site", "histologic_type")
+            .select_related(
+                "patient",
+                "primary_site",
+                "histologic_type",
+                "medic_that_report",
+                "group",
+            )
         )
 
 
@@ -142,6 +149,46 @@ class TumorClassificationChoices(IntegerChoices):
     METASTASIS = 2, "Metástasis sin tumor primario conocido"
 
 
+class AcuteLymphoidLeukemiaChoices(IntegerChoices):
+    L1 = 1, "L1"
+    L2 = 2, "L2"
+    L3 = 3, "L3"
+
+
+class ChronicLymphoidLeukemiaChoices(IntegerChoices):
+    _0 = 1, "0"
+    _I = 2, "I"
+    II = 3, "II"
+    III = 4, "III"
+    IV = 5, "IV"
+
+
+class AcuteMyeloidLeukemiaChoices(IntegerChoices):
+    M0 = 0, "M0"
+    M1 = 1, "M1"
+    M2 = 2, "M2"
+    M3 = 3, "M3"
+    M4 = 4, "M4"
+    M5 = 5, "M5"
+    M6 = 6, "M6"
+    M7 = 7, "M7"
+
+
+class MultipleMyelomaChoices(IntegerChoices):
+    IA = 1, "Ia"
+    IB = 2, "Ib"
+    IIA = 3, "IIa"
+    IIB = 4, "IIb"
+    IIIA = 5, "IIIa"
+    IIIB = 6, "IIIb"
+
+
+class ChronicMyeloidLeukemiaChoices(IntegerChoices):
+    STABLE = 1, "Estable"
+    ACCELERATED = 2, "Acelerada"
+    BLAST_CRISIS = 3, "Crisis blástica "
+
+
 class Neoplasm(Model):
     """
     Model representation of a neoplasm
@@ -152,7 +199,21 @@ class Neoplasm(Model):
         on_delete=CASCADE,
         verbose_name="Paciente",
     )
-    date_of_diagnosis = DateField(verbose_name="Fecha de diagnóstico", blank=True)
+    date_of_diagnosis = DateField(
+        verbose_name="Fecha de diagnóstico",
+        blank=True,
+        null=True,
+    )
+    age_at_diagnosis = IntegerField(
+        verbose_name="Edad al momento de diagnóstico",
+        blank=True,
+        null=True,
+    )
+    psa = FloatField(
+        verbose_name="PSA",
+        blank=True,
+        null=True,
+    )
     primary_site = ForeignKey(
         Topography,
         verbose_name="Sitio primario",
@@ -164,10 +225,13 @@ class Neoplasm(Model):
         verbose_name="Lateralidad",
         choices=NeoplasmLateralityChoices.choices,
         blank=True,
+        null=True,
     )
     diagnostic_confirmation = IntegerField(
         verbose_name="Confirmación del Diagnóstico",
         choices=NeoplasmDiagnosticConfirmationChoices.choices,
+        blank=True,
+        null=True,
     )
     histologic_type = ForeignKey(
         Morphology,
@@ -180,14 +244,19 @@ class Neoplasm(Model):
         verbose_name="Grado de diferenciación",
         choices=NeoplasmDifferentiationGradesChoices.choices,
         blank=True,
+        null=True,
     )
     clinical_extension = SmallIntegerField(
         verbose_name="Extensión clínica",
         choices=NeoplasmClinicalExtensionsChoices.choices,
         blank=True,
+        null=True,
     )
     clinical_stage = SmallIntegerField(
-        verbose_name="Etapa clínica", choices=NeoplasmClinicalStageChoices.choices
+        verbose_name="Etapa clínica",
+        choices=NeoplasmClinicalStageChoices.choices,
+        blank=True,
+        null=True,
     )
     is_pregnant = BooleanField(verbose_name="¿Embarazada?", default=False)
     trimester = IntegerField(verbose_name="Trimestre", blank=True, null=True)
@@ -196,8 +265,13 @@ class Neoplasm(Model):
         verbose_name="Fuente de información",
         choices=NeoplasmSourceOfInfoChoices.choices,
         blank=True,
+        null=True,
     )
-    date_of_report = DateField(verbose_name="Fecha del reporte", blank=True)
+    date_of_report = DateField(
+        verbose_name="Fecha del reporte",
+        blank=True,
+        null=True,
+    )
     medic_that_report = ForeignKey(
         Doctor,
         verbose_name="Médico que reporta",
@@ -206,16 +280,25 @@ class Neoplasm(Model):
         blank=True,
     )
     tumor = CharField(
-        verbose_name="Tumor", choices=TumorChoices.choices, max_length=10, blank=True
+        verbose_name="Tumor",
+        choices=TumorChoices.choices,
+        max_length=10,
+        blank=True,
+        null=True,
     )
     nodule = CharField(
-        verbose_name="Nódulo", choices=NoduleChoices.choices, max_length=10, blank=True
+        verbose_name="Nódulo",
+        choices=NoduleChoices.choices,
+        max_length=10,
+        blank=True,
+        null=True,
     )
     metastasis = CharField(
         verbose_name="Metástasis",
         choices=MetastasisChoices.choices,
         max_length=10,
         blank=True,
+        null=True,
     )
     neoplasm_classification = IntegerField(
         verbose_name="Clínico o Patológico",
@@ -234,6 +317,51 @@ class Neoplasm(Model):
         blank=True,
         null=True,
         choices=TreatmentPerformedChoices.choices,
+    )
+    group = ForeignKey(
+        Group,
+        verbose_name="Grupo que reporta",
+        on_delete=CASCADE,
+        blank=True,
+        null=True,
+    )
+    hematological_transformation = BooleanField(
+        verbose_name="Transformación hematológica", default=False
+    )
+    date_of_first_symptoms = DateField(
+        verbose_name="Fecha de primeros síntomas",
+        blank=True,
+        null=True,
+    )
+    acute_lymphoid_leukemia = IntegerField(
+        verbose_name="Leucemia linfoide aguda (FAB)",
+        blank=True,
+        null=True,
+        choices=AcuteLymphoidLeukemiaChoices.choices,
+    )
+    chronic_lymphoid_leukemia = IntegerField(
+        verbose_name="Leucemia linfoide crónica (Rail)",
+        blank=True,
+        null=True,
+        choices=ChronicLymphoidLeukemiaChoices.choices,
+    )
+    acute_myeloid_leukemia = IntegerField(
+        verbose_name="Leucemia mieloide aguda (FAB)",
+        blank=True,
+        null=True,
+        choices=AcuteMyeloidLeukemiaChoices.choices,
+    )
+    multiple_myeloma = IntegerField(
+        verbose_name="Mieloma múltiple (Durie-Salmon)",
+        blank=True,
+        null=True,
+        choices=MultipleMyelomaChoices.choices,
+    )
+    chronic_myeloid_leukemia = IntegerField(
+        verbose_name="Leucemia mieloide crónica",
+        blank=True,
+        null=True,
+        choices=ChronicMyeloidLeukemiaChoices.choices,
     )
     objects = NeoplasmQuerysetManager()
 

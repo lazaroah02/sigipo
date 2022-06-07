@@ -10,8 +10,7 @@ class TopographyFactory(DjangoModelFactory):
     class Meta:
         model = Topography
 
-    code = FuzzyText(length=5)
-    description = FuzzyText(length=20)
+    name = FuzzyText(length=20)
 
 
 class MorphologyFactory(DjangoModelFactory):
@@ -20,8 +19,7 @@ class MorphologyFactory(DjangoModelFactory):
     class Meta:
         model = Morphology
 
-    code = FuzzyText(length=5)
-    description = FuzzyText(length=20)
+    name = FuzzyText(length=20)
 
 
 class StudyFactory(DjangoModelFactory):

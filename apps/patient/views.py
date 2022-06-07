@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import warning
-from django.http import Http404
+from django.http import Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_GET
 from django.views.generic import TemplateView
 
 from apps.core.views import (
@@ -29,6 +31,7 @@ class PatientCreateView(BaseCreateView):
     success_url = reverse_lazy("patient:oncologic_list")
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
+    template_name = "patient/patient_create.html"
 
 
 class PatientDetailView(BaseDetailView):
@@ -80,7 +83,6 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
                 data = filter_form.cleaned_data
                 patient_object = Patient.objects.get(
                     identity_card=data["identity_card"],
-                    medical_record=data["medical_record"],
                 )
                 detail_form = PatientOncologicReadOnlyForm(instance=patient_object)
             except Patient.DoesNotExist:
@@ -88,7 +90,8 @@ class PatientChangeStatus(LoginRequiredMixin, TemplateView):
         return {"filter": filter_form, "object": patient_object, "form": detail_form}
 
     def post(self, request, *args, **kwargs):
-        Patient.objects.filter(pk=kwargs["pk"]).update(is_oncologic=True)
+        is_oncologic = Patient.objects.get(pk=kwargs["pk"]).is_oncologic
+        Patient.objects.filter(pk=kwargs["pk"]).update(is_oncologic=(not is_oncologic))
         warning(request, "Estado de paciente actualizado.")
         return redirect("patient:oncologic_list")
 
@@ -125,3 +128,11 @@ class NuclearMedicinePatientDeleteView(BaseDeleteView):
     model = Patient
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
+
+
+@login_required
+@require_GET
+def check_patient_created(request: HttpRequest, pk: str | int) -> JsonResponse:
+    return JsonResponse(
+        data={"exist": Patient.objects.filter(identity_card=pk).exists()}, safe=False
+    )

@@ -1,4 +1,36 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, TypedChoiceField
+
+
+class ChoiceField(TypedChoiceField):
+    def __init__(
+        self,
+        choices=(),
+        empty_label=None,
+        required=True,
+        widget=None,
+        label=None,
+        initial=None,
+        help_text=None,
+        empty_value=None,
+        *args,
+        **kwargs,
+    ):
+
+        # prepend an empty label if it exists (and field is not required!)
+        if not required and empty_label is not None:
+            choices = tuple([(None, empty_label)] + list(choices))  # pragma: no cover
+
+        super().__init__(
+            choices=choices,
+            required=required,
+            widget=widget,
+            label=label,
+            initial=initial,
+            help_text=help_text,
+            empty_value=empty_value,
+            *args,
+            **kwargs,
+        )
 
 
 class ModelForm(ModelForm):

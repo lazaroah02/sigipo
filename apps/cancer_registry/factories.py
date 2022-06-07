@@ -2,10 +2,15 @@ import datetime as dt
 
 from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyChoice, FuzzyDate
+from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyFloat, FuzzyInteger
 
 from apps.cancer_registry.models import (
+    AcuteLymphoidLeukemiaChoices,
+    AcuteMyeloidLeukemiaChoices,
+    ChronicLymphoidLeukemiaChoices,
+    ChronicMyeloidLeukemiaChoices,
     MetastasisChoices,
+    MultipleMyelomaChoices,
     Neoplasm,
     NeoplasmClassificationChoices,
     NeoplasmClinicalExtensionsChoices,
@@ -20,7 +25,7 @@ from apps.cancer_registry.models import (
     TumorClassificationChoices,
 )
 from apps.classifiers.factories import MorphologyFactory, TopographyFactory
-from apps.employee.factories import DoctorFactory
+from apps.employee.factories import DoctorFactory, GroupFactory
 from apps.patient.factories import PatientFactory
 
 
@@ -36,6 +41,8 @@ class NeoplasmFactory(DjangoModelFactory):
     medic_that_report = SubFactory(DoctorFactory)
     date_of_report = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
     date_of_diagnosis = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
+    age_at_diagnosis = FuzzyInteger(0, high=10)
+    psa = FuzzyFloat(0, high=10)
     laterality = FuzzyChoice(NeoplasmLateralityChoices.values)
     diagnostic_confirmation = FuzzyChoice(NeoplasmDiagnosticConfirmationChoices.values)
     differentiation_grade = FuzzyChoice(NeoplasmDifferentiationGradesChoices.values)
@@ -51,3 +58,11 @@ class NeoplasmFactory(DjangoModelFactory):
     metastasis = FuzzyChoice(MetastasisChoices.values)
     neoplasm_classification = FuzzyChoice(NeoplasmClassificationChoices.values)
     tumor_classification = FuzzyChoice(TumorClassificationChoices.values)
+    group = SubFactory(GroupFactory)
+    hematological_transformation = FuzzyChoice((True, False))
+    date_of_first_symptoms = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
+    acute_lymphoid_leukemia = FuzzyChoice(AcuteLymphoidLeukemiaChoices.values)
+    chronic_lymphoid_leukemia = FuzzyChoice(ChronicLymphoidLeukemiaChoices.values)
+    acute_myeloid_leukemia = FuzzyChoice(AcuteMyeloidLeukemiaChoices.values)
+    multiple_myeloma = FuzzyChoice(MultipleMyelomaChoices.values)
+    chronic_myeloid_leukemia = FuzzyChoice(ChronicMyeloidLeukemiaChoices.values)

@@ -7,7 +7,11 @@ from apps.patient.models import Patient
 class PatientAdmin(ModelAdmin):
     """Municipality Django Admin view."""
 
-    list_display = ("identity_card", "first_name", "last_name", "address")
+    list_display = (
+        "identity_card",
+        "first_name",
+        "last_name",
+    )
     list_filter = ("born_municipality", "residence_municipality")
     search_fields = (
         "identity_card",

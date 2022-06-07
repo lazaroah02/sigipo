@@ -22,10 +22,9 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("code", models.CharField(max_length=10, verbose_name="Código")),
                 (
-                    "description",
-                    models.CharField(max_length=255, verbose_name="Descripción"),
+                    "name",
+                    models.CharField(max_length=255, verbose_name="Nombre"),
                 ),
             ],
             options={
@@ -86,10 +85,9 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("code", models.CharField(max_length=5, verbose_name="Código")),
                 (
-                    "description",
-                    models.CharField(max_length=255, verbose_name="Descripción"),
+                    "name",
+                    models.CharField(max_length=255, verbose_name="Nombre"),
                 ),
             ],
             options={

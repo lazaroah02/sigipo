@@ -83,3 +83,13 @@ class PatientViewTestCase(TestCase):
         )
         self.patient.refresh_from_db()
         self.assertEqual(self.patient.is_oncologic, True)
+
+    def test_check_patient_created(self):
+        """Test check_patient_created view."""
+        response = self.client.get(
+            reverse(
+                "patient:check_patient_created",
+                args=(self.patient.identity_card,),
+            )
+        )
+        self.assertTrue(response.json()["exist"])

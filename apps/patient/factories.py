@@ -1,11 +1,12 @@
+import datetime as dt
 import string
 
-from factory import LazyAttribute, SubFactory
+from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyChoice, FuzzyInteger, FuzzyText
+from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyText
 
 from apps.geographic_location.factories import MunicipalityFactory
-from apps.patient.models import Patient, PatientRace
+from apps.patient.models import Patient, PatientRace, SexChoices
 
 
 class PatientFactory(DjangoModelFactory):
@@ -55,14 +56,16 @@ class PatientFactory(DjangoModelFactory):
             "Garcia",
         )
     )
-    address = FuzzyText(length=10)
     race = FuzzyChoice(PatientRace.values)
     medical_record = FuzzyText(length=32)
     is_oncologic = FuzzyChoice((True, False))
-    age_at_diagnosis = LazyAttribute(
-        lambda province: FuzzyInteger(0, high=100).fuzz()
-        if province.is_oncologic
-        else None
-    )
     residence_municipality = SubFactory(MunicipalityFactory)
+    date_of_birth = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
+    sex = FuzzyChoice(choices=SexChoices.values)
     born_municipality = SubFactory(MunicipalityFactory)
+    street = FuzzyText(length=4)
+    number = FuzzyText(length=4)
+    building = FuzzyText(length=4)
+    apartment = FuzzyText(length=4)
+    between_streets = FuzzyText(length=4)
+    division = FuzzyText(length=4)
