@@ -1,4 +1,3 @@
-from django.core.validators import MaxLengthValidator
 from django.db.models import CASCADE, CharField, ForeignKey, Model
 from django.db.models.manager import Manager
 
@@ -25,10 +24,10 @@ class DoctorQuerysetManager(Manager):
 
 
 class Doctor(Model):
-    first_name = CharField(
-        verbose_name="Nombre", max_length=128, validators=[MaxLengthValidator(6)]
+    first_name = CharField(verbose_name="Nombre", max_length=255)
+    last_name = CharField(
+        verbose_name="Apellidos", max_length=255, blank=True, null=True
     )
-    last_name = CharField(verbose_name="Apellidos", max_length=255)
     personal_record_number = CharField(
         verbose_name="Número de registro", max_length=255, primary_key=True
     )
