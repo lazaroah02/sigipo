@@ -85,7 +85,9 @@ class Patient(TimeStampedModel):
     race = IntegerField(
         verbose_name="Raza", choices=PatientRace.choices, default=PatientRace.UNDEFINED
     )
-    medical_record = CharField(verbose_name="No. Historia Clínica", max_length=32)
+    medical_record = CharField(
+        verbose_name="No. Historia Clínica", max_length=32, blank=True, null=True
+    )
     residence_municipality = ForeignKey(
         Municipality,
         verbose_name="Municipio de residencia",
