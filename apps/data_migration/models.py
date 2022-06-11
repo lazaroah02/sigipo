@@ -1,8 +1,11 @@
+import datetime as dt
+
 from django.db import models
 
 from apps.classifiers.models import Morphology, Topography
 from apps.employee.models import Doctor, Group
 from apps.geographic_location.models import Municipality, Province
+from apps.patient.models import Patient, PatientRace, SexChoices
 
 
 class MariaDBManager(models.Manager):
@@ -102,6 +105,18 @@ class Municipio(DataMigrationModel):
         db_table = "tn_municipios"
 
 
+def get_date(ci):
+    siglo = ci[6]
+    siglo = 18 if siglo == 9 else 19 if siglo in ("0", "1", "2", "3", "4", "5") else 20
+    year = int(f"{siglo}{ci[0:2]}")
+    mes = int(ci[2:4])
+    day = int(ci[4:6])
+    try:
+        return dt.date(year=year, month=mes, day=day)
+    except ValueError:
+        return None
+
+
 class Paciente(DataMigrationModel):
     ci = models.CharField(max_length=255, db_column="CI", primary_key=True)
     apellido1 = models.CharField(
@@ -133,12 +148,8 @@ class Paciente(DataMigrationModel):
         blank=True,
         null=True,
     )
-    municipio = models.ForeignKey(
-        Municipio,
-        db_column="municipio",
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
+    municipio = models.CharField(
+        max_length=255, db_column="municipio", blank=True, null=True
     )
     embarazada = models.IntegerField(db_column="embarazada", blank=True, null=True)
     trimestre = models.CharField(
@@ -146,6 +157,42 @@ class Paciente(DataMigrationModel):
     )
     vih = models.IntegerField(db_column="vih+", blank=True, null=True)
     hc = models.CharField(max_length=255, db_column="hc", blank=True, null=True)
+
+    def to_postgres_db(self, related=None):
+        return Patient(
+            identity_card=self.ci,
+            first_name=self.nombres,
+            last_name=f"{self.apellido1} {self.apellido2}",
+            street=self.calle,
+            number=self.numero,
+            building=self.edificio,
+            apartment=self.apartamento,
+            sex=SexChoices.UNDEFINED
+            if self.sexo not in ("F", "M")
+            else SexChoices.FEMALE
+            if self.sexo == "F"
+            else SexChoices.MALE,
+            date_of_birth=None
+            if len(self.ci) != 11 or self.ci[6:11] == "00000"
+            else get_date(self.ci),
+            between_streets=self.entre,
+            division=self.localidad,
+            race=PatientRace.UNDEFINED
+            if self.piel not in ("Blanca", "Mestiza", "Negra")
+            else PatientRace.BLACK
+            if self.piel == "Negra"
+            else PatientRace.WHITE
+            if self.piel == "Blanca"
+            else PatientRace.HALF_BLOOD,
+            medical_record=self.hc,
+            residence_municipality=None
+            if self.municipio
+            else related.get(self.municipio, None),
+            born_municipality=None
+            if self.municipio
+            else related.get(self.municipio, None),
+            is_oncologic=True,
+        )
 
     class Meta(DataMigrationModel.Meta):
         db_table = "t1_datosgeneralespaciente"

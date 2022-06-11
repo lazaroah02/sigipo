@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.db.models import Q
 
 from apps.classifiers.models import Morphology, Topography
 from apps.data_migration.models import (
@@ -8,10 +9,12 @@ from apps.data_migration.models import (
     Localizacion,
     Medico,
     Municipio,
+    Paciente,
     Provincia,
 )
 from apps.employee.models import Doctor, Group
 from apps.geographic_location.models import Municipality, Province
+from apps.patient.models import Patient
 
 
 class Command(BaseCommand):
@@ -72,11 +75,28 @@ class Command(BaseCommand):
                 municipality.to_postgres_db(province_related)
                 for municipality in Municipio.objects.all()
             ]
+            municipality_related = {
+                municipality.name: municipality for municipality in municipality_data
+            }
             Municipality.objects.bulk_create(municipality_data)
             self.stdout.write(
                 self.style.SUCCESS(
                     "Successfully migrated municipality model '%s' instances"
                     % len(municipality_data)
+                )
+            )
+            patient_data = [
+                patient.to_postgres_db(municipality_related)
+                for patient in Paciente.objects.filter(
+                    ~Q(ci=""), nombres__isnull=False, ci__isnull=False
+                )
+            ]
+            {patient.identity_card: patient for patient in patient_data}
+            Patient.objects.bulk_create(patient_data)
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "Successfully migrated patient model '%s' instances"
+                    % len(patient_data)
                 )
             )
 
