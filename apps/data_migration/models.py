@@ -186,10 +186,10 @@ class Paciente(DataMigrationModel):
             else PatientRace.HALF_BLOOD,
             medical_record=self.hc,
             residence_municipality=None
-            if self.municipio
+            if self.municipio is None
             else related.get(self.municipio, None),
             born_municipality=None
-            if self.municipio
+            if self.municipio is None
             else related.get(self.municipio, None),
             is_oncologic=True,
         )
