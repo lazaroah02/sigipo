@@ -1,0 +1,31 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="icon" type="image/png" href="{% static 'images/ribbon.png' %}"/>
+    <title>
+        SiGiPO
+    </title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/external/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/internal/main-style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/internal/login.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/external/all.min.css' %}"/>
+    <!-- Scripts -->
+    <script src="{% static 'js/external/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/external/jquery-3.6.0.min.js' %}"></script>
+  </head>
+  <body>
+    <section class="h-100 gradient-form">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

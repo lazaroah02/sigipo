@@ -2,6 +2,7 @@
 """
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.views import PasswordChangeView
 from django.urls import include, path
 
 urlpatterns = [
@@ -17,6 +18,14 @@ urlpatterns = [
     path("employee/", include("apps.employee.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
+    # security
+    path(
+        "change-password/",
+        PasswordChangeView.as_view(
+            template_name="registration/changepassword.html", success_url="/"
+        ),
+        name="change_password",
+    ),
 ]
 
 if settings.DEBUG:  # pragma: no cover
