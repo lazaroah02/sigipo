@@ -1,19 +1,24 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import CheckboxInput
-from django.http import Http404, HttpRequest
-from django.shortcuts import redirect
+from django.http import Http404, HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
 from django.urls import path, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
 
-class PaginationFilterView(LoginRequiredMixin, FilterView):
+def http_403(request: HttpRequest, exception) -> HttpResponse:
+    return render(request, "400/403.html")
+
+
+class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterView):
     """FilterView with pagination."""
 
     paginate_by = 30
     extra_context: dict = None
+    permission_required = ()
 
     def get_ordering(self):
         """Return the field or fields to use for ordering the queryset."""
@@ -122,11 +127,17 @@ class GetObjectErrorMixin:
 
 
 class BaseCreateView(
-    LoginRequiredMixin, SuccessMessageMixin, CancelUrlMixin, ViewTitleMixin, CreateView
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    SuccessMessageMixin,
+    CancelUrlMixin,
+    ViewTitleMixin,
+    CreateView,
 ):
     """Base create view."""
 
     template_name = "base_crud/base_create.html"
+    permission_required = ()
 
     def __init__(self, **kwargs):
         self.title = f"Añadir {self.model._meta.verbose_name.lower()}"
@@ -135,6 +146,7 @@ class BaseCreateView(
 
 class BaseUpdateView(
     LoginRequiredMixin,
+    PermissionRequiredMixin,
     SuccessMessageMixin,
     GetObjectErrorMixin,
     CancelUrlMixin,
@@ -144,6 +156,7 @@ class BaseUpdateView(
     """Base update view."""
 
     template_name = "base_crud/base_update.html"
+    permission_required = ()
 
     def __init__(self, **kwargs):
         self.title = f"Editar {self.model._meta.verbose_name.lower()}"
@@ -152,6 +165,7 @@ class BaseUpdateView(
 
 class BaseDetailView(
     LoginRequiredMixin,
+    PermissionRequiredMixin,
     GetObjectErrorMixin,
     CancelUrlMixin,
     ViewTitleMixin,
@@ -161,6 +175,7 @@ class BaseDetailView(
 
     template_name = "base_crud/base_detail.html"
     form_class = None
+    permission_required = ()
 
     def __init__(self, **kwargs):
         self.title = f"Detalles de {self.model._meta.verbose_name.lower()}"
@@ -192,6 +207,7 @@ class BaseDetailView(
 
 class BaseDeleteView(
     LoginRequiredMixin,
+    PermissionRequiredMixin,
     SuccessMessageMixin,
     GetObjectErrorMixin,
     CancelUrlMixin,
@@ -201,6 +217,7 @@ class BaseDeleteView(
     """Base delete view."""
 
     template_name = "base_crud/base_delete.html"
+    permission_required = ()
 
     def __init__(self, **kwargs):
         self.title = f"Eliminar {self.model._meta.verbose_name.lower()}"

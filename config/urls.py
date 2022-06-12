@@ -23,3 +23,6 @@ if settings.DEBUG:  # pragma: no cover
     urlpatterns += [
         path("__debug__/", include("debug_toolbar.urls")),
     ]
+
+# HTTP errors
+handler403 = "apps.core.views.http_403"

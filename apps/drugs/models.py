@@ -17,3 +17,4 @@ class Drug(Model):
         verbose_name = "Fármaco"
         verbose_name_plural = "Fármacos"
         ordering = ["pk"]
+        default_permissions = ()

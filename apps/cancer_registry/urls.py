@@ -20,6 +20,7 @@ urlpatterns = [
             model=Neoplasm,
             filterset_class=NeoplasmFilter,
             queryset=Neoplasm.objects.all(),
+            permission_required="cancer_registry_view",
         ),
         name="neoplasm_list",
     ),

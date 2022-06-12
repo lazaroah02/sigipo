@@ -21,6 +21,7 @@ class NeoplasmCreateView(BaseCreateView):
     cancel_url = "cancer_registry:neoplasm_list"
     title = "Añadir neoplasia"
     template_name = "cancer_registry/neoplasm_create.html"
+    permission_required = "cancer_registry_manage"
 
 
 class NeoplasmDetailView(BaseDetailView):
@@ -32,6 +33,7 @@ class NeoplasmDetailView(BaseDetailView):
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Detalles de neoplasia"
     template_name = "cancer_registry/neoplasm_detail.html"
+    permission_required = "cancer_registry_view"
 
 
 class NeoplasmUpdateView(BaseUpdateView):
@@ -45,6 +47,7 @@ class NeoplasmUpdateView(BaseUpdateView):
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Editar neoplasia"
     template_name = "cancer_registry/neoplasm_update.html"
+    permission_required = "cancer_registry_manage"
 
 
 class NeoplasmDeleteView(BaseDeleteView):
@@ -56,3 +59,4 @@ class NeoplasmDeleteView(BaseDeleteView):
     cancel_url = "cancer_registry:neoplasm_list"
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Eliminar neoplasia"
+    permission_required = "cancer_registry_manage"
