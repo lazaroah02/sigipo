@@ -167,3 +167,15 @@ SELECT2_CSS = ""
 SELECT2_I18N_PATH = ""
 
 LOGOUT_REDIRECT_URL = "/"
+
+LOGIN_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
+
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD", None)
+
+EMAIL_HOST_USER = os.environ.get("EMAIL_USER", None)
+
+EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
