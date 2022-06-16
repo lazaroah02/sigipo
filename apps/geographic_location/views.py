@@ -19,6 +19,7 @@ class ProvinceCreateView(BaseCreateView):
     success_url = reverse_lazy("geographic_location:province_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:province_list"
+    permission_required = "cancer_registry_view"
 
 
 class ProvinceDetailView(BaseDetailView):
@@ -28,6 +29,7 @@ class ProvinceDetailView(BaseDetailView):
     form_class = ProvinceForm
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class ProvinceUpdateView(BaseUpdateView):
@@ -39,6 +41,7 @@ class ProvinceUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class ProvinceDeleteView(BaseDeleteView):
@@ -49,6 +52,7 @@ class ProvinceDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:province_list"
     object_not_found_error_message = "Provincia no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 # * Municipality View
@@ -60,6 +64,7 @@ class MunicipalityCreateView(BaseCreateView):
     success_url = reverse_lazy("geographic_location:municipality_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:municipality_list"
+    permission_required = "cancer_registry_view"
 
 
 class MunicipalityDetailView(BaseDetailView):
@@ -69,6 +74,7 @@ class MunicipalityDetailView(BaseDetailView):
     form_class = MunicipalityForm
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class MunicipalityUpdateView(BaseUpdateView):
@@ -80,6 +86,7 @@ class MunicipalityUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class MunicipalityDeleteView(BaseDeleteView):
@@ -90,3 +97,4 @@ class MunicipalityDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
+    permission_required = "cancer_registry_view"

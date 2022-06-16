@@ -37,6 +37,7 @@ class OncologicStudyCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:oncologic_study_list")
     success_message = "Estudio oncológico guardado correctamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"
+    permission_required = "cancer_registry_manage"
 
 
 class OncologicStudyDetailView(BaseDetailView):
@@ -46,6 +47,7 @@ class OncologicStudyDetailView(BaseDetailView):
     form_class = OncologicStudyDetailForm
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class OncologicStudyUpdateView(BaseUpdateView):
@@ -57,6 +59,7 @@ class OncologicStudyUpdateView(BaseUpdateView):
     success_message = "Estudio oncológico guardado correctamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 class OncologicStudyDeleteView(BaseDeleteView):
@@ -67,6 +70,7 @@ class OncologicStudyDeleteView(BaseDeleteView):
     success_message = "Estudio oncológico eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:oncologic_study_list"
     object_not_found_error_message = "Estudio oncológico no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 # * HormonalStudy Views
@@ -78,6 +82,7 @@ class HormonalStudyCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:hormonal_study_list")
     success_message = "Estudio hormonal guardado correctamente."
     cancel_url = "nuclear_medicine:hormonal_study_list"
+    permission_required = "cancer_registry_manage"
 
 
 class HormonalStudyDetailView(BaseDetailView):
@@ -87,6 +92,7 @@ class HormonalStudyDetailView(BaseDetailView):
     form_class = HormonalStudyDetailForm
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class HormonalStudyUpdateView(BaseUpdateView):
@@ -98,6 +104,7 @@ class HormonalStudyUpdateView(BaseUpdateView):
     success_message = "Estudio hormonal guardado correctamente."
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrado"
+    permission_required = "cancer_registry_view"
 
 
 class HormonalStudyDeleteView(BaseDeleteView):
@@ -108,6 +115,7 @@ class HormonalStudyDeleteView(BaseDeleteView):
     success_message = "Estudio hormonal eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:hormonal_study_list"
     object_not_found_error_message = "Estudio hormonal no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 # * OncologicResult Views
@@ -119,6 +127,7 @@ class OncologicResultCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:oncologic_result_list")
     success_message = "Resultado oncológico guardado correctamente."
     cancel_url = "nuclear_medicine:oncologic_result_list"
+    permission_required = "cancer_registry_manage"
 
 
 class OncologicResultDetailView(BaseDetailView):
@@ -128,6 +137,7 @@ class OncologicResultDetailView(BaseDetailView):
     form_class = OncologicResultForm
     cancel_url = "nuclear_medicine:oncologic_result_list"
     object_not_found_error_message = "Resultado oncológico no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class OncologicResultUpdateView(BaseUpdateView):
@@ -139,6 +149,7 @@ class OncologicResultUpdateView(BaseUpdateView):
     success_message = "Estudio oncológico guardado correctamente."
     cancel_url = "nuclear_medicine:oncologic_result_list"
     object_not_found_error_message = "Estudio oncológico no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 class OncologicResultDeleteView(BaseDeleteView):
@@ -149,6 +160,7 @@ class OncologicResultDeleteView(BaseDeleteView):
     success_message = "Resultado oncológico eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:oncologic_result_list"
     object_not_found_error_message = "Resultado oncológico no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 # * HormonalResult Views
@@ -160,6 +172,7 @@ class HormonalResultCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:hormonal_result_list")
     success_message = "Resultado hormonal guardado correctamente."
     cancel_url = "nuclear_medicine:hormonal_result_list"
+    permission_required = "cancer_registry_manage"
 
 
 class HormonalResultDetailView(BaseDetailView):
@@ -169,6 +182,7 @@ class HormonalResultDetailView(BaseDetailView):
     form_class = HormonalResultForm
     cancel_url = "nuclear_medicine:hormonal_result_list"
     object_not_found_error_message = "Resultado hormonal no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class HormonalResultUpdateView(BaseUpdateView):
@@ -180,6 +194,7 @@ class HormonalResultUpdateView(BaseUpdateView):
     success_message = "Estudio hormonal guardado correctamente."
     cancel_url = "nuclear_medicine:hormonal_result_list"
     object_not_found_error_message = "Estudio hormonal no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 class HormonalResultDeleteView(BaseDeleteView):
@@ -190,6 +205,7 @@ class HormonalResultDeleteView(BaseDeleteView):
     success_message = "Resultado hormonal eliminado satisfactoriamente."
     cancel_url = "nuclear_medicine:hormonal_result_list"
     object_not_found_error_message = "Resultado hormonal no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 # * IodineDetection Views
@@ -201,6 +217,7 @@ class IodineDetectionCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:iodine_detection_list")
     success_message = "Detección de yodo guardada correctamente."
     cancel_url = "nuclear_medicine:iodine_detection_list"
+    permission_required = "cancer_registry_manage"
 
 
 class IodineDetectionDetailView(BaseDetailView):
@@ -210,6 +227,7 @@ class IodineDetectionDetailView(BaseDetailView):
     form_class = IodineDetectionForm
     cancel_url = "nuclear_medicine:iodine_detection_list"
     object_not_found_error_message = "Detección de yodo no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class IodineDetectionUpdateView(BaseUpdateView):
@@ -221,6 +239,7 @@ class IodineDetectionUpdateView(BaseUpdateView):
     success_message = "Detección de yodo guardada correctamente."
     cancel_url = "nuclear_medicine:iodine_detection_list"
     object_not_found_error_message = "Detección de yodo no encontrada"
+    permission_required = "cancer_registry_manage"
 
 
 class IodineDetectionDeleteView(BaseDeleteView):
@@ -231,6 +250,7 @@ class IodineDetectionDeleteView(BaseDeleteView):
     success_message = "Detección de yodo eliminada satisfactoriamente."
     cancel_url = "nuclear_medicine:iodine_detection_list"
     object_not_found_error_message = "Detección de yodo no encontrada"
+    permission_required = "cancer_registry_manage"
 
 
 # * SerialIodineDetection Views
@@ -242,6 +262,7 @@ class SerialIodineDetectionCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:serial_iodine_detection_list")
     success_message = "Detección de yodo seriada guardada correctamente."
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
+    permission_required = "cancer_registry_manage"
 
 
 class SerialIodineDetectionDetailView(BaseDetailView):
@@ -251,6 +272,7 @@ class SerialIodineDetectionDetailView(BaseDetailView):
     form_class = SerialIodineDetectionForm
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
     object_not_found_error_message = "Detección de yodo seriada no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class SerialIodineDetectionUpdateView(BaseUpdateView):
@@ -262,6 +284,7 @@ class SerialIodineDetectionUpdateView(BaseUpdateView):
     success_message = "Detección de yodo seriada guardada correctamente."
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
     object_not_found_error_message = "Detección de yodo seriada no encontrada"
+    permission_required = "cancer_registry_manage"
 
 
 class SerialIodineDetectionDeleteView(BaseDeleteView):
@@ -272,6 +295,7 @@ class SerialIodineDetectionDeleteView(BaseDeleteView):
     success_message = "Detección de yodo seriada eliminada satisfactoriamente."
     cancel_url = "nuclear_medicine:serial_iodine_detection_list"
     object_not_found_error_message = "Detección de yodo seriada no encontrada"
+    permission_required = "cancer_registry_manage"
 
 
 # * Gammagraphy Views
@@ -283,6 +307,7 @@ class GammagraphyCreateView(BaseCreateView):
     success_url = reverse_lazy("nuclear_medicine:gammagraphy_list")
     success_message = "Gammagrafía guardada correctamente."
     cancel_url = "nuclear_medicine:gammagraphy_list"
+    permission_required = "cancer_registry_manage"
 
 
 class GammagraphyDetailView(BaseDetailView):
@@ -292,6 +317,7 @@ class GammagraphyDetailView(BaseDetailView):
     form_class = GammagraphyForm
     cancel_url = "nuclear_medicine:gammagraphy_list"
     object_not_found_error_message = "Gammagrafía no encontrada"
+    permission_required = "cancer_registry_view"
 
 
 class GammagraphyUpdateView(BaseUpdateView):
@@ -303,6 +329,7 @@ class GammagraphyUpdateView(BaseUpdateView):
     success_message = "Gammagrafía guardada correctamente."
     cancel_url = "nuclear_medicine:gammagraphy_list"
     object_not_found_error_message = "Gammagrafía no encontrada"
+    permission_required = "cancer_registry_manage"
 
 
 class GammagraphyDeleteView(BaseDeleteView):
@@ -313,3 +340,4 @@ class GammagraphyDeleteView(BaseDeleteView):
     success_message = "Gammagrafía eliminada satisfactoriamente."
     cancel_url = "nuclear_medicine:gammagraphy_list"
     object_not_found_error_message = "Gammagrafía no encontrada"
+    permission_required = "cancer_registry_manage"

@@ -13,6 +13,7 @@ class Group(Model):
         verbose_name = "Grupo"
         verbose_name_plural = "Grupo"
         ordering = ["pk"]
+        default_permissions = ()
 
 
 class DoctorQuerysetManager(Manager):
@@ -38,6 +39,7 @@ class Doctor(Model):
         verbose_name = "Doctor"
         verbose_name_plural = "Doctor"
         ordering = ["personal_record_number"]
+        default_permissions = ()
 
     def __str__(self):
         """Returns the name of the patient."""

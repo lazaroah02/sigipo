@@ -20,6 +20,7 @@ class GroupCreateView(BaseCreateView):
     success_url = reverse_lazy("employee:group_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "employee:group_list"
+    permission_required = "employee_manage"
 
 
 class GroupDetailView(BaseDetailView):
@@ -29,6 +30,7 @@ class GroupDetailView(BaseDetailView):
     form_class = GroupForm
     cancel_url = "employee:group_list"
     object_not_found_error_message = "Grupo no encontrado"
+    permission_required = "employee_view"
 
 
 class GroupUpdateView(BaseUpdateView):
@@ -40,6 +42,7 @@ class GroupUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "employee:group_list"
     object_not_found_error_message = "Grupo no encontrado"
+    permission_required = "employee_manage"
 
 
 class GroupDeleteView(BaseDeleteView):
@@ -50,6 +53,7 @@ class GroupDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminado satisfactoriamente."
     cancel_url = "employee:group_list"
     object_not_found_error_message = "Grupo no encontrado"
+    permission_required = "employee_manage"
 
 
 # * Doctor Views
@@ -61,6 +65,7 @@ class DoctorCreateView(BaseCreateView):
     success_url = reverse_lazy("employee:doctor_list")
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "employee:doctor_list"
+    permission_required = "employee_manage"
 
 
 class DoctorDetailView(BaseDetailView):
@@ -70,6 +75,7 @@ class DoctorDetailView(BaseDetailView):
     form_class = DoctorForm
     cancel_url = "employee:doctor_list"
     object_not_found_error_message = "Doctor no encontrado"
+    permission_required = "employee_view"
 
 
 class DoctorUpdateView(BaseUpdateView):
@@ -81,6 +87,7 @@ class DoctorUpdateView(BaseUpdateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "employee:doctor_list"
     object_not_found_error_message = "Doctor no encontrado"
+    permission_required = "employee_manage"
 
 
 class DoctorDeleteView(BaseDeleteView):
@@ -91,3 +98,4 @@ class DoctorDeleteView(BaseDeleteView):
     success_message = "%(first_name)s %(last_name)s eliminado satisfactoriamente."
     cancel_url = "employee:doctor_list"
     object_not_found_error_message = "Doctor no encontrado"
+    permission_required = "employee_manage"

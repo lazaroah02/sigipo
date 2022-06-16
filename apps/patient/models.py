@@ -115,6 +115,7 @@ class Patient(TimeStampedModel):
                 name="patient_identity_card_constraints",
             )
         ]
+        default_permissions = ()
 
     def __str__(self):
         """Returns the name of the patient."""

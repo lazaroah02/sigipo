@@ -172,3 +172,15 @@ class BaseDeleteViewTestCase(TestCase):
             target_status_code=200,
             fetch_redirect_response=True,
         )
+
+
+class CoreHandlerTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.user = UserFactory.create(is_staff=False, is_superuser=False)
+
+    def test_403(self) -> None:
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("patient:oncologic_create"))
+        self.assertTemplateUsed(response, "400/403.html")

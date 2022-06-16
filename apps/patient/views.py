@@ -1,5 +1,5 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages import warning
 from django.http import Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect
@@ -32,6 +32,7 @@ class PatientCreateView(BaseCreateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
     template_name = "patient/patient_create.html"
+    permission_required = "cancer_registry_manage"
 
 
 class PatientDetailView(BaseDetailView):
@@ -41,6 +42,7 @@ class PatientDetailView(BaseDetailView):
     form_class = OncologicPatientForm
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
+    permission_required = "cancer_registry_view"
 
 
 class PatientUpdateView(BaseUpdateView):
@@ -52,6 +54,7 @@ class PatientUpdateView(BaseUpdateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
 class PatientDeleteView(BaseDeleteView):
@@ -62,10 +65,12 @@ class PatientDeleteView(BaseDeleteView):
     success_message = "%(first_name)s %(last_name)s eliminado satisfactoriamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
+    permission_required = "cancer_registry_manage"
 
 
-class PatientChangeStatus(LoginRequiredMixin, TemplateView):
+class PatientChangeStatus(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
     template_name = "patient/change_status.html"
+    permission_required = "cancer_registry_manage"
 
     def get_context_data(self, **kwargs):
         if "pk" in kwargs:
@@ -104,6 +109,7 @@ class NuclearMedicinePatientCreateView(PatientCreateView):
     form_class = NuclearMedicinePatientForm
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
+    permission_required = "patient_manage"
 
 
 class NuclearMedicinePatientDetailView(PatientDetailView):
@@ -111,6 +117,7 @@ class NuclearMedicinePatientDetailView(PatientDetailView):
 
     form_class = NuclearMedicinePatientForm
     cancel_url = "patient:patient_list"
+    permission_required = "cancer_registry_view"
 
 
 class NuclearMedicinePatientUpdateView(PatientUpdateView):
@@ -120,6 +127,7 @@ class NuclearMedicinePatientUpdateView(PatientUpdateView):
     form_class = NuclearMedicinePatientForm
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
+    permission_required = "patient_manage"
 
 
 class NuclearMedicinePatientDeleteView(BaseDeleteView):
@@ -128,9 +136,11 @@ class NuclearMedicinePatientDeleteView(BaseDeleteView):
     model = Patient
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
+    permission_required = "patient_manage"
 
 
 @login_required
+@permission_required("cancer_registry_view", raise_exception=True)
 @require_GET
 def check_patient_created(request: HttpRequest, pk: str | int) -> JsonResponse:
     return JsonResponse(

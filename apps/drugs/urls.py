@@ -16,8 +16,7 @@ urlpatterns = [
     path(
         "drug/list/",
         PaginationFilterView.as_view(
-            model=Drug,
-            filterset_class=DrugFilter,
+            model=Drug, filterset_class=DrugFilter, permission_required="drug_view"
         ),
         name="drug_list",
     ),
