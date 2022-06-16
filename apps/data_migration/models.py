@@ -196,3 +196,60 @@ class Paciente(DataMigrationModel):
 
     class Meta(DataMigrationModel.Meta):
         db_table = "t1_datosgeneralespaciente"
+
+
+class DatosTumor(DataMigrationModel):
+    idtumor = models.IntegerField(db_column="idtumor", primary_key=True)
+    ci = models.ForeignKey(Paciente, on_delete=models.CASCADE, db_column="CI")
+    fechainicio = models.DateField(null=True, blank=True, db_column="fechainicio")
+    localizacion = models.ForeignKey(
+        Localizacion, on_delete=models.CASCADE, db_column="localizacion"
+    )
+    lateralidad = models.CharField(
+        max_length=255, db_column="bilateral", null=True, blank=True
+    )
+    diagnostico = models.ForeignKey(
+        Diagnostico, on_delete=models.CASCADE, db_column="diagnostico"
+    )
+    t = models.CharField(max_length=255, db_column="T", null=True, blank=True)
+    n = models.CharField(max_length=255, db_column="N", null=True, blank=True)
+    m = models.CharField(max_length=255, db_column="M", null=True, blank=True)
+    clinicopatolog = models.CharField(
+        max_length=255, db_column="clinicopatolog", null=True, blank=True
+    )
+    psa = models.FloatField(db_column="psa", null=True, blank=True)
+    tumorprimario = models.CharField(
+        max_length=255, db_column="tumorprimario", null=True, blank=True
+    )
+    basediagnostico = models.CharField(
+        max_length=255, db_column="basediagnostico", null=True, blank=True
+    )
+    extension = models.CharField(
+        max_length=255, db_column="extension", null=True, blank=True
+    )
+    etapa = models.CharField(max_length=255, db_column="etapa", null=True, blank=True)
+    grado = models.CharField(max_length=255, db_column="grado", null=True, blank=True)
+    transf_hemat = models.IntegerField(db_column="transf_hemat", null=True, blank=True)
+    fechaprsintomas = models.DateField(
+        db_column="fechaprsintomas", null=True, blank=True
+    )
+    aguda = models.CharField(max_length=255, db_column="aguda", null=True, blank=True)
+    cronica = models.CharField(
+        max_length=255, db_column="cronica", null=True, blank=True
+    )
+    mieloide = models.CharField(
+        max_length=255, db_column="mieloide", null=True, blank=True
+    )
+    mieloma = models.CharField(
+        max_length=255, db_column="mieloma", null=True, blank=True
+    )
+    mieloidecronica = models.CharField(
+        max_length=255, db_column="mieloidecronica", null=True, blank=True
+    )
+    fuente = models.CharField(max_length=255, db_column="fuente", null=True, blank=True)
+    regprof = models.ForeignKey(Doctor, on_delete=models.CASCADE, db_column="regprof")
+    id_grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, db_column="id_grupo")
+    fechareporte = models.DateField(null=True, blank=True, db_column="fechareporte")
+
+    class Meta(DataMigrationModel.Meta):
+        db_table = "t1_datosgeneralestumor"
