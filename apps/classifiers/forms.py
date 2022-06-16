@@ -7,9 +7,9 @@ from apps.core.forms import ModelForm
 class MorphologyForm(ModelForm):
     """Model to handle morphology creation and edition."""
 
-    description = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Descripción"}),
-        label="Descripción",
+    name = CharField(
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
+        label="Nombre",
     )
 
     class Meta:
@@ -20,9 +20,9 @@ class MorphologyForm(ModelForm):
 class TopographyForm(ModelForm):
     """Model to handle topography creation and edition."""
 
-    description = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Descripción"}),
-        label="Descripción",
+    name = CharField(
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
+        label="Nombre",
     )
 
     class Meta:
