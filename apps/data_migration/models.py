@@ -5,6 +5,7 @@ from django.db import models
 from apps.cancer_registry.models import (
     Neoplasm,
     NeoplasmClinicalExtensionsChoices,
+    NeoplasmClinicalStageChoices,
     NeoplasmDiagnosticConfirmationChoices,
     NeoplasmDifferentiationGradesChoices,
     NeoplasmLateralityChoices,
@@ -277,6 +278,50 @@ def get_extension(str_value: str):
     return extension
 
 
+def get_clinical_stage(str_value: str):
+    extension = None
+    match str_value.lower():
+        case "in situ":
+            extension = NeoplasmClinicalStageChoices.IN_SITU
+        case "i":
+            extension = NeoplasmClinicalStageChoices.I0
+        case "i-a":
+            extension = NeoplasmClinicalStageChoices.IA
+        case "i-b":
+            extension = NeoplasmClinicalStageChoices.IB
+        case "i-c":
+            extension = NeoplasmClinicalStageChoices.IC
+        case "ii":
+            extension = NeoplasmClinicalStageChoices.II
+        case "ii-a":
+            extension = NeoplasmClinicalStageChoices.IIA
+        case "ii-b":
+            extension = NeoplasmClinicalStageChoices.IIB
+        case "ii-c":
+            extension = NeoplasmClinicalStageChoices.IIC
+        case "iii":
+            extension = NeoplasmClinicalStageChoices.III
+        case "iii-a":
+            extension = NeoplasmClinicalStageChoices.IIIA
+        case "iii-b":
+            extension = NeoplasmClinicalStageChoices.IIIB
+        case "iii-c":
+            extension = NeoplasmClinicalStageChoices.IIIC
+        case "iv":
+            extension = NeoplasmClinicalStageChoices.IV
+        case "iv-a":
+            extension = NeoplasmClinicalStageChoices.IVA
+        case "iv-b":
+            extension = NeoplasmClinicalStageChoices.IVB
+        case "iv-c":
+            extension = NeoplasmClinicalStageChoices.IVC
+        case "no aplicable":
+            extension = NeoplasmClinicalStageChoices.NOT_APPLICABLE
+        case "desconocido":
+            extension = NeoplasmClinicalStageChoices.UNKNOWN
+    return extension
+
+
 class DatosTumor(DataMigrationModel):
     fechainicio = models.DateField(null=True, blank=True, db_column="fechainicio")
     idtumor = models.IntegerField(db_column="idtumor", primary_key=True)
@@ -352,6 +397,7 @@ class DatosTumor(DataMigrationModel):
             histologic_type=related["morphology"][self.diagnostico.pk],
             differentiation_grade=get_grado(self.grado),
             clinical_extension=get_extension(self.extension),
+            clinical_stage=get_clinical_stage(self.etapa),
         )
 
     class Meta(DataMigrationModel.Meta):
