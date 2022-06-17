@@ -3,12 +3,23 @@ import datetime as dt
 from django.db import models
 
 from apps.cancer_registry.models import (
+    AcuteLymphoidLeukemiaChoices,
+    AcuteMyeloidLeukemiaChoices,
+    ChronicLymphoidLeukemiaChoices,
+    ChronicMyeloidLeukemiaChoices,
+    MetastasisChoices,
+    MultipleMyelomaChoices,
     Neoplasm,
+    NeoplasmClassificationChoices,
     NeoplasmClinicalExtensionsChoices,
     NeoplasmClinicalStageChoices,
     NeoplasmDiagnosticConfirmationChoices,
     NeoplasmDifferentiationGradesChoices,
     NeoplasmLateralityChoices,
+    NeoplasmSourceOfInfoChoices,
+    NoduleChoices,
+    TumorChoices,
+    TumorClassificationChoices,
 )
 from apps.classifiers.models import Morphology, Topography
 from apps.employee.models import Doctor, Group
@@ -206,6 +217,54 @@ class Paciente(DataMigrationModel):
         db_table = "t1_datosgeneralespaciente"
 
 
+def get_t(str_value: str):
+    t = None
+    match str_value.lower():
+        case "tx":
+            t = TumorChoices.TX
+        case "t0":
+            t = TumorChoices.T0
+        case "tis":
+            t = TumorChoices.TIS
+        case "t1":
+            t = TumorChoices.T1
+        case "t2":
+            t = TumorChoices.T2
+        case "t3":
+            t = TumorChoices.T3
+        case "t4":
+            t = TumorChoices.T4
+    return t
+
+
+def get_n(str_value: str):
+    n = None
+    match str_value.lower():
+        case "nx":
+            n = NoduleChoices.NX
+        case "n0":
+            n = NoduleChoices.N0
+        case "n1":
+            n = NoduleChoices.N1
+        case "n2":
+            n = NoduleChoices.N2
+        case "n3":
+            n = NoduleChoices.N3
+    return n
+
+
+def get_m(str_value: str):
+    m = None
+    match str_value.lower():
+        case "mx":
+            m = MetastasisChoices.MX
+        case "m0":
+            m = MetastasisChoices.M0
+        case "m1":
+            m = MetastasisChoices.M1
+    return m
+
+
 def get_confirmation(str_value: str):
     confirmation = None
     match str_value.lower():
@@ -276,6 +335,61 @@ def get_extension(str_value: str):
         case "desconocido":
             extension = NeoplasmClinicalExtensionsChoices.UNKNOWN
     return extension
+
+
+def get_source(str_value: str):
+    fuente = None
+    match str_value.lower():
+        case "anatomía patológica":
+            fuente = NeoplasmSourceOfInfoChoices.PATHOLOGY
+        case "hematología":
+            fuente = NeoplasmSourceOfInfoChoices.HEMATOLOGY
+        case "egreso hospitalario":
+            fuente = NeoplasmSourceOfInfoChoices.HOSPITAL_DISCHARGE
+        case "registro de fallecidos":
+            fuente = NeoplasmSourceOfInfoChoices.DECEASED_RECORD
+
+    return fuente
+
+
+def get_linfoide(str_value: str):
+    val = str_value.lower()
+    for value, label in AcuteLymphoidLeukemiaChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_linfoide_c(str_value: str):
+    val = str_value.lower()
+    for value, label in ChronicLymphoidLeukemiaChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_acute_myeloid(str_value: str):
+    val = str_value.lower()
+    for value, label in AcuteMyeloidLeukemiaChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_acute_myeloid_c(str_value: str):
+    val = str_value.lower()
+    for value, label in ChronicMyeloidLeukemiaChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_mieloma(str_value: str):
+    val = str_value.lower()
+    for value, label in MultipleMyelomaChoices.choices:
+        if val == label.lower():
+            return value
+    return None
 
 
 def get_clinical_stage(str_value: str):
@@ -381,7 +495,7 @@ class DatosTumor(DataMigrationModel):
     def to_postgres_db(self, related=None):
         return Neoplasm(
             pk=self.idtumor,
-            patient=related["patient"][self.ci],
+            patient=related["patient"][self.ci.pk],
             date_of_diagnosis=self.fechadiagnostico,
             age_at_diagnosis=None,
             psa=self.psa,
@@ -398,6 +512,46 @@ class DatosTumor(DataMigrationModel):
             differentiation_grade=get_grado(self.grado),
             clinical_extension=get_extension(self.extension),
             clinical_stage=get_clinical_stage(self.etapa),
+            is_pregnant=True if self.ci.embarazada == 1 else False,
+            trimester=1
+            if self.ci.trimestre == "I"
+            else 2
+            if self.ci.trimestre == "II"
+            else 3
+            if self.ci.trimestre == "III"
+            else 4
+            if self.ci.trimestre == "IV"
+            else None,
+            is_vih=True if self.ci.vih == 0 else False,
+            source_of_info=get_source(self.fuente),
+            date_of_report=self.fechareporte,
+            medic_that_report=related["doctor"][self.regprof.pk],
+            tumor=get_t(self.t),
+            nodule=get_t(self.n),
+            metastasis=get_t(self.m),
+            neoplasm_classification=NeoplasmClassificationChoices.CLINIC
+            if self.clinicopatolog == "Clínico"
+            else NeoplasmClassificationChoices.PATHOLOGICAL
+            if self.clinicopatolog == "Patológico"
+            else None,
+            tumor_classification=TumorClassificationChoices.METASTASIS
+            if self.tumorprimario == "Metástesis sin TPC"
+            else TumorClassificationChoices.METASTASIS
+            if self.tumorprimario == "Tumor Primario"
+            else None,
+            treatment_performed=None,
+            group=related["group"][self.id_grupo],
+            hematological_transformation=True
+            if self.transf_hemat == 1
+            else False
+            if self.transf_hemat == 0
+            else None,
+            date_of_first_symptoms=self.fechaprsintomas,
+            acute_lymphoid_leukemia=get_linfoide(self.aguda),
+            chronic_lymphoid_leukemia=get_linfoide_c(self.cronica),
+            acute_myeloid_leukemia=get_acute_myeloid(self.mieloide),
+            chronic_myeloid_leukemia=get_acute_myeloid_c(self.mieloidecronica),
+            multiple_myeloma=get_mieloma(self.mieloma),
         )
 
     class Meta(DataMigrationModel.Meta):
