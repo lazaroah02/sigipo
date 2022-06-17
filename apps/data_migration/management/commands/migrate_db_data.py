@@ -2,8 +2,10 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.db.models import Q
 
+from apps.cancer_registry.models import Neoplasm
 from apps.classifiers.models import Morphology, Topography
 from apps.data_migration.models import (
+    DatosTumor,
     Diagnostico,
     Grupo,
     Localizacion,
@@ -25,6 +27,9 @@ class Command(BaseCommand):
             morphology_data = [
                 morphology.to_postgres_db() for morphology in Diagnostico.objects.all()
             ]
+            morphology_related = {
+                morphology.pk: morphology for morphology in morphology_data
+            }
             Morphology.objects.bulk_create(morphology_data)
             self.stdout.write(
                 self.style.SUCCESS(
@@ -35,6 +40,9 @@ class Command(BaseCommand):
             topography_data = [
                 topography.to_postgres_db() for topography in Localizacion.objects.all()
             ]
+            topography_related = {
+                topography.pk: topography for topography in topography_data
+            }
             Topography.objects.bulk_create(topography_data)
             self.stdout.write(
                 self.style.SUCCESS(
@@ -51,8 +59,10 @@ class Command(BaseCommand):
                 )
             )
             doctor_data = [
-                doctor.to_postgres_db(group_related) for doctor in Medico.objects.all()
+                doctor.to_postgres_db(group_related)
+                for doctor in Medico.objects.select_related("grupo").all()
             ]
+            doctor_related = {doctor.pk: doctor for doctor in doctor_data}
             Doctor.objects.bulk_create(doctor_data)
             self.stdout.write(
                 self.style.SUCCESS(
@@ -73,7 +83,7 @@ class Command(BaseCommand):
             )
             municipality_data = [
                 municipality.to_postgres_db(province_related)
-                for municipality in Municipio.objects.all()
+                for municipality in Municipio.objects.select_related("provincia").all()
             ]
             municipality_related = {
                 municipality.name: municipality for municipality in municipality_data
@@ -87,16 +97,38 @@ class Command(BaseCommand):
             )
             patient_data = [
                 patient.to_postgres_db(municipality_related)
-                for patient in Paciente.objects.filter(
+                for patient in Paciente.objects.select_related("provincia").filter(
                     ~Q(ci=""), nombres__isnull=False, ci__isnull=False
                 )
             ]
-            {patient.identity_card: patient for patient in patient_data}
+            patient_related = {
+                patient.identity_card: patient for patient in patient_data
+            }
             Patient.objects.bulk_create(patient_data)
             self.stdout.write(
                 self.style.SUCCESS(
                     "Successfully migrated patient model '%s' instances"
                     % len(patient_data)
+                )
+            )
+            tumor = [
+                tumor.to_postgres_db(
+                    {
+                        "doctor": doctor_related,
+                        "group": group_related,
+                        "morphology": morphology_related,
+                        "topography": topography_related,
+                        "patient": patient_related,
+                    }
+                )
+                for tumor in DatosTumor.objects.select_related(
+                    "ci", "localizacion", "diagnostico", "regprof", "id_grupo"
+                ).all()
+            ]
+            Neoplasm.objects.bulk_create(tumor)
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "Successfully migrated neoplasm model '%s' instances" % len(tumor)
                 )
             )
 

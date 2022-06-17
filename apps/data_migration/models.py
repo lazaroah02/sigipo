@@ -218,6 +218,8 @@ class Paciente(DataMigrationModel):
 
 
 def get_t(str_value: str):
+    if str_value is None:
+        return None
     t = None
     match str_value.lower():
         case "tx":
@@ -238,6 +240,8 @@ def get_t(str_value: str):
 
 
 def get_n(str_value: str):
+    if str_value is None:
+        return None
     n = None
     match str_value.lower():
         case "nx":
@@ -254,6 +258,8 @@ def get_n(str_value: str):
 
 
 def get_m(str_value: str):
+    if str_value is None:
+        return None
     m = None
     match str_value.lower():
         case "mx":
@@ -266,6 +272,8 @@ def get_m(str_value: str):
 
 
 def get_confirmation(str_value: str):
+    if str_value is None:
+        return None
     confirmation = None
     match str_value.lower():
         case "clínica":
@@ -288,6 +296,8 @@ def get_confirmation(str_value: str):
 
 
 def get_grado(str_value: str):
+    if str_value is None:
+        return None
     grado = None
     match str_value.lower():
         case "diferenciado":
@@ -314,6 +324,8 @@ def get_grado(str_value: str):
 
 
 def get_extension(str_value: str):
+    if str_value is None:
+        return None
     extension = None
     match str_value.lower():
         case "in situ":
@@ -338,6 +350,8 @@ def get_extension(str_value: str):
 
 
 def get_source(str_value: str):
+    if str_value is None:
+        return None
     fuente = None
     match str_value.lower():
         case "anatomía patológica":
@@ -353,6 +367,8 @@ def get_source(str_value: str):
 
 
 def get_linfoide(str_value: str):
+    if str_value is None:
+        return None
     val = str_value.lower()
     for value, label in AcuteLymphoidLeukemiaChoices.choices:
         if val == label.lower():
@@ -361,6 +377,8 @@ def get_linfoide(str_value: str):
 
 
 def get_linfoide_c(str_value: str):
+    if str_value is None:
+        return None
     val = str_value.lower()
     for value, label in ChronicLymphoidLeukemiaChoices.choices:
         if val == label.lower():
@@ -369,6 +387,8 @@ def get_linfoide_c(str_value: str):
 
 
 def get_acute_myeloid(str_value: str):
+    if str_value is None:
+        return None
     val = str_value.lower()
     for value, label in AcuteMyeloidLeukemiaChoices.choices:
         if val == label.lower():
@@ -377,6 +397,8 @@ def get_acute_myeloid(str_value: str):
 
 
 def get_acute_myeloid_c(str_value: str):
+    if str_value is None:
+        return None
     val = str_value.lower()
     for value, label in ChronicMyeloidLeukemiaChoices.choices:
         if val == label.lower():
@@ -385,6 +407,8 @@ def get_acute_myeloid_c(str_value: str):
 
 
 def get_mieloma(str_value: str):
+    if str_value is None:
+        return None
     val = str_value.lower()
     for value, label in MultipleMyelomaChoices.choices:
         if val == label.lower():
@@ -393,6 +417,8 @@ def get_mieloma(str_value: str):
 
 
 def get_clinical_stage(str_value: str):
+    if str_value is None:
+        return None
     extension = None
     match str_value.lower():
         case "in situ":
@@ -439,12 +465,18 @@ def get_clinical_stage(str_value: str):
 class DatosTumor(DataMigrationModel):
     fechainicio = models.DateField(null=True, blank=True, db_column="fechainicio")
     idtumor = models.IntegerField(db_column="idtumor", primary_key=True)
-    ci = models.ForeignKey(Paciente, on_delete=models.CASCADE, db_column="CI")
+    ci = models.ForeignKey(
+        Paciente, on_delete=models.CASCADE, db_column="CI", null=True, blank=True
+    )
     fechadiagnostico = models.DateField(
         null=True, blank=True, db_column="fechadiagnostico"
     )
     localizacion = models.ForeignKey(
-        Localizacion, on_delete=models.CASCADE, db_column="localizacion"
+        Localizacion,
+        on_delete=models.CASCADE,
+        db_column="localizacion",
+        null=True,
+        blank=True,
     )
     lateralidad = models.CharField(
         max_length=255, db_column="bilateral", null=True, blank=True
@@ -488,18 +520,24 @@ class DatosTumor(DataMigrationModel):
         max_length=255, db_column="mieloidecronica", null=True, blank=True
     )
     fuente = models.CharField(max_length=255, db_column="fuente", null=True, blank=True)
-    regprof = models.ForeignKey(Doctor, on_delete=models.CASCADE, db_column="regprof")
-    id_grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, db_column="id_grupo")
+    regprof = models.ForeignKey(
+        Medico, on_delete=models.CASCADE, db_column="regprof", null=True, blank=True
+    )
+    id_grupo = models.ForeignKey(
+        Grupo, on_delete=models.CASCADE, db_column="id_grupo", null=True, blank=True
+    )
     fechareporte = models.DateField(null=True, blank=True, db_column="fechareporte")
 
     def to_postgres_db(self, related=None):
         return Neoplasm(
             pk=self.idtumor,
-            patient=related["patient"][self.ci.pk],
+            patient=None if self.ci is None else related["patient"][self.ci.ci],
             date_of_diagnosis=self.fechadiagnostico,
             age_at_diagnosis=None,
             psa=self.psa,
-            primary_site=related["topography"][self.localizacion.pk],
+            primary_site=None
+            if self.localizacion is None
+            else related["topography"][self.localizacion.pk],
             laterality=NeoplasmLateralityChoices.NO
             if self.lateralidad == "no"
             else NeoplasmLateralityChoices.LEFT
@@ -508,7 +546,9 @@ class DatosTumor(DataMigrationModel):
             if self.lateralidad == "derecho"
             else None,
             diagnostic_confirmation=get_confirmation(self.basediagnostico),
-            histologic_type=related["morphology"][self.diagnostico.pk],
+            histologic_type=None
+            if self.diagnostico is None
+            else related["morphology"][self.diagnostico.pk],
             differentiation_grade=get_grado(self.grado),
             clinical_extension=get_extension(self.extension),
             clinical_stage=get_clinical_stage(self.etapa),
@@ -525,7 +565,9 @@ class DatosTumor(DataMigrationModel):
             is_vih=True if self.ci.vih == 0 else False,
             source_of_info=get_source(self.fuente),
             date_of_report=self.fechareporte,
-            medic_that_report=related["doctor"][self.regprof.pk],
+            medic_that_report=None
+            if self.regprof is None
+            else related["doctor"][self.regprof.pk],
             tumor=get_t(self.t),
             nodule=get_t(self.n),
             metastasis=get_t(self.m),
@@ -540,7 +582,7 @@ class DatosTumor(DataMigrationModel):
             if self.tumorprimario == "Tumor Primario"
             else None,
             treatment_performed=None,
-            group=related["group"][self.id_grupo],
+            group=None if self.id_grupo is None else related["group"][self.id_grupo.pk],
             hematological_transformation=True
             if self.transf_hemat == 1
             else False
