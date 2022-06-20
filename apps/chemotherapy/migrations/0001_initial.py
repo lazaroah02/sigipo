@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                         verbose_name="Lugar",
                     ),
                 ),
-                ("height", models.FloatField(verbose_name="Talla")),
+                ("height", models.IntegerField(verbose_name="Talla")),
                 ("weight", models.FloatField(verbose_name="Peso")),
                 ("cycles", models.IntegerField(verbose_name="Cantidad de ciclos")),
                 (

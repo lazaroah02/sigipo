@@ -2,6 +2,7 @@ from django.db.models import (
     CASCADE,
     BooleanField,
     CharField,
+    DecimalField,
     ExpressionWrapper,
     F,
     FloatField,
@@ -11,10 +12,11 @@ from django.db.models import (
     Model,
     QuerySet,
 )
+from django.db.models.functions import Cast
 from django.db.models.manager import Manager
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
-from apps.core.models import TimeStampedModel
+from apps.core.models import Round2, TimeStampedModel
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
@@ -37,15 +39,21 @@ class RoomChoices(IntegerChoices):
     ROOM_1 = 2, "Sala 1"
 
 
-class ProtocolManager(Manager):
+class ProtocolQuerysetManager(Manager):
     def get_queryset(self) -> QuerySet:
         return (
             super()
             .get_queryset()
             .select_related("patient", "scheme", "doctor")
             .annotate(
-                body_surface=ExpressionWrapper(
-                    round(0.007184 * (F("weight") ** 0.425) * F("height") ** 0.725, 2),
+                body_surface=Round2(
+                    Cast(
+                        ExpressionWrapper(
+                            (0.007184 * F("weight") ** 0.425 * F("height") ** 0.725),
+                            output_field=DecimalField(decimal_places=2, max_digits=10),
+                        ),
+                        output_field=DecimalField(decimal_places=2, max_digits=10),
+                    ),
                     output_field=FloatField(),
                 )
             )
@@ -58,7 +66,7 @@ class Protocol(TimeStampedModel):
     room = IntegerField(
         verbose_name="Lugar", null=True, blank=True, choices=RoomChoices.choices
     )
-    height = FloatField(verbose_name="Talla")
+    height = IntegerField(verbose_name="Talla")
     weight = FloatField(verbose_name="Peso")
     cycles = IntegerField(verbose_name="Cantidad de ciclos")
     stage = IntegerField(
@@ -66,6 +74,7 @@ class Protocol(TimeStampedModel):
     )
     doctor = ForeignKey(Doctor, verbose_name="Doctor", on_delete=CASCADE)
     suspended = BooleanField()
+    objects = ProtocolQuerysetManager()
 
     def __str__(self):
         return f"Protocolo de {self.patient} con esquema {self.scheme}"
