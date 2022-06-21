@@ -13,7 +13,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),  # new
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", include("apps.dashboard.urls")),
     path("classifiers/", include("apps.classifiers.urls")),
     path("geographic_location/", include("apps.geographic_location.urls")),
@@ -22,9 +22,10 @@ urlpatterns = [
     path("drugs/", include("apps.drugs.urls")),
     path("nuclear_medicine/", include("apps.nuclear_medicine.urls")),
     path("employee/", include("apps.employee.urls")),
+    path("chemotherapy/", include("apps.chemotherapy.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
-    # security
+    # ! security
     path(
         "change-password/",
         PasswordChangeView.as_view(
