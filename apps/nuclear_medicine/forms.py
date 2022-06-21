@@ -15,7 +15,7 @@ from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.classifiers.models import RadioIsotope, Study
 from apps.core.forms import ModelForm
-from apps.drugs.models import Drug
+from apps.drugs.models import NuclearMedicineDrug
 from apps.nuclear_medicine.models import (
     Gammagraphy,
     HormonalResult,
@@ -520,7 +520,7 @@ class GammagraphyForm(ModelForm):
         label="Estudio(s)",
     )
     drug = ModelChoiceField(
-        queryset=Drug.objects.all(),
+        queryset=NuclearMedicineDrug.objects.all(),
         widget=ModelSelect2Widget(
             attrs={
                 "class": "form-control",

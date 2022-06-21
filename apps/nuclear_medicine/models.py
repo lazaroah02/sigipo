@@ -13,7 +13,7 @@ from multiselectfield import MultiSelectField
 
 from apps.classifiers.models import RadioIsotope, Study
 from apps.core.models import TimeStampedModel
-from apps.drugs.models import Drug
+from apps.drugs.models import NuclearMedicineDrug
 from apps.patient.models import Patient
 
 
@@ -250,7 +250,7 @@ class GammagraphyQuerysetManager(Manager):
 class Gammagraphy(TimeStampedModel):
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     requested_study = ManyToManyField(Study, blank=False)
-    drug = ForeignKey(Drug, null=False, blank=False, on_delete=CASCADE)
+    drug = ForeignKey(NuclearMedicineDrug, null=False, blank=False, on_delete=CASCADE)
     radio_isotope = ForeignKey(RadioIsotope, null=False, blank=False, on_delete=CASCADE)
     dose = FloatField()
     report = TextField(max_length=5000, blank=False, null=False)

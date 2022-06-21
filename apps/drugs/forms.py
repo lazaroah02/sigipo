@@ -1,11 +1,39 @@
-from django.forms import CharField, Select, TextInput
+from django.forms import (
+    BooleanField,
+    CharField,
+    CheckboxInput,
+    FloatField,
+    NumberInput,
+    Select,
+    TextInput,
+)
 
+from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
-from apps.drugs.models import Drug, DrugTypeChoices
+from apps.drugs.models import (
+    Drug,
+    DrugTypeChoices,
+    NuclearMedicineDrug,
+    PresentationChoicesChoices,
+    UnitChoicesChoices,
+)
+
+
+class NuclearMedicineDrugForm(ModelForm):
+    """Model to handle NuclearMedicineDrug creation and edition."""
+
+    name = CharField(
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
+        label="Nombre",
+    )
+
+    class Meta:
+        model = NuclearMedicineDrug
+        fields = "__all__"
 
 
 class DrugForm(ModelForm):
-    """Model to handle Drugs creation and edition."""
+    """Model to handle Drug creation and edition."""
 
     name = CharField(
         widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
@@ -16,6 +44,36 @@ class DrugForm(ModelForm):
             choices=DrugTypeChoices.choices,
             attrs={"class": "form-control form-select", "placeholder": "Tipo"},
         ),
+    )
+    presentation = EmptyChoiceField(
+        widget=Select(
+            choices=PresentationChoicesChoices.choices,
+            attrs={"class": "form-control form-select", "placeholder": "Presentación"},
+        ),
+        label="Presentación",
+        required=False,
+    )
+    amount = FloatField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Cantidad",
+            },
+        ),
+        label="Cantidad",
+    )
+    unit = EmptyChoiceField(
+        empty_label="----------",
+        widget=Select(
+            choices=UnitChoicesChoices.choices,
+            attrs={"class": "form-control form-select", "placeholder": "Tipo"},
+        ),
+        required=False,
+    )
+    out_of_stock = BooleanField(
+        label="¿En falta?",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
     )
 
     class Meta:

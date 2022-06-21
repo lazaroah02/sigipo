@@ -6,50 +6,50 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.drugs.forms import DrugForm
-from apps.drugs.models import Drug
+from apps.drugs.forms import NuclearMedicineDrugForm
+from apps.drugs.models import NuclearMedicineDrug
 
 
-# * Drug Views
-class DrugCreateView(BaseCreateView):
-    """View to handle Drug creation."""
+# * NuclearMedicineDrug Views
+class NuclearMedicineDrugCreateView(BaseCreateView):
+    """View to handle NuclearMedicineDrug creation."""
 
-    model = Drug
-    form_class = DrugForm
-    success_url = reverse_lazy("drugs:drug_list")
+    model = NuclearMedicineDrug
+    form_class = NuclearMedicineDrugForm
+    success_url = reverse_lazy("drugs:nuclearmedicinedrug_list")
     success_message = "%(name)s guardado correctamente."
-    cancel_url = "drugs:drug_list"
+    cancel_url = "drugs:nuclearmedicinedrug_list"
     permission_required = "drug_manage"
 
 
-class DrugDetailView(BaseDetailView):
+class NuclearMedicineDrugDetailView(BaseDetailView):
     """View to handle Drug details."""
 
-    model = Drug
-    form_class = DrugForm
-    cancel_url = "drugs:drug_list"
-    object_not_found_error_message = "Fármaco no encontrada"
+    model = NuclearMedicineDrug
+    form_class = NuclearMedicineDrugForm
+    cancel_url = "drugs:nuclearmedicinedrug_list"
+    object_not_found_error_message = "Fármaco no encontrado"
     permission_required = "drug_view"
 
 
-class DrugUpdateView(BaseUpdateView):
-    """View to handle Drug edition."""
+class NuclearMedicineDrugUpdateView(BaseUpdateView):
+    """View to handle NuclearMedicineDrug edition."""
 
-    model = Drug
-    form_class = DrugForm
-    success_url = reverse_lazy("drugs:drug_list")
+    model = NuclearMedicineDrug
+    form_class = NuclearMedicineDrugForm
+    success_url = reverse_lazy("drugs:nuclearmedicinedrug_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "drugs:drug_list"
-    object_not_found_error_message = "Fármaco no encontrada"
+    object_not_found_error_message = "Fármaco no encontrado"
     permission_required = "drug_manage"
 
 
-class DrugDeleteView(BaseDeleteView):
-    """View to handle Drug delete."""
+class NuclearMedicineDrugDeleteView(BaseDeleteView):
+    """View to handle NuclearMedicineDrug delete."""
 
-    model = Drug
-    success_url = reverse_lazy("drugs:drug_list")
+    model = NuclearMedicineDrug
+    success_url = reverse_lazy("drugs:nuclearmedicinedrug_list")
     success_message = "%(name)s eliminado satisfactoriamente."
     cancel_url = "drugs:drug_list"
-    object_not_found_error_message = "Fármaco no encontrada"
+    object_not_found_error_message = "Fármaco no encontrado"
     permission_required = "drug_manage"

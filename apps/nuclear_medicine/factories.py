@@ -3,7 +3,7 @@ from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyFloat, FuzzyText
 
 from apps.classifiers.factories import RadioIsotopeFactory, StudyFactory
-from apps.drugs.factories import DrugFactory
+from apps.drugs.factories import NuclearMedicineDrugFactory
 from apps.nuclear_medicine.models import (
     Gammagraphy,
     HormonalResult,
@@ -90,7 +90,7 @@ class GammagraphyFactory(DjangoModelFactory):
         model = Gammagraphy
 
     patient = SubFactory(PatientFactory)
-    drug = SubFactory(DrugFactory)
+    drug = SubFactory(NuclearMedicineDrugFactory)
     radio_isotope = SubFactory(RadioIsotopeFactory)
     dose = FuzzyFloat(0, 100)
     report = FuzzyText(length=10)
