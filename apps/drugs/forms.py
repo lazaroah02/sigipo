@@ -44,10 +44,12 @@ class DrugForm(ModelForm):
             choices=DrugTypeChoices.choices,
             attrs={"class": "form-control form-select", "placeholder": "Tipo"},
         ),
+        label="Tipo",
     )
     presentation = EmptyChoiceField(
+        empty_label="----------",
+        choices=PresentationChoicesChoices.choices,
         widget=Select(
-            choices=PresentationChoicesChoices.choices,
             attrs={"class": "form-control form-select", "placeholder": "Presentación"},
         ),
         label="Presentación",
@@ -63,11 +65,12 @@ class DrugForm(ModelForm):
         label="Cantidad",
     )
     unit = EmptyChoiceField(
+        choices=UnitChoicesChoices.choices,
         empty_label="----------",
         widget=Select(
-            choices=UnitChoicesChoices.choices,
-            attrs={"class": "form-control form-select", "placeholder": "Tipo"},
+            attrs={"class": "form-control form-select", "placeholder": "Unidad"},
         ),
+        label="Unidad",
         required=False,
     )
     out_of_stock = BooleanField(

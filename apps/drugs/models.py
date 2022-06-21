@@ -58,7 +58,7 @@ class Drug(Model):
     unit = IntegerField(
         verbose_name="Unidad", null=True, blank=True, choices=UnitChoicesChoices.choices
     )
-    out_of_stock = BooleanField()
+    out_of_stock = BooleanField(verbose_name="¿En falta?")
 
     def __str__(self):
         return f"{self.name} {self.presentation} {self.amount} {self.unit}"

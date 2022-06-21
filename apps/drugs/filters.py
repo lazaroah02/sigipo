@@ -1,5 +1,5 @@
-from django.forms import CheckboxInput, Select, TextInput
-from django_filters import BooleanFilter, CharFilter, ChoiceFilter, FilterSet
+from django.forms import Select, TextInput
+from django_filters import CharFilter, ChoiceFilter, FilterSet
 
 from apps.drugs.models import Drug, DrugTypeChoices, NuclearMedicineDrug
 
@@ -32,8 +32,12 @@ class DrugFilter(FilterSet):
             attrs={"class": "form-control form-select", "placeholder": "Tipo"}
         ),
     )
-    out_of_stock = BooleanFilter(
-        widget=CheckboxInput(attrs={"class": "form-check-input"})
+    out_of_stock = ChoiceFilter(
+        choices=((True, "En falta"), (False, "Disponible")),
+        label="¿En falta?",
+        widget=Select(
+            attrs={"class": "form-control form-select", "placeholder": "¿En falta?"}
+        ),
     )
 
     class Meta:

@@ -1,9 +1,13 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
-from apps.drugs.filters import NuclearMedicineDrugFilter
-from apps.drugs.models import NuclearMedicineDrug
+from apps.drugs.filters import DrugFilter, NuclearMedicineDrugFilter
+from apps.drugs.models import Drug, NuclearMedicineDrug
 from apps.drugs.views import (
+    DrugCreateView,
+    DrugDeleteView,
+    DrugDetailView,
+    DrugUpdateView,
     NuclearMedicineDrugCreateView,
     NuclearMedicineDrugDeleteView,
     NuclearMedicineDrugDetailView,
@@ -26,4 +30,18 @@ urlpatterns = [
     getUrl(NuclearMedicineDrugDetailView),
     getUrl(NuclearMedicineDrugUpdateView),
     getUrl(NuclearMedicineDrugDeleteView),
+    # * Drug URLs
+    path(
+        "drug/drug/list/",
+        PaginationFilterView.as_view(
+            model=Drug,
+            filterset_class=DrugFilter,
+            permission_required="drug_view",
+        ),
+        name="drug_list",
+    ),
+    getUrl(DrugCreateView),
+    getUrl(DrugDetailView),
+    getUrl(DrugUpdateView),
+    getUrl(DrugDeleteView),
 ]
