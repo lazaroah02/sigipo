@@ -30,5 +30,5 @@ class DrugTestCase(TestCase):
         """Test that Drug str method returns the drug name."""
         self.assertEqual(
             str(self.drug),
-            f"{self.drug.name} {self.drug.presentation} {self.drug.amount} {self.drug.unit}",
+            f"{self.drug.name} {self.drug.get_presentation_display()} {self.drug.amount} {self.drug.get_unit_display()}",
         )

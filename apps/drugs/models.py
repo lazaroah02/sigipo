@@ -61,7 +61,7 @@ class Drug(Model):
     out_of_stock = BooleanField(verbose_name="¿En falta?")
 
     def __str__(self):
-        return f"{self.name} {self.presentation} {self.amount} {self.unit}"
+        return f"{self.name} {self.get_presentation_display()} {self.amount} {self.get_unit_display()}"
 
     class Meta:
         verbose_name = "Fármaco de quimioterapia"
