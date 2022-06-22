@@ -17,6 +17,7 @@ from django.db.models.manager import Manager
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
 from apps.core.models import Round2, TimeStampedModel
+from apps.drugs.models import Drug, UnitChoicesChoices
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
@@ -59,6 +60,9 @@ class ProtocolQuerysetManager(Manager):
             )
         )
 
+    def not_suspended(self) -> QuerySet:
+        return self.get_queryset().filter(suspended=False)
+
 
 class Protocol(TimeStampedModel):
     patient = ForeignKey(Patient, verbose_name="Paciente", on_delete=CASCADE)
@@ -82,5 +86,43 @@ class Protocol(TimeStampedModel):
     class Meta:
         verbose_name = "Protocolo"
         verbose_name_plural = "Protocolos"
+        ordering = ["pk"]
+        default_permissions = ()
+
+
+class RouteChoices(IntegerChoices):
+    INTRAMUSCULAR = 0, "Intramuscular"
+    INTRAVENOUS = 1, "Intravenosa"
+    SUBCUTANEOUS = 2, "Subcutaneo"
+    INTRADERMAL = 3, "Intradérmica"
+    ORAL = 4, "Oral"
+
+
+class MedicationQuerysetManager(Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().select_related("protocol", "drug")
+
+
+class Medication(Model):
+    protocolo = ForeignKey(Protocol, verbose_name="Protocolo", on_delete=CASCADE)
+    drug = ForeignKey(Drug, verbose_name="Medicamento", on_delete=CASCADE)
+    days = IntegerField(verbose_name="Días")
+    route = IntegerField(
+        verbose_name="Vía de administración", choices=RouteChoices.choices
+    )
+    prescribed_dose = FloatField(verbose_name="Dosis prescrita")
+    unit = IntegerField(
+        verbose_name="Unidad", null=True, blank=True, choices=UnitChoicesChoices.choices
+    )
+    suspended = BooleanField(verbose_name="Suspendido")
+    cause = CharField(verbose_name="Causa", max_length=255, null=True, blank=True)
+    objects = MedicationQuerysetManager()
+
+    def __str__(self) -> str:
+        return f"{self.drug} en {self.protocolo}"
+
+    class Meta:
+        verbose_name = "Medicación"
+        verbose_name_plural = "Medicaciones"
         ordering = ["pk"]
         default_permissions = ()
