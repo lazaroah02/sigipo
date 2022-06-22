@@ -104,7 +104,7 @@ class MedicationQuerysetManager(Manager):
 
 
 class Medication(Model):
-    protocolo = ForeignKey(Protocol, verbose_name="Protocolo", on_delete=CASCADE)
+    protocol = ForeignKey(Protocol, verbose_name="Protocolo", on_delete=CASCADE)
     drug = ForeignKey(Drug, verbose_name="Medicamento", on_delete=CASCADE)
     days = IntegerField(verbose_name="Días")
     route = IntegerField(
@@ -119,7 +119,7 @@ class Medication(Model):
     objects = MedicationQuerysetManager()
 
     def __str__(self) -> str:
-        return f"{self.drug} en {self.protocolo}"
+        return f"{self.drug} en {self.protocol}"
 
     class Meta:
         verbose_name = "Medicación"

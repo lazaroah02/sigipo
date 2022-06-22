@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "protocolo",
+                    "protocol",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to="chemotherapy.protocol",
