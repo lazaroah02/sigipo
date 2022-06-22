@@ -204,8 +204,8 @@ class MedicationForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Dosis prescrita",
             },
-            label="Dosis prescrita",
-        )
+        ),
+        label="Dosis prescrita",
     )
     unit = EmptyChoiceField(
         choices=UnitChoicesChoices.choices,

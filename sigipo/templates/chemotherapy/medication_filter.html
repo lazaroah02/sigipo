@@ -1,0 +1,31 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+
+{% block crud_columns %}
+    {% create_header_column 'protocol' 'Protocolo' %}
+    {% create_header_column 'drug' 'Fármaco' %}
+    {% create_header_column 'days' 'Días' %}
+    {% create_header_column 'route' 'Via de administración' %}
+    {% create_header_column 'prescribed_dose' 'Dosis prescrita' %}
+    {% create_header_column 'unit' 'Unidad' %}
+    {% create_header_column 'suspended' 'Suspendido' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.protocol }}</td>
+            <td>{{ obj.drug }}</td>
+            <td>{{ obj.days }}</td>
+            <td>{{ obj.get_route_display }}</td>
+            <td>{{ obj.prescribed_dose }}</td>
+            <td>{{ obj.get_unit_display }}</td>
+            <td>{{ obj.suspended|yesno:"Si,No" }}</td>
+            <td>
+                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
