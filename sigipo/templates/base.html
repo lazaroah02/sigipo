@@ -157,7 +157,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="employee">
                 <li>
+                  <a class="dropdown-item" href="{% url 'patient:patient_list' %}"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
+                </li>
+                <li>
                   <a class="dropdown-item" href="{% url 'chemotherapy:scheme_list' %}"><i class="fa-solid fa-folder"></i> Esquema</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'chemotherapy:protocol_list' %}"><i class="fa-solid fa-align-justify"></i> Protocolo</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="{% url 'drugs:drug_list' %}"><i class="fa-solid fa-capsules"></i> F&aacute;rmaco</a>
