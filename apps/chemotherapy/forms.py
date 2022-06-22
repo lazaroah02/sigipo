@@ -2,6 +2,7 @@ from django.forms import (
     BooleanField,
     CharField,
     CheckboxInput,
+    ChoiceField,
     FloatField,
     IntegerField,
     ModelChoiceField,
@@ -12,9 +13,16 @@ from django.forms import (
 from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
-from apps.chemotherapy.models import Protocol, RoomChoices, Scheme
+from apps.chemotherapy.models import (
+    Medication,
+    Protocol,
+    RoomChoices,
+    RouteChoices,
+    Scheme,
+)
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
+from apps.drugs.models import Drug, UnitChoicesChoices
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
@@ -135,4 +143,90 @@ class ProtocolForm(ModelForm):
 
     class Meta:
         model = Protocol
+        fields = "__all__"
+
+
+class MedicationForm(ModelForm):
+    """Model to handle Medication creation and edition."""
+
+    protocol = ModelChoiceField(
+        queryset=Protocol.objects.not_suspended(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Protocolo",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+            ],
+        ),
+        label="Protocolo",
+    )
+    drug = ModelChoiceField(
+        queryset=Drug.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Fármaco",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Fármaco",
+    )
+    days = IntegerField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Días",
+            },
+        ),
+        label="Días",
+    )
+    route = ChoiceField(
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Via de administración",
+        choices=RouteChoices.choices,
+    )
+    prescribed_dose = FloatField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Dosis prescrita",
+            },
+            label="Dosis prescrita",
+        )
+    )
+    unit = EmptyChoiceField(
+        choices=UnitChoicesChoices.choices,
+        empty_label="----------",
+        widget=Select(
+            attrs={"class": "form-control form-select", "placeholder": "Unidad"},
+        ),
+        label="Unidad",
+        required=False,
+    )
+    suspended = BooleanField(
+        label="Suspendido",
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
+    )
+    cause = CharField(
+        label="Causa",
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Causa"}),
+        required=False,
+    )
+
+    class Meta:
+        model = Medication
         fields = "__all__"

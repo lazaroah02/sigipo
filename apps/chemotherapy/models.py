@@ -100,7 +100,11 @@ class RouteChoices(IntegerChoices):
 
 class MedicationQuerysetManager(Manager):
     def get_queryset(self) -> QuerySet:
-        return super().get_queryset().select_related("protocol", "drug")
+        return (
+            super()
+            .get_queryset()
+            .select_related("protocol", "drug", "protocol__patient", "protocol__scheme")
+        )
 
 
 class Medication(Model):
@@ -108,7 +112,7 @@ class Medication(Model):
     drug = ForeignKey(Drug, verbose_name="Medicamento", on_delete=CASCADE)
     days = IntegerField(verbose_name="Días")
     route = IntegerField(
-        verbose_name="Vía de administración", choices=RouteChoices.choices
+        verbose_name="Via de administración", choices=RouteChoices.choices
     )
     prescribed_dose = FloatField(verbose_name="Dosis prescrita")
     unit = IntegerField(

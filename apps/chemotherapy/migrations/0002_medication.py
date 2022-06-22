@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                             (3, "Intradérmica"),
                             (4, "Oral"),
                         ],
-                        verbose_name="Vía de administración",
+                        verbose_name="Via de administración",
                     ),
                 ),
                 ("prescribed_dose", models.FloatField(verbose_name="Dosis prescrita")),
