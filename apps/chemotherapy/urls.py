@@ -1,8 +1,12 @@
 from django.urls import path
 
-from apps.chemotherapy.filters import ProtocolFilter, SchemeFilter
-from apps.chemotherapy.models import Protocol, Scheme
+from apps.chemotherapy.filters import MedicationFilter, ProtocolFilter, SchemeFilter
+from apps.chemotherapy.models import Medication, Protocol, Scheme
 from apps.chemotherapy.views import (
+    MedicationCreateView,
+    MedicationDeleteView,
+    MedicationDetailView,
+    MedicationUpdateView,
     ProtocolCreateView,
     ProtocolDeleteView,
     ProtocolDetailView,
@@ -44,4 +48,18 @@ urlpatterns = [
     getUrl(ProtocolDetailView),
     getUrl(ProtocolUpdateView),
     getUrl(ProtocolDeleteView),
+    # * Medication URLs
+    path(
+        "chemotherapy/medication/list/",
+        PaginationFilterView.as_view(
+            model=Medication,
+            filterset_class=MedicationFilter,
+            permission_required="chemotherapy_view",
+        ),
+        name="medication_list",
+    ),
+    getUrl(MedicationCreateView),
+    getUrl(MedicationDetailView),
+    getUrl(MedicationUpdateView),
+    getUrl(MedicationDeleteView),
 ]
