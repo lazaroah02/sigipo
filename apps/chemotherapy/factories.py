@@ -1,9 +1,13 @@
+import datetime as dt
+
 from factory import SubFactory
 from factory.django import DjangoModelFactory
-from factory.fuzzy import FuzzyChoice, FuzzyFloat, FuzzyInteger, FuzzyText
+from factory.fuzzy import FuzzyChoice, FuzzyDate, FuzzyFloat, FuzzyInteger, FuzzyText
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
 from apps.chemotherapy.models import (
+    Cycle,
+    CycleMedication,
     Medication,
     Protocol,
     RoomChoices,
@@ -56,3 +60,25 @@ class MedicationFactory(DjangoModelFactory):
     unit = FuzzyChoice(UnitChoicesChoices.values)
     suspended = FuzzyChoice((True, False))
     cause = FuzzyText(length=5)
+
+
+class CycleFactory(DjangoModelFactory):
+    """Factory to handle Cycle creation."""
+
+    class Meta:
+        model = Cycle
+
+    protocol = SubFactory(ProtocolFactory)
+    next_date = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
+
+
+class CycleMedicationFactory(DjangoModelFactory):
+    """Factory to handle CycleMedication creation."""
+
+    class Meta:
+        model = CycleMedication
+
+    cycle = SubFactory(CycleFactory)
+    drug = SubFactory(DrugFactory)
+    dose = FuzzyFloat(1, high=10)
+    unit = FuzzyChoice(UnitChoicesChoices.values)

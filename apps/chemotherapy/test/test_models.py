@@ -1,4 +1,6 @@
 from apps.chemotherapy.factories import (
+    CycleFactory,
+    CycleMedicationFactory,
     MedicationFactory,
     ProtocolFactory,
     SchemeFactory,
@@ -64,4 +66,33 @@ class MedicationTestCase(TestCase):
         self.assertEqual(
             str(self.medication),
             f"{self.medication.drug} en {self.medication.protocol}",
+        )
+
+
+class CycleTestCase(TestCase):
+    """Test case for Cycle Model."""
+
+    @classmethod
+    def setUpTestData(cls) -> None:
+        """Common test data."""
+        cls.cycle = CycleFactory.create()
+
+    def test_cycle_str(self):
+        """Test that Cycle str returns the protocol."""
+        self.assertEqual(str(self.cycle), f"Ciclo de {self.cycle.protocol}")
+
+
+class CycleMedicationTestCase(TestCase):
+    """Test case for CycleMedication Model."""
+
+    @classmethod
+    def setUpTestData(cls) -> None:
+        """Common test data."""
+        cls.cycle_medication = CycleMedicationFactory.create()
+
+    def test_cycle_medication_str(self):
+        """Test that CycleMedication str returns the drug and cycle."""
+        self.assertEqual(
+            str(self.cycle_medication),
+            f"{self.cycle_medication.drug} en {self.cycle_medication.cycle}",
         )
