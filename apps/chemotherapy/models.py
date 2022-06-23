@@ -1,7 +1,10 @@
 from django.db.models import (
     CASCADE,
     BooleanField,
+    Case,
     CharField,
+    Count,
+    DateField,
     DecimalField,
     ExpressionWrapper,
     F,
@@ -10,7 +13,11 @@ from django.db.models import (
     IntegerChoices,
     IntegerField,
     Model,
+    OuterRef,
+    Q,
     QuerySet,
+    Subquery,
+    When,
 )
 from django.db.models.functions import Cast
 from django.db.models.manager import Manager
@@ -46,6 +53,13 @@ class ProtocolQuerysetManager(Manager):
             super()
             .get_queryset()
             .select_related("patient", "scheme", "doctor")
+            .alias(
+                completed_cycles_count=Subquery(
+                    Cycle.objects.filter(protocol=OuterRef("pk"))
+                    .annotate(count=Count("pk"))
+                    .values("count")
+                ),
+            )
             .annotate(
                 body_surface=Round2(
                     Cast(
@@ -56,7 +70,11 @@ class ProtocolQuerysetManager(Manager):
                         output_field=DecimalField(decimal_places=2, max_digits=10),
                     ),
                     output_field=FloatField(),
-                )
+                ),
+                completed=Case(
+                    When(Q(completed_cycles_count=F("cycles")), then=True),
+                    default=False,
+                ),
             )
         )
 
@@ -128,5 +146,49 @@ class Medication(Model):
     class Meta:
         verbose_name = "Medicación"
         verbose_name_plural = "Medicaciones"
+        ordering = ["pk"]
+        default_permissions = ()
+
+
+class CycleQuerysetManager(Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().select_related("protocol")
+
+
+class Cycle(TimeStampedModel):
+    protocol = ForeignKey(Protocol, verbose_name="Protocolo", on_delete=CASCADE)
+    next_date = DateField(verbose_name="Fecha de próximo ciclo")
+    objects = CycleQuerysetManager()
+
+    def __str__(self) -> str:
+        return f"Ciclo de {self.protocol}"
+
+    class Meta:
+        verbose_name = "Ciclo"
+        verbose_name_plural = "Ciclos"
+        ordering = ["pk"]
+        default_permissions = ()
+
+
+class CycleMedicationQuerysetManager(Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().select_related("cycle", "drug")
+
+
+class CycleMedication(Model):
+    cycle = ForeignKey(Cycle, verbose_name="Ciclo", on_delete=CASCADE)
+    drug = ForeignKey(Drug, verbose_name="Fármaco", on_delete=CASCADE)
+    dose = FloatField(verbose_name="Dosis")
+    unit = IntegerField(
+        verbose_name="Unidad", null=True, blank=True, choices=UnitChoicesChoices.choices
+    )
+    objects = CycleMedicationQuerysetManager()
+
+    def __str__(self) -> str:
+        return f"{self.drug} en {self.cycle}"
+
+    class Meta:
+        verbose_name = "Medicación del ciclo"
+        verbose_name_plural = "Medicaciones del ciclo"
         ordering = ["pk"]
         default_permissions = ()

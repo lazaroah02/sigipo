@@ -9,6 +9,7 @@
     {% create_header_column 'body_surface' 'Superficie corporal' %}
     {% create_header_column 'cycles' 'Ciclos' %}
     {% create_header_column 'suspended' 'Suspendido' %}
+    {% create_header_column 'completed' 'Completado' %}
 {% endblock crud_columns %}
 
 {% block table_body %}
@@ -21,6 +22,7 @@
             <td>{{ obj.body_surface }}</td>
             <td>{{ obj.cycles }}</td>
             <td>{{ obj.suspended|yesno:"Sí,No" }}</td>
+            <td>{{ obj.completed|yesno:"Sí,No" }}</td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
