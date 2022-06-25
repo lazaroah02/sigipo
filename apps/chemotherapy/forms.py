@@ -3,6 +3,8 @@ from django.forms import (
     CharField,
     CheckboxInput,
     ChoiceField,
+    DateField,
+    DateInput,
     FloatField,
     IntegerField,
     ModelChoiceField,
@@ -14,6 +16,8 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
 from apps.chemotherapy.models import (
+    Cycle,
+    CycleMedication,
     Medication,
     Protocol,
     RoomChoices,
@@ -230,3 +234,82 @@ class MedicationForm(ModelForm):
     class Meta:
         model = Medication
         fields = "__all__"
+
+
+class CycleForm(ModelForm):
+    protocol = ModelChoiceField(
+        queryset=Protocol.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Protocolo",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "patient__first_name__icontains",
+                "patient__last_name__icontains",
+                "patient__identity_card__icontains",
+                "patient__medical_record__icontains",
+            ],
+        ),
+        label="Protocolo",
+    )
+    next_date = DateField(
+        widget=DateInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Fecha de próximo ciclo",
+                "type": "date",
+            },
+            format="%Y-%m-%d",
+        ),
+        label="Fecha de próximo ciclo",
+        required=False,
+    )
+
+    class Meta:
+        model = Cycle
+        fields = "__all__"
+
+
+class CycleMedicationForm(ModelForm):
+    drug = ModelChoiceField(
+        queryset=Drug.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Fármaco",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Fármaco",
+    )
+    dose = FloatField(
+        widget=NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Dosis",
+            },
+        ),
+        label="Dosis",
+    )
+    unit = EmptyChoiceField(
+        choices=UnitChoicesChoices.choices,
+        empty_label="----------",
+        widget=Select(
+            attrs={"class": "form-control form-select", "placeholder": "Unidad"},
+        ),
+        label="Unidad",
+        required=False,
+    )
+
+    class Meta:
+        model = CycleMedication
+        fields = ("drug", "dose", "unit")

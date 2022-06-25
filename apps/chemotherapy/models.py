@@ -57,7 +57,7 @@ class ProtocolQuerysetManager(Manager):
                 completed_cycles_count=Subquery(
                     Cycle.objects.filter(protocol=OuterRef("pk"))
                     .annotate(count=Count("pk"))
-                    .values("count")
+                    .values("count")[:1]
                 ),
             )
             .annotate(
