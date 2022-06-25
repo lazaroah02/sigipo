@@ -235,7 +235,7 @@ class CycleDetailView(BaseDetailView):
         CycleMedication,
         form=CycleMedicationForm,
         fk_name="cycle",
-        extra=1,
+        extra=0,
     )
 
     def get_context_data(self, **kwargs):

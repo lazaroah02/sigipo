@@ -1,7 +1,12 @@
 from django.urls import path
 
-from apps.chemotherapy.filters import MedicationFilter, ProtocolFilter, SchemeFilter
-from apps.chemotherapy.models import Medication, Protocol, Scheme
+from apps.chemotherapy.filters import (
+    CycleFilter,
+    MedicationFilter,
+    ProtocolFilter,
+    SchemeFilter,
+)
+from apps.chemotherapy.models import Cycle, Medication, Protocol, Scheme
 from apps.chemotherapy.views import (
     CycleCreateView,
     CycleDeleteView,
@@ -26,7 +31,7 @@ app_name = "chemotherapy"
 urlpatterns = [
     # * Scheme URLs
     path(
-        "chemotherapy/scheme/list/",
+        "scheme/list/",
         PaginationFilterView.as_view(
             model=Scheme,
             filterset_class=SchemeFilter,
@@ -40,7 +45,7 @@ urlpatterns = [
     getUrl(SchemeDeleteView),
     # * Protocol URLs
     path(
-        "chemotherapy/protocol/list/",
+        "protocol/list/",
         PaginationFilterView.as_view(
             model=Protocol,
             filterset_class=ProtocolFilter,
@@ -54,7 +59,7 @@ urlpatterns = [
     getUrl(ProtocolDeleteView),
     # * Medication URLs
     path(
-        "chemotherapy/medication/list/",
+        "medication/list/",
         PaginationFilterView.as_view(
             model=Medication,
             filterset_class=MedicationFilter,
@@ -68,10 +73,12 @@ urlpatterns = [
     getUrl(MedicationDeleteView),
     # * Cycle URLs
     path(
-        "chemotherapy/medication/list/",
+        "cycle/list/",
         PaginationFilterView.as_view(
-            model=Medication,
-            filterset_class=MedicationFilter,
+            queryset=Cycle.objects.prefetch_related(
+                "cyclemedication_set"
+            ).select_related("protocol__scheme", "protocol__patient"),
+            filterset_class=CycleFilter,
             permission_required="chemotherapy_view",
         ),
         name="cycle_list",

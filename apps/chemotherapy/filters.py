@@ -61,10 +61,21 @@ class ProtocolFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
-    scheme = ChoiceFilter(
-        choices=NeoplasmClinicalStageChoices.choices,
-        widget=Select(attrs={"class": "form-control form-select"}),
-        label="Etapa",
+    scheme = ModelChoiceFilter(
+        queryset=Scheme.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Esquema",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Esquema",
     )
     room = ChoiceFilter(
         choices=RoomChoices.choices,
@@ -188,4 +199,64 @@ class MedicationFilter(FilterSet):
             "drug",
             "route",
             "suspended",
+        ]
+
+
+class CycleFilter(FilterSet):
+    protocol__patient__identity_card = CharFilter(
+        lookup_expr="icontains",
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Carnet contiene"}
+        ),
+        label="Carnet contiene",
+    )
+    protocol__patient__first_name = CharFilter(
+        lookup_expr="icontains",
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Nombre contiene"}
+        ),
+        label="Nombre contiene",
+    )
+    protocol__patient__last_name = CharFilter(
+        lookup_expr="icontains",
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
+        ),
+        label="Apellidos contiene",
+    )
+    protocol__patient__medical_record = CharFilter(
+        lookup_expr="icontains",
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "No. historia clínica contiene",
+            }
+        ),
+        label="No. historia clínica contiene",
+    )
+    protocol__scheme = ModelChoiceFilter(
+        queryset=Scheme.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Esquema",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "name__icontains",
+            ],
+        ),
+        label="Esquema",
+    )
+
+    class Meta:
+        model = Medication
+        fields = [
+            "protocol__patient__identity_card",
+            "protocol__patient__first_name",
+            "protocol__patient__last_name",
+            "protocol__patient__medical_record",
+            "protocol__scheme",
         ]

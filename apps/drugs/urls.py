@@ -18,7 +18,7 @@ app_name = "drugs"
 urlpatterns = [
     # * NuclearMedicineDrug URLs
     path(
-        "drug/nuclearmedicinedrug/list/",
+        "nuclearmedicinedrug/list/",
         PaginationFilterView.as_view(
             model=NuclearMedicineDrug,
             filterset_class=NuclearMedicineDrugFilter,
@@ -32,7 +32,7 @@ urlpatterns = [
     getUrl(NuclearMedicineDrugDeleteView),
     # * Drug URLs
     path(
-        "drug/drug/list/",
+        "drug/list/",
         PaginationFilterView.as_view(
             model=Drug,
             filterset_class=DrugFilter,
