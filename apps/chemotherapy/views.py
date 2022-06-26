@@ -126,12 +126,13 @@ class MedicationCreateView(BaseCreateView):
     model = Medication
     form_class = MedicationForm
     success_url = reverse_lazy("chemotherapy:medication_list")
+    template_name = "chemotherapy/medication_create.html"
     success_message = "Medicación guardada correctamente."
     cancel_url = "chemotherapy:medication_list"
     permission_required = "chemotherapy_manage"
 
 
-class MedicationDetailView(BaseUpdateView):
+class MedicationDetailView(BaseDetailView):
     """View to handle Medication details."""
 
     model = Medication
@@ -139,6 +140,7 @@ class MedicationDetailView(BaseUpdateView):
     success_url = reverse_lazy("chemotherapy:medication_list")
     success_message = "Medicación guardada correctamente."
     cancel_url = "chemotherapy:medication_list"
+    template_name = "chemotherapy/medication_detail.html"
     object_not_found_error_message = "Medicación no encontrada"
     permission_required = "chemotherapy_view"
 
@@ -151,6 +153,7 @@ class MedicationUpdateView(BaseUpdateView):
     success_url = reverse_lazy("chemotherapy:medication_list")
     success_message = "Medicación guardada correctamente."
     cancel_url = "chemotherapy:medication_list"
+    template_name = "chemotherapy/medication_update.html"
     object_not_found_error_message = "Medicación no encontrada"
     permission_required = "chemotherapy_manage"
 
