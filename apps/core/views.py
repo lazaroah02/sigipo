@@ -5,12 +5,27 @@ from django.forms import CheckboxInput
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import path, reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
 
 def http_403(request: HttpRequest, exception) -> HttpResponse:
     return render(request, "400/403.html")
+
+
+class FileDownloadView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        """
+        Download a file.
+        """
+        raise NotImplementedError("This method must be implemented.")
+
+    def post(self, request, *args, **kwargs):
+        """
+        Download a file.
+        """
+        raise NotImplementedError("This method must be implemented.")
 
 
 class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterView):
