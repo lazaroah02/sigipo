@@ -38,6 +38,7 @@
       "Highcharts": true,
       "bootstrap": true,
       "jQuery": true,
+      "$": true,
       "django": "readonly",
       "Chart": "readonly",
       "L": true
