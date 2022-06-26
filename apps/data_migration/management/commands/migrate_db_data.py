@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.db import transaction
+from django.db import connection, transaction
 from django.db.models import Q
 
 from apps.cancer_registry.models import Neoplasm
@@ -152,3 +152,36 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(self.style.SUCCESS("Successfully migrated MARIA DB data"))
+        self.stdout.write(self.style.SUCCESS("Resetting sequences"))
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                BEGIN;
+                SELECT setval(pg_get_serial_sequence('"geographic_location_province"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "geographic_location_province";
+                SELECT setval(pg_get_serial_sequence('"geographic_location_municipality"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "geographic_location_municipality";
+                SELECT setval(pg_get_serial_sequence('"classifiers_topography"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "classifiers_topography";
+                SELECT setval(pg_get_serial_sequence('"classifiers_morphology"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "classifiers_morphology";
+                SELECT setval(pg_get_serial_sequence('"classifiers_study"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "classifiers_study";
+                SELECT setval(pg_get_serial_sequence('"classifiers_radioisotope"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "classifiers_radioisotope";
+                SELECT setval(pg_get_serial_sequence('"drugs_nuclearmedicinedrug"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "drugs_nuclearmedicinedrug";
+                SELECT setval(pg_get_serial_sequence('"drugs_drug"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "drugs_drug";
+                SELECT setval(pg_get_serial_sequence('"employee_group"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "employee_group";
+                SELECT setval(pg_get_serial_sequence('"patient_patient"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "patient_patient";
+                SELECT setval(pg_get_serial_sequence('"cancer_registry_neoplasm"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "cancer_registry_neoplasm";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_oncologicstudy"','sample_number'), coalesce(max("sample_number"), 1), max("sample_number") IS NOT null) FROM "nuclear_medicine_oncologicstudy";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_hormonalstudy"','sample_number'), coalesce(max("sample_number"), 1), max("sample_number") IS NOT null) FROM "nuclear_medicine_hormonalstudy";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_hormonalresult"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_hormonalresult";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_oncologicresult"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_oncologicresult";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_iodinedetection"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_iodinedetection";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_serialiodinedetection"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_serialiodinedetection";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_gammagraphy_requested_study"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_gammagraphy_requested_study";
+                SELECT setval(pg_get_serial_sequence('"nuclear_medicine_gammagraphy"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "nuclear_medicine_gammagraphy";
+                SELECT setval(pg_get_serial_sequence('"chemotherapy_scheme"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "chemotherapy_scheme";
+                SELECT setval(pg_get_serial_sequence('"chemotherapy_protocol"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "chemotherapy_protocol";
+                SELECT setval(pg_get_serial_sequence('"chemotherapy_medication"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "chemotherapy_medication";
+                SELECT setval(pg_get_serial_sequence('"chemotherapy_cycle"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "chemotherapy_cycle";
+                SELECT setval(pg_get_serial_sequence('"chemotherapy_cyclemedication"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "chemotherapy_cyclemedication";
+                COMMIT;
+            """
+            )
+        self.stdout.write(self.style.SUCCESS("Migration Complete ;)"))
