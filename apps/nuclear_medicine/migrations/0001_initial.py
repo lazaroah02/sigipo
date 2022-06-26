@@ -269,7 +269,8 @@ class Migration(migrations.Migration):
                 (
                     "drug",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="drugs.drug"
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="drugs.nuclearmedicinedrug",
                     ),
                 ),
                 (

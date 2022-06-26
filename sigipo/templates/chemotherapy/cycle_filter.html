@@ -2,23 +2,25 @@
 {% load column_sort %}
 
 {% block crud_columns %}
-    {% create_header_column 'name' 'Nombre' %}
-    {% create_header_column 'drug_type' 'Tipo' %}
-    {% create_header_column 'presentation' 'Presentación' %}
-    {% create_header_column 'amount' 'Cantidad' %}
-    {% create_header_column 'unit' 'Unidad' %}
-    {% create_header_column 'out_of_stock' '¿En falta?' %}
+    {% create_header_column 'protocol' 'Protocolo' %}
+    {% create_header_column 'next_date' 'Fecha de próximo ciclo' %}
+    <th>Medicaci&oacute;n</th>
 {% endblock crud_columns %}
 
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td>{{ obj.name }}</td>
-            <td>{{ obj.get_drug_type_display }}</td>
-            <td>{{ obj.get_presentation_display|default_if_none:"" }}</td>
-            <td>{{ obj.amount }}</td>
-            <td>{{ obj.get_unit_display|default_if_none:"" }}</td>
-            <td>{{ obj.out_of_stock|yesno:"Sí,No" }}</td>
+            <td>{{ obj.protocol }}</td>
+            <td>{{ obj.next_date }}</td>
+            <td>
+                <ul>
+                    {% for medication in obj.cyclemedication_set.all %}
+                    <li>
+                        {{ medication.drug }}-{{ medication.dose }}-{{ medication.get_unit_display|default_if_none:'' }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>

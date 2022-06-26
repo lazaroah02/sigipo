@@ -1,0 +1,22 @@
+{% extends "base_crud/base_update.html" %}
+
+{% load static i18n l10n %}
+
+{% block formset %}
+{{ form.non_form_errors }}
+  <h5 class="text-info">Medicamentos del ciclo</h5>
+  {{ formset.non_form_errors }}
+  {{ formset.management_form }}
+  {% for medication_form in formset %}
+    <div class="medication-clyce-form">
+      <hr/>
+      {{ medication_form.as_p }}
+    </div>
+  {% endfor %}
+  <button id="add-form" class="btn btn-warning" type="button"><i class="fa-solid fa-plus"></i> A&ntilde;adir medicamento</button>
+{% endblock formset %}
+
+{% block endloads %}
+{{ block.super }}
+<script src="{% static 'js/internal/inline-cycle.js' %}"></script>
+{% endblock endloads %}

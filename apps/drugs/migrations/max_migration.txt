@@ -1,1 +1,1 @@
-0003_alter_drug_options
+0002_alter_drug_out_of_stock
