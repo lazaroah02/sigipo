@@ -10,7 +10,7 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td><a href="{% url "chemotherapy:protocol_detail" obj.patient.pk %}?return_to=chemotherapy:cycle_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.protocol }}</a></td>
+            <td><a href="{% url "chemotherapy:protocol_detail" obj.protocol.pk %}?return_to=chemotherapy:cycle_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.protocol }}</a></td>
             <td>{{ obj.next_date }}</td>
             <td>
                 <ul>
