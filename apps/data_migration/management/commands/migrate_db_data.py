@@ -3,17 +3,21 @@ from django.db import transaction
 from django.db.models import Q
 
 from apps.cancer_registry.models import Neoplasm
+from apps.chemotherapy.models import Scheme
 from apps.classifiers.models import Morphology, Topography
 from apps.data_migration.models import (
     DatosTumor,
     Diagnostico,
+    Esquema,
     Grupo,
     Localizacion,
+    Medicamentos,
     Medico,
     Municipio,
     Paciente,
     Provincia,
 )
+from apps.drugs.models import Drug
 from apps.employee.models import Doctor, Group
 from apps.geographic_location.models import Municipality, Province
 from apps.patient.models import Patient
@@ -24,6 +28,21 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with transaction.atomic():
+            scheme_data = [scheme.to_postgres_db() for scheme in Esquema.objects.all()]
+            Scheme.objects.bulk_create(scheme_data)
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "Successfully migrated scheme model '%s' instances"
+                    % len(scheme_data)
+                )
+            )
+            drug_data = [drug.to_postgres_db() for drug in Medicamentos.objects.all()]
+            Drug.objects.bulk_create(drug_data)
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "Successfully migrated drug model '%s' instances" % len(drug_data)
+                )
+            )
             morphology_data = [
                 morphology.to_postgres_db() for morphology in Diagnostico.objects.all()
             ]

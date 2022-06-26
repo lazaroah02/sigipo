@@ -1,5 +1,6 @@
 import datetime as dt
 
+from dateutil.relativedelta import relativedelta
 from django.db import models
 
 from apps.cancer_registry.models import (
@@ -21,7 +22,14 @@ from apps.cancer_registry.models import (
     TumorChoices,
     TumorClassificationChoices,
 )
+from apps.chemotherapy.models import Scheme
 from apps.classifiers.models import Morphology, Topography
+from apps.drugs.models import (
+    Drug,
+    DrugTypeChoices,
+    PresentationChoicesChoices,
+    UnitChoicesChoices,
+)
 from apps.employee.models import Doctor, Group
 from apps.geographic_location.models import Municipality, Province
 from apps.patient.models import Patient, PatientRace, SexChoices
@@ -462,6 +470,12 @@ def get_clinical_stage(str_value: str):
     return extension
 
 
+def get_age_at_diagnosis(date_diagnos, patient):
+    if date_diagnos is None or patient.date_of_birth is None:
+        return None
+    return relativedelta(date_diagnos, patient.date_of_birth).years
+
+
 class DatosTumor(DataMigrationModel):
     fechainicio = models.DateField(null=True, blank=True, db_column="fechainicio")
     idtumor = models.IntegerField(db_column="idtumor", primary_key=True)
@@ -533,7 +547,9 @@ class DatosTumor(DataMigrationModel):
             pk=self.idtumor,
             patient=None if self.ci is None else related["patient"][self.ci.ci],
             date_of_diagnosis=self.fechadiagnostico,
-            age_at_diagnosis=None,
+            age_at_diagnosis=get_age_at_diagnosis(
+                self.fechadiagnostico, related["patient"][self.ci.ci]
+            ),
             psa=self.psa,
             primary_site=None
             if self.localizacion is None
@@ -598,3 +614,69 @@ class DatosTumor(DataMigrationModel):
 
     class Meta(DataMigrationModel.Meta):
         db_table = "t1_datosgeneralestumor"
+
+
+class Esquema(DataMigrationModel):
+    esquema = models.CharField(max_length=255)
+    id_esquema = models.IntegerField(primary_key=True)
+
+    def to_postgres_db(self, related=None):
+        return Scheme(name=self.esquema, pk=self.id_esquema)
+
+    class Meta(DataMigrationModel.Meta):
+        db_table = "tn_esquema"
+
+
+def get_UNIT(str_value: str):
+    if str_value is None:
+        return None
+    val = str_value.lower()
+    for value, label in UnitChoicesChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_presentation(str_value: str):
+    if str_value is None:
+        return None
+    val = str_value.lower()
+    for value, label in PresentationChoicesChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+def get_drug_type(str_value: str):
+    if str_value is None:
+        return None
+    val = str_value.lower()
+    if val == "anticuerpo monocronal":
+        val = "anticuerpo monoclonal"
+    for value, label in DrugTypeChoices.choices:
+        if val == label.lower():
+            return value
+    return None
+
+
+class Medicamentos(DataMigrationModel):
+    tipo = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255)
+    presentacion = models.CharField(max_length=255)
+    cantidad = models.FloatField()
+    unidad = models.CharField(max_length=255)
+    id_medicamento = models.IntegerField(primary_key=True)
+
+    def to_postgres_db(self, related=None):
+        return Drug(
+            drug_type=get_drug_type(self.tipo),
+            presentation=get_presentation(self.presentacion),
+            unit=get_UNIT(self.unidad),
+            amount=self.cantidad,
+            name=self.nombre,
+            pk=self.id_medicamento,
+            out_of_stock=False,
+        )
+
+    class Meta(DataMigrationModel.Meta):
+        db_table = "tn_medicamentos"
