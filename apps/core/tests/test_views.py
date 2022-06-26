@@ -5,7 +5,12 @@ from django.views.generic.base import ContextMixin
 from apps.accounts.factories import UserFactory
 from apps.cancer_registry.factories import NeoplasmFactory
 from apps.core.test import SimpleTestCase, TestCase
-from apps.core.views import CancelUrlMixin, FileDownloadView, ViewTitleMixin
+from apps.core.views import (
+    CancelUrlMixin,
+    FileDownloadView,
+    ReportDownloadView,
+    ViewTitleMixin,
+)
 from apps.geographic_location.factories import ProvinceFactory
 from apps.geographic_location.models import Province
 from apps.geographic_location.views import ProvinceDeleteView
@@ -194,3 +199,11 @@ class FileDownloadViewTestCase(SimpleTestCase):
     def test_post(self) -> None:
         with self.assertRaises(NotImplementedError):
             FileDownloadView.post(None, None)
+
+
+class ReportDownloadViewTestCase(SimpleTestCase):
+    def test_get(self) -> None:
+        response = ReportDownloadView().get(None, None)
+        self.assertIn("report_name", response.context_data)
+        self.assertIn("report_text", response.context_data)
+        self.assertIn("report_form", response.context_data)

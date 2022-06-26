@@ -4,9 +4,11 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import CheckboxInput
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.template.response import TemplateResponse
 from django.urls import path, reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django.views.generic.base import ContextMixin
 from django_filters.views import FilterView
 
 
@@ -14,7 +16,7 @@ def http_403(request: HttpRequest, exception) -> HttpResponse:
     return render(request, "400/403.html")
 
 
-class FileDownloadView(LoginRequiredMixin, PermissionRequiredMixin, View):
+class FileDownloadView(LoginRequiredMixin, PermissionRequiredMixin, ContextMixin, View):
     def get(self, request, *args, **kwargs):
         """
         Download a file.
@@ -26,6 +28,24 @@ class FileDownloadView(LoginRequiredMixin, PermissionRequiredMixin, View):
         Download a file.
         """
         raise NotImplementedError("This method must be implemented.")
+
+
+class ReportDownloadView(FileDownloadView):
+    report_name = None
+    report_text = None
+    report_form = None
+
+    def get(self, request, *args, **kwargs):
+        """
+        Return form to generate report.
+        """
+        context = super().get_context_data(**kwargs)
+        context["report_name"] = self.report_name
+        context["report_text"] = self.report_text
+        context["report_form"] = self.report_form
+        return TemplateResponse(
+            request, template="report/base_report.html", context=context
+        )
 
 
 class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterView):

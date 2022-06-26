@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/internal/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap5.min.css' %}"/>
+{% endblock styles %}
+
+{% block content %}
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    <div class="card card-container">
+      <div class="card-header">
+        <h3 class="card-title">{{ report_name }}</h3>
+      </div>
+      <div class="card-body">
+          {% csrf_token %}
+          <h5>{{ report_text }}</h5>
+          {{ report_form.as_p }}
+      </div>
+      <div class="card-footer text-muted">
+          <div class="action-buttons">
+            <button type="submit" class="btn btn-info"><i class="fa-solid fa-download"></i> Dercargar reporte</button>
+            <a role="button" class="btn btn-outline-secondary" href="{{ request.META.HTTP_REFERER|escape }}">Regresar</a>
+          </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
