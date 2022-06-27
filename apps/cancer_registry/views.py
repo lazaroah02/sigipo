@@ -1,6 +1,6 @@
 import io
 
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import FileResponse
 from django.urls import reverse_lazy
 
@@ -86,7 +86,14 @@ class MorphologyReportView(ReportDownloadView):
             document = generate_report_header("CANTIDAD DE CASOS POR MORFOLOGÍA")
             add_report_range(document, initial_date, final_date)
             data = (
-                Morphology.objects.annotate(test_count=Count("neoplasm"))
+                Morphology.objects.annotate(
+                    test_count=Count(
+                        "neoplasm",
+                        filter=Q(
+                            neoplasm__date_of_report__range=(initial_date, final_date)
+                        ),
+                    )
+                )
                 .filter(test_count__gt=0)
                 .only("name")
                 .order_by("name")
