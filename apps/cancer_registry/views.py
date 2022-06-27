@@ -1,12 +1,24 @@
+import io
+
+from django.db.models import Count
+from django.http import FileResponse
 from django.urls import reverse_lazy
 
 from apps.cancer_registry.forms import NeoplasmForm
 from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.report import (
+    add_data_table,
+    add_report_range,
+    add_total,
+    generate_report_header,
+)
+from apps.classifiers.models import Morphology
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
     BaseDetailView,
     BaseUpdateView,
+    ReportDownloadView,
 )
 
 
@@ -60,3 +72,35 @@ class NeoplasmDeleteView(BaseDeleteView):
     object_not_found_error_message = "Neoplasia no encontrada"
     title = "Eliminar neoplasia"
     permission_required = "cancer_registry_manage"
+
+
+class MorphologyReportView(ReportDownloadView):
+    report_name = "Cantidad de casos por morfología"
+    report_text = "Ingrese el intervalo de tiempo."
+
+    def post(self, request, *args, **kwargs):
+        form = self.report_form(request.POST)
+        if form.is_valid():
+            initial_date = form.cleaned_data["initial_date"]
+            final_date = form.cleaned_data["final_date"]
+            document = generate_report_header("CANTIDAD DE CASOS POR MORFOLOGÍA")
+            add_report_range(document, initial_date, final_date)
+            data = (
+                Morphology.objects.annotate(test_count=Count("neoplasm"))
+                .filter(test_count__gt=0)
+                .only("name")
+                .order_by("name")
+            )
+            add_data_table(
+                document,
+                data,
+                columns=["Morfología", "Cantidad de casos"],
+                queryset_columns=["name", "test_count"],
+            )
+            add_total(document, data, "test_count")
+            buffer = io.BytesIO()
+            document.save(buffer)
+            buffer.seek(0)
+            return FileResponse(buffer, as_attachment=True, filename="reporte.docx")
+        else:
+            return self.render_to_response(self.get_context_data(form=form))

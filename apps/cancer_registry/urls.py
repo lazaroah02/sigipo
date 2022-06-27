@@ -3,6 +3,7 @@ from django.urls import path
 from apps.cancer_registry.filters import NeoplasmFilter
 from apps.cancer_registry.models import Neoplasm
 from apps.cancer_registry.views import (
+    MorphologyReportView,
     NeoplasmCreateView,
     NeoplasmDeleteView,
     NeoplasmDetailView,
@@ -28,4 +29,10 @@ urlpatterns = [
     getUrl(NeoplasmDetailView),
     getUrl(NeoplasmUpdateView),
     getUrl(NeoplasmDeleteView),
+    # * Report URLs
+    path(
+        "report/morphology/",
+        MorphologyReportView.as_view(),
+        name="morphology_report",
+    ),
 ]

@@ -23,6 +23,10 @@ class User(AbstractUser):
                 "Puede Crear/Modificar/Eliminar datos del registro de cáncer",
             ),
             (
+                "download_cancer_report",
+                "Puede descargar reportes del registro de cáncer",
+            ),
+            (
                 "nuclear_medicine_view",
                 "Puede visualizar datos de medicina nuclear.",
             ),

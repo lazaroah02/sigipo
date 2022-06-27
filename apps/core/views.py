@@ -11,6 +11,8 @@ from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django.views.generic.base import ContextMixin
 from django_filters.views import FilterView
 
+from apps.core.forms import BaseReportForm
+
 
 def http_403(request: HttpRequest, exception) -> HttpResponse:
     return render(request, "400/403.html")
@@ -33,7 +35,8 @@ class FileDownloadView(LoginRequiredMixin, PermissionRequiredMixin, ContextMixin
 class ReportDownloadView(FileDownloadView):
     report_name = None
     report_text = None
-    report_form = None
+    report_form = BaseReportForm
+    permission_required = "download_cancer_report"
 
     def get(self, request, *args, **kwargs):
         """
@@ -42,7 +45,7 @@ class ReportDownloadView(FileDownloadView):
         context = super().get_context_data(**kwargs)
         context["report_name"] = self.report_name
         context["report_text"] = self.report_text
-        context["report_form"] = self.report_form
+        context["report_form"] = self.report_form()
         return TemplateResponse(
             request, template="report/base_report.html", context=context
         )
