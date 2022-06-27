@@ -17,6 +17,19 @@
       <div class="card-body">
           {% csrf_token %}
           <h5>{{ report_text }}</h5>
+          {% if report_form.errors %}
+              <div class="alert alert-danger">
+                <ul>
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                      {{ error }}
+                    </li>
+                    {% endfor %}
+                  {% endfor %}
+                </ul>
+              </div>
+          {% endif %}
           {{ report_form.as_p }}
       </div>
       <div class="card-footer text-muted">
