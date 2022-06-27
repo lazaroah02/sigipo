@@ -5,7 +5,7 @@ from django.http import FileResponse
 from django.urls import reverse_lazy
 
 from apps.cancer_registry.forms import NeoplasmForm
-from apps.cancer_registry.models import Neoplasm
+from apps.cancer_registry.models import Neoplasm, Topography
 from apps.cancer_registry.report import (
     add_data_table,
     add_report_range,
@@ -20,6 +20,7 @@ from apps.core.views import (
     BaseUpdateView,
     ReportDownloadView,
 )
+from apps.employee.models import Group
 
 
 # * Neoplasm Views
@@ -102,6 +103,84 @@ class MorphologyReportView(ReportDownloadView):
                 document,
                 data,
                 columns=["Morfología", "Cantidad de casos"],
+                queryset_columns=["name", "test_count"],
+            )
+            add_total(document, data, "test_count")
+            buffer = io.BytesIO()
+            document.save(buffer)
+            buffer.seek(0)
+            return FileResponse(buffer, as_attachment=True, filename="reporte.docx")
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+
+class TopographyReportView(ReportDownloadView):
+    report_name = "Cantidad de casos por Topografía"
+    report_text = "Ingrese el intervalo de tiempo."
+
+    def post(self, request, *args, **kwargs):
+        form = self.report_form(request.POST)
+        if form.is_valid():
+            initial_date = form.cleaned_data["initial_date"]
+            final_date = form.cleaned_data["final_date"]
+            document = generate_report_header("CANTIDAD DE CASOS POR TOPOGRAFÍA")
+            add_report_range(document, initial_date, final_date)
+            data = (
+                Topography.objects.annotate(
+                    test_count=Count(
+                        "neoplasm",
+                        filter=Q(
+                            neoplasm__date_of_report__range=(initial_date, final_date)
+                        ),
+                    )
+                )
+                .filter(test_count__gt=0)
+                .only("name")
+                .order_by("name")
+            )
+            add_data_table(
+                document,
+                data,
+                columns=["Topografía", "Cantidad de casos"],
+                queryset_columns=["name", "test_count"],
+            )
+            add_total(document, data, "test_count")
+            buffer = io.BytesIO()
+            document.save(buffer)
+            buffer.seek(0)
+            return FileResponse(buffer, as_attachment=True, filename="reporte.docx")
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+
+class GroupReportView(ReportDownloadView):
+    report_name = "Cantidad de casos por grupo de trabajo"
+    report_text = "Ingrese el intervalo de tiempo."
+
+    def post(self, request, *args, **kwargs):
+        form = self.report_form(request.POST)
+        if form.is_valid():
+            initial_date = form.cleaned_data["initial_date"]
+            final_date = form.cleaned_data["final_date"]
+            document = generate_report_header("CANTIDAD DE CASOS POR GRUPO DE TRABAJO")
+            add_report_range(document, initial_date, final_date)
+            data = (
+                Group.objects.annotate(
+                    test_count=Count(
+                        "neoplasm",
+                        filter=Q(
+                            neoplasm__date_of_report__range=(initial_date, final_date)
+                        ),
+                    )
+                )
+                .filter(test_count__gt=0)
+                .only("name")
+                .order_by("name")
+            )
+            add_data_table(
+                document,
+                data,
+                columns=["Grupo", "Cantidad de casos"],
                 queryset_columns=["name", "test_count"],
             )
             add_total(document, data, "test_count")

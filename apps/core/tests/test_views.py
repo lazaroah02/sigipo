@@ -192,10 +192,6 @@ class CoreHandlerTestCase(TestCase):
 
 
 class FileDownloadViewTestCase(SimpleTestCase):
-    def test_get(self) -> None:
-        with self.assertRaises(NotImplementedError):
-            FileDownloadView.get(None, None)
-
     def test_post(self) -> None:
         with self.assertRaises(NotImplementedError):
             FileDownloadView.post(None, None)
@@ -203,7 +199,7 @@ class FileDownloadViewTestCase(SimpleTestCase):
 
 class ReportDownloadViewTestCase(SimpleTestCase):
     def test_get(self) -> None:
-        response = ReportDownloadView().get(None, None)
-        self.assertIn("report_name", response.context_data)
-        self.assertIn("report_text", response.context_data)
-        self.assertIn("report_form", response.context_data)
+        response = ReportDownloadView().get_context_data()
+        self.assertIn("report_name", response)
+        self.assertIn("report_text", response)
+        self.assertIn("report_form", response)

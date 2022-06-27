@@ -3,11 +3,13 @@ from django.urls import path
 from apps.cancer_registry.filters import NeoplasmFilter
 from apps.cancer_registry.models import Neoplasm
 from apps.cancer_registry.views import (
+    GroupReportView,
     MorphologyReportView,
     NeoplasmCreateView,
     NeoplasmDeleteView,
     NeoplasmDetailView,
     NeoplasmUpdateView,
+    TopographyReportView,
 )
 from apps.core.views import PaginationFilterView, getUrl
 
@@ -34,5 +36,15 @@ urlpatterns = [
         "report/morphology/",
         MorphologyReportView.as_view(),
         name="morphology_report",
+    ),
+    path(
+        "report/topography/",
+        TopographyReportView.as_view(),
+        name="topography_report",
+    ),
+    path(
+        "report/group/",
+        GroupReportView.as_view(),
+        name="group_report",
     ),
 ]
