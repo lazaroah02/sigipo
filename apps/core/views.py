@@ -7,9 +7,8 @@ from django.forms import CheckboxInput
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import path, reverse_lazy
-from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
-from django.views.generic.base import ContextMixin, TemplateResponseMixin
+from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
 
 from apps.core.forms import BaseReportForm
@@ -22,9 +21,7 @@ def http_403(request: HttpRequest, exception) -> HttpResponse:
 class FileDownloadView(
     LoginRequiredMixin,
     PermissionRequiredMixin,
-    TemplateResponseMixin,
-    ContextMixin,
-    View,
+    TemplateView,
 ):
     def post(self, request, *args, **kwargs):
         """
