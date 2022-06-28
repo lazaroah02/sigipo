@@ -1,7 +1,7 @@
 import io
 
 from django.db.models import Count, Q
-from django.http import FileResponse
+from django.http import FileResponse, HttpRequest
 from django.urls import reverse_lazy
 
 from apps.cancer_registry.forms import NeoplasmForm
@@ -12,6 +12,7 @@ from apps.cancer_registry.report import (
     add_total,
     generate_report_header,
 )
+from apps.cancer_registry.resources import NeoplasmResource
 from apps.classifiers.models import Morphology
 from apps.core.views import (
     BaseCreateView,
@@ -190,3 +191,15 @@ class GroupReportView(ReportDownloadView):
             return FileResponse(buffer, as_attachment=True, filename="reporte.docx")
         else:
             return self.render_to_response(self.get_context_data(form=form))
+
+
+def neoplasm_download_table(
+    self, request: HttpRequest, *args, **kwargs
+) -> FileResponse:
+    filterset_class = self.get_filterset_class()
+    filterset = self.get_filterset(filterset_class)
+    object_list = filterset.qs
+    dataset = NeoplasmResource().export(object_list)
+    buffer = io.BytesIO(dataset.xlsx)
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="Datos de neoplasia.xlsx")

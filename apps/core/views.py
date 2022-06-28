@@ -54,6 +54,7 @@ class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterVi
     paginate_by = 30
     extra_context: dict = None
     permission_required = ()
+    post_function = None
 
     def get_ordering(self):
         """Return the field or fields to use for ordering the queryset."""
@@ -108,6 +109,14 @@ class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterVi
 
         context |= self.extra_context
         return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Download a file.
+        """
+        if self.post_function is not None:
+            return self.post_function(self, request, *args, **kwargs)
+        raise NotImplementedError("This method must be implemented.")
 
 
 class CancelUrlMixin:

@@ -10,6 +10,7 @@ from apps.cancer_registry.views import (
     NeoplasmDetailView,
     NeoplasmUpdateView,
     TopographyReportView,
+    neoplasm_download_table,
 )
 from apps.core.views import PaginationFilterView, getUrl
 
@@ -23,6 +24,7 @@ urlpatterns = [
             model=Neoplasm,
             filterset_class=NeoplasmFilter,
             queryset=Neoplasm.objects.all(),
+            post_function=neoplasm_download_table,
             permission_required="cancer_registry_view",
         ),
         name="neoplasm_list",
