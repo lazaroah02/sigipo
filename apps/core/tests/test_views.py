@@ -8,6 +8,7 @@ from apps.core.test import SimpleTestCase, TestCase
 from apps.core.views import (
     CancelUrlMixin,
     FileDownloadView,
+    PaginationFilterView,
     ReportDownloadView,
     ViewTitleMixin,
 )
@@ -203,3 +204,9 @@ class ReportDownloadViewTestCase(SimpleTestCase):
         self.assertIn("report_name", response)
         self.assertIn("report_text", response)
         self.assertIn("report_form", response)
+
+
+class PaginationFilterViewTestCase(SimpleTestCase):
+    def test_get(self) -> None:
+        with self.assertRaises(NotImplementedError):
+            PaginationFilterView().post(None, None)

@@ -84,3 +84,24 @@ class ReportsTestCase(TestCase):
             {"initial_date": "20/20/2001", "final_date": "01/01/2222"},
         )
         self.assertIsInstance(response, TemplateResponse)
+
+
+class ExportTestCase(TestCase):
+    """Test case for Neoplasm Export."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.user = UserFactory.create()
+        cls.neoplasm = NeoplasmFactory.create()
+
+    def setUp(self) -> None:
+        """Extra initialization."""
+        self.client.force_login(self.user)
+
+    def test_export(self):
+        """Test the topography report response."""
+        response = self.client.post(
+            reverse("cancer_registry:neoplasm_list"),
+        )
+        self.assertIsInstance(response, FileResponse)
