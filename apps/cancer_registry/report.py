@@ -5,6 +5,7 @@ from docx.shared import Pt
 
 
 def generate_report_header(report_name: str = ""):
+    """Returns a document with the header of the hospital reports."""
     document = Document()
     section = document.sections[0]
     header = section.header
@@ -29,6 +30,7 @@ def generate_report_header(report_name: str = ""):
 
 
 def add_report_range(document, initial_date, final_date):
+    """Add the date range to the report."""
     paragraph = document.add_paragraph()
     paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     run = paragraph.add_run(
@@ -39,6 +41,7 @@ def add_report_range(document, initial_date, final_date):
 
 
 def add_data_table(document, data: QuerySet, columns, queryset_columns):
+    """Adds the data table to the document."""
     table = document.add_table(rows=1, cols=len(columns))
     table.style = "Table Grid"
     table.autofit = False
@@ -58,6 +61,7 @@ def add_data_table(document, data: QuerySet, columns, queryset_columns):
 
 
 def add_total(document, data, column):
+    """Adds the total to the document."""
     paragraph = document.add_paragraph()
     paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     total = 0

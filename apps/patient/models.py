@@ -41,6 +41,8 @@ class PatientQuerysetManager(Manager):
 
 
 class PatientRace(IntegerChoices):
+    """Defines the patient race."""
+
     UNDEFINED = 0, "No Definido"
     WHITE = 1, "Blanca"
     BLACK = 2, "Negra"
@@ -49,6 +51,8 @@ class PatientRace(IntegerChoices):
 
 
 class SexChoices(IntegerChoices):
+    """Defines the patients sex."""
+
     UNDEFINED = 0, "No definido"
     MALE = 1, "Masculino"
     FEMALE = 2, "Femenino"
@@ -109,6 +113,8 @@ class Patient(TimeStampedModel):
     objects = PatientQuerysetManager()
 
     class Meta:
+        """Meta definition for Patient."""
+
         verbose_name = "Paciente"
         verbose_name_plural = "pacientes"
         ordering = ["updated_at"]

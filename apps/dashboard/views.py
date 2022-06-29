@@ -49,11 +49,13 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
 
     def get_context_data(self, **kwargs):
+        """Fills the context data with the patient count by sex and the total."""
         return GenderCountView.objects.values(
             "female_count", "male_count", "total_count"
         ).first()
 
     def get(self, request, *args, **kwargs):
+        """Handles the different get request."""
         match request.GET.get("data"):
             case "county":
                 with open(

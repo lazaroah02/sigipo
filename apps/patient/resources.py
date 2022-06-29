@@ -4,6 +4,8 @@ from apps.patient.models import Patient
 
 
 class PatientResource(ModelResource):
+    """Resource for Patient model."""
+
     identity_card = Field(attribute="identity_card", column_name="Carnet de identidad")
     first_name = Field(attribute="first_name", column_name="Nombre")
     last_name = Field(attribute="last_name", column_name="Apellidos")
@@ -28,18 +30,23 @@ class PatientResource(ModelResource):
     is_oncologic = Field(attribute="is_oncologic", column_name="¿Es oncológico?")
 
     def dehydrate_sex(self, neoplasm):
+        """Returns the sex in str format."""
         return str(neoplasm.get_sex_display() or "")
 
     def dehydrate_race(self, neoplasm):
+        """Returns the race in str format."""
         return str(neoplasm.get_race_display() or "")
 
     def dehydrate_residence_municipality(self, neoplasm):
+        """Returns the residence municipality in str format."""
         return str(neoplasm.residence_municipality or "")
 
     def dehydrate_born_municipality(self, neoplasm):
+        """Returns the born municipality in str format."""
         return str(neoplasm.born_municipality or "")
 
     def dehydrate_is_oncologic(self, neoplasm):
+        """Returns the is_oncologic in str format."""
         return str(
             "Sí"
             if neoplasm.is_oncologic is True
@@ -49,6 +56,8 @@ class PatientResource(ModelResource):
         )
 
     class Meta:
+        """Meta class for PatientResource."""
+
         model = Patient
         fields = (
             "identity_card",

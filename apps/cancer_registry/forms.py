@@ -38,6 +38,8 @@ from apps.patient.models import Patient
 
 
 class NeoplasmForm(ModelForm):
+    """Form for Neoplasm model."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
         widget=ModelSelect2Widget(

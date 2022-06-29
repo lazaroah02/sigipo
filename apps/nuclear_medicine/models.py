@@ -18,6 +18,8 @@ from apps.patient.models import Patient
 
 
 class OncologicStudyChoices(TextChoices):
+    """Types of oncologic studies"""
+
     TSH = "TSH", "TSH"
     T3 = "T3", "T3"
     T4 = "T4", "T4"
@@ -62,10 +64,13 @@ class OncologicStudy(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
 
 class HormonalStudyChoices(TextChoices):
+    """Types of hormonal studies"""
+
     TSG = "TSH", "TSH"
     T3 = "T3", "T3"
     T4 = "T4", "T4"
@@ -110,6 +115,7 @@ class HormonalStudy(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
 
@@ -122,6 +128,8 @@ class HormonalResultQuerysetManager(Manager):
 
 
 class HormonalResult(TimeStampedModel):
+    """Model representation of a Hormonal result."""
+
     hormonal_study = OneToOneField(
         HormonalStudy, blank=False, null=False, on_delete=CASCADE
     )
@@ -148,6 +156,7 @@ class HormonalResult(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Resultado de {str(self.hormonal_study)}"
 
 
@@ -160,6 +169,8 @@ class OncologicResultQuerysetManager(Manager):
 
 
 class OncologicResult(TimeStampedModel):
+    """Model representation of a Oncologic result."""
+
     oncologic_study = OneToOneField(
         OncologicStudy, blank=False, null=False, on_delete=CASCADE
     )
@@ -186,6 +197,7 @@ class OncologicResult(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Resultado de {str(self.oncologic_study)}"
 
 
@@ -198,6 +210,8 @@ class IodineDetectionQuerysetManager(Manager):
 
 
 class IodineDetection(TimeStampedModel):
+    """Model representation of iodine detection."""
+
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     two_hours = FloatField(blank=True, null=True)
     twenty_four_hours = FloatField(blank=True, null=True)
@@ -210,10 +224,13 @@ class IodineDetection(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Detección de yodo de {str(self.patient)}"
 
 
 class SerialIodineDetection(TimeStampedModel):
+    """Model representation of serial iodine detection."""
+
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     two_hours = FloatField(blank=True, null=True)
     four_hours = FloatField(blank=True, null=True)
@@ -231,6 +248,7 @@ class SerialIodineDetection(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Detección de yodo seriada de {str(self.patient)}"
 
 
@@ -248,6 +266,8 @@ class GammagraphyQuerysetManager(Manager):
 
 
 class Gammagraphy(TimeStampedModel):
+    """Model representation of gammagraphy."""
+
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     requested_study = ManyToManyField(Study, blank=False)
     drug = ForeignKey(NuclearMedicineDrug, null=False, blank=False, on_delete=CASCADE)
@@ -264,4 +284,5 @@ class Gammagraphy(TimeStampedModel):
         default_permissions = ()
 
     def __str__(self):
+        """Returns the str representation for the model."""
         return f"Gammagrafía de {str(self.patient)}"
