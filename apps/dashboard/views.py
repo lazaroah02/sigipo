@@ -46,13 +46,9 @@ class Dashboard(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
 
     def get_context_data(self, **kwargs):
-        return (
-            GenderCountView.objects.annotate(
-                total_count=Value(Patient.objects.only_oncologic().count())
-            )
-            .values("female_count", "male_count", "total_count")
-            .first()
-        )
+        return GenderCountView.objects.values(
+            "female_count", "male_count", "total_count"
+        ).first()
 
     def get(self, request, *args, **kwargs):
         match request.GET.get("data"):
