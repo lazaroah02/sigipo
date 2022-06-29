@@ -18,23 +18,26 @@ from apps.patient.validators import IdentityCardValidator, only_numbers_validato
 class PatientQuerysetManager(Manager):
     """Manager to handle patient."""
 
-    def only_oncologic(self):
-        """Fetch only the oncologic patients."""
+    def get_queryset(self):
+        """Fetch the related municipality."""
         return (
             super()
             .get_queryset()
-            .select_related("born_municipality", "residence_municipality")
-            .filter(is_oncologic=True)
+            .select_related(
+                "born_municipality",
+                "born_municipality__province",
+                "residence_municipality",
+                "residence_municipality__province",
+            )
         )
+
+    def only_oncologic(self):
+        """Fetch only the oncologic patients."""
+        return self.get_queryset().filter(is_oncologic=True)
 
     def only_no_oncologic(self):
         """Fetch only the no oncologic patients."""
-        return (
-            super()
-            .get_queryset()
-            .select_related("born_municipality", "residence_municipality")
-            .filter(is_oncologic=False)
-        )
+        return self.get_queryset().filter(is_oncologic=False)
 
 
 class PatientRace(IntegerChoices):
