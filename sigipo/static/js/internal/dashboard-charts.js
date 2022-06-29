@@ -4,9 +4,7 @@
       response.json()
     );
 
-    const categories = topTen.map(
-      (location) => location["primary_site__description"]
-    );
+    const categories = topTen.map((location) => location["primary_site__name"]);
 
     const lessThan20 = topTen.map((location) => location["less_than_20"]);
     const patientIn20 = topTen.map((location) => location["patient_in_20s"]);
@@ -40,7 +38,7 @@
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat:
           '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-          '<td style="padding:0"><b>{point.y} mm</b></td></tr>',
+          '<td style="padding:0"><b>{point.y} paciente(s)</b></td></tr>',
         footerFormat: "</table>",
         shared: true,
         useHTML: true,
