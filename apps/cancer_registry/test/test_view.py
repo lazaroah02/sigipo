@@ -100,7 +100,7 @@ class ExportTestCase(TestCase):
         self.client.force_login(self.user)
 
     def test_export(self):
-        """Test the topography report response."""
+        """Test the neoplasm export response."""
         response = self.client.post(
             reverse("cancer_registry:neoplasm_list"),
         )
