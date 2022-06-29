@@ -1,3 +1,5 @@
+import datetime as dt
+
 from django.http import FileResponse
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -40,7 +42,7 @@ class ReportsTestCase(TestCase):
     def setUpTestData(cls):
         """Common test data."""
         cls.user = UserFactory.create()
-        cls.neoplasm = NeoplasmFactory.create()
+        cls.neoplasm = NeoplasmFactory.create(date_of_report=dt.date(2001, 12, 1))
 
     def setUp(self) -> None:
         """Extra initialization."""
