@@ -83,6 +83,10 @@
 {% endblock table_body %}
 
 {% block crud_actions %}
-    {{ block.super }}
-    <a href="{% url 'patient:oncologic_change_status' %}" class="btn btn-primary" role="button"><i class="fa-solid fa-rotate"></i> Cambiar denominación</a>
+    <form action="" method="post">
+        {{ block.super }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary" role="button"><i class="fa-solid fa-file-arrow-down"></i> Exportar datos</button>
+        <a href="{% url 'patient:oncologic_change_status' %}" class="btn btn-primary" role="button"><i class="fa-solid fa-rotate"></i> Cambiar denominación</a>
+    </form>
 {% endblock crud_actions %}

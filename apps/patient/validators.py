@@ -6,16 +6,20 @@ from django.utils.translation import gettext_lazy as _
 
 
 class IdentityCardValidator(BaseValidator):
+    """Validates IC and MIC."""
+
     message = _(
         "Asegúrese que el valor tiene %(limit_value_1)s o %(limit_value_2)s caracteres (tiene %(show_value)s)."
     )
     code = "two_values_min_length"
 
     def __init__(self, limit_value_1: Any, limit_value_2: Any) -> None:
+        """Initialize the validator."""
         self.limit_value_1 = limit_value_1
         self.limit_value_2 = limit_value_2
 
     def __call__(self, value):
+        """Validate the value."""
         cleaned = self.clean(value)
         limit_value_1 = (
             self.limit_value_1() if callable(self.limit_value_1) else self.limit_value_1
@@ -35,9 +39,11 @@ class IdentityCardValidator(BaseValidator):
             raise ValidationError(self.message, code=self.code, params=params)
 
     def compare(self, a, b):
+        """Compare two values."""
         return a == b
 
     def clean(self, x):
+        """Clean the value."""
         return len(x)
 
 

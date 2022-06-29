@@ -16,7 +16,6 @@
           <h3 class="card-title">Cambiar denominación</h3>
         </div>
         <div class="card-body">
-            {% csrf_token %}
             <h5>¿Está seguro que desea hacer a "{{ object }}" un paciente {% if object.is_oncologic %}no {% endif %}oncológico?</h5>
         </div>
         <div class="card-footer text-muted">

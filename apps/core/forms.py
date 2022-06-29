@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TypedChoiceField
+from django.forms import DateField, DateInput, Form, ModelForm, TypedChoiceField
 
 
 class ChoiceField(TypedChoiceField):
@@ -53,3 +53,30 @@ class ModelForm(ModelForm):
                             "is-valid " + field.widget.attrs["class"]
                         )
         return result
+
+
+class BaseReportForm(Form):
+    initial_date = DateField(
+        widget=DateInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Fecha inicial",
+                "type": "date",
+            },
+            format="%Y-%m-%d",
+        ),
+        label="Fecha inicial",
+        required=False,
+    )
+    final_date = DateField(
+        widget=DateInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Fecha final",
+                "type": "date",
+            },
+            format="%Y-%m-%d",
+        ),
+        label="Fecha final",
+        required=False,
+    )

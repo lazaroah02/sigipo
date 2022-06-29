@@ -20,10 +20,10 @@ class CustomRangeWidget(RangeWidget):
     def __init__(self, attrs=None):
         super().__init__(attrs)
         self.widgets[0].attrs.update(
-            {"class": "form-control", "placeholder": "Edad de diagnostico mínima"}
+            {"class": "form-control", "placeholder": "Edad de diagnóstico mínima"}
         )
         self.widgets[1].attrs.update(
-            {"class": "form-control", "placeholder": "Edad de diagnostico máxima"}
+            {"class": "form-control", "placeholder": "Edad de diagnóstico máxima"}
         )
 
 
@@ -134,7 +134,7 @@ class PatientFilter(FilterSet):
         label="Provincia natal",
     )
     age_at_diagnosis = RangeFilter(
-        label="Edad de diagnostico",
+        label="Edad de diagnóstico",
         widget=CustomRangeWidget,
     )
 

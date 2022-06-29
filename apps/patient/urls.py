@@ -14,6 +14,7 @@ from apps.patient.views import (
     PatientDetailView,
     PatientUpdateView,
     check_patient_created,
+    patient_download_table,
 )
 
 app_name = "patient"
@@ -33,6 +34,7 @@ urlpatterns = [
             },
             permission_required="cancer_registry_view",
             queryset=Patient.objects.only_oncologic(),
+            post_function=patient_download_table,
         ),
         name="oncologic_list",
     ),
@@ -75,6 +77,7 @@ urlpatterns = [
             queryset=Patient.objects.all(),
             template_name_suffix="_no_oncologic_filter",
             permission_required="cancer_registry_view",
+            post_function=patient_download_table,
         ),
         name="patient_list",
     ),

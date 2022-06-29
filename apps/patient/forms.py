@@ -85,13 +85,13 @@ class BasePatientForm(ModelForm):
         widget=DateInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Fecha de primeros síntomas",
+                "placeholder": "Fecha de nacimiento",
                 "type": "date",
             },
             format="%Y-%m-%d",
         ),
         required=False,
-        label="Fecha de primeros síntomas",
+        label="Fecha de nacimiento",
     )
     medical_record = CharField(
         widget=TextInput(

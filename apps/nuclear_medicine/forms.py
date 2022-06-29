@@ -31,11 +31,15 @@ from apps.patient.models import Patient
 
 
 class CustomCheckboxSelectMultiple(CheckboxSelectMultiple):
+    """Widget to render checkbox in bootstrap style."""
+
     def __init__(self, attrs=None, choices=()):
+        """Initialize the widget."""
         self.ignore_check = True
         super().__init__(attrs, choices)
 
     def render(self, name, value, attrs=None, renderer=None):
+        """Render the widget."""
         html = super().render(name, value, attrs, renderer)
         return mark_safe(
             html.replace("<ul", "<div")
@@ -47,20 +51,29 @@ class CustomCheckboxSelectMultiple(CheckboxSelectMultiple):
 
 
 class CustomReadOnlyCheckboxSelectMultiple(CustomCheckboxSelectMultiple):
+    """Widget to render checkbox in bootstrap style in readonly mode."""
+
     def render(self, name, value, attrs=None, renderer=None):
+        """Render the widget."""
         html = super().render(name, value, attrs, renderer)
         return mark_safe(html.replace("<input", "<input disabled"))
 
 
 class CustomReadOnlyMultiSelectFormField(MultiSelectFormField):
+    """Custom form field width custom bootstrap styled widget."""
+
     widget = CustomReadOnlyCheckboxSelectMultiple
 
 
 class CustomMultiSelectFormField(MultiSelectFormField):
+    """Custom form field width custom bootstrap styled widget."""
+
     widget = CustomCheckboxSelectMultiple
 
 
 class BaseStudyForm(ModelForm):
+    """Base class for common study fields."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
         widget=ModelSelect2Widget(
@@ -83,6 +96,8 @@ class BaseStudyForm(ModelForm):
 
 
 class OncologicStudyForm(BaseStudyForm):
+    """Form for OncologicStudy."""
+
     tests = CustomMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -92,11 +107,15 @@ class OncologicStudyForm(BaseStudyForm):
     )
 
     class Meta:
+        """Meta class for OncologicStudyForm."""
+
         model = OncologicStudy
         fields = "__all__"
 
 
 class BaseStudyDetailForm(ModelForm):
+    """Base StudyForm to handle common fields."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
         widget=ModelSelect2Widget(
@@ -141,6 +160,7 @@ class BaseStudyDetailForm(ModelForm):
     ]
 
     def __init__(self, *args, **kwargs):
+        """Initialize the form."""
         super().__init__(*args, **kwargs)
         self.fields["created_date"].widget.attrs = {
             "type": "date",
@@ -151,6 +171,8 @@ class BaseStudyDetailForm(ModelForm):
 
 
 class OncologicStudyDetailForm(BaseStudyDetailForm):
+    """Form for OncologicStudyDetail."""
+
     tests = CustomReadOnlyMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -160,11 +182,15 @@ class OncologicStudyDetailForm(BaseStudyDetailForm):
     )
 
     class Meta:
+        """Meta class for OncologicStudyDetailForm."""
+
         model = OncologicStudy
         fields = "__all__"
 
 
 class HormonalStudyDetailForm(BaseStudyDetailForm):
+    """Form for HormonalStudyDetail."""
+
     tests = CustomReadOnlyMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -174,11 +200,15 @@ class HormonalStudyDetailForm(BaseStudyDetailForm):
     )
 
     class Meta:
+        """Meta class for HormonalStudyDetailForm."""
+
         model = HormonalStudy
         fields = "__all__"
 
 
 class HormonalStudyForm(BaseStudyForm):
+    """Form for HormonalStudy model."""
+
     tests = CustomMultiSelectFormField(
         required=True,
         label="Pruebas",
@@ -188,11 +218,15 @@ class HormonalStudyForm(BaseStudyForm):
     )
 
     class Meta:
+        """Meta class for HormonalStudyForm."""
+
         model = HormonalStudy
         fields = "__all__"
 
 
 class OncologicResultForm(ModelForm):
+    """Form for create oncologic result."""
+
     oncologic_study = ModelChoiceField(
         queryset=OncologicStudy.objects.all(),
         widget=ModelSelect2Widget(
@@ -285,11 +319,15 @@ class OncologicResultForm(ModelForm):
     )
 
     class Meta:
+        """Meta class for OncologicResultForm."""
+
         model = OncologicResult
         fields = "__all__"
 
 
 class HormonalResultForm(ModelForm):
+    """Form for HormonalResult model."""
+
     hormonal_study = ModelChoiceField(
         queryset=HormonalStudy.objects.all(),
         widget=ModelSelect2Widget(
@@ -382,11 +420,15 @@ class HormonalResultForm(ModelForm):
     )
 
     class Meta:
+        """Meta class for HormonalResultForm."""
+
         model = HormonalResult
         fields = "__all__"
 
 
 class IodineDetectionForm(ModelForm):
+    """Form for IodineDetection model."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
         widget=ModelSelect2Widget(
@@ -418,11 +460,15 @@ class IodineDetectionForm(ModelForm):
     )
 
     class Meta:
+        """Meta class for IodineDetectionForm."""
+
         model = IodineDetection
         fields = "__all__"
 
 
 class SerialIodineDetectionForm(ModelForm):
+    """Form for SerialIodineDetection model."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
         widget=ModelSelect2Widget(
@@ -479,11 +525,15 @@ class SerialIodineDetectionForm(ModelForm):
     )
 
     class Meta:
+        """Meta class for SerialIodineDetectionForm."""
+
         model = SerialIodineDetection
         fields = "__all__"
 
 
 class GammagraphyForm(ModelForm):
+    """Form for Gammagraphy model."""
+
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
         widget=ModelSelect2Widget(
@@ -568,5 +618,7 @@ class GammagraphyForm(ModelForm):
     )
 
     class Meta:
+        """Meta class for GammagraphyForm."""
+
         model = Gammagraphy
         fields = "__all__"

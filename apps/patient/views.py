@@ -1,7 +1,9 @@
+import io
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages import warning
-from django.http import Http404, HttpRequest, JsonResponse
+from django.http import FileResponse, Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_GET
@@ -20,6 +22,7 @@ from apps.patient.forms import (
     PatientOncologicReadOnlyForm,
 )
 from apps.patient.models import Patient
+from apps.patient.resources import PatientResource
 
 
 # * Patient Views
@@ -69,10 +72,13 @@ class PatientDeleteView(BaseDeleteView):
 
 
 class PatientChangeStatus(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
+    """View to change the status of a patient (Oncologic/No oncologic)."""
+
     template_name = "patient/change_status.html"
     permission_required = "cancer_registry_manage"
 
     def get_context_data(self, **kwargs):
+        """Fills the context with the patient data or the form to search."""
         if "pk" in kwargs:
             try:
                 patient_object = Patient.objects.get(pk=kwargs["pk"])
@@ -95,6 +101,7 @@ class PatientChangeStatus(LoginRequiredMixin, PermissionRequiredMixin, TemplateV
         return {"filter": filter_form, "object": patient_object, "form": detail_form}
 
     def post(self, request, *args, **kwargs):
+        """Handles the POST request."""
         is_oncologic = Patient.objects.get(pk=kwargs["pk"]).is_oncologic
         Patient.objects.filter(pk=kwargs["pk"]).update(is_oncologic=(not is_oncologic))
         warning(request, "Estado de paciente actualizado.")
@@ -143,6 +150,19 @@ class NuclearMedicinePatientDeleteView(BaseDeleteView):
 @permission_required("cancer_registry_view", raise_exception=True)
 @require_GET
 def check_patient_created(request: HttpRequest, pk: str | int) -> JsonResponse:
+    """Checks if the patient has been created."""
     return JsonResponse(
         data={"exist": Patient.objects.filter(identity_card=pk).exists()}, safe=False
     )
+
+
+def patient_download_table(self, request: HttpRequest, *args, **kwargs) -> FileResponse:
+    """Creates a xlsx file with the data of the table."""
+    filterset_class = self.get_filterset_class()
+    filterset = self.get_filterset(filterset_class)
+    object_list = filterset.qs
+    dataset = PatientResource().export(object_list)
+    dataset.title = "Pacientes"
+    buffer = io.BytesIO(dataset.xlsx)
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="Datos de pacientes.xlsx")

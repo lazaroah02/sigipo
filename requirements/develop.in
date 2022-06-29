@@ -14,3 +14,4 @@ pytest-django
 pytest-randomly
 pytest-restrict
 pytest-xdist
+pip-compile-multi
