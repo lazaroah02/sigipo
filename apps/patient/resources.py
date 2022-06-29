@@ -30,6 +30,9 @@ class PatientResource(ModelResource):
     def dehydrate_sex(self, neoplasm):
         return str(neoplasm.get_sex_display() or "")
 
+    def dehydrate_race(self, neoplasm):
+        return str(neoplasm.get_race_display() or "")
+
     def dehydrate_residence_municipality(self, neoplasm):
         return str(neoplasm.residence_municipality or "")
 
