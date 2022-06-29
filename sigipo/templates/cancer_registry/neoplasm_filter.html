@@ -7,7 +7,7 @@
     {% create_header_column 'clinical_stage' 'Etapa clínica' %}
     {% create_header_column 'medic_that_report' 'Médico que reporta' %}
     {% create_header_column 'date_of_report' 'Fecha del reporte' %}
-    {% create_header_column 'date_of_diagnosis' 'Fecha de diagnostico' %}
+    {% create_header_column 'date_of_diagnosis' 'Fecha de diagnóstico' %}
 {% endblock crud_columns %}
 
 {% block table_body %}
@@ -32,3 +32,11 @@
         </tr>
     {% endfor %}
 {% endblock table_body %}
+
+{% block crud_actions %}
+    <form action="" method="post">
+        {{ block.super }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary" role="button"><i class="fa-solid fa-file-arrow-down"></i> Exportar datos</button>
+    </form>
+{% endblock crud_actions %}

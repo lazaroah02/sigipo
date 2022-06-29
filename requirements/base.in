@@ -6,3 +6,5 @@ django-select2
 python-dotenv
 psycopg2-binary
 django-multiselectfield
+python-docx
+django-import-export

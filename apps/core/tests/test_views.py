@@ -4,8 +4,14 @@ from django.views.generic.base import ContextMixin
 
 from apps.accounts.factories import UserFactory
 from apps.cancer_registry.factories import NeoplasmFactory
-from apps.core.test import TestCase
-from apps.core.views import CancelUrlMixin, ViewTitleMixin
+from apps.core.test import SimpleTestCase, TestCase
+from apps.core.views import (
+    CancelUrlMixin,
+    FileDownloadView,
+    PaginationFilterView,
+    ReportDownloadView,
+    ViewTitleMixin,
+)
 from apps.geographic_location.factories import ProvinceFactory
 from apps.geographic_location.models import Province
 from apps.geographic_location.views import ProvinceDeleteView
@@ -184,3 +190,23 @@ class CoreHandlerTestCase(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse("patient:oncologic_create"))
         self.assertTemplateUsed(response, "400/403.html")
+
+
+class FileDownloadViewTestCase(SimpleTestCase):
+    def test_post(self) -> None:
+        with self.assertRaises(NotImplementedError):
+            FileDownloadView.post(None, None)
+
+
+class ReportDownloadViewTestCase(SimpleTestCase):
+    def test_get(self) -> None:
+        response = ReportDownloadView().get_context_data()
+        self.assertIn("report_name", response)
+        self.assertIn("report_text", response)
+        self.assertIn("report_form", response)
+
+
+class PaginationFilterViewTestCase(SimpleTestCase):
+    def test_get(self) -> None:
+        with self.assertRaises(NotImplementedError):
+            PaginationFilterView().post(None, None)

@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -6,11 +8,44 @@ from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import path, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
+
+from apps.core.forms import BaseReportForm
 
 
 def http_403(request: HttpRequest, exception) -> HttpResponse:
     return render(request, "400/403.html")
+
+
+class FileDownloadView(
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    TemplateView,
+):
+    def post(self, request, *args, **kwargs):
+        """
+        Download a file.
+        """
+        raise NotImplementedError("This method must be implemented.")
+
+
+class ReportDownloadView(FileDownloadView):
+    report_name = None
+    report_text = None
+    report_form = BaseReportForm
+    permission_required = "download_cancer_report"
+    template_name = "report/base_report.html"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        """
+        Return context data to generate report.
+        """
+        context = super().get_context_data(**kwargs)
+        context["report_name"] = self.report_name
+        context["report_text"] = self.report_text
+        context["report_form"] = self.report_form()
+        return context
 
 
 class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterView):
@@ -19,6 +54,7 @@ class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterVi
     paginate_by = 30
     extra_context: dict = None
     permission_required = ()
+    post_function = None
 
     def get_ordering(self):
         """Return the field or fields to use for ordering the queryset."""
@@ -73,6 +109,14 @@ class PaginationFilterView(LoginRequiredMixin, PermissionRequiredMixin, FilterVi
 
         context |= self.extra_context
         return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Download a file.
+        """
+        if self.post_function is not None:
+            return self.post_function(self, request, *args, **kwargs)
+        raise NotImplementedError("This method must be implemented.")
 
 
 class CancelUrlMixin:

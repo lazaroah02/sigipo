@@ -1,7 +1,9 @@
+import io
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages import warning
-from django.http import Http404, HttpRequest, JsonResponse
+from django.http import FileResponse, Http404, HttpRequest, JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_GET
@@ -20,6 +22,7 @@ from apps.patient.forms import (
     PatientOncologicReadOnlyForm,
 )
 from apps.patient.models import Patient
+from apps.patient.resources import PatientResource
 
 
 # * Patient Views
@@ -146,3 +149,14 @@ def check_patient_created(request: HttpRequest, pk: str | int) -> JsonResponse:
     return JsonResponse(
         data={"exist": Patient.objects.filter(identity_card=pk).exists()}, safe=False
     )
+
+
+def patient_download_table(self, request: HttpRequest, *args, **kwargs) -> FileResponse:
+    filterset_class = self.get_filterset_class()
+    filterset = self.get_filterset(filterset_class)
+    object_list = filterset.qs
+    dataset = PatientResource().export(object_list)
+    dataset.title = "Pacientes"
+    buffer = io.BytesIO(dataset.xlsx)
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="Datos de pacientes.xlsx")

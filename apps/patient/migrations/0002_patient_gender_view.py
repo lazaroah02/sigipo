@@ -28,7 +28,15 @@ class Migration(migrations.Migration):
                             patient_patient
                         WHERE
                             patient_patient.sex = 1 AND patient_patient.is_oncologic
-                    ) AS male_count;
+                    ) AS male_count,
+                    (
+                        SELECT
+                            CAST(Count(*) AS INTEGER)
+                        FROM
+                            patient_patient
+                        WHERE
+                            patient_patient.is_oncologic
+                    ) AS total_count;
                 """,
             ],
             reverse_sql=[

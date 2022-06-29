@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 from django.contrib.messages import get_messages
+from django.http import FileResponse
 from django.urls import reverse
 
 from apps.accounts.factories import UserFactory
@@ -93,3 +94,45 @@ class PatientViewTestCase(TestCase):
             )
         )
         self.assertTrue(response.json()["exist"])
+
+
+class PatientExportTestCase(TestCase):
+    """Test case for Neoplasm Export."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.user = UserFactory.create()
+        cls.patient = PatientFactory.create()
+
+    def setUp(self) -> None:
+        """Extra initialization."""
+        self.client.force_login(self.user)
+
+    def test_export(self):
+        """Test the patient report response."""
+        response = self.client.post(
+            reverse("patient:patient_list"),
+        )
+        self.assertIsInstance(response, FileResponse)
+
+
+class OncologicPatientExportTestCase(TestCase):
+    """Test case for Neoplasm Export."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Common test data."""
+        cls.user = UserFactory.create()
+        cls.patient = PatientFactory.create()
+
+    def setUp(self) -> None:
+        """Extra initialization."""
+        self.client.force_login(self.user)
+
+    def test_export(self):
+        """Test the oncologic patient report response."""
+        response = self.client.post(
+            reverse("patient:oncologic_list"),
+        )
+        self.assertIsInstance(response, FileResponse)

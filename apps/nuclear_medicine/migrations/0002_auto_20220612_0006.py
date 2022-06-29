@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
                 "default_permissions": (),
                 "ordering": ["pk"],
                 "verbose_name": "Gammagrafía",
-                "verbose_name_plural": "Gammagrafias",
+                "verbose_name_plural": "Gammagrafías",
             },
         ),
         migrations.AlterModelOptions(

@@ -291,7 +291,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 "verbose_name": "Gammagrafía",
-                "verbose_name_plural": "Gammagrafias",
+                "verbose_name_plural": "Gammagrafías",
                 "ordering": ["pk"],
             },
         ),

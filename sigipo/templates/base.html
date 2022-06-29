@@ -71,6 +71,20 @@
                   </ul>
                 </li>
                 <li>
+                  <label class="dropdown-item"><i class="fa-solid fa-file-arrow-down"></i> Reportes <i class="fa-solid fa-angle-right"></i></label>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li>
+                      <a class="dropdown-item" href="{% url 'cancer_registry:morphology_report' %}">Casos por morfolog&iacute;a</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'cancer_registry:topography_report' %}">Casos por topograf&iacute;a</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'cancer_registry:group_report' %}">Casos por grupo de trabajo</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
                   <label class="dropdown-item"><i class="fa-solid fa-earth-americas"></i> Ubicaci&oacute;n geogr&aacute;fica <i class="fa-solid fa-angle-right"></i></label>
                   <ul class="dropdown-menu dropdown-submenu">
                     <li>
