@@ -47,6 +47,7 @@ def add_data_table(document, data: QuerySet, columns, queryset_columns):
         row[index].text = text
         paragraph = row[index].paragraphs[0]
         paragraph.runs[0].font.bold = True
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     for obj in data:
         row = table.add_row().cells
         for index, column in enumerate(queryset_columns):
