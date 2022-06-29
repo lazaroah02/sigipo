@@ -31,8 +31,8 @@
 
       colorAxis: {
         min: 0,
-        minColor: "#FF9090",
-        maxColor: "#900000",
+        minColor: "#9090FF",
+        maxColor: "#000090",
       },
 
       series: [
@@ -41,7 +41,7 @@
           name: "Provincia natal",
           states: {
             hover: {
-              color: "#D4AF37",
+              color: "#D437AF",
             },
           },
           dataLabels: {
@@ -73,6 +73,8 @@
 
       colorAxis: {
         min: 0,
+        minColor: "#FFE196",
+        maxColor: "#FFA420",
       },
 
       series: [
@@ -81,7 +83,7 @@
           name: "Provincia de residencia",
           states: {
             hover: {
-              color: "#D4AF37",
+              color: "#AFD437",
             },
           },
           dataLabels: {
