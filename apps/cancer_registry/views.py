@@ -200,6 +200,7 @@ def neoplasm_download_table(
     filterset = self.get_filterset(filterset_class)
     object_list = filterset.qs
     dataset = NeoplasmResource().export(object_list)
+    dataset.title = "Neoplasia"
     buffer = io.BytesIO(dataset.xlsx)
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename="Datos de neoplasia.xlsx")
