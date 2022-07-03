@@ -585,8 +585,8 @@ class DatosTumor(DataMigrationModel):
             if self.regprof is None
             else related["doctor"][self.regprof.pk],
             tumor=get_t(self.t),
-            nodule=get_t(self.n),
-            metastasis=get_t(self.m),
+            nodule=get_n(self.n),
+            metastasis=get_m(self.m),
             neoplasm_classification=NeoplasmClassificationChoices.CLINIC
             if self.clinicopatolog == "Clínico"
             else NeoplasmClassificationChoices.PATHOLOGICAL
