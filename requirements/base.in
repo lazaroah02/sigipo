@@ -8,3 +8,7 @@ psycopg2-binary
 django-multiselectfield
 python-docx
 django-import-export
+mysqlclient
+
+
+# mysqlclient -> sudo apt-get install libmysqlclient-dev
