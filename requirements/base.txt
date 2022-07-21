@@ -11,9 +11,9 @@ defusedxml==0.7.1
     # via odfpy
 diff-match-patch==20200713
     # via django-import-export
-django==3.2.13
+django==3.2.14
     # via
-    #   -r base.in
+    #   -r requirements/base.in
     #   django-appconf
     #   django-filter
     #   django-import-export
@@ -23,15 +23,15 @@ django==3.2.13
 django-appconf==1.0.5
     # via django-select2
 django-filter==22.1
-    # via -r base.in
+    # via -r requirements/base.in
 django-import-export==2.8.0
-    # via -r base.in
+    # via -r requirements/base.in
 django-multiselectfield==0.1.12
-    # via -r base.in
+    # via -r requirements/base.in
 django-select2==7.10.0
-    # via -r base.in
+    # via -r requirements/base.in
 django-version-checks==1.7.0
-    # via -r base.in
+    # via -r requirements/base.in
 et-xmlfile==1.1.0
     # via openpyxl
 lxml==4.9.1
@@ -44,16 +44,16 @@ openpyxl==3.0.10
     # via tablib
 packaging==21.3
     # via django-version-checks
-pillow==9.1.1
-    # via -r base.in
+pillow==9.2.0
+    # via -r requirements/base.in
 psycopg2-binary==2.9.3
-    # via -r base.in
+    # via -r requirements/base.in
 pyparsing==3.0.9
     # via packaging
 python-docx==0.8.11
-    # via -r base.in
+    # via -r requirements/base.in
 python-dotenv==0.20.0
-    # via -r base.in
+    # via -r requirements/base.in
 pytz==2022.1
     # via django
 pyyaml==6.0
