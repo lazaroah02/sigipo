@@ -9,9 +9,6 @@ from config.settings.base import *  # unimport:skip
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "qov#ce&bl3z8@ymehv1byt^beru%el-0wjo%e#1q8#og6331ik"
-
 ALLOWED_HOSTS = ["*"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "sigipo", "media")
