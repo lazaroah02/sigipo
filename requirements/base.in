@@ -9,6 +9,6 @@ django-multiselectfield
 python-docx
 django-import-export
 mysqlclient
-
+python-dateutil
 
 # mysqlclient -> sudo apt-get install libmysqlclient-dev

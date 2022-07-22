@@ -87,11 +87,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", None),
-        "USER": os.environ.get("DB_USER", None),
-        "PASSWORD": os.environ.get("DB_PASSWORD", None),
-        "HOST": os.environ.get("DB_HOST", None),
-        "PORT": os.environ.get("DB_PORT", None),
+        "NAME": os.environ.get("POSTGRES_DB", None),
+        "USER": os.environ.get("POSTGRES_USER", None),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", None),
+        "HOST": os.environ.get("POSTGRES_DB_HOST", None),
+        "PORT": os.environ.get("POSTGRES_DB_PORT", None),
     },
     "maria_db": {
         "ENGINE": "django.db.backends.mysql",
