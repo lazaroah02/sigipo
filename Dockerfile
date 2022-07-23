@@ -19,6 +19,4 @@ COPY . /code/
 RUN mkdir -p /code/staticfiles
 RUN mkdir -p /code/mediafiles
 
-RUN python manage.py collectstatic --clear
-
 EXPOSE 8000

@@ -93,7 +93,10 @@ DATABASES = {
         "HOST": os.environ.get("POSTGRES_DB_HOST", None),
         "PORT": os.environ.get("POSTGRES_DB_PORT", None),
     },
-    "maria_db": {
+}
+
+if os.environ.get("MARIA_DB") == "True":
+    DATABASES["maria_db"] = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": os.environ.get("MARIA_DB_NAME", None),
         "USER": os.environ.get("MARIA_DB_USER", None),
@@ -103,8 +106,7 @@ DATABASES = {
         "OPTIONS": {
             "autocommit": True,
         },
-    },
-}
+    }
 
 # Database for Github Tests
 

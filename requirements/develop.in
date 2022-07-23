@@ -15,3 +15,4 @@ pytest-randomly
 pytest-restrict
 pytest-xdist
 pip-compile-multi
+pytest-env
