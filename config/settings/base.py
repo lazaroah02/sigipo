@@ -13,6 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(dotenv_path=BASE_DIR / ".env")
 
+SECRET_KEY = os.environ.get("SECRET_KEY", None)
+
 # Application definition
 DJANGO_APPS = [
     "django.contrib.admin",
@@ -85,13 +87,16 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", None),
-        "USER": os.environ.get("DB_USER", None),
-        "PASSWORD": os.environ.get("DB_PASSWORD", None),
-        "HOST": os.environ.get("DB_HOST", None),
-        "PORT": os.environ.get("DB_PORT", None),
+        "NAME": os.environ.get("POSTGRES_DB", None),
+        "USER": os.environ.get("POSTGRES_USER", None),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", None),
+        "HOST": os.environ.get("POSTGRES_DB_HOST", None),
+        "PORT": os.environ.get("POSTGRES_DB_PORT", None),
     },
-    "maria_db": {
+}
+
+if os.environ.get("MARIA_DB") == "True":
+    DATABASES["maria_db"] = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": os.environ.get("MARIA_DB_NAME", None),
         "USER": os.environ.get("MARIA_DB_USER", None),
@@ -101,8 +106,7 @@ DATABASES = {
         "OPTIONS": {
             "autocommit": True,
         },
-    },
-}
+    }
 
 # Database for Github Tests
 

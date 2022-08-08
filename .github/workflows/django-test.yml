@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main, master, develop ]
 
+
+env:
+  DJANGO_SETTINGS_MODULE: config.settings.develop
+  SECRET_KEY: SECRET_KEY
+
 jobs:
   test:
 

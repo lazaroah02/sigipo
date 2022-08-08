@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
-import os
 import sys
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.develop")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:  # pragma: no cover
@@ -15,6 +15,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    from dotenv import find_dotenv, load_dotenv
+
+    load_dotenv(find_dotenv())
+
     execute_from_command_line(sys.argv)
 
 

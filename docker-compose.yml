@@ -1,24 +1,43 @@
-version: "3"
+version: "3.9"
 
 services:
   db:
-    image: postgres:13.4
+    image: postgres:14.0
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./_data/postgres/:/var/lib/postgresql/data
     env_file:
-      - .env
+      - .env.prod
+    ports:
+      - 5432:5432
   web:
     container_name: sigipo
     build: .
-    command: gunicorn config.wsgi:application -b :8000 --log-file /code/logs/gunicorn.log
+    command:
+      sh -c "python manage.py collectstatic --no-input --clear &&
+        python manage.py migrate &&
+        gunicorn --workers=4 --bind=0.0.0.0:8000 config.wsgi:application"
     volumes:
-      - ./data/static:/code/static/
-      - ./data/media:/code/media/
-      - ./data/logs:/code/logs/
+        - .:/code
+        - static_volume:/code/staticfiles/
+        - media_volume:/code/mediafiles/
     env_file:
-      - .env
-    ports:
-      - "8000:8000"
+      - .env.prod
+    expose:
+      - 8000
     depends_on:
       - db
     restart: always
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - static_volume:/code/staticfiles/
+      - media_volume:/code/media/
+    depends_on:
+      - web
+    restart: always
+volumes:
+  static_volume:
+  media_volume:
