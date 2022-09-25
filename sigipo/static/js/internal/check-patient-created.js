@@ -4,7 +4,7 @@
 
   async function check_patient(value) {
     let response = await fetch(fetch_url.replace("None", value)).then(
-      (response) => response.json()
+      (response) => response.json(),
     );
     if (response["exist"]) {
       search_patient.classList.remove("is-valid");

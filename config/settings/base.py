@@ -95,19 +95,6 @@ DATABASES = {
     },
 }
 
-if os.environ.get("MARIA_DB") == "True":
-    DATABASES["maria_db"] = {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.environ.get("MARIA_DB_NAME", None),
-        "USER": os.environ.get("MARIA_DB_USER", None),
-        "PASSWORD": os.environ.get("MARIA_DB_PASSWORD", None),
-        "HOST": os.environ.get("MARIA_DB_HOST", None),
-        "PORT": os.environ.get("MARIA_DB_PORT", None),
-        "OPTIONS": {
-            "autocommit": True,
-        },
-    }
-
 # Database for Github Tests
 
 if os.environ.get("GITHUB_WORKFLOW"):

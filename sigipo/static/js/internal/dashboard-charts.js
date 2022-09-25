@@ -1,7 +1,7 @@
 (function () {
   async function loadCharts() {
     const topTen = await fetch("?data=top10").then((response) =>
-      response.json()
+      response.json(),
     );
 
     const categories = topTen.map((location) => location["primary_site__name"]);
@@ -14,7 +14,7 @@
     const patientIn60 = topTen.map((location) => location["patient_in_60s"]);
     const patientIn70 = topTen.map((location) => location["patient_in_70s"]);
     const moreThan80 = topTen.map(
-      (location) => location["patient_more_than_80s"]
+      (location) => location["patient_more_than_80s"],
     );
 
     Highcharts.chart("chart-top-10", {
