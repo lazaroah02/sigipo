@@ -106,3 +106,9 @@ table.table td i {
   margin-top: 6px;
   font-size: 95%;
 }
+.filter-col {
+  flex: 1 0 33.333333%;
+}
+.filter-row {
+  row-gap: 0.7em;
+}
