@@ -22,7 +22,7 @@ class MorphologyCreateView(BaseCreateView):
     model = Morphology
     form_class = MorphologyForm
     success_url = reverse_lazy("classifiers:morphology_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     permission_required = "cancer_registry_manage"
 
@@ -43,7 +43,7 @@ class MorphologyUpdateView(BaseUpdateView):
     model = Morphology
     form_class = MorphologyForm
     success_url = reverse_lazy("classifiers:morphology_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
     permission_required = "cancer_registry_manage"
@@ -54,7 +54,7 @@ class MorphologyDeleteView(BaseDeleteView):
 
     model = Morphology
     success_url = reverse_lazy("classifiers:morphology_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
     permission_required = "cancer_registry_manage"
@@ -67,7 +67,7 @@ class TopographyCreateView(BaseCreateView):
     model = Topography
     form_class = TopographyForm
     success_url = reverse_lazy("classifiers:topography_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     permission_required = "cancer_registry_manage"
 
@@ -88,7 +88,7 @@ class TopographyUpdateView(BaseUpdateView):
     model = Topography
     form_class = TopographyForm
     success_url = reverse_lazy("classifiers:topography_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
     permission_required = "cancer_registry_manage"
@@ -99,7 +99,7 @@ class TopographyDeleteView(BaseDeleteView):
 
     model = Topography
     success_url = reverse_lazy("classifiers:topography_list")
-    success_message = "%(description)s guardada correctamente."
+    success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
     permission_required = "cancer_registry_manage"
