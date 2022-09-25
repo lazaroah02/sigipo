@@ -43,7 +43,6 @@ LOCAL_APPS = [
     "apps.nuclear_medicine.apps.NuclearMedicineConfig",
     "apps.chemotherapy.apps.ChemotherapyConfig",
     "apps.employee.apps.EmployeeConfig",
-    "apps.data_migration.apps.DataMigrationConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -94,19 +93,6 @@ DATABASES = {
         "PORT": os.environ.get("POSTGRES_DB_PORT", None),
     },
 }
-
-if os.environ.get("MARIA_DB") == "True":
-    DATABASES["maria_db"] = {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.environ.get("MARIA_DB_NAME", None),
-        "USER": os.environ.get("MARIA_DB_USER", None),
-        "PASSWORD": os.environ.get("MARIA_DB_PASSWORD", None),
-        "HOST": os.environ.get("MARIA_DB_HOST", None),
-        "PORT": os.environ.get("MARIA_DB_PORT", None),
-        "OPTIONS": {
-            "autocommit": True,
-        },
-    }
 
 # Database for Github Tests
 

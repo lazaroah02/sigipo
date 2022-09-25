@@ -3,7 +3,7 @@
   let container = document.querySelector("#base_form");
   let addButton = document.querySelector("#add-form");
   let totalForms = document.querySelector(
-    "#id_cyclemedication_set-TOTAL_FORMS"
+    "#id_cyclemedication_set-TOTAL_FORMS",
   );
 
   let formNum = birdForm.length - 1;
@@ -18,7 +18,7 @@
     formNum++;
     newForm.innerHTML = newForm.innerHTML.replace(
       formRegex,
-      `cyclemedication_set-${formNum}-`
+      `cyclemedication_set-${formNum}-`,
     );
     $(`#id_cyclemedication_set-${formNum}-drug`, newForm).next().remove();
     container.insertBefore(newForm, addButton);
