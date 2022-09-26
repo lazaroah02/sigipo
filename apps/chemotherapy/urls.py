@@ -35,7 +35,7 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Scheme,
             filterset_class=SchemeFilter,
-            permission_required="chemotherapy_view",
+            permission_required="accounts.chemotherapy_view",
         ),
         name="scheme_list",
     ),
@@ -49,7 +49,7 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Protocol,
             filterset_class=ProtocolFilter,
-            permission_required="chemotherapy_view",
+            permission_required="accounts.chemotherapy_view",
         ),
         name="protocol_list",
     ),
@@ -63,7 +63,7 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Medication,
             filterset_class=MedicationFilter,
-            permission_required="chemotherapy_view",
+            permission_required="accounts.chemotherapy_view",
         ),
         name="medication_list",
     ),
@@ -79,7 +79,7 @@ urlpatterns = [
                 "cyclemedication_set"
             ).select_related("protocol__scheme", "protocol__patient"),
             filterset_class=CycleFilter,
-            permission_required="chemotherapy_view",
+            permission_required="accounts.chemotherapy_view",
         ),
         name="cycle_list",
     ),

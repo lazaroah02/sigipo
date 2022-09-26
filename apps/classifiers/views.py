@@ -24,7 +24,7 @@ class MorphologyCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:morphology_list")
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class MorphologyDetailView(BaseDetailView):
@@ -34,7 +34,7 @@ class MorphologyDetailView(BaseDetailView):
     form_class = MorphologyForm
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrada"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class MorphologyUpdateView(BaseUpdateView):
@@ -46,7 +46,7 @@ class MorphologyUpdateView(BaseUpdateView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class MorphologyDeleteView(BaseDeleteView):
@@ -57,7 +57,7 @@ class MorphologyDeleteView(BaseDeleteView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:morphology_list"
     object_not_found_error_message = "Morfología no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 # * Topography Views
@@ -69,7 +69,7 @@ class TopographyCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:topography_list")
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class TopographyDetailView(BaseDetailView):
@@ -79,7 +79,7 @@ class TopographyDetailView(BaseDetailView):
     form_class = TopographyForm
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrada"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class TopographyUpdateView(BaseUpdateView):
@@ -91,7 +91,7 @@ class TopographyUpdateView(BaseUpdateView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class TopographyDeleteView(BaseDeleteView):
@@ -102,7 +102,7 @@ class TopographyDeleteView(BaseDeleteView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:topography_list"
     object_not_found_error_message = "Topografía no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 # * Study Views
@@ -114,7 +114,7 @@ class StudyCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:study_list")
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:study_list"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"
 
 
 class StudyDetailView(BaseDetailView):
@@ -124,7 +124,7 @@ class StudyDetailView(BaseDetailView):
     form_class = StudyForm
     cancel_url = "classifiers:study_list"
     object_not_found_error_message = "Estudio no encontrada"
-    permission_required = "nuclear_medicine_detail"
+    permission_required = "accounts.nuclear_medicine_view"
 
 
 class StudyUpdateView(BaseUpdateView):
@@ -136,7 +136,7 @@ class StudyUpdateView(BaseUpdateView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:study_list"
     object_not_found_error_message = "Estudio no encontrado"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"
 
 
 class StudyDeleteView(BaseDeleteView):
@@ -147,7 +147,7 @@ class StudyDeleteView(BaseDeleteView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:study_list"
     object_not_found_error_message = "Estudio no encontrado"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"
 
 
 # * RadioIsotope Views
@@ -159,7 +159,7 @@ class RadioIsotopeCreateView(BaseCreateView):
     success_url = reverse_lazy("classifiers:radioisotope_list")
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:radioisotope_list"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"
 
 
 class RadioIsotopeDetailView(BaseDetailView):
@@ -169,7 +169,7 @@ class RadioIsotopeDetailView(BaseDetailView):
     form_class = RadioIsotopeForm
     cancel_url = "classifiers:radioisotope_list"
     object_not_found_error_message = "Radio isótopo no encontrada"
-    permission_required = "nuclear_medicine_detail"
+    permission_required = "accounts.nuclear_medicine_view"
 
 
 class RadioIsotopeUpdateView(BaseUpdateView):
@@ -181,7 +181,7 @@ class RadioIsotopeUpdateView(BaseUpdateView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:radioisotope_list"
     object_not_found_error_message = "Radio isótopo no encontrado"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"
 
 
 class RadioIsotopeDeleteView(BaseDeleteView):
@@ -192,4 +192,4 @@ class RadioIsotopeDeleteView(BaseDeleteView):
     success_message = "%(name)s guardada correctamente."
     cancel_url = "classifiers:radioisotope_list"
     object_not_found_error_message = "Radio isótopo no encontrado"
-    permission_required = "nuclear_medicine_manage"
+    permission_required = "accounts.nuclear_medicine_manage"

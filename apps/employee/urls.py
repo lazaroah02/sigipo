@@ -22,7 +22,7 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Group,
             filterset_class=GroupFilter,
-            permission_required="employee_view",
+            permission_required="accounts.employee_view",
         ),
         name="group_list",
     ),
@@ -36,7 +36,7 @@ urlpatterns = [
         PaginationFilterView.as_view(
             model=Doctor,
             filterset_class=DoctorFilter,
-            permission_required="employee_view",
+            permission_required="accounts.employee_view",
         ),
         name="doctor_list",
     ),

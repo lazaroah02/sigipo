@@ -34,7 +34,7 @@ class ReportDownloadView(FileDownloadView):
     report_name = None
     report_text = None
     report_form = BaseReportForm
-    permission_required = "download_cancer_report"
+    permission_required = "accounts.download_cancer_report"
     template_name = "report/base_report.html"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:

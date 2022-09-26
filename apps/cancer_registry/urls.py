@@ -25,7 +25,7 @@ urlpatterns = [
             filterset_class=NeoplasmFilter,
             queryset=Neoplasm.objects.all(),
             post_function=neoplasm_download_table,
-            permission_required="cancer_registry_view",
+            permission_required="accounts.cancer_registry_view",
         ),
         name="neoplasm_list",
     ),

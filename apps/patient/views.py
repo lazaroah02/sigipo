@@ -35,7 +35,7 @@ class PatientCreateView(BaseCreateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
     template_name = "patient/patient_create.html"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class PatientDetailView(BaseDetailView):
@@ -45,7 +45,7 @@ class PatientDetailView(BaseDetailView):
     form_class = OncologicPatientForm
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    permission_required = "cancer_registry_view"
+    permission_required = "accounts.cancer_registry_view"
 
 
 class PatientUpdateView(BaseUpdateView):
@@ -57,7 +57,7 @@ class PatientUpdateView(BaseUpdateView):
     success_message = "%(first_name)s %(last_name)s guardado correctamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class PatientDeleteView(BaseDeleteView):
@@ -68,14 +68,14 @@ class PatientDeleteView(BaseDeleteView):
     success_message = "%(first_name)s %(last_name)s eliminado satisfactoriamente."
     cancel_url = "patient:oncologic_list"
     object_not_found_error_message = "Paciente no encontrado"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
 
 class PatientChangeStatus(LoginRequiredMixin, PermissionRequiredMixin, TemplateView):
     """View to change the status of a patient (Oncologic/No oncologic)."""
 
     template_name = "patient/change_status.html"
-    permission_required = "cancer_registry_manage"
+    permission_required = "accounts.cancer_registry_manage"
 
     def get_context_data(self, **kwargs):
         """Fills the context with the patient data or the form to search."""
@@ -116,7 +116,7 @@ class NuclearMedicinePatientCreateView(PatientCreateView):
     form_class = NuclearMedicinePatientForm
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
-    permission_required = "patient_manage"
+    permission_required = "accounts.patient_manage"
 
 
 class NuclearMedicinePatientDetailView(PatientDetailView):
@@ -124,7 +124,7 @@ class NuclearMedicinePatientDetailView(PatientDetailView):
 
     form_class = NuclearMedicinePatientForm
     cancel_url = "patient:patient_list"
-    permission_required = "cancer_registry_view"
+    permission_required = "accounts.cancer_registry_view"
 
 
 class NuclearMedicinePatientUpdateView(PatientUpdateView):
@@ -134,7 +134,7 @@ class NuclearMedicinePatientUpdateView(PatientUpdateView):
     form_class = NuclearMedicinePatientForm
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
-    permission_required = "patient_manage"
+    permission_required = "accounts.patient_manage"
 
 
 class NuclearMedicinePatientDeleteView(BaseDeleteView):
@@ -143,7 +143,7 @@ class NuclearMedicinePatientDeleteView(BaseDeleteView):
     model = Patient
     success_url = reverse_lazy("patient:patient_list")
     cancel_url = "patient:patient_list"
-    permission_required = "patient_manage"
+    permission_required = "accounts.patient_manage"
 
 
 @login_required
