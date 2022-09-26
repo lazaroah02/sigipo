@@ -27,9 +27,16 @@
                     {% block table_filters %}
                         <form method="get" class="row">
                             {% block model_filters %}
-                                {% for field in filter.form.visible_fields %}
-                                    <div class="col">{{ field }}</div>
-                                {% endfor %}
+                                <div class="col">
+                                    <div class="row filter-row">
+                                        {% for field in filter.form.visible_fields %}
+                                            <div class="filter-col">
+                                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                                {{ field }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             {% endblock model_filters %}
                             <div class="col-auto">
                                 <button type="submit" id="id_submit_filters" class="btn btn-info mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>

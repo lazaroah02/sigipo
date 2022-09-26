@@ -5,8 +5,6 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Case, Count, F, Q, Value, When
 from django.http import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 from apps.cancer_registry.models import Neoplasm
@@ -42,7 +40,6 @@ patient_in_70s = Count("patient", filter=Q(age_at_diagnosis__range=(70, 79)))
 patient_more_than_80s = Count("patient", filter=Q(age_at_diagnosis__gte=80))
 
 
-@method_decorator([cache_page(600)], name="dispatch")
 class Dashboard(LoginRequiredMixin, TemplateView):
     """View to handle dashboard."""
 

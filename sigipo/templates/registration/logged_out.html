@@ -1,0 +1,26 @@
+{% extends "registration/base.html" %}
+
+{% load static i18n %}
+
+{% block content %}
+<div class="card rounded-3 text-black w-50 w-auto">
+  <div class="row g-0">
+    <div class="col">
+      <div class="card-body p-md-2 mx-md-4">
+        <div class="text-center m-2">
+          <img class="logo-img" height="96" width="96" src="{% static 'images/ribbon.png' %}" alt="logo"/>
+          <h4 class="mt-1 mb-5 pb-1">Sesi&oacute;n terminada.</h4>
+
+          <form method="get">
+          {% csrf_token %}
+          <label>Gracias por utilizar el Sigipo.</label>
+          <div class="d-flex align-items-center justify-content-center pb-4">
+            <a role="button" class="btn btn-outline-secondary" href="{% url 'login' %}">Autenticarse</a>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

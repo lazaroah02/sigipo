@@ -4,7 +4,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import Neoplasm
 from apps.classifiers.models import Morphology, Topography
-from apps.employee.models import Group
+from apps.employee.models import Doctor, Group
 
 
 class NeoplasmFilter(FilterSet):
@@ -89,6 +89,24 @@ class NeoplasmFilter(FilterSet):
         ),
         required=False,
         label="Grupo que reporta",
+    )
+    medic_that_report = ModelChoiceFilter(
+        queryset=Doctor.objects.all(),
+        widget=ModelSelect2Widget(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Médico que reporta",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+            search_fields=[
+                "first_name__icontains",
+                "last_name__icontains",
+                "personal_record_number__icontains",
+            ],
+        ),
+        label="Médico que reporta",
     )
 
     class Meta:

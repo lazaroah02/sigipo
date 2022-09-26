@@ -168,10 +168,7 @@ SELECT2_JS = ""
 SELECT2_CSS = ""
 SELECT2_I18N_PATH = ""
 
-LOGOUT_REDIRECT_URL = "/"
-
 LOGIN_REDIRECT_URL = "/"
-
 
 EMAIL_HOST = os.environ.get("EMAIL_HOST", None)
 
