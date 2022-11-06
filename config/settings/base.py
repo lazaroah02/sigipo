@@ -161,7 +161,7 @@ LANGUAGES = [
 AUTH_USER_MODEL = "accounts.User"
 
 VERSION_CHECKS = {
-    "python": ">=3.10.0,<3.11",
+    "python": ">=3.10.0,<3.12.0",
 }
 
 SELECT2_JS = ""
