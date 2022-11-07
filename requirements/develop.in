@@ -16,3 +16,5 @@ pytest-restrict
 pytest-xdist
 pip-compile-multi
 pytest-env
+black
+flake8
