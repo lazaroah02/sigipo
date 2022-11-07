@@ -179,6 +179,20 @@ class BaseDeleteViewTestCase(TestCase):
             fetch_redirect_response=True,
         )
 
+    def test_delete_modal(self):
+        """Test that BaseDeleteView changes the template if modal is present in the request params."""
+        response = self.client.get(
+            reverse("geographic_location:province_delete", args=(self.province.pk,))
+        )
+        self.assertTemplateUsed(response, template_name="base_crud/base_delete.html")
+        response = self.client.get(
+            reverse("geographic_location:province_delete", args=(self.province.pk,))
+            + "?modal=true"
+        )
+        self.assertTemplateUsed(
+            response, template_name="base_crud/base_modal_delete.html"
+        )
+
 
 class CoreHandlerTestCase(TestCase):
     @classmethod
