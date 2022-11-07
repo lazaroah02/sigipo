@@ -261,11 +261,20 @@ class BaseDeleteView(
     """Base delete view."""
 
     template_name = "base_crud/base_delete.html"
+    template_modal = "base_crud/base_modal_delete.html"
     permission_required = ()
 
     def __init__(self, **kwargs):
         self.title = f"Eliminar {self.model._meta.verbose_name.lower()}"
         super().__init__(**kwargs)
+
+    def get_template_names(self) -> list[str]:
+        """
+        Changes the template in case the user uses the modal
+        """
+        if self.request.GET.get("modal", False) == "true":
+            return [self.template_modal]
+        return super().get_template_names()
 
     def delete(self, request: HttpRequest, *args, **kwargs):
         """

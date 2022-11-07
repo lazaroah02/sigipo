@@ -94,6 +94,25 @@
         {% endif %}
     </div>
 
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="delete-confimation-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div id="delete-confirmation-content">
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form id="delete_form" action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
     {% if messages %}
         <div class="position-fixed bottom-0 end-0 p-3 z-index-top">
             <div class="toast-container">
@@ -120,4 +139,5 @@
 {{ filter.form.media.js }}
 <script src="{% static 'js/internal/remove-empty-filter.js' %}"></script>
 <script src="{% static 'js/internal/select2-focus-fix.js' %}"></script>
+<script src="{% static 'js/internal/delete-modal.js' %}"></script>
 {% endblock endloads %}
