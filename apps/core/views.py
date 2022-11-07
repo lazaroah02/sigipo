@@ -269,6 +269,9 @@ class BaseDeleteView(
         super().__init__(**kwargs)
 
     def get_template_names(self) -> list[str]:
+        """
+        Changes the template in case the user uses the modal
+        """
         if self.request.GET.get("modal", False) == "true":
             return [self.template_modal]
         return super().get_template_names()
