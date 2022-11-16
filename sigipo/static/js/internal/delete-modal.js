@@ -4,9 +4,7 @@ let deleteConfirmationModalContent = document.querySelector(
 let deleteConfirmationModal = new bootstrap.Modal(
   document.querySelector("#delete-confimation-modal"),
 );
-let deleteConfirmationForm = new bootstrap.Modal(
-  document.querySelector("#delete_form"),
-);
+let deleteConfirmationForm = document.querySelector("#delete_form");
 
 document.querySelectorAll("a.delete").forEach((button) => {
   button.addEventListener("click", function (event) {
