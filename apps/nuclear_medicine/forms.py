@@ -75,7 +75,7 @@ class BaseStudyForm(ModelForm):
     """Base class for common study fields."""
 
     patient = ModelChoiceField(
-        queryset=Patient.objects.only_oncologic(),
+        queryset=Patient.objects.all(),
         widget=ModelSelect2Widget(
             attrs={
                 "class": "form-control",

@@ -12,7 +12,7 @@
     {% for obj in page_obj %}
         <tr>
             <td><a href="{% url "patient:patient_detail" obj.oncologic_study.patient.pk %}?return_to=nuclear_medicine:oncologic_result_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.oncologic_study.patient }}</a></td>
-            <td><a href="{% url "nuclear_medicine:patientoncologicstudy_detail" obj.oncologic_study.sample_number %}?return_to=nuclear_medicine:oncologic_result_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.oncologic_study.sample_number }}</a></td>
+            <td><a href="{% url "nuclear_medicine:oncologicstudy_detail" obj.oncologic_study.sample_number %}?return_to=nuclear_medicine:oncologic_result_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.oncologic_study.sample_number }}</a></td>
             <td>{{ obj.created_at }}</td>
             <td>{{ obj.oncologic_study.tests }}</td>
             <td>

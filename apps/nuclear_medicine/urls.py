@@ -35,6 +35,7 @@ from apps.nuclear_medicine.views import (
     IodineDetectionCreateView,
     IodineDetectionDeleteView,
     IodineDetectionDetailView,
+    IodineDetectionUpdateView,
     OncologicResultCreateView,
     OncologicResultDeleteView,
     OncologicResultDetailView,
@@ -123,7 +124,7 @@ urlpatterns = [
     ),
     getUrl(IodineDetectionCreateView),
     getUrl(IodineDetectionDetailView),
-    getUrl(IodineDetectionDeleteView),
+    getUrl(IodineDetectionUpdateView),
     getUrl(IodineDetectionDeleteView),
     # * SerialIodineDetection result URLs
     path(
