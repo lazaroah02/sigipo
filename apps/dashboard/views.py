@@ -62,7 +62,8 @@ class Dashboard(LoginRequiredMixin, TemplateView):
                         "static",
                         "json",
                         "cu-all.topo.json",
-                    )
+                    ),
+                    encoding="utf-8",
                 ) as file:
                     file = json.load(file)
                 return JsonResponse(data=file)
