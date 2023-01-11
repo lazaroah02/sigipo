@@ -1,8 +1,11 @@
 (function () {
   async function loadCharts() {
-    const topTen = await fetch("?data=top10").then((response) =>
-      response.json(),
-    );
+    const topTen = await fetch("?data=top10")
+      .then((response) => response.json())
+      .catch(
+        (err) => console.error("Problem with top10", err),
+        document.getElementById("id_loading").remove(),
+      );
 
     const categories = topTen.map((location) => location["primary_site__name"]);
 
@@ -135,5 +138,7 @@
       document.getElementById("id_loading").remove();
     }
   }
-  loadCharts();
+  loadCharts().catch((err) =>
+    console.error("Problem with loading charts", err),
+  );
 })();

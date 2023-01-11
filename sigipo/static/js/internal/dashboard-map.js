@@ -1,14 +1,14 @@
 (function () {
   async function loadMap() {
-    const topology = await fetch("?data=county").then((response) =>
-      response.json(),
-    );
-    const dataBorn = await fetch("?data=born").then((response) =>
-      response.json(),
-    );
-    const dataResidence = await fetch("?data=residence").then((response) =>
-      response.json(),
-    );
+    const topology = await fetch("?data=county")
+      .then((response) => response.json())
+      .catch((err) => console.error("Problem with topology", err));
+    const dataBorn = await fetch("?data=born")
+      .then((response) => response.json())
+      .catch((err) => console.error("Problem with dataBorn", err));
+    const dataResidence = await fetch("?data=residence")
+      .then((response) => response.json())
+      .catch((err) => console.error("Problem with dataResidence", err));
     Highcharts.mapChart("map-born", {
       chart: {
         map: topology,
