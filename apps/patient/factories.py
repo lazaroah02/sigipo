@@ -57,7 +57,7 @@ class PatientFactory(DjangoModelFactory):
         )
     )
     race = FuzzyChoice(PatientRace.values)
-    medical_record = FuzzyText(length=32)
+    medical_record = FuzzyText(length=32, chars=string.digits)
     is_oncologic = FuzzyChoice((True, False))
     residence_municipality = SubFactory(MunicipalityFactory)
     date_of_birth = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
