@@ -104,7 +104,8 @@ jedi==0.18.1
     # via ipython
 jinja2==3.1.2
     # via sphinx
-./wheels/lxml-4.9.2-cp311-cp311-win_amd64.whl
+./wheels/lxml-4.9.2-cp311-cp311-win_amd64.whl ; platform_system == "Windows"
+lxml==4.9.2 ; platform_system != "Windows"
     # via python-docx
 markuppy==1.14
     # via tablib

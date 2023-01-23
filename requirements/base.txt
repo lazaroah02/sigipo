@@ -34,7 +34,8 @@ django-version-checks==1.7.0
     # via -r requirements/base.in
 et-xmlfile==1.1.0
     # via openpyxl
-./wheels/lxml-4.9.2-cp311-cp311-win_amd64.whl
+./wheels/lxml-4.9.2-cp311-cp311-win_amd64.whl ; platform_system == "Windows"
+lxml==4.9.2 ; platform_system != "Windows"
     # via python-docx
 markuppy==1.14
     # via tablib
