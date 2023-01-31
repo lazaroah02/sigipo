@@ -2,7 +2,7 @@
 
 Sistema Informático Integral de gestión del paciente Oncológico
 
-![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg) ![pre-commit](https://github.com/UHo-GPDB/sigipo/actions/workflows/pre-commit.yml/badge.svg) ![Code Coverage](./coverage.svg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Python 3.10](https://img.shields.io/badge/python-3.10-brightgreen.svg)](https://www.python.org/downloads/release/python-3100/) ![Django](https://www.shields.io/badge/django-3.2-brightgreen) ![Interogate](./interrogate.svg)
+![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg) ![pre-commit](https://github.com/UHo-GPDB/sigipo/actions/workflows/pre-commit.yml/badge.svg) ![Code Coverage](./coverage.svg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Python 3.11](https://img.shields.io/badge/python-3.11-brightgreen.svg)](https://www.python.org/downloads/release/python-3111/) ![Django](https://www.shields.io/badge/django-3.2-brightgreen) ![Interogate](./interrogate.svg)
 
 ## Configuración para el desarrollo
 
@@ -10,14 +10,15 @@ Sistema Informático Integral de gestión del paciente Oncológico
 Instalar [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) (recomendado) o [Python](https://www.python.org/downloads/windows/).
 De instalar Python directamente continue en la sección 2.
 
-**(1)**. Instalar Python 3.10.
+**(1)** Instalar Python 3.11.
 
 La mejor manera de hacer esto es con [pyenv](https://github.com/pyenv/pyenv).
-Siga sus [instrucciones para configurarlo](https://realpython.com/intro-to-pyenv/) para su consola. También puede compilar directamente [Python](https://www.python.org/downloads/source/). Instale siempre la versión *más reciente* de Python.
+Siga sus [instrucciones para configurarlo](https://realpython.com/intro-to-pyenv/) para su consola. También puede compilar directamente [Python](https://www.python.org/downloads/release/python-3111/). Instale siempre la versión *más reciente* de Python.
 
 **(2)** Cree un entorno virtual de Python y actívelo:
+
 ```sh
-python3.10 -m venv venv
+python3.11 -m venv venv
 source venv/bin/activate
 python -m pip install -U pip wheel
 ```
@@ -38,17 +39,36 @@ El archivo `.env` es para secretos que no están en el control de código fuente
 
 **(5)** Cree su base de datos en PostgreSQL:
 
+Descargar e instalar [PostgreSQL](https://www.postgresql.org/download/) correspondiente a su sistema operativo.
+
+**Crear base de datos:**
+
+En caso de Windows la manera más simple es mediante [pgAdmin](https://www.pgadmin.org/download/pgadmin-4-windows/) que debería estar incluido en las últimas versiones del instalador.
+
+En caso de [Linux](https://www.postgresql.org/docs/current/sql-createdatabase.html) mediante el uso de la terminal siguiendo las instrucciones
+
 Edite el archivo `.env` de acuerdo con el nombre de su base de datos, contraseña y otras configuraciones.
+
+```sh
+POSTGRES_DB_HOST=localhost
+POSTGRES_DB_PORT=5432
+POSTGRES_DB=sigipo
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+```
 
 **(6)** Configurar la base de datos de desarrollo:
 
 ```sh
 python manage.py migrate
-python manage.py loaddata province
-python manage.py loaddata municipality
-python manage.py loaddata topography
-python manage.py loaddata morphology
+python manage.py seed_database
 ```
+Estos comandos:
+- **migrate:** Aplicará las migraciones a la Base de Datos creando las tablas de los modelos.
+- **seed_database:** Genera 5 instancias de cada uno de los modelos y un usuario con permisos administrativos con credenciales:
+    - **Usuario:** admin
+    - **Contraseña:** 123
+
 
 **(7)** Ejecutar las pruebas:
 
