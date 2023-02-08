@@ -23,6 +23,7 @@ urlpatterns = [
     path("nuclear_medicine/", include("apps.nuclear_medicine.urls")),
     path("employee/", include("apps.employee.urls")),
     path("chemotherapy/", include("apps.chemotherapy.urls")),
+    path("death_certificate/", include("apps.death_certificate.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
     # ! security
