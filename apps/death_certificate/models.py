@@ -5,6 +5,7 @@ from django.db.models import (
     DateField,
     ForeignKey,
     IntegerField,
+    DateTimeField,
     Model)
 
 from apps.geographic_location.models import Municipality
@@ -16,19 +17,13 @@ class DeathCertificate(Model):
 
     death_cause = CharField(verbose_name="Causa de Muerte", max_length=1000)
 
-    date_of_death = DateField(
+    time_of_death = DateTimeField(
         verbose_name="Fecha de defunción",
         blank=True,
         null=True,
+        auto_now_add=True,
     )
     
-    date_of_death = CharField(
-        verbose_name="Hora de defunción",
-        max_length=15,
-        blank=True,
-        null=True,
-    )
-
     identity_card = CharField(
         verbose_name="Carnet de Identidad",
         max_length=11,

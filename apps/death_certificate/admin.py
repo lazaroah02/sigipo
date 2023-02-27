@@ -6,5 +6,7 @@ from apps.death_certificate.models import DeathCertificate
 class DeathCertificateAdim(ModelAdmin):
     """DeathCertificate Django Admin view."""
     
-    pass
+    list_display = ("identity_card",)
+    list_select_related = ("identity_card",)
+    list_display_links = ("identity_card",)
 

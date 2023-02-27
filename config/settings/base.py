@@ -44,6 +44,7 @@ LOCAL_APPS = [
     "apps.chemotherapy.apps.ChemotherapyConfig",
     "apps.employee.apps.EmployeeConfig",
     "apps.death_certificate.apps.DeathCertificateConfig",
+    "apps.radiations.apps.RadiationsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

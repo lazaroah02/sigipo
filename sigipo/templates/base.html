@@ -196,6 +196,41 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle"
                  href="#"
+                 id="radiations"
+                 role="button"
+                 data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                 <i class="fa-solid fa-radiation"></i> Radiaciones
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="radiations">
+                <li>
+                  <a class="dropdown-item" href="{% url 'patient:patient_list' %}"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
+                </li>
+                <li>
+                  <label class="dropdown-item" role="button"><i class="fa-solid fa-flask-vial"></i> Tratamiento <i class="fa-solid fa-angle-right"></i></label>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li><h6 class="dropdown-header">Tratamiento</h6></li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'radiations:external_beam_treat_list' %}">Haz Externo</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'radiations:internal_radiation_list' %}">Radioterapia Interna</a>
+                    </li>
+                    <li><hr class="dropdown-divider"/></li>
+                    <li><h6 class="dropdown-header">Registro</h6></li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'radiations:external_beam_reg_list' %}">Haz Externo</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'radiations:internal_radiation_reg_list' %}">Radioterapia Interna</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>  
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                 href="#"
                  id="employee"
                  role="button"
                  data-bs-toggle="dropdown"
