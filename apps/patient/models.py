@@ -40,6 +40,16 @@ class PatientQuerysetManager(Manager):
         return self.get_queryset().filter(is_oncologic=False)
 
 
+class Ocupation(IntegerChoices):
+    """Defines the patient Ocupation."""
+
+    T = 0, "Trabajador"
+    E = 1, "Estudiante"
+    AC = 2, "Ama de Casa"
+    J = 3, "Jubilado"
+    D = 4, "Desempleado"
+    UNDEFINED = 5, "Indeterminado"
+
 class PatientRace(IntegerChoices):
     """Defines the patient race."""
 
@@ -77,6 +87,13 @@ class Patient(TimeStampedModel):
     sex = IntegerField(
         verbose_name="Sexo",
         choices=SexChoices.choices,
+        blank=True,
+        null=True,
+    )
+
+    ocupation = IntegerField(
+        verbose_name="Ocupación",
+        choices=Ocupation.choices,
         blank=True,
         null=True,
     )

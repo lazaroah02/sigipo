@@ -15,7 +15,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
-from apps.patient.models import Patient, PatientRace, SexChoices
+from apps.patient.models import Patient, PatientRace, SexChoices, Ocupation
 
 
 class BasePatientForm(ModelForm):
@@ -80,6 +80,12 @@ class BasePatientForm(ModelForm):
         initial=SexChoices.UNDEFINED,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Sexo",
+    )
+    ocupation = ChoiceField(
+        choices=Ocupation.choices,
+        initial=Ocupation.UNDEFINED,
+        widget=Select(attrs={"class": "form-control form-select"}),
+        label="Ocupación",
     )
     date_of_birth = DateField(
         widget=DateInput(

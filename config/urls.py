@@ -25,6 +25,7 @@ urlpatterns = [
     path("chemotherapy/", include("apps.chemotherapy.urls")),
     path("death_certificate/", include("apps.death_certificate.urls")),
     path("radiations/", include("apps.radiations.urls")),
+    path("pathological_anatomy/", include("apps.pathological_anatomy.urls")),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
     # ! security

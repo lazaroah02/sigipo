@@ -1,21 +1,26 @@
 from django.db.models import (
     SET_NULL,
+    CASCADE,
     BooleanField,
     CharField,
     DateField,
     ForeignKey,
     IntegerField,
     DateTimeField,
+    OneToOneField,
     Model)
 
 from apps.geographic_location.models import Municipality
 from apps.patient.validators import IdentityCardValidator, only_numbers_validator
 from apps.patient.models import SexChoices,PatientQuerysetManager,PatientRace
+from apps.pathological_anatomy.models import Pathology
 
 class DeathCertificate(Model):
     """Model representation of a death_certificate."""
 
     death_cause = CharField(verbose_name="Causa de Muerte", max_length=1000)
+
+    authopsy_number = OneToOneField(Pathology, to_field="authopsy_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
 
     time_of_death = DateTimeField(
         verbose_name="Fecha de defunción",
@@ -86,20 +91,3 @@ class DeathCertificate(Model):
     def __str__(self):
         """String representation of death_certificate."""
         return f"{self.name}"
-
-# from django.db.models import CharField, Model
-# from apps.patient.models import Patient
-
-
-# class DeathCertificate(Patient):
-
-#     death_cause = CharField(verbose_name="Causa de Muerte", max_length=1000)
-
-
-# from django.db.models import CharField, Model
-# # from apps.patient.models import Patient
-
-
-# class DeathCertificate(Model):
-
-#     death_cause = CharField(verbose_name="Causa de Muerte", max_length=1000)

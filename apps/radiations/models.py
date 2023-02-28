@@ -42,12 +42,12 @@ class ExternalBeamTreat(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = AutoField(verbose_name ='Numero de Tratamiento',primary_key=True, unique=True)
+    treat_number = AutoField(verbose_name ='Número de Tratamiento',primary_key=True, unique=True)
     biopsy = TextField(verbose_name ='Biopsia',null=True, blank=True)
     dosis = FloatField(verbose_name ='Dosis',null=True, blank=True)
     time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
     target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
-    radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
+    radiation_time = TimeField(verbose_name ='Tiempo de Radiación',null=True, blank=True)
     fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
     # target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
     dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
@@ -61,8 +61,8 @@ class ExternalBeamTreat(TimeStampedModel):
     objects = ExternalBeamTreatQuerysetManager()
 
     class Meta:
-        verbose_name = "Tratamiento Radiacion Haz Externo"
-        verbose_name_plural = "Tratamientos Radiacion Haz Externo"
+        verbose_name = "Tratamiento Radiación Haz Externo"
+        verbose_name_plural = "Tratamientos Radiación Haz Externo"
         ordering = ["created_at"]
         default_permissions = ()
 
