@@ -723,6 +723,17 @@ class PathologyForm(ModelForm):
         label="Observaciones (Epicrisis)",
     )
 
+    pathologist  = CharField(
+        widget=TextInput(
+            attrs={
+                "type": "text",
+                "class": "form-control",
+                "placeholder": "Patólogo",
+            },
+        ),
+        label="Patólogo",
+    )
+
     class Meta:
         """Meta class for PathologyForm."""
 

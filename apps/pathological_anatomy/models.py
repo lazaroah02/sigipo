@@ -154,6 +154,9 @@ class Pathology(TimeStampedModel):
     ########################################################################
     observation_epicrisis = TextField(verbose_name ='Observaciones (Epicrisis)',null=True, blank=True)
 
+    pathologist = TextField(verbose_name ='Patólogo',null=True, blank=True)
+
+
     objects = PathologyQuerysetManager()
 
     class Meta:
