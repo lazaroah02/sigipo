@@ -126,6 +126,7 @@ class Patient(TimeStampedModel):
         null=True,
         on_delete=SET_NULL,
     )
+
     is_oncologic = BooleanField(default=False)
     objects = PatientQuerysetManager()
 

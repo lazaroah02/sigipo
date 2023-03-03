@@ -8,6 +8,7 @@ from django.db.models import (
     IntegerField,
     DateTimeField,
     OneToOneField,
+    TextField,
     Model)
 
 from apps.geographic_location.models import Municipality
@@ -18,9 +19,11 @@ from apps.pathological_anatomy.models import Pathology
 class DeathCertificate(Model):
     """Model representation of a death_certificate."""
 
-    death_cause = CharField(verbose_name="Causa de Muerte", max_length=1000)
+    deathCertificate_number = CharField(verbose_name ='Número de Certificación de Defunción', max_length = 50 ,primary_key=True, default=SET_NULL)
 
-    authopsy_number = OneToOneField(Pathology, to_field="authopsy_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
+    death_cause = TextField(verbose_name="Causa de Muerte")
+
+    authopsy_number = OneToOneField(Pathology, to_field="authopsy_number", null=True, blank=False, on_delete=SET_NULL)
 
     time_of_death = DateTimeField(
         verbose_name="Fecha de defunción",

@@ -1,11 +1,13 @@
 from django.db.models import (
     CASCADE,
+    SET_NULL,
     AutoField,
     FloatField,
     ForeignKey,
     TextChoices,
     TextField,
     DateField,
+    CharField,
 )
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
@@ -65,7 +67,7 @@ class Pathology(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    authopsy_number = AutoField(verbose_name ='Número de Autopsia',primary_key=True, unique=True)
+    authopsy_number = CharField(verbose_name ='Número de Autopsia', max_length = 50 ,primary_key=True, default=SET_NULL)
     entry_date = DateField(verbose_name ='Fecha de ingreso',null=True, blank=True)
     exit_date = DateField(verbose_name ='Fecha de egreso',null=True, blank=True)
     eval_speciality = TextField(verbose_name ='Egreso (Especialidad)',null=True, blank=True)
