@@ -1,4 +1,4 @@
-from django.forms import TextInput, DateInput
+from django.forms import TextInput
 from django_filters import CharFilter, FilterSet, NumberFilter, DateFilter
 
 from apps.pathological_anatomy.models import (

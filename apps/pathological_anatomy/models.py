@@ -3,15 +3,9 @@ from django.db.models import (
     AutoField,
     FloatField,
     ForeignKey,
-    ManyToManyField,
-    OneToOneField,
     TextChoices,
     TextField,
-    DateTimeField,
     DateField,
-    TimeField,
-    CharField,
-    IntegerField,
 )
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField

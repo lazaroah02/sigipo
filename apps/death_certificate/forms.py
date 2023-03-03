@@ -1,7 +1,6 @@
-from django.forms import CharField, DateTimeField, DateTimeInput, Textarea, TextInput
+from django.forms import CharField, DateTimeField, DateTimeInput, Textarea
 
 from apps.death_certificate.models import DeathCertificate
-# from apps.core.forms import ModelForm
 from apps.patient.forms import BasePatientForm
 
 

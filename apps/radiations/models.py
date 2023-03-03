@@ -3,11 +3,9 @@ from django.db.models import (
     AutoField,
     FloatField,
     ForeignKey,
-    ManyToManyField,
     OneToOneField,
     TextChoices,
     TextField,
-    DateTimeField,
     DateField,
     TimeField,
     CharField,
@@ -49,9 +47,7 @@ class ExternalBeamTreat(TimeStampedModel):
     target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
     radiation_time = TimeField(verbose_name ='Tiempo de Radiación',null=True, blank=True)
     fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
-    # target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
     dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
-    # external_beam_config = TextField(verbose_name = 'Configuracion del Haz Externo',null=True, blank=True)
     tests = MultiSelectField(
         choices=ExternalBeamTreatmentChoices.choices,
         min_choices=1,
@@ -85,13 +81,10 @@ class ExternalBeamReg(TimeStampedModel):
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     treat_number = OneToOneField(ExternalBeamTreat, to_field="treat_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
-    # treat_number = ForeignKey(ExternalBeamTreat, to_field = "treat_number", null=False, blank=False, on_delete=CASCADE,primary_key=True)
-    # treat_number = AutoField(verbose_name ='Numero de Tratamiento',primary_key=True) #must be a foreignkey
     dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
     time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
     target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
     radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
-    # fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
     target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
     dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
     session_number = IntegerField(verbose_name ='Numero de Sesión',null=True, blank=True)
@@ -180,13 +173,10 @@ class InternalRadiationReg(TimeStampedModel):
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
     treat_number = OneToOneField(InternalRadiationTreatment, to_field="treat_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
-    # treat_number = ForeignKey(InternalRadiationTreatment, to_field = "treat_number", null=False, blank=False, on_delete=CASCADE,primary_key=True)
-    # treat_number = AutoField(verbose_name ='Numero de Tratamiento' ,primary_key=True) #must be a Freignkey
     dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
     time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
     target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
     radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
-    # fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
     target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
     dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
     session_number = IntegerField(verbose_name ='Numero de Sesión',null=True, blank=True)
