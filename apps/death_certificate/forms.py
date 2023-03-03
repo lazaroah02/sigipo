@@ -1,4 +1,4 @@
-from django.forms import CharField, DateTimeField, DateTimeInput, Textarea
+from django.forms import CharField, TextInput, DateTimeField, DateTimeInput, Textarea
 
 from apps.death_certificate.models import DeathCertificate
 from apps.patient.forms import BasePatientForm
@@ -7,6 +7,17 @@ from apps.patient.forms import BasePatientForm
 class DeathCertificateForm(BasePatientForm):
     """Model to handle DeathCertificate creation and edition."""
 
+    deathCertificate_number = CharField(
+        widget=TextInput(
+            attrs={
+                "type": "text",
+                "class": "form-control",
+                "placeholder": "Número de Certificación de Defunción",
+            },
+        ),
+        label="Número de Certificación de Defunción",
+    )
+    
     death_cause = CharField(
         widget=Textarea(attrs={"class": "form-control", "placeholder": "Causa de Muerte"}),
         label="Causa de Muerte",

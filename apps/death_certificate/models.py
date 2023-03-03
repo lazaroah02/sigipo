@@ -19,7 +19,7 @@ from apps.pathological_anatomy.models import Pathology
 class DeathCertificate(Model):
     """Model representation of a death_certificate."""
 
-    deathCertificate_number = CharField(verbose_name ='Número de Certificación de Defunción', max_length = 50 ,primary_key=True, default=SET_NULL)
+    deathCertificate_number = CharField(verbose_name ='Número de Certificación de Defunción', max_length = 50 ,primary_key=True, default=None)
 
     death_cause = TextField(verbose_name="Causa de Muerte")
 

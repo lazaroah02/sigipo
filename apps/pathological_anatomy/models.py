@@ -67,7 +67,7 @@ class Pathology(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    authopsy_number = CharField(verbose_name ='Número de Autopsia', max_length = 50 ,primary_key=True, default=SET_NULL)
+    authopsy_number = CharField(verbose_name ='Número de Autopsia', max_length = 50 ,primary_key=True, default=None)
     entry_date = DateField(verbose_name ='Fecha de ingreso',null=True, blank=True)
     exit_date = DateField(verbose_name ='Fecha de egreso',null=True, blank=True)
     eval_speciality = TextField(verbose_name ='Egreso (Especialidad)',null=True, blank=True)
