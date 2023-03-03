@@ -772,7 +772,7 @@ class PathologyDetailForm(ModelForm):
     )
     authopsy_number = CharField(
         widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Número de Tratamiento"}
+            attrs={"class": "form-control", "placeholder": "Número de Autopsia"}
         ),
         label="Número de Autopsia",
     )
