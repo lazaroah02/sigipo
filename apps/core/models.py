@@ -40,7 +40,8 @@ class SingletonModel(models.Model):  # pragma: no cover
 
 class Round2(Func):
     """Util to handle Database round with precision. Can be drop in django 4.0.
-    https://docs.djangoproject.com/en/4.0/releases/4.0/#models:~:text=The%20new%20precision%20argument%20of%20the%20Round()%20database%20function%20allows%20specifying%20the%20number%20of%20decimal%20places%20after%20rounding."""
+    https://docs.djangoproject.com/en/4.0/releases/4.0/#models:~:text=The%20new%20precision%20argument%20of%20the%20Round()%20database%20function%20allows%20specifying%20the%20number%20of%20decimal%20places%20after%20rounding.
+    """
 
     function = "ROUND"
     template = "%(function)s(%(expressions)s, 2)"

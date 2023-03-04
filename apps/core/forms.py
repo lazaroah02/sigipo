@@ -15,7 +15,6 @@ class ChoiceField(TypedChoiceField):
         *args,
         **kwargs,
     ):
-
         # prepend an empty label if it exists (and field is not required!)
         if not required and empty_label is not None:
             choices = tuple([(None, empty_label)] + list(choices))  # pragma: no cover

@@ -3,14 +3,13 @@ from typing import Any
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.forms import CheckboxInput
+from django.forms import CheckboxInput, Form
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import path, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
-from django.forms import Form
 
 from apps.core.forms import BaseReportForm
 
@@ -277,7 +276,7 @@ class BaseDeleteView(
             return [self.template_modal]
         return super().get_template_names()
 
-    def form_valid(self,form:Form):
+    def form_valid(self, form: Form):
         """
         Call the delete() method on the fetched object and then redirect to the
         success URL.

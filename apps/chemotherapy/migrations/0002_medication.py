@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("drugs", "0002_alter_drug_out_of_stock"),
         ("chemotherapy", "0001_initial"),
