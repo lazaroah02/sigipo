@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
+  rev: v4.4.0
   hooks:
   - id: check-added-large-files
   - id: check-case-conflict
@@ -24,7 +24,7 @@ repos:
     - id: prettier
       files: internal
 - repo: https://github.com/pre-commit/mirrors-eslint
-  rev: v8.27.0
+  rev: v8.33.0
   hooks:
   - id: eslint
     args:
@@ -33,7 +33,7 @@ repos:
     additional_dependencies:
     - eslint@8.12.0
 - repo: https://github.com/Riverside-Healthcare/djLint
-  rev: v1.19.4
+  rev: v1.19.13
   hooks:
     - id: djlint-django
 - repo: https://github.com/thibaudcolas/curlylint
@@ -42,27 +42,27 @@ repos:
   - id: curlylint
     types: [html]
 - repo: https://github.com/asottile/pyupgrade
-  rev: v3.2.0
+  rev: v3.3.1
   hooks:
   - id: pyupgrade
     args: [--py310-plus]
 - repo: https://github.com/hakancelik96/unimport
-  rev: 0dc8d609eb670eeb3335958acddcb6059cc4b8dd
+  rev: 0.13.0
   hooks:
   - id: unimport
     args:
       [--remove,  --include-star-import, --ignore-init, --gitignore]
 - repo: https://github.com/psf/black
-  rev: 22.10.0
+  rev: 23.1.0
   hooks:
   - id: black
     language_version: python3
 - repo: https://github.com/pycqa/isort
-  rev: 5.10.1
+  rev: 5.12.0
   hooks:
   - id: isort
 - repo: https://github.com/PyCQA/flake8
-  rev: 5.0.4
+  rev: 6.0.0
   hooks:
   - id: flake8
     additional_dependencies:

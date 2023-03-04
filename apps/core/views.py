@@ -10,6 +10,7 @@ from django.urls import path, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
+from django.forms import Form
 
 from apps.core.forms import BaseReportForm
 
@@ -276,7 +277,7 @@ class BaseDeleteView(
             return [self.template_modal]
         return super().get_template_names()
 
-    def delete(self, request: HttpRequest, *args, **kwargs):
+    def form_valid(self,form:Form):
         """
         Call the delete() method on the fetched object and then redirect to the
         success URL.

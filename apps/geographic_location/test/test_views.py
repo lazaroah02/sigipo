@@ -59,7 +59,7 @@ class ProvinceDeleteViewTestCase(TestCase):
 
     def test_post(self):
         """Test the post method for ProvinceDeleteView."""
-        self.client.post(
+        response = self.client.post(
             reverse("geographic_location:province_delete", args=(self.province.pk,))
         )
         self.assertFalse(Province.objects.filter(pk=self.province.pk).exists())
