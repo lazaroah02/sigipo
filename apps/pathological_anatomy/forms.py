@@ -482,7 +482,7 @@ class PathologyForm(ModelForm):
         ),
         label="Peso del Pulmón izquierdo",
     )
-    VI = FloatField(
+    heart_w = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -492,7 +492,7 @@ class PathologyForm(ModelForm):
         ),
         label="Peso del Corazón",
     )
-    VD = FloatField(
+    VI = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -502,7 +502,7 @@ class PathologyForm(ModelForm):
         ),
         label="VI (mm)",
     )
-    t_valve = FloatField(
+    VD = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -512,7 +512,7 @@ class PathologyForm(ModelForm):
         ),
         label="VD (mm)",
     )
-    p_valve = FloatField(
+    t_valve = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -522,7 +522,7 @@ class PathologyForm(ModelForm):
         ),
         label="Válvula T (mm)",
     )
-    M = FloatField(
+    p_valve = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -532,7 +532,7 @@ class PathologyForm(ModelForm):
         ),
         label="Válvula P (mm)",
     )
-    A = FloatField(
+    M = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -542,7 +542,7 @@ class PathologyForm(ModelForm):
         ),
         label="M (mm)",
     )
-    liver_w = FloatField(
+    A = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -552,7 +552,7 @@ class PathologyForm(ModelForm):
         ),
         label="A (mm)",
     )
-    r_kidney_w = FloatField(
+    liver_w = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -562,7 +562,7 @@ class PathologyForm(ModelForm):
         ),
         label="Peso del Hígado",
     )
-    r_kidney_v = FloatField(
+    r_kidney_w = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -572,7 +572,7 @@ class PathologyForm(ModelForm):
         ),
         label="Peso del Riñón derecho",
     )
-    l_kidney_w = FloatField(
+    r_kidney_v = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -582,7 +582,7 @@ class PathologyForm(ModelForm):
         ),
         label="Volumen del Riñón derecho",
     )
-    l_kidney_v = FloatField(
+    l_kidney_w = FloatField(
         widget=NumberInput(
             attrs={
                 "type": "number",
@@ -591,6 +591,16 @@ class PathologyForm(ModelForm):
             },
         ),
         label="Peso del Riñón izquierdo",
+    )
+    l_kidney_v = FloatField(
+        widget=NumberInput(
+            attrs={
+                "type": "number",
+                "class": "form-control",
+                "placeholder": "Volumen del Riñón izquierdo",
+            },
+        ),
+        label="Volumen del Riñón izquierdo",
     )
     pancreas_w = FloatField(
         widget=NumberInput(
