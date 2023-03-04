@@ -7,7 +7,7 @@ from django.forms import (
     ModelChoiceField,
     NumberInput,
     TextInput,
-    
+    Select
 )
 from django.utils.safestring import mark_safe
 from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
@@ -278,6 +278,18 @@ class ExternalBeamTreatDetailForm(BaseRadiationDetailForm):
 class ExternalBeamRegForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
 
+    treat_number = ModelChoiceField(
+        queryset=ExternalBeamReg.objects.all(),
+        widget= Select(
+            attrs = {
+            "class": "form-control",
+            "placeholder": "Número de tratamiento",
+            "data-theme": "bootstrap-5",
+            "data-width": "style",
+            }
+        ),
+        label="Número de tratamiento"
+    )
     tests = CustomMultiSelectFormField(
         required=True,
         label="Tratamiento",
@@ -385,6 +397,18 @@ class InternalRadiationTreatmentDetailForm(BaseRadiationDetailForm):
 class InternalRadiationRegForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
 
+    treat_number = ModelChoiceField(
+        queryset=InternalRadiationReg.objects.all(),
+        widget= Select(
+            attrs = {
+            "class": "form-control",
+            "placeholder": "Número de tratamiento",
+            "data-theme": "bootstrap-5",
+            "data-width": "style",
+            }
+        ),
+        label="Número de tratamiento"
+    )
     tests = CustomMultiSelectFormField(
         required=True,
         label="Tratamiento",

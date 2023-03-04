@@ -40,7 +40,7 @@ class ExternalBeamTreat(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = AutoField(verbose_name ='Número de Tratamiento',primary_key=True, unique=True)
+    treat_number = AutoField(verbose_name ='Número de Tratamiento',primary_key=True)
     biopsy = TextField(verbose_name ='Biopsia',null=True, blank=True)
     dosis = FloatField(verbose_name ='Dosis',null=True, blank=True)
     time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
@@ -73,7 +73,7 @@ class ExternalBeamRegQuerysetManager(Manager):
 
     def get_queryset(self):
         """Fetch the related patient."""
-        return super().get_queryset().select_related("patient")
+        return super().get_queryset().select_related("treat_number")
 
 
 class ExternalBeamReg(TimeStampedModel):
@@ -129,7 +129,7 @@ class InternalRadiationTreatment(TimeStampedModel):
     """Model representation of Internal Radiation Treat."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = AutoField(verbose_name ='Numero de Tratamiento' ,primary_key=True, unique=True)
+    treat_number = AutoField(verbose_name ='Numero de Tratamiento' ,primary_key=True)
     biopsy = TextField(verbose_name ='Biopsia',null=True, blank=True)
     dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
     time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
@@ -165,7 +165,7 @@ class InternalRadiationRegQuerysetManager(Manager):
 
     def get_queryset(self):
         """Fetch the related patient."""
-        return super().get_queryset().select_related("patient")
+        return super().get_queryset().select_related("treat_number")
 
 
 class InternalRadiationReg(TimeStampedModel):

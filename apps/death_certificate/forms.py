@@ -1,7 +1,8 @@
-from django.forms import CharField, TextInput, DateTimeField, DateTimeInput, Textarea
+from django.forms import CharField, TextInput, DateTimeField, DateTimeInput, Textarea, ModelChoiceField,Select
 
 from apps.death_certificate.models import DeathCertificate
 from apps.patient.forms import BasePatientForm
+from apps.pathological_anatomy.models import Pathology
 
 
 class DeathCertificateForm(BasePatientForm):
@@ -34,6 +35,19 @@ class DeathCertificateForm(BasePatientForm):
         ),
         required=False,
         label="Fecha de defunción",
+    )
+
+    authopsy_number = ModelChoiceField(
+        queryset=Pathology.objects.all(),
+        widget= Select(
+            attrs = {
+            "class": "form-control",
+            "placeholder": "Número de autopsia",
+            "data-theme": "bootstrap-5",
+            "data-width": "style",
+            }
+        ),
+        label="Número de autopsia",
     )
 
     class Meta:

@@ -72,7 +72,7 @@ urlpatterns = [
         "external_beam_reg/list/",
         PaginationFilterView.as_view(
             queryset=ExternalBeamReg.objects.select_related(
-                "patient"
+                "treat_number__patient"
             ).all(),
             filterset_class=ExternalBeamRegFilter,
             permission_required="accounts.radiations_view",
@@ -88,7 +88,7 @@ urlpatterns = [
         "internal_radiation_reg/list/",
         PaginationFilterView.as_view(
             queryset=InternalRadiationReg.objects.select_related(
-                "internal_radiation__patient"
+                "treat_number__patient",  
             ).all(),
             filterset_class=InternalRadiationRegFilter,
             permission_required="accounts.radiations_view",
