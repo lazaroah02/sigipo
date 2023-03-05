@@ -30,9 +30,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 0
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -49,19 +46,33 @@ jobs:
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
 
-    - name: Python Interrogate Check
-      uses: JackMcKew/python-interrogate-check@main
-      with:
-        fail-under: 50
-        badge-location: 'badges/interrogate.svg'
+  Doc-strings-coverage:
 
-    - name: Commit files
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements/develop.txt
+    - name: Generate badges
+      run: |
+        pip install interrogate
+        interrogate --generate-badge interrogate_badge.svg
+    - name: Commit Badge
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add ./badges/interrogate.svg
-        git commit -m "Update interrogate.svg" -a
-
+        git add interrogate_badge.svg
+        git diff --exit-code || git commit -m "Update interrogate_badge.svg" -a
     - name: Push changes
       if: success()
       uses: ad-m/github-push-action@master
