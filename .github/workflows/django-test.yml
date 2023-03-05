@@ -53,14 +53,14 @@ jobs:
       uses: JackMcKew/python-interrogate-check@main
       with:
         fail-under: 50
-        badge-location: 'interrogate.svg'
+        badge-location: 'badges/interrogate.svg'
 
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add interrogate.svg
-        git diff --exit-code || git commit -m "Update interrogate.svg" -a
+        git add ./badges/interrogate.svg
+        git commit -m "Update interrogate.svg" -a
 
     - name: Push changes
       if: success()

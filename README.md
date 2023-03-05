@@ -2,7 +2,7 @@
 
 Sistema Informático Integral de gestión del paciente Oncológico
 
-![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/UHo-GPDB/sigipo/main.svg)](https://results.pre-commit.ci/latest/github/UHo-GPDB/sigipo/main) [![codecov](https://codecov.io/gh/UHo-GPDB/sigipo/branch/main/graph/badge.svg?token=7D0OTPL2O7)](https://codecov.io/gh/UHo-GPDB/sigipo) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Python 3.11](https://img.shields.io/badge/python-3.11-brightgreen.svg)](https://www.python.org/downloads/release/python-3111/) ![Django](https://www.shields.io/badge/django-4.1-brightgreen) ![Interogate](./interrogate.svg)
+![Django CI](https://github.com/UHo-GPDB/sigipo/actions/workflows/django-test.yml/badge.svg) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/UHo-GPDB/sigipo/main.svg)](https://results.pre-commit.ci/latest/github/UHo-GPDB/sigipo/main) [![codecov](https://codecov.io/gh/UHo-GPDB/sigipo/branch/main/graph/badge.svg?token=7D0OTPL2O7)](https://codecov.io/gh/UHo-GPDB/sigipo) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Python 3.11](https://img.shields.io/badge/python-3.11-brightgreen.svg)](https://www.python.org/downloads/release/python-3111/) ![Django](https://www.shields.io/badge/django-4.1-brightgreen) ![Interogate](./badges/interrogate.svg)
 
 ## Configuración para el desarrollo
 
