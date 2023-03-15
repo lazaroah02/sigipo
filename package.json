@@ -6,7 +6,7 @@
   "author": "gpdb",
   "license": "private",
   "engines": {
-    "node": "15.x"
+    "node": "18.x"
   },
   "scripts": {
     "start_django": "python manage.py runserver"

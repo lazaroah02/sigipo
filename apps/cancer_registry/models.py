@@ -19,12 +19,20 @@ from apps.patient.models import Patient
 
 
 class NeoplasmLateralityChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Laterality field
+    """
+
     NO = 1, "No"
     RIGHT = 2, "Derecho"
     LEFT = 3, "Izquierdo"
 
 
 class NeoplasmDiagnosticConfirmationChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Diagnostic Confirmation field
+    """
+
     CLINIC = 1, "Clínica"
     CLINIC_RESEARCH = 2, "Investigación Clínica"
     TUMOR_MARKERS = 4, "Marcadores Tumorales"
@@ -35,6 +43,10 @@ class NeoplasmDiagnosticConfirmationChoices(IntegerChoices):
 
 
 class NeoplasmDifferentiationGradesChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Differentiation Grades field
+    """
+
     Differentiated = 1, "Diferenciado"
     MODERATELY_DIFFERENTIATED = 2, "Moderadamente diferenciado"
     POORLY_DIFFERENTIATED = 3, "Poco diferenciado"
@@ -47,6 +59,10 @@ class NeoplasmDifferentiationGradesChoices(IntegerChoices):
 
 
 class NeoplasmClinicalExtensionsChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Clinical Extensions field
+    """
+
     IN_SITU = 1, "In situ"
     LOCATED = 2, "Localizada"
     DIRECT_EXTENSION = 3, "Extesión Directa"
@@ -61,6 +77,10 @@ class NeoplasmClinicalExtensionsChoices(IntegerChoices):
 
 
 class NeoplasmClinicalStageChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Clinical Stage field
+    """
+
     IN_SITU = 0, "In Situ"
     I0 = 1, "I"
     IA = 2, "Ia"
@@ -83,6 +103,10 @@ class NeoplasmClinicalStageChoices(IntegerChoices):
 
 
 class NeoplasmSourceOfInfoChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Source Of Info field
+    """
+
     PATHOLOGY = 1, "Anatomía patológica"
     HEMATOLOGY = 2, "Hematología"
     HOSPITAL_DISCHARGE = 3, "Egreso hospitalario"
@@ -93,7 +117,7 @@ class NeoplasmQuerysetManager(Manager):
     """Manager to handle related models."""
 
     def get_queryset(self):
-        """Fetch the related models."""
+        """Fetch the related models and return the queryset."""
         return (
             super()
             .get_queryset()
@@ -108,6 +132,10 @@ class NeoplasmQuerysetManager(Manager):
 
 
 class TreatmentPerformedChoices(IntegerChoices):
+    """
+    Choices for Treatment Performed field
+    """
+
     SURGERY = 1, "Cirugía"
     CHEMOTHERAPY = 2, "Quimioterapia"
     RADIOTHERAPY = 3, "Radioterapia"
@@ -116,6 +144,10 @@ class TreatmentPerformedChoices(IntegerChoices):
 
 
 class TumorChoices(TextChoices):
+    """
+    Choices for Tumor field
+    """
+
     TX = "TX" "TX"
     T0 = "T0", "T0"
     TIS = "Tis", "Tis"
@@ -126,6 +158,10 @@ class TumorChoices(TextChoices):
 
 
 class NoduleChoices(TextChoices):
+    """
+    Choices for Nodule field
+    """
+
     NX = "NX", "NX"
     N0 = "N0", "N0"
     N1 = "N1", "N1"
@@ -134,28 +170,48 @@ class NoduleChoices(TextChoices):
 
 
 class MetastasisChoices(TextChoices):
+    """
+    Choices for Metastasis field
+    """
+
     MX = "MX", "MX"
     M0 = "M0", "M0"
     M1 = "M1", "M1"
 
 
 class NeoplasmClassificationChoices(IntegerChoices):
+    """
+    Choices for Neoplasm Classification field
+    """
+
     CLINIC = 1, "Clínico"
     PATHOLOGICAL = 2, "Patológico"
 
 
 class TumorClassificationChoices(IntegerChoices):
+    """
+    Choices for Tumor Classification field
+    """
+
     PRIMARY = 1, "Tumor primario"
     METASTASIS = 2, "Metástasis sin tumor primario conocido"
 
 
 class AcuteLymphoidLeukemiaChoices(IntegerChoices):
+    """
+    Choices for Acute Lymphoid Leukemia field
+    """
+
     L1 = 1, "L1"
     L2 = 2, "L2"
     L3 = 3, "L3"
 
 
 class ChronicLymphoidLeukemiaChoices(IntegerChoices):
+    """
+    Choices for Chronic Lymphoid Leukemia field
+    """
+
     _0 = 1, "0"
     _I = 2, "I"
     II = 3, "II"
@@ -164,6 +220,10 @@ class ChronicLymphoidLeukemiaChoices(IntegerChoices):
 
 
 class AcuteMyeloidLeukemiaChoices(IntegerChoices):
+    """
+    Choices for Acute Myeloid Leukemia field
+    """
+
     M0 = 0, "M0"
     M1 = 1, "M1"
     M2 = 2, "M2"
@@ -175,6 +235,10 @@ class AcuteMyeloidLeukemiaChoices(IntegerChoices):
 
 
 class MultipleMyelomaChoices(IntegerChoices):
+    """
+    Choices for Multiple Myeloma field
+    """
+
     IA = 1, "Ia"
     IB = 2, "Ib"
     IIA = 3, "IIa"
@@ -184,6 +248,10 @@ class MultipleMyelomaChoices(IntegerChoices):
 
 
 class ChronicMyeloidLeukemiaChoices(IntegerChoices):
+    """
+    Choices for Chronic Myeloid Leukemia field
+    """
+
     STABLE = 1, "Estable"
     ACCELERATED = 2, "Acelerada"
     BLAST_CRISIS = 3, "Crisis blástica "
@@ -366,10 +434,16 @@ class Neoplasm(Model):
     objects = NeoplasmQuerysetManager()
 
     class Meta:
+        """
+        Model Inner Meta class to add a ordering to the instances
+        and singular and plural verbose name to the model.
+        """
+
         verbose_name = "Neoplasia"
         verbose_name_plural = "Neoplasias"
         ordering = ["pk"]
         default_permissions = ()
 
     def __str__(self):
+        """A string representation of the model"""
         return f"{self.patient}"

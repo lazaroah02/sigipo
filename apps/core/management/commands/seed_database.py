@@ -33,9 +33,17 @@ from apps.nuclear_medicine.factories import (
 
 
 class Command(BaseCommand):
+    """
+    It Generates 5 instances of all models and creates
+    a user with administrative credentials.
+    """
+
     help = "Generates 5 instances of all models"
 
     def handle(self, *args, **options):
+        """
+        default handle method to execute the management command functionality.
+        """
         UserFactory.create(username="admin", password="123")
         for _ in range(5):
             province = ProvinceFactory.create()

@@ -7,7 +7,6 @@ import apps.patient.validators
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
