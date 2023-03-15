@@ -225,7 +225,7 @@ class PathologyForm(ModelForm):
         label="Resumen de Historia Clínica",
     )
 
-    ####################################Clinicacl Diagnose ######################################
+    # Clinical Diagnose
 
     CDM = CharField(
         widget=TextInput(
@@ -435,7 +435,7 @@ class PathologyForm(ModelForm):
         label="Sistema Osteo-Mio-Articular",
     )
 
-    ########################################Mesurements#########################################
+    # Mesurements
 
     brain_weight = FloatField(
         widget=NumberInput(
@@ -629,7 +629,7 @@ class PathologyForm(ModelForm):
         label="Peso del Tiroides",
     )
 
-    ####################################################################################################
+    # Other Fields
 
     macroscopic_conclusions = CharField(
         widget=Textarea(
@@ -642,7 +642,7 @@ class PathologyForm(ModelForm):
         label="Conclusiones Macroscópicas",
     )
 
-    ####################################Final Anatopathologic Dignose#############################
+    # Final Anatopathologic Dignose
 
     CDM = CharField(
         widget=TextInput(

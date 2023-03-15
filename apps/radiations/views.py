@@ -116,7 +116,7 @@ class ExternalBeamRegDeleteView(BaseDeleteView):
     permission_required = "accounts.radiations_manage"
 
 
-########################################Internal Radiation###############################################
+# Internal Radiation
 
 
 class InternalRadiationTreatCreateView(BaseCreateView):

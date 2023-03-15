@@ -90,7 +90,7 @@ class Pathology(TimeStampedModel):
         verbose_name="Resumen de Historia Clínica", null=True, blank=True
     )
 
-    #####################################Clinical Diagnoses######################################################
+    # Clinical Diagnoses
 
     CDM = TextField(verbose_name="Diagnóstico Clínico CDM", null=True, blank=True)
     CIM = TextField(verbose_name="Diagnóstico Clínico CIM", null=True, blank=True)
@@ -133,7 +133,7 @@ class Pathology(TimeStampedModel):
         verbose_name="Sistema Osteo-Mio-Articular", null=True, blank=True
     )
 
-    ######################Messurements#############################################################
+    # Messurements
 
     brain_weight = FloatField(verbose_name="Peso del Cerebro", null=True, blank=True)
     cerebellum_stream_w = FloatField(
@@ -169,12 +169,13 @@ class Pathology(TimeStampedModel):
     spleen_w = FloatField(verbose_name="Peso del Bazo", null=True, blank=True)
     thyroid = FloatField(verbose_name="Peso del Tiroides", null=True, blank=True)
 
-    ###############################################################################################
+    # Other Fields
+
     macroscopic_conclusions = TextField(
         verbose_name="Conclusiones Macroscópicas", null=True, blank=True
     )
 
-    ###############Final Anatopathologic Dignose######################################
+    # Final Anatopathologic Dignose
     CDM = TextField(verbose_name="Diagnóstico Clínico CDM", null=True, blank=True)
     CIM = TextField(verbose_name="Diagnóstico Clínico CIM", null=True, blank=True)
     CIM = TextField(verbose_name="Diagnóstico Clínico CIM", null=True, blank=True)
