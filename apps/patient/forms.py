@@ -15,7 +15,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
-from apps.patient.models import Patient, PatientRace, SexChoices, Ocupation
+from apps.patient.models import Ocupation, Patient, PatientRace, SexChoices
 
 
 class BasePatientForm(ModelForm):

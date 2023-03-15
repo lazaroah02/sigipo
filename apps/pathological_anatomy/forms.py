@@ -7,18 +7,14 @@ from django.forms import (
     ModelChoiceField,
     NumberInput,
     Textarea,
-    TextInput,    
+    TextInput,
 )
-
 from django.utils.safestring import mark_safe
-from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
+from django_select2.forms import ModelSelect2Widget
 from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.core.forms import ModelForm
-from apps.pathological_anatomy.models import (
-    Pathology,
-    OtherClinicalDiagnosesChoices
-)
+from apps.pathological_anatomy.models import OtherClinicalDiagnosesChoices, Pathology
 from apps.patient.models import Patient
 
 
@@ -86,7 +82,7 @@ class PathologyForm(ModelForm):
         label="Paciente",
     )
 
-    authopsy_number  = CharField(
+    authopsy_number = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -119,7 +115,7 @@ class PathologyForm(ModelForm):
         label="Fecha de egreso",
     )
 
-    eval_speciality  = CharField(
+    eval_speciality = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -141,7 +137,7 @@ class PathologyForm(ModelForm):
         label="Fecha de eviseración",
     )
 
-    eviseration_by  = CharField(
+    eviseration_by = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -163,7 +159,7 @@ class PathologyForm(ModelForm):
         label="Fecha de disección",
     )
 
-    disection_by  = CharField(
+    disection_by = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -185,7 +181,7 @@ class PathologyForm(ModelForm):
         label="Fecha de diagnóstico",
     )
 
-    diagnostic_by  = CharField(
+    diagnostic_by = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -196,7 +192,7 @@ class PathologyForm(ModelForm):
         label="Por (Diagnóstico)",
     )
 
-    study_full  = CharField(
+    study_full = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -206,8 +202,8 @@ class PathologyForm(ModelForm):
         ),
         label="Estudio Completo",
     )
-    
-    study_micro  = CharField(
+
+    study_micro = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -218,7 +214,7 @@ class PathologyForm(ModelForm):
         label="Estudio Micro",
     )
 
-    hc_resume  = CharField(
+    hc_resume = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -229,9 +225,9 @@ class PathologyForm(ModelForm):
         label="Resumen de Historia Clínica",
     )
 
-####################################Clinicacl Diagnose ######################################
+    ####################################Clinicacl Diagnose ######################################
 
-    CDM  = CharField(
+    CDM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -242,7 +238,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CDM",
     )
 
-    CiM  = CharField(
+    CiM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -253,7 +249,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CIM",
     )
 
-    CIM  = CharField(
+    CIM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -264,7 +260,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CIM",
     )
 
-    CBM  = CharField(
+    CBM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -275,7 +271,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CBM",
     )
 
-    CC  = CharField(
+    CC = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -286,7 +282,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CC",
     )
 
-    CC  = CharField(
+    CC = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -305,9 +301,9 @@ class PathologyForm(ModelForm):
         max_choices=14,
     )
 
-#############################################################################################
+    #############################################################################################
 
-    external_habit  = CharField(
+    external_habit = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -318,7 +314,7 @@ class PathologyForm(ModelForm):
         label="Hábito externo",
     )
 
-    internal_habit  = CharField(
+    internal_habit = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -328,8 +324,8 @@ class PathologyForm(ModelForm):
         ),
         label="Hábito interno",
     )
-    
-    cavities  = CharField(
+
+    cavities = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -339,8 +335,8 @@ class PathologyForm(ModelForm):
         ),
         label="Cavidades",
     )
-    
-    nerv_sistem  = CharField(
+
+    nerv_sistem = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -350,8 +346,8 @@ class PathologyForm(ModelForm):
         ),
         label="Sistema Nervioso",
     )
-    
-    respiratory_aparatus  = CharField(
+
+    respiratory_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -361,8 +357,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Respiratorio",
     )
-    
-    cardiovascular_aparatus  = CharField(
+
+    cardiovascular_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -372,8 +368,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Cardiovascular",
     )
-    
-    digestive_aparatus  = CharField(
+
+    digestive_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -383,8 +379,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Disgestivo",
     )
-    
-    urinal_aparatus  = CharField(
+
+    urinal_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -394,8 +390,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Urinario",
     )
-    
-    genital_aparatus  = CharField(
+
+    genital_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -405,8 +401,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Genital",
     )
-    
-    hemollymphoietic_aparatus  = CharField(
+
+    hemollymphoietic_aparatus = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -416,8 +412,8 @@ class PathologyForm(ModelForm):
         ),
         label="Aparato Hemolinfopoyético",
     )
-    
-    endocrine_system  = CharField(
+
+    endocrine_system = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -427,8 +423,8 @@ class PathologyForm(ModelForm):
         ),
         label="Sistema Endocrino",
     )
-    
-    osteo_mio_articular_system  = CharField(
+
+    osteo_mio_articular_system = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -439,8 +435,8 @@ class PathologyForm(ModelForm):
         label="Sistema Osteo-Mio-Articular",
     )
 
-########################################Mesurements#########################################   
-    
+    ########################################Mesurements#########################################
+
     brain_weight = FloatField(
         widget=NumberInput(
             attrs={
@@ -633,9 +629,9 @@ class PathologyForm(ModelForm):
         label="Peso del Tiroides",
     )
 
-####################################################################################################
+    ####################################################################################################
 
-    macroscopic_conclusions  = CharField(
+    macroscopic_conclusions = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -646,9 +642,9 @@ class PathologyForm(ModelForm):
         label="Conclusiones Macroscópicas",
     )
 
-####################################Final Anatopathologic Dignose############################# 
-    
-    CDM  = CharField(
+    ####################################Final Anatopathologic Dignose#############################
+
+    CDM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -659,7 +655,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CDM",
     )
 
-    CiM  = CharField(
+    CiM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -670,7 +666,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CIM",
     )
 
-    CIM  = CharField(
+    CIM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -681,7 +677,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CIM",
     )
 
-    CBM  = CharField(
+    CBM = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -692,7 +688,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CBM",
     )
 
-    CC  = CharField(
+    CC = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -703,7 +699,7 @@ class PathologyForm(ModelForm):
         label="Diagnóstico Clínico CC",
     )
 
-    CC  = CharField(
+    CC = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -712,9 +708,9 @@ class PathologyForm(ModelForm):
             },
         ),
         label="Diagnóstico Clínico CC",
-    ) 
+    )
 
-    other_anatopathologic_dignose  = CharField(
+    other_anatopathologic_dignose = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -723,12 +719,11 @@ class PathologyForm(ModelForm):
             },
         ),
         label="Otros Diagnósticos Anatopatológicos",
-    ) 
-    
-    
-###############################################################################################   
+    )
 
-    observation_epicrisis  = CharField(
+    ###############################################################################################
+
+    observation_epicrisis = CharField(
         widget=Textarea(
             attrs={
                 "type": "text",
@@ -739,7 +734,7 @@ class PathologyForm(ModelForm):
         label="Observaciones (Epicrisis)",
     )
 
-    pathologist  = CharField(
+    pathologist = CharField(
         widget=TextInput(
             attrs={
                 "type": "text",
@@ -755,7 +750,6 @@ class PathologyForm(ModelForm):
 
         model = Pathology
         fields = "__all__"
-
 
 
 class PathologyDetailForm(ModelForm):
@@ -803,7 +797,6 @@ class PathologyDetailForm(ModelForm):
         "created_date",
         "tests",
     ]
-
 
     tests = CustomReadOnlyMultiSelectFormField(
         required=True,

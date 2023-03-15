@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('death_certificate', '0003_deathcertificate_date_of_death'),
+        ("death_certificate", "0003_deathcertificate_date_of_death"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='deathcertificate',
-            name='date_of_death',
-            field=models.CharField(blank=True, max_length=15, null=True, verbose_name='Hora de defunción'),
+            model_name="deathcertificate",
+            name="date_of_death",
+            field=models.CharField(
+                blank=True, max_length=15, null=True, verbose_name="Hora de defunción"
+            ),
         ),
     ]

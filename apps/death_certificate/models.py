@@ -1,29 +1,41 @@
 from django.db.models import (
     SET_NULL,
-    CASCADE,
     BooleanField,
     CharField,
     DateField,
+    DateTimeField,
     ForeignKey,
     IntegerField,
-    DateTimeField,
+    Model,
     OneToOneField,
     TextField,
-    Model)
+)
 
 from apps.geographic_location.models import Municipality
-from apps.patient.validators import IdentityCardValidator, only_numbers_validator
-from apps.patient.models import SexChoices,PatientQuerysetManager,PatientRace
 from apps.pathological_anatomy.models import Pathology
+from apps.patient.models import PatientQuerysetManager, PatientRace, SexChoices
+from apps.patient.validators import IdentityCardValidator, only_numbers_validator
+
 
 class DeathCertificate(Model):
     """Model representation of a death_certificate."""
 
-    deathCertificate_number = CharField(verbose_name ='Número de Certificación de Defunción', max_length = 50 ,primary_key=True, default=None)
+    deathCertificate_number = CharField(
+        verbose_name="Número de Certificación de Defunción",
+        max_length=50,
+        primary_key=True,
+        default=None,
+    )
 
     death_cause = TextField(verbose_name="Causa de Muerte")
 
-    authopsy_number = OneToOneField(Pathology, to_field="authopsy_number", null=True, blank=False, on_delete=SET_NULL)
+    authopsy_number = OneToOneField(
+        Pathology,
+        to_field="authopsy_number",
+        null=True,
+        blank=False,
+        on_delete=SET_NULL,
+    )
 
     time_of_death = DateTimeField(
         verbose_name="Fecha de defunción",
@@ -31,13 +43,13 @@ class DeathCertificate(Model):
         null=True,
         auto_now_add=True,
     )
-    
+
     identity_card = CharField(
         verbose_name="Carnet de Identidad",
         max_length=11,
         validators=[IdentityCardValidator(6, 11), only_numbers_validator],
     )
-    
+
     first_name = CharField(verbose_name="Nombre", max_length=128)
     last_name = CharField(verbose_name="Apellidos", max_length=255)
     street = CharField(verbose_name="Calle", max_length=255, blank=True, null=True)
@@ -83,7 +95,6 @@ class DeathCertificate(Model):
     )
     is_oncologic = BooleanField(default=False)
     objects = PatientQuerysetManager()
-
 
     class Meta:
         verbose_name = "Certificado de Defunción"

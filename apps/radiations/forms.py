@@ -6,23 +6,23 @@ from django.forms import (
     FloatField,
     ModelChoiceField,
     NumberInput,
+    Select,
     TextInput,
-    Select
 )
 from django.utils.safestring import mark_safe
-from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
+from django_select2.forms import ModelSelect2Widget
 from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.core.forms import ModelForm
+from apps.patient.models import Patient
 from apps.radiations.models import (
+    ExternalBeamReg,
     ExternalBeamTreat,
     ExternalBeamTreatmentChoices,
+    InternalRadiationReg,
     InternalRadiationTreatment,
     InternalRadiationTreatmentChoices,
-    ExternalBeamReg,
-    InternalRadiationReg
 )
-from apps.patient.models import Patient
 
 
 class CustomCheckboxSelectMultiple(CheckboxSelectMultiple):
@@ -89,7 +89,7 @@ class BaseRadiationForm(ModelForm):
         label="Paciente",
     )
 
-    biopsy  = CharField(
+    biopsy = CharField(
         widget=TextInput(
             attrs={
                 "type": "number",
@@ -99,7 +99,7 @@ class BaseRadiationForm(ModelForm):
         ),
         label="Biopsia",
     )
-    
+
     dosis = FloatField(
         widget=NumberInput(
             attrs={
@@ -171,6 +171,7 @@ class BaseRadiationForm(ModelForm):
         label="Distribución de Dosis",
     )
 
+
 class ExternalBeamTreatForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
 
@@ -181,8 +182,8 @@ class ExternalBeamTreatForm(BaseRadiationForm):
         max_length=250,
         max_choices=14,
     )
-    
-    external_beam_config  = CharField(
+
+    external_beam_config = CharField(
         widget=TextInput(
             attrs={
                 "type": "number",
@@ -192,7 +193,7 @@ class ExternalBeamTreatForm(BaseRadiationForm):
         ),
         label="Configuración del Haz de Radiación",
     )
-    
+
     class Meta:
         """Meta class for ExternalBeamTreatForm."""
 
@@ -274,21 +275,22 @@ class ExternalBeamTreatDetailForm(BaseRadiationDetailForm):
         model = ExternalBeamTreat
         fields = "__all__"
 
-#***********************************************************************************************************
+
+# ***********************************************************************************************************
 class ExternalBeamRegForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
 
     treat_number = ModelChoiceField(
         queryset=ExternalBeamReg.objects.all(),
-        widget= Select(
-            attrs = {
-            "class": "form-control",
-            "placeholder": "Número de tratamiento",
-            "data-theme": "bootstrap-5",
-            "data-width": "style",
+        widget=Select(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Número de tratamiento",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
             }
         ),
-        label="Número de tratamiento"
+        label="Número de tratamiento",
     )
     tests = CustomMultiSelectFormField(
         required=True,
@@ -298,7 +300,7 @@ class ExternalBeamRegForm(BaseRadiationForm):
         max_choices=14,
     )
 
-    external_beam_config  = CharField(
+    external_beam_config = CharField(
         widget=TextInput(
             attrs={
                 "type": "number",
@@ -344,7 +346,9 @@ class ExternalBeamRegDetailForm(BaseRadiationDetailForm):
         model = ExternalBeamReg
         fields = "__all__"
 
-#**********************************Internal Radiation***************************************************************
+
+# **********************************Internal Radiation***************************************************************
+
 
 class InternalRadiationTreatmentForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
@@ -393,21 +397,21 @@ class InternalRadiationTreatmentDetailForm(BaseRadiationDetailForm):
         fields = "__all__"
 
 
-#***************************************************************************************
+# ***************************************************************************************
 class InternalRadiationRegForm(BaseRadiationForm):
     """Form for ExternalBeamTreat."""
 
     treat_number = ModelChoiceField(
         queryset=InternalRadiationReg.objects.all(),
-        widget= Select(
-            attrs = {
-            "class": "form-control",
-            "placeholder": "Número de tratamiento",
-            "data-theme": "bootstrap-5",
-            "data-width": "style",
+        widget=Select(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Número de tratamiento",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
             }
         ),
-        label="Número de tratamiento"
+        label="Número de tratamiento",
     )
     tests = CustomMultiSelectFormField(
         required=True,

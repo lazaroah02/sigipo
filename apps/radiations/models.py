@@ -1,15 +1,15 @@
 from django.db.models import (
     CASCADE,
     AutoField,
+    CharField,
+    DateField,
     FloatField,
     ForeignKey,
+    IntegerField,
     OneToOneField,
     TextChoices,
     TextField,
-    DateField,
     TimeField,
-    CharField,
-    IntegerField,
 )
 from django.db.models.manager import Manager
 from multiselectfield import MultiSelectField
@@ -17,15 +17,22 @@ from multiselectfield import MultiSelectField
 from apps.core.models import TimeStampedModel
 from apps.patient.models import Patient
 
+
 class ExternalBeamTreatmentChoices(TextChoices):
     """Types of Radiotherapy"""
 
-    TRC3D = "Radioterapia de conformacion tridimensional", "Radioterapia de conformacion tridimensional"
+    TRC3D = (
+        "Radioterapia de conformacion tridimensional",
+        "Radioterapia de conformacion tridimensional",
+    )
     IMRT = "Radioterapia de intensidad modulada", "Radioterapia de intensidad modulada"
     IGRT = "Radioterapia guiada por imagenes", "Radioterapia guiada por imagenes"
     TomoThpy = "Tomoterapia", "Tomoterapia"
     StRdSurgery = "Radiocirugia estereotactica", "Radiocirugia estereotactica"
-    StBdRdTherapy = "Radioterapia estereotactica corporal", "Radioterapia estereotactica corporal"
+    StBdRdTherapy = (
+        "Radioterapia estereotactica corporal",
+        "Radioterapia estereotactica corporal",
+    )
 
 
 class ExternalBeamTreatQuerysetManager(Manager):
@@ -40,14 +47,18 @@ class ExternalBeamTreat(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = AutoField(verbose_name ='Número de Tratamiento',primary_key=True)
-    biopsy = TextField(verbose_name ='Biopsia',null=True, blank=True)
-    dosis = FloatField(verbose_name ='Dosis',null=True, blank=True)
-    time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
-    target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
-    radiation_time = TimeField(verbose_name ='Tiempo de Radiación',null=True, blank=True)
-    fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
-    dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
+    treat_number = AutoField(verbose_name="Número de Tratamiento", primary_key=True)
+    biopsy = TextField(verbose_name="Biopsia", null=True, blank=True)
+    dosis = FloatField(verbose_name="Dosis", null=True, blank=True)
+    time_table = DateField(verbose_name="Fecha", null=True, blank=True)
+    target_volume = FloatField(verbose_name="Volumen Diana", null=True, blank=True)
+    radiation_time = TimeField(
+        verbose_name="Tiempo de Radiación", null=True, blank=True
+    )
+    fractionation = FloatField(verbose_name="Fraccionamiento", null=True, blank=True)
+    dosis_distribution = FloatField(
+        verbose_name="Distribucion de Dosis", null=True, blank=True
+    )
     tests = MultiSelectField(
         choices=ExternalBeamTreatmentChoices.choices,
         min_choices=1,
@@ -66,7 +77,9 @@ class ExternalBeamTreat(TimeStampedModel):
         """Returns the str representation for the model."""
         return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
-#************************************************************************************
+
+# ************************************************************************************
+
 
 class ExternalBeamRegQuerysetManager(Manager):
     """Manager to handle patient."""
@@ -80,15 +93,32 @@ class ExternalBeamReg(TimeStampedModel):
     """Model representation of External Beam Treatment."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = OneToOneField(ExternalBeamTreat, to_field="treat_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
-    dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
-    time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
-    target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
-    radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
-    target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
-    dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
-    session_number = IntegerField(verbose_name ='Numero de Sesión',null=True, blank=True)
-    external_beam_config = TextField(verbose_name = 'Configuracion del Haz Externo',null=True, blank=True)
+    treat_number = OneToOneField(
+        ExternalBeamTreat,
+        to_field="treat_number",
+        null=False,
+        blank=False,
+        on_delete=CASCADE,
+        primary_key=True,
+    )
+    dosis = FloatField(verbose_name="Dosis", null=True, blank=True)
+    time_table = DateField(verbose_name="Fecha", null=True, blank=True)
+    target_volume = FloatField(verbose_name="Volumen Diana", null=True, blank=True)
+    radiation_time = TimeField(
+        verbose_name="Tiempo de Radioacion", null=True, blank=True
+    )
+    target_precision = FloatField(
+        verbose_name="Precision al Objetivo", null=True, blank=True
+    )
+    dosis_distribution = FloatField(
+        verbose_name="Distribucion de Dosis", null=True, blank=True
+    )
+    session_number = IntegerField(
+        verbose_name="Numero de Sesión", null=True, blank=True
+    )
+    external_beam_config = TextField(
+        verbose_name="Configuracion del Haz Externo", null=True, blank=True
+    )
     tests = MultiSelectField(
         choices=ExternalBeamTreatmentChoices.choices,
         min_choices=1,
@@ -107,7 +137,9 @@ class ExternalBeamReg(TimeStampedModel):
         """Returns the str representation for the model."""
         return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
-#**************************************Internal Radiation*********************************************
+
+# **************************************Internal Radiation*********************************************
+
 
 class InternalRadiationTreatmentChoices(TextChoices):
     """Types of Internal Radiation Treat"""
@@ -129,16 +161,24 @@ class InternalRadiationTreatment(TimeStampedModel):
     """Model representation of Internal Radiation Treat."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = AutoField(verbose_name ='Numero de Tratamiento' ,primary_key=True)
-    biopsy = TextField(verbose_name ='Biopsia',null=True, blank=True)
-    dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
-    time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
-    target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
-    radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
-    fractionation = FloatField(verbose_name ='Fraccionamiento',null=True, blank=True)
-    target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
-    dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
-    radioisotope = CharField(verbose_name ='Radioisotopos',max_length=256 ,null=True, blank=True)
+    treat_number = AutoField(verbose_name="Numero de Tratamiento", primary_key=True)
+    biopsy = TextField(verbose_name="Biopsia", null=True, blank=True)
+    dosis = FloatField(verbose_name="Dosis", null=True, blank=True)
+    time_table = DateField(verbose_name="Fecha", null=True, blank=True)
+    target_volume = FloatField(verbose_name="Volumen Diana", null=True, blank=True)
+    radiation_time = TimeField(
+        verbose_name="Tiempo de Radioacion", null=True, blank=True
+    )
+    fractionation = FloatField(verbose_name="Fraccionamiento", null=True, blank=True)
+    target_precision = FloatField(
+        verbose_name="Precision al Objetivo", null=True, blank=True
+    )
+    dosis_distribution = FloatField(
+        verbose_name="Distribucion de Dosis", null=True, blank=True
+    )
+    radioisotope = CharField(
+        verbose_name="Radioisotopos", max_length=256, null=True, blank=True
+    )
     tests = MultiSelectField(
         choices=InternalRadiationTreatmentChoices.choices,
         min_choices=1,
@@ -146,7 +186,6 @@ class InternalRadiationTreatment(TimeStampedModel):
         max_length=250,
     )
     objects = InternalRadiationTreatmentQuerysetManager()
-
 
     class Meta:
         verbose_name = "Tratamiento Radiacion Interna"
@@ -158,7 +197,9 @@ class InternalRadiationTreatment(TimeStampedModel):
         """Returns the str representation for the model."""
         return f"Muestra {str(self.sample_number).zfill(2)} {str(self.tests)}"
 
-#****************************************************************************************************
+
+# ****************************************************************************************************
+
 
 class InternalRadiationRegQuerysetManager(Manager):
     """Manager to handle patient."""
@@ -172,15 +213,32 @@ class InternalRadiationReg(TimeStampedModel):
     """Model representation of Internal Radiation Treat."""
 
     patient = ForeignKey(Patient, null=False, blank=False, on_delete=CASCADE)
-    treat_number = OneToOneField(InternalRadiationTreatment, to_field="treat_number", null=False, blank=False, on_delete=CASCADE, primary_key=True)
-    dosis = FloatField(verbose_name ='Dosis' ,null=True, blank=True)
-    time_table = DateField(verbose_name ='Fecha',null=True, blank=True)
-    target_volume = FloatField(verbose_name ='Volumen Diana',null=True, blank=True)
-    radiation_time = TimeField(verbose_name ='Tiempo de Radioacion',null=True, blank=True)
-    target_precision = FloatField(verbose_name ='Precision al Objetivo',null=True, blank=True)
-    dosis_distribution = FloatField(verbose_name ='Distribucion de Dosis',null=True, blank=True)
-    session_number = IntegerField(verbose_name ='Numero de Sesión',null=True, blank=True)
-    radioisotope = CharField(verbose_name ='Radioisotopos',max_length=256 ,null=True, blank=True)
+    treat_number = OneToOneField(
+        InternalRadiationTreatment,
+        to_field="treat_number",
+        null=False,
+        blank=False,
+        on_delete=CASCADE,
+        primary_key=True,
+    )
+    dosis = FloatField(verbose_name="Dosis", null=True, blank=True)
+    time_table = DateField(verbose_name="Fecha", null=True, blank=True)
+    target_volume = FloatField(verbose_name="Volumen Diana", null=True, blank=True)
+    radiation_time = TimeField(
+        verbose_name="Tiempo de Radioacion", null=True, blank=True
+    )
+    target_precision = FloatField(
+        verbose_name="Precision al Objetivo", null=True, blank=True
+    )
+    dosis_distribution = FloatField(
+        verbose_name="Distribucion de Dosis", null=True, blank=True
+    )
+    session_number = IntegerField(
+        verbose_name="Numero de Sesión", null=True, blank=True
+    )
+    radioisotope = CharField(
+        verbose_name="Radioisotopos", max_length=256, null=True, blank=True
+    )
     tests = MultiSelectField(
         choices=InternalRadiationTreatmentChoices.choices,
         min_choices=1,
@@ -188,7 +246,6 @@ class InternalRadiationReg(TimeStampedModel):
         max_length=250,
     )
     objects = InternalRadiationRegQuerysetManager()
-    
 
     class Meta:
         verbose_name = "Registro Radiacion Interna"

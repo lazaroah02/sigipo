@@ -1,13 +1,13 @@
 from django.urls import reverse_lazy
 
-from apps.death_certificate.forms import DeathCertificateForm
-from apps.death_certificate.models import DeathCertificate
 from apps.core.views import (
     BaseCreateView,
     BaseDeleteView,
     BaseDetailView,
     BaseUpdateView,
 )
+from apps.death_certificate.forms import DeathCertificateForm
+from apps.death_certificate.models import DeathCertificate
 
 
 # * death_certificate Views

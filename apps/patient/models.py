@@ -50,6 +50,7 @@ class Ocupation(IntegerChoices):
     D = 4, "Desempleado"
     UNDEFINED = 5, "Indeterminado"
 
+
 class PatientRace(IntegerChoices):
     """Defines the patient race."""
 

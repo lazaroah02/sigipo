@@ -6,23 +6,21 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-
 from apps.radiations.forms import (
-    ExternalBeamTreatForm,
-    ExternalBeamTreatDetailForm,
-    InternalRadiationTreatmentForm,
-    InternalRadiationTreatmentDetailForm,
-    ExternalBeamRegForm,
     ExternalBeamRegDetailForm,
+    ExternalBeamRegForm,
+    ExternalBeamTreatDetailForm,
+    ExternalBeamTreatForm,
+    InternalRadiationRegDetailForm,
     InternalRadiationRegForm,
-    InternalRadiationRegDetailForm
+    InternalRadiationTreatmentDetailForm,
+    InternalRadiationTreatmentForm,
 )
-
 from apps.radiations.models import (
-    ExternalBeamTreat,
-    InternalRadiationTreatment,
     ExternalBeamReg,
-    InternalRadiationReg
+    ExternalBeamTreat,
+    InternalRadiationReg,
+    InternalRadiationTreatment,
 )
 
 
@@ -70,7 +68,9 @@ class ExternalBeamTreatDeleteView(BaseDeleteView):
     object_not_found_error_message = "Registro de tratamiento no encontrado"
     permission_required = "accounts.radiations_manage"
 
-#***********************Results External beam*******************************************************
+
+# ***********************Results External beam*******************************************************
+
 
 class ExternalBeamRegCreateView(BaseCreateView):
     """View to handle External Beam Treat creation."""
@@ -162,7 +162,9 @@ class InternalRadiationTreatDeleteView(BaseDeleteView):
     object_not_found_error_message = "Registro de tratamiento no encontrado"
     permission_required = "accounts.radiations_manage"
 
-#****************************|Results Int Therapy**************************************
+
+# ****************************|Results Int Therapy**************************************
+
 
 class InternalRadiationRegCreateView(BaseCreateView):
     """View to handle Internal Radiation Treat creation."""
@@ -206,4 +208,3 @@ class InternalRadiationRegDeleteView(BaseDeleteView):
     cancel_url = "radiations:internal_radiation_reg_list"
     object_not_found_error_message = "Registro de tratamiento no encontrado"
     permission_required = "accounts.radiations_manage"
-

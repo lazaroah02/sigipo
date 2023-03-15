@@ -3,6 +3,7 @@ from factory.fuzzy import FuzzyText
 
 from apps.death_certificate.models import DeathCertificate
 
+
 class DeathCertificateFactory(DjangoModelFactory):
     """Factory to handle death_certificate creation."""
 

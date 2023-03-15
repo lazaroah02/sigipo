@@ -1,30 +1,28 @@
-from django.forms import TextInput, DateInput
-from django_filters import CharFilter, FilterSet, NumberFilter, DateFilter
+from django.forms import DateInput, TextInput
+from django_filters import CharFilter, DateFilter, FilterSet, NumberFilter
 
-from apps.radiations.models import (
-    ExternalBeamTreat,
-    InternalRadiationTreatment,
-)
+from apps.radiations.models import ExternalBeamTreat, InternalRadiationTreatment
+
 
 class BaseRadiationFilter(FilterSet):
     """Filters to search for patients in Radiations."""
-        
+
     patient__identity_card = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
-        )
-    
+    )
+
     patient__first_name = CharFilter(
-            lookup_expr="icontains",
-            widget=TextInput(
+        lookup_expr="icontains",
+        widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
-            ),
+        ),
         label="Nombre contiene",
     )
-    
+
     patient__last_name = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
@@ -32,7 +30,7 @@ class BaseRadiationFilter(FilterSet):
         ),
         label="Apellidos contiene",
     )
-    
+
     patient__medical_record = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(
@@ -43,7 +41,7 @@ class BaseRadiationFilter(FilterSet):
         ),
         label="No. historia clínica contiene",
     )
-    
+
     treat_number = NumberFilter(
         widget=TextInput(
             attrs={
@@ -53,15 +51,13 @@ class BaseRadiationFilter(FilterSet):
         ),
         label="No. de Tratamiento",
     )
-    
+
     time__table = DateFilter(
-        widget=DateInput(attrs={"class": "form-control", "placeholder": "Fecha de Realización"}
+        widget=DateInput(
+            attrs={"class": "form-control", "placeholder": "Fecha de Realización"}
         ),
         label="Fecha de Realización",
-        )
-
-
-
+    )
 
 
 class ExternalBeamTreatFilter(BaseRadiationFilter):
@@ -79,7 +75,8 @@ class ExternalBeamTreatFilter(BaseRadiationFilter):
         ]
 
 
-#***********************************************Internal Radiation******************************************
+# ***********************************************Internal Radiation******************************************
+
 
 class InternalRadiationTreatmentFilter(BaseRadiationFilter):
     """Filters to search for patients."""
@@ -95,7 +92,9 @@ class InternalRadiationTreatmentFilter(BaseRadiationFilter):
             "time__table",
         ]
 
-#*******************************************************************************************
+
+# *******************************************************************************************
+
 
 class ExternalBeamRegFilter(BaseRadiationFilter):
     """Filters to search for patients."""
@@ -111,8 +110,9 @@ class ExternalBeamRegFilter(BaseRadiationFilter):
             "time__table",
         ]
 
-#************************************************************************************************
-class  InternalRadiationRegFilter(BaseRadiationFilter):
+
+# ************************************************************************************************
+class InternalRadiationRegFilter(BaseRadiationFilter):
     """Filters to search for patients."""
 
     class Meta:

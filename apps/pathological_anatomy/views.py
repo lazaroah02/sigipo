@@ -6,14 +6,8 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-
-from apps.pathological_anatomy.forms import (
-    PathologyForm
-)
-
-from apps.pathological_anatomy.models import (
-    Pathology
-)
+from apps.pathological_anatomy.forms import PathologyForm
+from apps.pathological_anatomy.models import Pathology
 
 
 class PathologyCreateView(BaseCreateView):

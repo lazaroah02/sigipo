@@ -1,39 +1,35 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
-
 from apps.radiations.filters import (
-    ExternalBeamTreatFilter,
-    InternalRadiationTreatmentFilter,
     ExternalBeamRegFilter,
-    InternalRadiationRegFilter
+    ExternalBeamTreatFilter,
+    InternalRadiationRegFilter,
+    InternalRadiationTreatmentFilter,
 )
-
 from apps.radiations.models import (
-    ExternalBeamTreat,
-    InternalRadiationTreatment,
     ExternalBeamReg,
-    InternalRadiationReg
+    ExternalBeamTreat,
+    InternalRadiationReg,
+    InternalRadiationTreatment,
 )
-
 from apps.radiations.views import (
-    ExternalBeamTreatCreateView,
-    ExternalBeamTreatDetailView,
-    ExternalBeamTreatUpdateView,
-    ExternalBeamTreatDeleteView,
-    InternalRadiationTreatCreateView,
-    InternalRadiationTreatDetailView,
-    InternalRadiationTreatUpdateView,
-    InternalRadiationTreatDeleteView,
     ExternalBeamRegCreateView,
+    ExternalBeamRegDeleteView,
     ExternalBeamRegDetailView,
     ExternalBeamRegUpdateView,
-    ExternalBeamRegDeleteView,
+    ExternalBeamTreatCreateView,
+    ExternalBeamTreatDeleteView,
+    ExternalBeamTreatDetailView,
+    ExternalBeamTreatUpdateView,
     InternalRadiationRegCreateView,
+    InternalRadiationRegDeleteView,
     InternalRadiationRegDetailView,
     InternalRadiationRegUpdateView,
-    InternalRadiationRegDeleteView
-
+    InternalRadiationTreatCreateView,
+    InternalRadiationTreatDeleteView,
+    InternalRadiationTreatDetailView,
+    InternalRadiationTreatUpdateView,
 )
 
 app_name = "radiations"
@@ -52,8 +48,6 @@ urlpatterns = [
     getUrl(ExternalBeamTreatDetailView),
     getUrl(ExternalBeamTreatUpdateView),
     getUrl(ExternalBeamTreatDeleteView),
-    
-    
     path(
         "internal_radiation/list/",
         PaginationFilterView.as_view(
@@ -67,7 +61,6 @@ urlpatterns = [
     getUrl(InternalRadiationTreatDetailView),
     getUrl(InternalRadiationTreatUpdateView),
     getUrl(InternalRadiationTreatDeleteView),
-
     path(
         "external_beam_reg/list/",
         PaginationFilterView.as_view(
@@ -83,12 +76,11 @@ urlpatterns = [
     getUrl(ExternalBeamRegDetailView),
     getUrl(ExternalBeamRegUpdateView),
     getUrl(ExternalBeamRegDeleteView),
-
     path(
         "internal_radiation_reg/list/",
         PaginationFilterView.as_view(
             queryset=InternalRadiationReg.objects.select_related(
-                "treat_number__patient",  
+                "treat_number__patient",
             ).all(),
             filterset_class=InternalRadiationRegFilter,
             permission_required="accounts.radiations_view",

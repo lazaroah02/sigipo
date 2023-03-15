@@ -1,8 +1,8 @@
 from django.forms import TextInput
-from django_filters import CharFilter, DateFilter
-from apps.patient.filters import PatientFilter
+from django_filters import DateFilter
 
 from apps.death_certificate.models import DeathCertificate
+from apps.patient.filters import PatientFilter
 
 
 class DeathCertificateFilter(PatientFilter):

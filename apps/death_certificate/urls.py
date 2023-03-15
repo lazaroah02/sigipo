@@ -1,5 +1,6 @@
 from django.urls import path
 
+from apps.core.views import PaginationFilterView, getUrl
 from apps.death_certificate.filters import DeathCertificateFilter
 from apps.death_certificate.models import DeathCertificate
 from apps.death_certificate.views import (
@@ -8,7 +9,6 @@ from apps.death_certificate.views import (
     DeathCertificateDetailView,
     DeathCertificateUpdateView,
 )
-from apps.core.views import PaginationFilterView, getUrl
 
 app_name = "death_certificate"
 urlpatterns = [

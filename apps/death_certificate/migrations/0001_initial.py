@@ -4,35 +4,96 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='DeathCertificate',
+            name="DeathCertificate",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('death_cause', models.CharField(max_length=1000, verbose_name='Causa de Muerte')),
-                ('first_name', models.CharField(max_length=128, verbose_name='Nombre')),
-                ('last_name', models.CharField(max_length=255, verbose_name='Apellidos')),
-                ('street', models.CharField(blank=True, max_length=255, null=True, verbose_name='Calle')),
-                ('number', models.CharField(blank=True, max_length=255, null=True, verbose_name='Número')),
-                ('building', models.CharField(blank=True, max_length=255, null=True, verbose_name='Edificio')),
-                ('apartment', models.CharField(blank=True, max_length=255, null=True, verbose_name='Apartamento')),
-                ('date_of_birth', models.DateField(blank=True, null=True, verbose_name='Fecha de nacimiento')),
-                ('between_streets', models.CharField(blank=True, max_length=255, null=True, verbose_name='Entre calles')),
-                ('division', models.CharField(blank=True, max_length=255, null=True, verbose_name='Reparto')),
-                ('medical_record', models.CharField(blank=True, max_length=32, null=True, verbose_name='No. Historia Clínica')),
-                ('is_oncologic', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "death_cause",
+                    models.CharField(max_length=1000, verbose_name="Causa de Muerte"),
+                ),
+                ("first_name", models.CharField(max_length=128, verbose_name="Nombre")),
+                (
+                    "last_name",
+                    models.CharField(max_length=255, verbose_name="Apellidos"),
+                ),
+                (
+                    "street",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Calle"
+                    ),
+                ),
+                (
+                    "number",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Número"
+                    ),
+                ),
+                (
+                    "building",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Edificio"
+                    ),
+                ),
+                (
+                    "apartment",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Apartamento",
+                    ),
+                ),
+                (
+                    "date_of_birth",
+                    models.DateField(
+                        blank=True, null=True, verbose_name="Fecha de nacimiento"
+                    ),
+                ),
+                (
+                    "between_streets",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Entre calles",
+                    ),
+                ),
+                (
+                    "division",
+                    models.CharField(
+                        blank=True, max_length=255, null=True, verbose_name="Reparto"
+                    ),
+                ),
+                (
+                    "medical_record",
+                    models.CharField(
+                        blank=True,
+                        max_length=32,
+                        null=True,
+                        verbose_name="No. Historia Clínica",
+                    ),
+                ),
+                ("is_oncologic", models.BooleanField(default=False)),
             ],
             options={
-                'verbose_name': 'Certificado de Defunción',
-                'verbose_name_plural': 'Certificados de Defunción',
-                'ordering': ['pk'],
-                'default_permissions': (),
+                "verbose_name": "Certificado de Defunción",
+                "verbose_name_plural": "Certificados de Defunción",
+                "ordering": ["pk"],
+                "default_permissions": (),
             },
         ),
     ]

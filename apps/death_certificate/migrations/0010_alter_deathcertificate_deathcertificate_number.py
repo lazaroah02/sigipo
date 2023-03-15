@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('death_certificate', '0009_alter_deathcertificate_deathcertificate_number'),
+        ("death_certificate", "0009_alter_deathcertificate_deathcertificate_number"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='deathcertificate',
-            name='deathCertificate_number',
-            field=models.CharField(default=None, max_length=50, primary_key=True, serialize=False, verbose_name='Número de Certificación de Defunción'),
+            model_name="deathcertificate",
+            name="deathCertificate_number",
+            field=models.CharField(
+                default=None,
+                max_length=50,
+                primary_key=True,
+                serialize=False,
+                verbose_name="Número de Certificación de Defunción",
+            ),
         ),
     ]

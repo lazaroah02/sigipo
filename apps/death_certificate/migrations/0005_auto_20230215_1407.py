@@ -4,19 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('death_certificate', '0004_alter_deathcertificate_date_of_death'),
+        ("death_certificate", "0004_alter_deathcertificate_date_of_death"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='deathcertificate',
-            name='date_of_death',
+            model_name="deathcertificate",
+            name="date_of_death",
         ),
         migrations.AddField(
-            model_name='deathcertificate',
-            name='time_of_death',
-            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name='Fecha de defunción'),
+            model_name="deathcertificate",
+            name="time_of_death",
+            field=models.DateTimeField(
+                auto_now_add=True, null=True, verbose_name="Fecha de defunción"
+            ),
         ),
     ]

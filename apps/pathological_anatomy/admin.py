@@ -1,8 +1,7 @@
 from django.contrib.admin import ModelAdmin, register
 
-from apps.pathological_anatomy.models import (
-    Pathology,
-)
+from apps.pathological_anatomy.models import Pathology
+
 
 @register(Pathology)
 class PathologyAdmin(ModelAdmin):

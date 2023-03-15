@@ -4,15 +4,26 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('patient', '0005_alter_patient_options'),
+        ("patient", "0005_alter_patient_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='patient',
-            name='ocupation',
-            field=models.IntegerField(blank=True, choices=[(0, 'Trabajador'), (1, 'Estudiante'), (2, 'Ama de Casa'), (3, 'Jubilado'), (4, 'Desempleado'), (5, 'Indeterminado')], null=True, verbose_name='Ocupación'),
+            model_name="patient",
+            name="ocupation",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (0, "Trabajador"),
+                    (1, "Estudiante"),
+                    (2, "Ama de Casa"),
+                    (3, "Jubilado"),
+                    (4, "Desempleado"),
+                    (5, "Indeterminado"),
+                ],
+                null=True,
+                verbose_name="Ocupación",
+            ),
         ),
     ]

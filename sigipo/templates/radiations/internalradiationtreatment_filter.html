@@ -1,92 +1,111 @@
-{% extends "base_crud/base_list.html" %}
-{% load static column_sort %}
-
-{% block crud_columns %}
-    {% create_header_column 'identity_card' 'Carnet de identidad' %}
-    {% create_header_column 'first_name' 'Nombre' %}
-    {% create_header_column 'last_name' 'Apellidos' %}
-    {% create_header_column 'medical_record' 'No. Historia Clínica' %}
-{% endblock crud_columns %}
-
-{% block table_filters %}
-    <form method="get" class="row">
-        <div class="col">
-            {% block model_filters %}
-                <div class="row">
-                    {% for field in filter.form.visible_fields %}
-                        {% if forloop.counter <= 3 %}
-                        <div class="col">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <hr/>
-                <div class="row">
-                    {% for field in filter.form.visible_fields %}
-                        {% if forloop.counter > 3 and forloop.counter <= 5 %}
-                        <div class="col">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <hr/>
-                <div class="row">
-                    {% for field in filter.form.visible_fields %}
-                        {% if forloop.counter > 5 and forloop.counter <= 7 %}
-                        <div class="col">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <hr/>
-                <div class="row">
-                    {% for field in filter.form.visible_fields %}
-                        {% if forloop.counter > 7 %}
-                        <div class="col">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endblock model_filters %}
-        </div>
-        <div class="col-auto">
-            <button type="submit" id="id_submit_filters" class="btn btn-info mb-3"><i class="fa-solid fa-filter"></i> Filtrar</button>
-        </div>
-        <div class="col-auto">
-            <a href="?" class="btn btn-warning mb-3"><i class="fa-solid fa-ban"></i> Quitar filtros</a>
-        </div>
-    </form>
-{% endblock table_filters %}
-
-{% block table_body %}
-    {% for obj in page_obj %}
-        <tr>
-            <td>{{ obj.identity_card }}</td>
-            <td>{{ obj.first_name }}</td>
-            <td>{{ obj.last_name }}</td>
-            <td>{{ obj.medical_record }}</td>
-            <td>
-                <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
-                <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
-              </td>
-        </tr>
-    {% endfor %}
-{% endblock table_body %}
-
-{% block crud_actions %}
-    <form action="" method="post">
-        {{ block.super }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-secondary" role="button"><i class="fa-solid fa-file-arrow-down"></i> Exportar datos</button>
-        <a href="{% url 'patient:oncologic_change_status' %}" class="btn btn-primary" role="button"><i class="fa-solid fa-rotate"></i> Cambiar denominación</a>
-    </form>
+{% extends "base_crud/base_list.html" %} {% load static column_sort %} {% block
+crud_columns %} {% create_header_column 'identity_card' 'Carnet de identidad' %}
+{% create_header_column 'first_name' 'Nombre' %} {% create_header_column
+'last_name' 'Apellidos' %} {% create_header_column 'medical_record' 'No.
+Historia Clínica' %} {% endblock crud_columns %} {% block table_filters %}
+<form method="get" class="row">
+  <div class="col">
+    {% block model_filters %}
+    <div class="row">
+      {% for field in filter.form.visible_fields %} {% if forloop.counter <= 3
+      %}
+      <div class="col">
+        <label for="{{ field.id_for_label }}" class="form-label"
+          >{{ field.label }}</label
+        >
+        {{ field }}
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <hr />
+    <div class="row">
+      {% for field in filter.form.visible_fields %} {% if forloop.counter > 3
+      and forloop.counter <= 5 %}
+      <div class="col">
+        <label for="{{ field.id_for_label }}" class="form-label"
+          >{{ field.label }}</label
+        >
+        {{ field }}
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <hr />
+    <div class="row">
+      {% for field in filter.form.visible_fields %} {% if forloop.counter > 5
+      and forloop.counter <= 7 %}
+      <div class="col">
+        <label for="{{ field.id_for_label }}" class="form-label"
+          >{{ field.label }}</label
+        >
+        {{ field }}
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <hr />
+    <div class="row">
+      {% for field in filter.form.visible_fields %} {% if forloop.counter > 7 %}
+      <div class="col">
+        <label for="{{ field.id_for_label }}" class="form-label"
+          >{{ field.label }}</label
+        >
+        {{ field }}
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endblock model_filters %}
+  </div>
+  <div class="col-auto">
+    <button type="submit" id="id_submit_filters" class="btn btn-info mb-3">
+      <i class="fa-solid fa-filter"></i> Filtrar
+    </button>
+  </div>
+  <div class="col-auto">
+    <a href="?" class="btn btn-warning mb-3"
+      ><i class="fa-solid fa-ban"></i> Quitar filtros</a
+    >
+  </div>
+</form>
+{% endblock table_filters %} {% block table_body %} {% for obj in page_obj %}
+<tr>
+  <td>{{ obj.identity_card }}</td>
+  <td>{{ obj.first_name }}</td>
+  <td>{{ obj.last_name }}</td>
+  <td>{{ obj.medical_record }}</td>
+  <td>
+    <a
+      href="{% url detail_url obj.pk %}"
+      class="view"
+      title="Detalles"
+      data-toggle="tooltip"
+      ><i class="fa-solid fa-eye"></i
+    ></a>
+    <a
+      href="{% url edit_url obj.pk %}"
+      class="edit"
+      title="Editar"
+      data-toggle="tooltip"
+      ><i class="fa-solid fa-pen-to-square"></i
+    ></a>
+    <a
+      href="{% url delete_url obj.pk %}"
+      class="delete"
+      title="Eliminar"
+      data-toggle="tooltip"
+      ><i class="fa-solid fa-trash-can"></i
+    ></a>
+  </td>
+</tr>
+{% endfor %} {% endblock table_body %} {% block crud_actions %}
+<form action="" method="post">
+  {{ block.super }} {% csrf_token %}
+  <button type="submit" class="btn btn-secondary" role="button">
+    <i class="fa-solid fa-file-arrow-down"></i> Exportar datos
+  </button>
+  <a
+    href="{% url 'patient:oncologic_change_status' %}"
+    class="btn btn-primary"
+    role="button"
+    ><i class="fa-solid fa-rotate"></i> Cambiar denominación</a
+  >
+</form>
 {% endblock crud_actions %}

@@ -1,21 +1,13 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
-
-from apps.pathological_anatomy.filters import (
-    PathologyFilter
-)
-
-
-from apps.pathological_anatomy.models import (
-    Pathology
-)
-
+from apps.pathological_anatomy.filters import PathologyFilter
+from apps.pathological_anatomy.models import Pathology
 from apps.pathological_anatomy.views import (
     PathologyCreateView,
+    PathologyDeleteView,
     PathologyDetailView,
     PathologyUpdateView,
-    PathologyDeleteView,
 )
 
 app_name = "pathological_anatomy"
