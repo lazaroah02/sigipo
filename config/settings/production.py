@@ -9,5 +9,6 @@ MEDIA_URL = "/media/"
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "sigipo", "static"),)
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_URL = '/static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_URL = "/static/"
+CSRF_TRUSTED_ORIGINS = ["*"]
