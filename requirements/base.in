@@ -9,3 +9,4 @@ django-multiselectfield
 python-docx
 django-import-export
 python-dateutil
+whitenoise
