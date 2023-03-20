@@ -446,4 +446,4 @@ class Neoplasm(Model):
 
     def __str__(self):
         """A string representation of the model"""
-        return f"{self.patient}"
+        return f"{self.patient} {self.primary_site}"

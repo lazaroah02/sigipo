@@ -284,7 +284,11 @@ class BaseDeleteView(
         self.object = self.get_object()
         success_url = self.get_success_url()
         self.object.delete()
-        success_message = self.get_success_message(self.object.__dict__)
+        object_dict = {
+            field.name: str(getattr(self.object, field.name, ""))
+            for field in self.object._meta.fields
+        }
+        success_message = self.get_success_message(object_dict)
         messages.success(self.request, success_message)
         return redirect(success_url)
 

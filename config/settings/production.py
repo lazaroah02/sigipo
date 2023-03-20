@@ -10,7 +10,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-STATICFILES_DIRS = [str(BASE_DIR / "sigipo" / "static" )]
+STATICFILES_DIRS = [str(BASE_DIR / "sigipo" / "static")]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
