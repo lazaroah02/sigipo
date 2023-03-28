@@ -24,6 +24,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
+    "django.forms",
 ]
 
 THIRD_PARTY_APPS = [
@@ -179,3 +180,5 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_USER", None)
 EMAIL_PORT = os.environ.get("EMAIL_PORT", None)
 
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", None)
+
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
