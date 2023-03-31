@@ -47,7 +47,7 @@ class DoctorForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Grupo de trabajo",

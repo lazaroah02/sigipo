@@ -12,7 +12,6 @@ from django.forms import (
     Select,
     TextInput,
 )
-from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import NeoplasmClinicalStageChoices
 from apps.chemotherapy.models import (
@@ -24,6 +23,7 @@ from apps.chemotherapy.models import (
     RouteChoices,
     Scheme,
 )
+from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.drugs.models import Drug, UnitChoicesChoices
@@ -49,7 +49,7 @@ class ProtocolForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -58,17 +58,21 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
+            add_url="patient:oncologic_create",
+            view_url="patient:oncologic_detail",
+            add_permission="patient.add_oncologic",
+            view_permission="patient.view_oncologic",
         ),
         label="Paciente",
     )
     scheme = ModelChoiceField(
         queryset=Scheme.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Esquema",
@@ -77,7 +81,7 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Esquema",
@@ -123,7 +127,7 @@ class ProtocolForm(ModelForm):
     )
     doctor = ModelChoiceField(
         queryset=Doctor.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Médico que reporta",
@@ -132,9 +136,9 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "personal_record_number__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "personal_record_number__trigram_similar",
             ],
         ),
         label="Médico que reporta",
@@ -155,7 +159,7 @@ class MedicationForm(ModelForm):
 
     protocol = ModelChoiceField(
         queryset=Protocol.objects.not_suspended(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Protocolo",
@@ -164,17 +168,17 @@ class MedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__icontains",
-                "patient__last_name__icontains",
-                "patient__identity_card__icontains",
-                "patient__medical_record__icontains",
+                "patient__first_name__trigram_similar",
+                "patient__last_name__trigram_similar",
+                "patient__identity_card__trigram_similar",
+                "patient__medical_record__trigram_similar",
             ],
         ),
         label="Protocolo",
     )
     drug = ModelChoiceField(
         queryset=Drug.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Fármaco",
@@ -183,7 +187,7 @@ class MedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Fármaco",
@@ -239,7 +243,7 @@ class MedicationForm(ModelForm):
 class CycleForm(ModelForm):
     protocol = ModelChoiceField(
         queryset=Protocol.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Protocolo",
@@ -248,10 +252,10 @@ class CycleForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__icontains",
-                "patient__last_name__icontains",
-                "patient__identity_card__icontains",
-                "patient__medical_record__icontains",
+                "patient__first_name__trigram_similar",
+                "patient__last_name__trigram_similar",
+                "patient__identity_card__trigram_similar",
+                "patient__medical_record__trigram_similar",
             ],
         ),
         label="Protocolo",
@@ -277,7 +281,7 @@ class CycleForm(ModelForm):
 class CycleMedicationForm(ModelForm):
     drug = ModelChoiceField(
         queryset=Drug.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Fármaco",
@@ -286,7 +290,7 @@ class CycleMedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Fármaco",

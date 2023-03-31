@@ -11,6 +11,8 @@ from django.contrib.auth.views import (
 )
 from django.urls import include, path
 
+from apps.core.views import close_popup_view
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
@@ -23,6 +25,8 @@ urlpatterns = [
     path("nuclear_medicine/", include("apps.nuclear_medicine.urls")),
     path("employee/", include("apps.employee.urls")),
     path("chemotherapy/", include("apps.chemotherapy.urls")),
+    # * Close Popup
+    path("close_popup/", close_popup_view, name="close_popup"),
     # * django-select2-urls
     path("select2/", include("django_select2.urls")),
     # ! security
@@ -69,5 +73,7 @@ if settings.DEBUG:  # pragma: no cover
         path("__debug__/", include("debug_toolbar.urls")),
     ]
 
+# HTTP errors
+handler403 = "apps.core.views.http_403"
 # HTTP errors
 handler403 = "apps.core.views.http_403"

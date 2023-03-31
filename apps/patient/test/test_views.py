@@ -95,6 +95,44 @@ class PatientViewTestCase(TestCase):
         )
         self.assertTrue(response.json()["exist"])
 
+    def test_patient_create_as_popup(self):
+        """Test the create view in popup mode."""
+        response = self.client.get(
+            reverse(
+                "patient:oncologic_create",
+            )
+            + "is_popup=true"
+        )
+        self.assertNotIn(
+            '<nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">',
+            response.content.decode(),
+        )
+
+    def test_patient_create_as_popup_close_template(self):
+        """Test the create view in popup mode.
+        Test that the patient is created and the popup is closed."""
+        self.patient.delete()
+        patient_count = Patient.objects.count()
+        response = self.client.post(
+            reverse(
+                "patient:oncologic_create",
+            )
+            + "?is_popup=true",
+            {
+                "identity_card": self.patient.identity_card,
+                "first_name": self.patient.first_name,
+                "last_name": self.patient.last_name,
+                "residence_municipality": self.patient.residence_municipality.pk,
+                "born_municipality": self.patient.residence_municipality.pk,
+                "race": 0,
+                "sex": 0,
+            },
+        )
+        self.assertEqual(patient_count + 1, Patient.objects.count())
+        response = self.client._handle_redirects(response)
+        self.assertRedirects(response, reverse("close_popup"))
+        self.assertTemplateUsed(response, "components/close_popup.html")
+
 
 class PatientExportTestCase(TestCase):
     """Test case for Neoplasm Export."""

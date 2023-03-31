@@ -8,7 +8,7 @@ class ProvinceFilter(FilterSet):
     """Filters to search for provinces."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -25,13 +25,13 @@ class MunicipalityFilter(FilterSet):
     """Filters to search for municipalities."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
     )
     province = CharFilter(
-        lookup_expr="name__icontains",
+        lookup_expr="name__trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Provincia contiene"}
         ),

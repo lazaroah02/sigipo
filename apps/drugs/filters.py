@@ -6,7 +6,7 @@ from apps.drugs.models import Drug, DrugTypeChoices, NuclearMedicineDrug
 
 class NuclearMedicineDrugFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -21,7 +21,7 @@ class NuclearMedicineDrugFilter(FilterSet):
 
 class DrugFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

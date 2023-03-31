@@ -62,17 +62,24 @@
                 <div class="action-buttons">
                     {% block action-buttons %}
                         <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                        <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
+                        {% if not is_popup %}
+                            <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
+                        {% else %}
+                            <a href="#" role="button" class="btn btn-secondary close-popup-btn"><i class="fa-solid fa-ban"></i> Cancelar</a>
+                        {% endif %}
                     {% endblock action-buttons %}
                 </div>
             </div>
         </div>
     </form>
 </div>
+
 {% endblock content %}
 {% block endloads %}
 <script src="{% static 'js/external/es.min.js' %}"></script>
 {{ form.media.css }}
 {{ form.media.js }}
 <script src="{% static 'js/internal/select2-focus-fix.js' %}"></script>
+<script src="{% static 'js/internal/related-model-field.js' %}"></script>
+<script src="{% static 'js/internal/create-modal.js' %}"></script>
 {% endblock endloads %}

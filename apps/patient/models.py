@@ -4,6 +4,7 @@ from django.db.models import (
     CharField,
     DateField,
     ForeignKey,
+    Index,
     IntegerChoices,
     IntegerField,
     UniqueConstraint,
@@ -141,6 +142,13 @@ class Patient(TimeStampedModel):
                 fields=["identity_card"],
                 name="patient_identity_card_constraints",
             )
+        ]
+        indexes = [
+            Index(fields=["last_name", "first_name"]),
+            Index(fields=["first_name"]),
+            Index(fields=["last_name"]),
+            Index(fields=["identity_card"]),
+            Index(fields=["medical_record"]),
         ]
 
     def __str__(self):

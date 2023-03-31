@@ -16,28 +16,28 @@ class OncologicStudyFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -71,28 +71,28 @@ class HormonalStudyFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -126,28 +126,28 @@ class HormonalResultFilter(FilterSet):
     """Filters to search for patients."""
 
     hormonal_study__patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     hormonal_study__patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     hormonal_study__patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     hormonal_study__patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -181,28 +181,28 @@ class OncologicResultFilter(FilterSet):
     """Filters to search for patients."""
 
     oncologic_study__patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     oncologic_study__patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     oncologic_study__patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     oncologic_study__patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -236,28 +236,28 @@ class SerialIodineDetectionFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -281,28 +281,28 @@ class IodineDetectionFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -326,28 +326,28 @@ class GammagraphyFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",

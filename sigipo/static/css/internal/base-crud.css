@@ -112,3 +112,7 @@ table.table td i {
 .filter-row {
   row-gap: 0.7em;
 }
+i.object-link {
+  color: midnightblue;
+  font-size: 16px !important;
+}

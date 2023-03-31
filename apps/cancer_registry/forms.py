@@ -8,7 +8,6 @@ from django.forms import (
     ModelChoiceField,
 )
 from django.forms.widgets import DateInput, NumberInput, Select
-from django_select2.forms import ModelSelect2Widget
 
 from apps.cancer_registry.models import (
     AcuteLymphoidLeukemiaChoices,
@@ -31,6 +30,7 @@ from apps.cancer_registry.models import (
     TumorClassificationChoices,
 )
 from apps.classifiers.models import Morphology, Topography
+from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.employee.models import Doctor, Group
@@ -42,7 +42,7 @@ class NeoplasmForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -51,11 +51,15 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
+            add_url="patient:oncologic_create",
+            view_url="patient:oncologic_detail",
+            add_permission="patient.add_oncologic",
+            view_permission="patient.view_oncologic",
         ),
         label="Paciente",
     )
@@ -93,7 +97,7 @@ class NeoplasmForm(ModelForm):
     )
     primary_site = ModelChoiceField(
         queryset=Topography.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Sitio primario",
@@ -102,7 +106,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Sitio primario",
@@ -123,7 +127,7 @@ class NeoplasmForm(ModelForm):
     )
     histologic_type = ModelChoiceField(
         queryset=Morphology.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Tipo histológico",
@@ -132,7 +136,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Tipo histológico",
@@ -234,7 +238,7 @@ class NeoplasmForm(ModelForm):
     )
     medic_that_report = ModelChoiceField(
         queryset=Doctor.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Médico que reporta",
@@ -243,9 +247,9 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "personal_record_number__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "personal_record_number__trigram_similar",
             ],
         ),
         required=False,
@@ -253,7 +257,7 @@ class NeoplasmForm(ModelForm):
     )
     group = ModelChoiceField(
         queryset=Group.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Grupo que reporta",
@@ -262,7 +266,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         required=False,

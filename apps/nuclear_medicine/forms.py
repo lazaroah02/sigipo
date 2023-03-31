@@ -10,10 +10,11 @@ from django.forms import (
     TextInput,
 )
 from django.utils.safestring import mark_safe
-from django_select2.forms import ModelSelect2MultipleWidget, ModelSelect2Widget
+from django_select2.forms import ModelSelect2MultipleWidget
 from multiselectfield.forms.fields import MultiSelectFormField
 
 from apps.classifiers.models import RadioIsotope, Study
+from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ModelForm
 from apps.drugs.models import NuclearMedicineDrug
 from apps.nuclear_medicine.models import (
@@ -76,7 +77,7 @@ class BaseStudyForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -85,10 +86,10 @@ class BaseStudyForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
         ),
         label="Paciente",
@@ -118,7 +119,7 @@ class BaseStudyDetailForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.only_oncologic(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -127,10 +128,10 @@ class BaseStudyDetailForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
         ),
         label="Paciente",
@@ -229,7 +230,7 @@ class OncologicResultForm(ModelForm):
 
     oncologic_study = ModelChoiceField(
         queryset=OncologicStudy.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Estudio Oncológico",
@@ -238,10 +239,10 @@ class OncologicResultForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__icontains",
-                "patient__last_name__icontains",
-                "patient__identity_card__icontains",
-                "patient__medical_record__icontains",
+                "patient__first_name__trigram_similar",
+                "patient__last_name__trigram_similar",
+                "patient__identity_card__trigram_similar",
+                "patient__medical_record__trigram_similar",
                 "sample_number",
             ],
         ),
@@ -330,7 +331,7 @@ class HormonalResultForm(ModelForm):
 
     hormonal_study = ModelChoiceField(
         queryset=HormonalStudy.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Estudio hormonal",
@@ -339,10 +340,10 @@ class HormonalResultForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__icontains",
-                "patient__last_name__icontains",
-                "patient__identity_card__icontains",
-                "patient__medical_record__icontains",
+                "patient__first_name__trigram_similar",
+                "patient__last_name__trigram_similar",
+                "patient__identity_card__trigram_similar",
+                "patient__medical_record__trigram_similar",
                 "sample_number",
             ],
         ),
@@ -431,7 +432,7 @@ class IodineDetectionForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -440,10 +441,10 @@ class IodineDetectionForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
         ),
         label="Paciente",
@@ -471,7 +472,7 @@ class SerialIodineDetectionForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -480,10 +481,10 @@ class SerialIodineDetectionForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
         ),
         label="Paciente",
@@ -536,7 +537,7 @@ class GammagraphyForm(ModelForm):
 
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Paciente",
@@ -545,10 +546,10 @@ class GammagraphyForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "identity_card__icontains",
-                "medical_record__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "identity_card__trigram_similar",
+                "medical_record__trigram_similar",
             ],
         ),
         label="Paciente",
@@ -564,14 +565,14 @@ class GammagraphyForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Estudio(s)",
     )
     drug = ModelChoiceField(
         queryset=NuclearMedicineDrug.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Fármaco",
@@ -580,14 +581,14 @@ class GammagraphyForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Fármaco",
     )
     radio_isotope = ModelChoiceField(
         queryset=RadioIsotope.objects.all(),
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Radio isótopo",
@@ -596,7 +597,7 @@ class GammagraphyForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Radio isótopo",

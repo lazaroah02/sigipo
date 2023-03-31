@@ -7,7 +7,7 @@ from apps.employee.models import Doctor, Group
 
 class DoctorFilter(FilterSet):
     personal_record_number = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -17,14 +17,14 @@ class DoctorFilter(FilterSet):
         label="Número de registro contiene",
     )
     first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
@@ -41,7 +41,7 @@ class DoctorFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Grupo de trabajo",
@@ -59,7 +59,7 @@ class DoctorFilter(FilterSet):
 
 class GroupFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

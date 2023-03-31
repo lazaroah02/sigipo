@@ -13,12 +13,12 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td><a href="{% url "patient:oncologic_detail" obj.patient.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
+            <td>{{ obj.patient }}<a href="{% url "patient:oncologic_detail" obj.patient.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-up-right-from-square object-link"></i></a></td>
             <td>{{ obj.primary_site }}</td>
             <td>{{ obj.histologic_type }}</td>
             <td>{{ obj.get_clinical_stage_display|default_if_none:"" }}</td>
             {% if obj.medic_that_report.pk %}
-                <td><a href="{% url "employee:doctor_detail" obj.medic_that_report.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.medic_that_report }}</a></td>
+                <td>{{ obj.medic_that_report }}<a href="{% url "employee:doctor_detail" obj.medic_that_report.pk %}?return_to=cancer_registry:neoplasm_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-up-right-from-square object-link"></i></a></td>
             {% else %}
                 <td>{{ obj.medic_that_report|default_if_none:"" }}</td>
             {% endif %}

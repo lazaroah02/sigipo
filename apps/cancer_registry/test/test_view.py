@@ -18,6 +18,7 @@ class NeoplasmCreateViewTestCase(TestCase):
     def setUpTestData(cls):
         """Common test data."""
         cls.user = UserFactory.create()
+        cls.neoplasm = NeoplasmFactory.create()
 
     def setUp(self) -> None:
         """Extra initialization."""
@@ -33,6 +34,18 @@ class NeoplasmCreateViewTestCase(TestCase):
             str(response.context["form"].fields["laterality"]._choices),
         )
         self.assertIn(reverse(NeoplasmCreateView.cancel_url), response.content.decode())
+        self.assertIn("related-model-add", response.content.decode())
+        self.assertIn(
+            reverse("classifiers:topography_create"), response.content.decode()
+        )
+
+    def test_related_model_in_detail_view(self):
+        """Test that related model view button is not shown in detail view"""
+        response = self.client.get(
+            reverse("cancer_registry:neoplasm_detail", args=(self.neoplasm.pk,))
+        )
+        self.assertIn("related-model-view", response.content.decode())
+        self.assertNotIn("related-model-add", response.content.decode())
 
 
 class ReportsTestCase(TestCase):

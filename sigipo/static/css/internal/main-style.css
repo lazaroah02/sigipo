@@ -41,3 +41,6 @@ body {
 .fc-dark-red {
   color: darkred;
 }
+.hidden {
+  display: None;
+}

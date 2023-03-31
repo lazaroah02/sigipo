@@ -31,28 +31,28 @@ class PatientFilter(FilterSet):
     """Filters to search for patients."""
 
     identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -78,8 +78,8 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
-                "province__name__icontains",
+                "name__trigram_similar",
+                "province__name__trigram_similar",
             ],
         ),
         label="Municipio de residencia",
@@ -95,8 +95,8 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
-                "province__name__icontains",
+                "name__trigram_similar",
+                "province__name__trigram_similar",
             ],
         ),
         label="Municipio natal",
@@ -112,7 +112,7 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Provincia de residencia",
@@ -128,7 +128,7 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Provincia natal",

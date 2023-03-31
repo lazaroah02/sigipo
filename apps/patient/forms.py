@@ -11,8 +11,8 @@ from django.forms import (
     Select,
     TextInput,
 )
-from django_select2.forms import ModelSelect2Widget
 
+from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
 from apps.patient.models import Patient, PatientRace, SexChoices
@@ -103,7 +103,7 @@ class BasePatientForm(ModelForm):
     residence_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
         label="Municipio de residencia",
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Municipio de residencia",
@@ -111,13 +111,13 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
-            search_fields=["name__icontains", "province__name__icontains"],
+            search_fields=["name__trigram_similar", "province__name__trigram_similar"],
         ),
     )
     born_municipality = ModelChoiceField(
         queryset=Municipality.objects.all(),
         label="Municipio natal",
-        widget=ModelSelect2Widget(
+        widget=RelatedModelWrapper(
             attrs={
                 "class": "form-control",
                 "data-placeholder": "Municipio natal",
@@ -125,7 +125,7 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
-            search_fields=["name__icontains", "province__name__icontains"],
+            search_fields=["name__trigram_similar", "province__name__trigram_similar"],
         ),
     )
 

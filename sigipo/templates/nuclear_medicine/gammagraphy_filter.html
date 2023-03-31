@@ -13,10 +13,10 @@
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
-            <td><a href="{% url "patient:patient_detail" obj.patient.pk %}?return_to=nuclear_medicine:iodine_detection_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.patient }}</a></td>
+            <td>{{ obj.patient }}<a href="{% url "patient:patient_detail" obj.patient.pk %}?return_to=nuclear_medicine:iodine_detection_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-up-right-from-square object-link"></i></a></td>
             <td>{{ obj.created_at }}</td>
-            <td><a href="{% url "drugs:drug_detail" obj.drug.pk %}?return_to=nuclear_medicine:gammagraphy_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.drug }}</a></td>
-            <td><a href="{% url "classifiers:radioisotope_detail" obj.radio_isotope.pk %}?return_to=nuclear_medicine:gammagraphy_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.radio_isotope }}</a></td>
+            <td>{{ obj.drug }}<a href="{% url "drugs:drug_detail" obj.drug.pk %}?return_to=nuclear_medicine:gammagraphy_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-up-right-from-square object-link"></i></a></td>
+            <td>{{ obj.radio_isotope }}<a href="{% url "classifiers:radioisotope_detail" obj.radio_isotope.pk %}?return_to=nuclear_medicine:gammagraphy_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-up-right-from-square object-link"></i></a></td>
             <td>
                 {% for study in obj.requested_study.all %}
                     <a href="{% url "classifiers:study_detail" study.pk %}?return_to=nuclear_medicine:gammagraphy_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ study }}</a>{% if not forloop.last %},&nbsp;{% endif %}

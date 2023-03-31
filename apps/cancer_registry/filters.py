@@ -11,28 +11,28 @@ class NeoplasmFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -52,7 +52,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Sitio primario",
@@ -68,7 +68,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Tipo histológico",
@@ -84,7 +84,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         required=False,
@@ -101,9 +101,9 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "personal_record_number__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "personal_record_number__trigram_similar",
             ],
         ),
         label="Médico que reporta",

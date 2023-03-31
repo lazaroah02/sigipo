@@ -16,7 +16,7 @@ from apps.employee.models import Doctor
 
 class SchemeFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -31,28 +31,28 @@ class SchemeFilter(FilterSet):
 
 class ProtocolFilter(FilterSet):
     patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -72,7 +72,7 @@ class ProtocolFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Esquema",
@@ -98,9 +98,9 @@ class ProtocolFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__icontains",
-                "last_name__icontains",
-                "personal_record_number__icontains",
+                "first_name__trigram_similar",
+                "last_name__trigram_similar",
+                "personal_record_number__trigram_similar",
             ],
         ),
         label="Doctor que reporta",
@@ -130,28 +130,28 @@ class ProtocolFilter(FilterSet):
 
 class MedicationFilter(FilterSet):
     protocol__patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     protocol__patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     protocol__patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     protocol__patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -176,7 +176,7 @@ class MedicationFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Fármaco",
@@ -204,28 +204,28 @@ class MedicationFilter(FilterSet):
 
 class CycleFilter(FilterSet):
     protocol__patient__identity_card = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     protocol__patient__first_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     protocol__patient__last_name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     protocol__patient__medical_record = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -245,7 +245,7 @@ class CycleFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__icontains",
+                "name__trigram_similar",
             ],
         ),
         label="Esquema",

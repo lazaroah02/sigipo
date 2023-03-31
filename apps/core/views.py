@@ -6,7 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import CheckboxInput, Form
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import path, reverse_lazy
+from django.urls import path, reverse, reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django.views.generic.base import TemplateView
 from django_filters.views import FilterView
@@ -16,6 +17,28 @@ from apps.core.forms import BaseReportForm
 
 def http_403(request: HttpRequest, exception) -> HttpResponse:
     return render(request, "400/403.html")
+
+
+def close_popup_view(request: HttpRequest) -> HttpResponse:
+    return render(request, "components/close_popup.html")
+
+
+class PopupMixin:
+    """Add the popup behavior to the views."""
+
+    def is_popup(self):
+        """Returns True if the view is in popup mode."""
+        return self.request.GET.get("is_popup", False) == "true"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["is_popup"] = self.is_popup()
+        return context
+
+    def get_success_url(self):
+        if self.is_popup():
+            return reverse("close_popup")
+        return super().get_success_url()
 
 
 class FileDownloadView(
@@ -179,6 +202,7 @@ class GetObjectErrorMixin:
 
 
 class BaseCreateView(
+    PopupMixin,
     LoginRequiredMixin,
     PermissionRequiredMixin,
     SuccessMessageMixin,
@@ -190,6 +214,12 @@ class BaseCreateView(
 
     template_name = "base_crud/base_create.html"
     permission_required = None
+
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+        return kwargs
 
     def __init__(self, **kwargs):
         self.permission_required = (
@@ -214,6 +244,12 @@ class BaseUpdateView(
     template_name = "base_crud/base_update.html"
     permission_required = None
 
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+        return kwargs
+
     def __init__(self, **kwargs):
         self.permission_required = (
             self.permission_required
@@ -224,6 +260,7 @@ class BaseUpdateView(
 
 
 class BaseDetailView(
+    PopupMixin,
     LoginRequiredMixin,
     PermissionRequiredMixin,
     GetObjectErrorMixin,
@@ -245,6 +282,10 @@ class BaseDetailView(
         self.title = f"Detalles de {self.model._meta.verbose_name.lower()}"
         super().__init__(**kwargs)
 
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        return {"request": self.request}
+
     def get_form_for_detail(self):
         """Returns the form_class with all the fields in readonly."""
 
@@ -252,6 +293,7 @@ class BaseDetailView(
             """Helper class"""
 
             def __init__(self, *args, **kwargs):
+                self.read_only_form = True
                 super().__init__(*args, **kwargs)
                 for _, field in self.fields.items():
                     field.widget.attrs["readonly"] = True
@@ -263,8 +305,9 @@ class BaseDetailView(
     def get_context_data(self, *args, **kwargs) -> dict:
         """Adds given form to the context."""
         context = super().get_context_data(*args, **kwargs)
-        form = self.get_form_for_detail()(instance=self.object)
-
+        form = self.get_form_for_detail()(
+            instance=self.object, **self.get_form_kwargs()
+        )
         context["form"] = form
         return context
 
@@ -317,30 +360,32 @@ class BaseDeleteView(
         return redirect(success_url)
 
 
-def getUrl(crud_class):
+def getUrl(
+    crud_class: View | None,
+):
+    """
+    Returns the path for the given crud_class.
+    """
+    model_name = crud_class.model.__name__.lower()
     if issubclass(crud_class, BaseCreateView):
-        model_name = crud_class.model.__name__.lower()
         return path(
             f"{model_name}/create/",
             crud_class.as_view(),
             name=f"{model_name}_create",
         )
     elif issubclass(crud_class, BaseUpdateView):
-        model_name = crud_class.model.__name__.lower()
         return path(
             f"{model_name}/update/<pk>/",
             crud_class.as_view(),
             name=f"{model_name}_update",
         )
     elif issubclass(crud_class, BaseDetailView):
-        model_name = crud_class.model.__name__.lower()
         return path(
             f"{model_name}/detail/<pk>/",
             crud_class.as_view(),
             name=f"{model_name}_detail",
         )
     else:
-        model_name = crud_class.model.__name__.lower()
         return path(
             f"{model_name}/delete/<pk>/",
             crud_class.as_view(),

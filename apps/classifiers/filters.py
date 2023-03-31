@@ -8,7 +8,7 @@ class MorphologyFilter(FilterSet):
     """Filters to search for morphologies."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -23,7 +23,7 @@ class TopographyFilter(FilterSet):
     """Filters to search for topographies."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -38,7 +38,7 @@ class StudyFilter(FilterSet):
     """Filters to search for studies."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -55,7 +55,7 @@ class RadioIsotopeFilter(FilterSet):
     """Filters to search for radio isotopes."""
 
     name = CharFilter(
-        lookup_expr="icontains",
+        lookup_expr="trigram_similar",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

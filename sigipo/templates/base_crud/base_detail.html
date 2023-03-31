@@ -28,7 +28,11 @@
             <div class="card-footer text-muted">
                 <div class="action-buttons">
                     {% block action-buttons %}
-                        <a href="{% url cancel_url %}{% if url_lookup %}?{{ url_lookup }}{% endif %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Atras</a>
+                        {% if not is_popup %}
+                            <a href="{% url cancel_url %}{% if url_lookup %}?{{ url_lookup }}{% endif %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-angle-left"></i> Atras</a>
+                        {% else %}
+                            <a href="#" role="button" class="btn btn-secondary close-popup-btn"><i class="fa-solid fa-angle-left"></i> Atras</a>
+                        {% endif %}
                     {% endblock action-buttons %}
                 </div>
             </div>
@@ -36,3 +40,7 @@
     </form>
 </div>
 {% endblock content %}
+
+{% block endloads %}
+<script src="{% static 'js/internal/related-model-field.js' %}"></script>
+{% endblock endloads %}
