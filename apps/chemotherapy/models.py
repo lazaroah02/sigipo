@@ -39,7 +39,6 @@ class Scheme(Model):
         verbose_name = "Esquema"
         verbose_name_plural = "Esquemas"
         ordering = ["pk"]
-        default_permissions = ()
 
 
 class RoomChoices(IntegerChoices):
@@ -105,7 +104,6 @@ class Protocol(TimeStampedModel):
         verbose_name = "Protocolo"
         verbose_name_plural = "Protocolos"
         ordering = ["pk"]
-        default_permissions = ()
 
 
 class RouteChoices(IntegerChoices):
@@ -147,7 +145,6 @@ class Medication(Model):
         verbose_name = "Medicación"
         verbose_name_plural = "Medicaciones"
         ordering = ["pk"]
-        default_permissions = ()
 
 
 class CycleQuerysetManager(Manager):
@@ -167,7 +164,6 @@ class Cycle(TimeStampedModel):
         verbose_name = "Ciclo"
         verbose_name_plural = "Ciclos"
         ordering = ["pk"]
-        default_permissions = ()
 
 
 class CycleMedicationQuerysetManager(Manager):
@@ -191,4 +187,3 @@ class CycleMedication(Model):
         verbose_name = "Medicación del ciclo"
         verbose_name_plural = "Medicaciones del ciclo"
         ordering = ["pk"]
-        default_permissions = ()

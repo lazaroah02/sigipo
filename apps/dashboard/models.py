@@ -11,4 +11,3 @@ class GenderCountView(Model):
     class Meta:
         managed = False
         db_table = "gender_count"
-        default_permissions = ()

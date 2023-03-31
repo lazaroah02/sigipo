@@ -11,7 +11,6 @@ class Province(Model):
         verbose_name = "Provincia"
         verbose_name_plural = "Provincias"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the name of the province."""
@@ -37,7 +36,6 @@ class Municipality(Model):
         verbose_name = "Municipio"
         verbose_name_plural = "Municipios"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the name of the municipality."""

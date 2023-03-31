@@ -36,7 +36,6 @@ class SchemeCreateView(BaseCreateView):
     success_url = reverse_lazy("chemotherapy:scheme_list")
     success_message = "%(name)s guardado correctamente."
     cancel_url = "chemotherapy:scheme_list"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class SchemeDetailView(BaseDetailView):
@@ -46,7 +45,6 @@ class SchemeDetailView(BaseDetailView):
     form_class = SchemeForm
     cancel_url = "chemotherapy:scheme_list"
     object_not_found_error_message = "Esquema no encontrado"
-    permission_required = "accounts.chemotherapy_view"
 
 
 class SchemeUpdateView(BaseUpdateView):
@@ -58,7 +56,6 @@ class SchemeUpdateView(BaseUpdateView):
     success_message = "%(name)s guardado correctamente."
     cancel_url = "chemotherapy:scheme_list"
     object_not_found_error_message = "Esquema no encontrado"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class SchemeDeleteView(BaseDeleteView):
@@ -69,7 +66,6 @@ class SchemeDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminado satisfactoriamente."
     cancel_url = "chemotherapy:scheme_list"
     object_not_found_error_message = "Esquema no encontrado"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 # * Protocol Views
@@ -81,7 +77,6 @@ class ProtocolCreateView(BaseCreateView):
     success_url = reverse_lazy("chemotherapy:protocol_list")
     success_message = "%(patient)s guardado correctamente."
     cancel_url = "chemotherapy:protocol_list"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class ProtocolDetailView(BaseDetailView):
@@ -91,7 +86,6 @@ class ProtocolDetailView(BaseDetailView):
     form_class = ProtocolForm
     cancel_url = "chemotherapy:protocol_list"
     object_not_found_error_message = "Protocolo no encontrado"
-    permission_required = "accounts.chemotherapy_view"
 
 
 class ProtocolUpdateView(BaseUpdateView):
@@ -103,7 +97,6 @@ class ProtocolUpdateView(BaseUpdateView):
     success_message = "%(patient)s guardado correctamente."
     cancel_url = "chemotherapy:protocol_list"
     object_not_found_error_message = "Protocolo no encontrado"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class ProtocolDeleteView(BaseDeleteView):
@@ -114,7 +107,6 @@ class ProtocolDeleteView(BaseDeleteView):
     success_message = "%(patient)s eliminado satisfactoriamente."
     cancel_url = "chemotherapy:protocol_list"
     object_not_found_error_message = "Protocolo no encontrado"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 # * Medication Views
@@ -129,7 +121,6 @@ class MedicationCreateView(BaseCreateView):
     template_name = "chemotherapy/medication_create.html"
     success_message = "Medicación guardada correctamente."
     cancel_url = "chemotherapy:medication_list"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class MedicationDetailView(BaseDetailView):
@@ -142,7 +133,6 @@ class MedicationDetailView(BaseDetailView):
     cancel_url = "chemotherapy:medication_list"
     template_name = "chemotherapy/medication_detail.html"
     object_not_found_error_message = "Medicación no encontrada"
-    permission_required = "accounts.chemotherapy_view"
 
 
 class MedicationUpdateView(BaseUpdateView):
@@ -155,7 +145,6 @@ class MedicationUpdateView(BaseUpdateView):
     cancel_url = "chemotherapy:medication_list"
     template_name = "chemotherapy/medication_update.html"
     object_not_found_error_message = "Medicación no encontrada"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 class MedicationDeleteView(BaseDeleteView):
@@ -166,7 +155,6 @@ class MedicationDeleteView(BaseDeleteView):
     success_message = "Medicación eliminada correctamente."
     cancel_url = "chemotherapy:medication_list"
     object_not_found_error_message = "Medicación no encontrada"
-    permission_required = "accounts.chemotherapy_manage"
 
 
 # * Cycle Views
@@ -181,7 +169,7 @@ class CycleCreateView(BaseCreateView):
     success_message = "Ciclo guardado correctamente."
     cancel_url = "chemotherapy:cycle_list"
     template_name = "chemotherapy/cycle_update.html"
-    permission_required = "accounts.chemotherapy_manage"
+
     Cycle_Cycle_Medication = inlineformset_factory(
         Cycle,
         CycleMedication,
@@ -232,7 +220,7 @@ class CycleDetailView(BaseDetailView):
     form_class = CycleForm
     cancel_url = "chemotherapy:cycle_list"
     template_name = "chemotherapy/cycle_detail.html"
-    permission_required = "accounts.chemotherapy_manage"
+
     Cycle_Cycle_Medication = inlineformset_factory(
         Cycle,
         CycleMedication,
@@ -266,7 +254,7 @@ class CycleUpdateView(BaseUpdateView):
     success_message = "Ciclo guardado correctamente."
     cancel_url = "chemotherapy:cycle_list"
     template_name = "chemotherapy/cycle_update.html"
-    permission_required = "accounts.chemotherapy_manage"
+
     Cycle_Cycle_Medication = inlineformset_factory(
         Cycle,
         CycleMedication,
@@ -325,4 +313,3 @@ class CycleDeleteView(BaseDeleteView):
     success_url = reverse_lazy("chemotherapy:cycle_list")
     object_not_found_error_message = "Ciclo no encontrado"
     success_message = "Ciclo eliminado correctamente."
-    permission_required = "accounts.chemotherapy_manage"

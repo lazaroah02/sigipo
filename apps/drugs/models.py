@@ -42,7 +42,6 @@ class NuclearMedicineDrug(Model):
         verbose_name = "Fármaco de medicina nuclear"
         verbose_name_plural = "Fármacos de medicina nuclear"
         ordering = ["pk"]
-        default_permissions = ()
 
 
 class Drug(Model):
@@ -67,4 +66,3 @@ class Drug(Model):
         verbose_name = "Fármaco de quimioterapia"
         verbose_name_plural = "Fármacos de quimioterapia"
         ordering = ["pk"]
-        default_permissions = ()

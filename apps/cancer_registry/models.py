@@ -442,7 +442,6 @@ class Neoplasm(Model):
         verbose_name = "Neoplasia"
         verbose_name_plural = "Neoplasias"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """A string representation of the model"""

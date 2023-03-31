@@ -34,7 +34,6 @@ class SingletonModel(models.Model):  # pragma: no cover
         super().save(*args, **kwargs)
 
     class Meta:
-        default_permissions = ()
         abstract = True
 
 

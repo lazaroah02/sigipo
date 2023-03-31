@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.base import ContextMixin
 
 from apps.accounts.factories import UserFactory
+from apps.accounts.models import User
 from apps.cancer_registry.factories import NeoplasmFactory
 from apps.core.test import SimpleTestCase, TestCase
 from apps.core.views import (
@@ -221,6 +222,6 @@ class ReportDownloadViewTestCase(SimpleTestCase):
 
 
 class PaginationFilterViewTestCase(SimpleTestCase):
-    def test_get(self) -> None:
+    def test_post(self) -> None:
         with self.assertRaises(NotImplementedError):
-            PaginationFilterView().post(None, None)
+            PaginationFilterView(model=User).post(None, None)

@@ -61,7 +61,6 @@ class OncologicStudy(TimeStampedModel):
         verbose_name = "Estudio oncológico RIA-IRMA"
         verbose_name_plural = "Estudios oncológicos RIA-IRMA"
         ordering = ["created_at"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -112,7 +111,6 @@ class HormonalStudy(TimeStampedModel):
         verbose_name = "Estudio hormonal RIA-IRMA"
         verbose_name_plural = "Estudios hormonales RIA-IRMA"
         ordering = ["created_at"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -153,7 +151,6 @@ class HormonalResult(TimeStampedModel):
         verbose_name = "Resultado hormonal RIA-IRMA"
         verbose_name_plural = "Resultados hormonales RIA-IRMA"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -194,7 +191,6 @@ class OncologicResult(TimeStampedModel):
         verbose_name = "Resultado oncología RIA-IRMA"
         verbose_name_plural = "Resultados oncología RIA-IRMA"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -221,7 +217,6 @@ class IodineDetection(TimeStampedModel):
         verbose_name = "Detección de yodo"
         verbose_name_plural = "Detección de yodo"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -245,7 +240,6 @@ class SerialIodineDetection(TimeStampedModel):
         verbose_name = "Detección de yodo seriada"
         verbose_name_plural = "Detección de yodo seriada"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""
@@ -281,7 +275,6 @@ class Gammagraphy(TimeStampedModel):
         verbose_name = "Gammagrafía"
         verbose_name_plural = "Gammagrafías"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """Returns the str representation for the model."""

@@ -10,7 +10,6 @@ class Topography(Model):
         verbose_name = "Topografía"
         verbose_name_plural = "Topografías"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """String representation of topography."""
@@ -26,7 +25,6 @@ class Morphology(Model):
         verbose_name = "Morfología"
         verbose_name_plural = "Morfologías"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         """String representation of morphology."""
@@ -40,7 +38,6 @@ class Study(Model):
         verbose_name = "Estudio"
         verbose_name_plural = "Estudios"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         return self.name
@@ -53,7 +50,6 @@ class RadioIsotope(Model):
         verbose_name = "Radio isótopo"
         verbose_name_plural = "Radio isótopo"
         ordering = ["pk"]
-        default_permissions = ()
 
     def __str__(self):
         return self.name
