@@ -9,6 +9,7 @@
 
 {% block content %}
     <div class="container">
+        <h1>{{ crud_name }}</h1>
         <div class="card card-container">
             <div class="card-header">
                 <div class="row">
@@ -55,7 +56,6 @@
             </div>
         </div>
         <hr/>
-        <h1>{{ crud_name }}</h1>
         {% if page_obj %}
             <div class="table-responsive">
                 <div class="table-wrapper">
