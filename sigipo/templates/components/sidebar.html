@@ -1,0 +1,182 @@
+{% load static %}
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-gradient-primary sidebar">
+  <a href="{% url 'dashboard:dashboard' %}" class="brand-link d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <img class="bi me-2" width="40" height="32" alt="Sigipo" src="{% static 'images/ribbon.png' %}"/>
+    <span class="fs-4">SiGiPO</span>
+  </a>
+  <hr/>
+  <ul class="sidebar-list-container nav nav-pills mb-auto">
+    <li class="nav-item mb-1">
+      <a href="{% url 'dashboard:dashboard' %}" class="nav-link text-white">
+        <i class="fa-solid fa-house"></i> Inicio
+      </a>
+    </li>
+    <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#cancer-registry" aria-expanded="false">
+        <i class="fa-solid fa-square-poll-horizontal"></i> Registro de C&aacute;ncer
+      </button>
+      <div class="collapse" id="cancer-registry">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'patient:oncologic_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'cancer_registry:neoplasm_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-ribbon"></i> Neoplasias</a>
+          </li>
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#classifiers" aria-expanded="false">
+              <i class="fa-solid fa-square-poll-horizontal"></i> Clasificaciones
+            </button>
+            <div class="collapse" id="classifiers">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{% url 'classifiers:topography_list' %}" class="nav-link link-light rounded">Topografías</a></li>
+                <li><a href="{% url 'classifiers:morphology_list' %}" class="nav-link link-light rounded">Morfologías</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#reports" aria-expanded="false"><i class="fa-solid fa-file-arrow-down"></i> Reportes
+            </button>
+            <div class="collapse" id="reports">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{% url 'cancer_registry:morphology_report' %}" class="nav-link link-light rounded">Casos por morfolog&iacute;a</a></li>
+                <li><a href="{% url 'cancer_registry:topography_report' %}" class="nav-link link-light rounded">Casos por topograf&iacute;a</a></li>
+                <li><a href="{% url 'cancer_registry:group_report' %}" class="nav-link link-light rounded">Casos por grupo de trabajo</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#geographic-location" aria-expanded="false"><i class="fa-solid fa-earth-americas"></i> Ubicaci&oacute;n geogr&aacute;fica
+            </button>
+            <div class="collapse" id="geographic-location">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{% url 'geographic_location:province_list' %}" class="nav-link link-light rounded">Provincia</a></li>
+                <li><a href="{% url 'geographic_location:municipality_list' %}" class="nav-link link-light rounded">Municipio</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#nuclear-medicine" aria-expanded="false">
+        <i class="fa-solid fa-radiation"></i> Medicina Nuclear
+      </button>
+      <div class="collapse" id="nuclear-medicine">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'patient:patient_list' %}?module-name=nuclear_medicine" class="nav-link link-light rounded"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
+          </li>
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#ria-irma" aria-expanded="false">
+              <i class="fa-solid fa-flask-vial"></i> RIA-IRMA
+            </button>
+            <div class="collapse" id="ria-irma">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><h6 class="dropdown-header">Estudios</h6></li>
+                <li><a href="{% url 'nuclear_medicine:oncologic_study_list' %}" class="nav-link link-light rounded">Estudio oncológico</a></li>
+                <li><a href="{% url 'nuclear_medicine:hormonal_study_list' %}" class="nav-link link-light rounded">Estudio hormonal</a></li>
+                <li><hr class="dropdown-divider"/></li>
+                <li><h6 class="dropdown-header">Resultados</h6></li>
+                <li><a href="{% url 'nuclear_medicine:oncologic_result_list' %}" class="nav-link link-light rounded">Resultado oncológico</a></li>
+                <li><a href="{% url 'nuclear_medicine:hormonal_result_list' %}" class="nav-link link-light rounded">Resultado hormonal</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#iodine" aria-expanded="false">
+              <i class="fa-solid fa-vial-circle-check"></i> Detecci&oacute;n de yodo
+            </button>
+            <div class="collapse" id="iodine">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{% url 'nuclear_medicine:serial_iodine_detection_list' %}" class="nav-link link-light rounded">Seriada</a></li>
+                <li><a href="{% url 'nuclear_medicine:iodine_detection_list' %}" class="nav-link link-light rounded">No seriada</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'nuclear_medicine:gammagraphy_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-circle-radiation"></i> Gammagraf&iacute;a</a>
+          </li>
+
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#parameters" aria-expanded="false">
+              <i class="fa-solid fa-square-poll-horizontal"></i> Par&aacute;metros
+            </button>
+            <div class="collapse" id="parameters">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{% url 'classifiers:study_list' %}" class="nav-link link-light rounded">Estudios</a></li>
+                <li><a href="{% url 'classifiers:radioisotope_list' %}" class="nav-link link-light rounded">Radio isótopos</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'drugs:nuclearmedicinedrug_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-tablets"></i> F&aacute;rmaco</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#chemotherapy" aria-expanded="false">
+        <i class="fa-solid fa-biohazard"></i> Quimioterapia
+      </button>
+      <div class="collapse" id="chemotherapy">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'patient:oncologic_list' %}?module-name=chemotherapy" class="nav-link link-light rounded"><i class="fa-solid fa-hospital-user"></i> Paciente</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'chemotherapy:scheme_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-folder"></i> Esquema</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'chemotherapy:protocol_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-align-justify"></i> Protocolo</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'chemotherapy:medication_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-syringe"></i> Medicaci&oacute;n</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'chemotherapy:cycle_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-rotate"></i> Ciclo</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'drugs:drug_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-capsules"></i> F&aacute;rmaco</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#hospital" aria-expanded="false">
+        <i class="fa-solid fa-hospital"></i> Hospital
+      </button>
+      <div class="collapse" id="hospital">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'employee:group_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-people-group"></i> Grupos de trabajo</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'employee:doctor_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-user-doctor"></i> Doctores</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <div class="account-container">
+    <hr/>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user me-2"></i>
+        <strong class="account">{{ request.user.username }}</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="{% url 'change_password' %}"><i class="fa-solid fa-unlock-keyhole"></i> Cambiar contrase&ntilde;a</a></li>
+        <li><hr class="dropdown-divider"/></li>
+        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

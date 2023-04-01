@@ -5,7 +5,7 @@ $(document).ready(function () {
   link = urlParam.has("module-name")
     ? link + `?module-name=${urlParam.get("module-name")}`
     : link;
-  $(`a[href="${link}"]`).addClass("active-link");
+  $(`a[href="${link}"]`).not(".brand-link").addClass("active-link");
   $(`a[href="${link}"]`).parents("div.collapse").addClass("show");
   $(`a[href="${link}"]`)
     .parents("div.collapse")
