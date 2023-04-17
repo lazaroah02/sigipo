@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14.0
+    volumes:
+      - ./_data/postgres/:/var/lib/postgresql/data
+    env_file:
+      - .env.prod
+    ports:
+      - 5432:5432
+  web:
+    container_name: sigipo
+    build: .
+    volumes:
+        - .:/code
+    expose:
+      - 8000
+    depends_on:
+      - db
+    restart: always
