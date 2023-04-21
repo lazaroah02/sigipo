@@ -5,34 +5,35 @@ from django_select2.forms import ModelSelect2Widget
 from apps.cancer_registry.models import Neoplasm
 from apps.classifiers.models import Morphology, Topography
 from apps.employee.models import Doctor, Group
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class NeoplasmFilter(FilterSet):
     """Filters to search for patients."""
 
     patient__identity_card = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -52,7 +53,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Sitio primario",
@@ -68,7 +69,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Tipo histológico",
@@ -84,7 +85,7 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         required=False,
@@ -101,9 +102,9 @@ class NeoplasmFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "personal_record_number__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"personal_record_number__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Médico que reporta",

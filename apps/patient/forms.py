@@ -16,6 +16,7 @@ from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ModelForm
 from apps.geographic_location.models import Municipality
 from apps.patient.models import Patient, PatientRace, SexChoices
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class BasePatientForm(ModelForm):
@@ -111,7 +112,10 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
-            search_fields=["name__trigram_similar", "province__name__trigram_similar"],
+            search_fields=[
+                f"name__{FIELD_SEARCH_LOOKUP}",
+                f"province__name__{FIELD_SEARCH_LOOKUP}",
+            ],
         ),
     )
     born_municipality = ModelChoiceField(
@@ -125,7 +129,10 @@ class BasePatientForm(ModelForm):
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
             },
-            search_fields=["name__trigram_similar", "province__name__trigram_similar"],
+            search_fields=[
+                f"name__{FIELD_SEARCH_LOOKUP}",
+                f"province__name__{FIELD_SEARCH_LOOKUP}",
+            ],
         ),
     )
 

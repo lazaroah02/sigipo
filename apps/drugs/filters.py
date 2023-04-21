@@ -2,11 +2,12 @@ from django.forms import Select, TextInput
 from django_filters import CharFilter, ChoiceFilter, FilterSet
 
 from apps.drugs.models import Drug, DrugTypeChoices, NuclearMedicineDrug
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class NuclearMedicineDrugFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -21,7 +22,7 @@ class NuclearMedicineDrugFilter(FilterSet):
 
 class DrugFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

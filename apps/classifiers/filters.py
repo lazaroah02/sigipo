@@ -2,13 +2,14 @@ from django.forms import TextInput
 from django_filters import CharFilter, FilterSet
 
 from apps.classifiers.models import Morphology, RadioIsotope, Study, Topography
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class MorphologyFilter(FilterSet):
     """Filters to search for morphologies."""
 
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -23,7 +24,7 @@ class TopographyFilter(FilterSet):
     """Filters to search for topographies."""
 
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -38,7 +39,7 @@ class StudyFilter(FilterSet):
     """Filters to search for studies."""
 
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -55,7 +56,7 @@ class RadioIsotopeFilter(FilterSet):
     """Filters to search for radio isotopes."""
 
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

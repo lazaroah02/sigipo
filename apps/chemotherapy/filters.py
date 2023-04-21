@@ -12,11 +12,12 @@ from apps.chemotherapy.models import (
 )
 from apps.drugs.models import Drug
 from apps.employee.models import Doctor
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class SchemeFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
@@ -31,28 +32,28 @@ class SchemeFilter(FilterSet):
 
 class ProtocolFilter(FilterSet):
     patient__identity_card = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     patient__first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     patient__last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     patient__medical_record = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -72,7 +73,7 @@ class ProtocolFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Esquema",
@@ -98,9 +99,9 @@ class ProtocolFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "personal_record_number__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"personal_record_number__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Doctor que reporta",
@@ -130,28 +131,28 @@ class ProtocolFilter(FilterSet):
 
 class MedicationFilter(FilterSet):
     protocol__patient__identity_card = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     protocol__patient__first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     protocol__patient__last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     protocol__patient__medical_record = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -176,7 +177,7 @@ class MedicationFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Fármaco",
@@ -204,28 +205,28 @@ class MedicationFilter(FilterSet):
 
 class CycleFilter(FilterSet):
     protocol__patient__identity_card = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     protocol__patient__first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     protocol__patient__last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     protocol__patient__medical_record = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -245,7 +246,7 @@ class CycleFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Esquema",
