@@ -1,5 +1,6 @@
-from django.db.models import IntegerField, Model
 from django.conf import settings
+from django.db.models import IntegerField, Model
+
 
 class GenderCountView(Model):
     """View to get the count of patients by sex and total."""
