@@ -1,5 +1,5 @@
 from django.db.models import IntegerField, Model
-
+from django.conf import settings
 
 class GenderCountView(Model):
     """View to get the count of patients by sex and total."""
@@ -10,4 +10,4 @@ class GenderCountView(Model):
 
     class Meta:
         managed = False
-        db_table = "GENDER_COUNT"
+        db_table = "GENDER_COUNT" if settings.MY_SQL_DB else "gender_count"
