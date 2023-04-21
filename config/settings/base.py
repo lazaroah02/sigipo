@@ -126,7 +126,7 @@ if MY_SQL_DB:
         }
     }
     FIELD_SEARCH_LOOKUP = "icontains"
-    
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

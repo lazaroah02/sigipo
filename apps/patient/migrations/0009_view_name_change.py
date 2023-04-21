@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             sql=[
                 """
-                CREATE OR REPLACE VIEW GENDER_COUNT AS 
+                CREATE OR REPLACE VIEW GENDER_COUNT AS
                     SELECT
                         row_number() OVER () as id, (
                             SELECT
@@ -36,11 +36,11 @@ class Migration(migrations.Migration):
                             WHERE
                                 patient_patient.is_oncologic
                         ) AS
-                TOTAL_COUNT; 
+                TOTAL_COUNT;
                 """
                 if not settings.MY_SQL_DB
                 else """
-                CREATE OR REPLACE VIEW GENDER_COUNT AS 
+                CREATE OR REPLACE VIEW GENDER_COUNT AS
                     SELECT
                         row_number() OVER () as id, (
                             SELECT
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
                             WHERE
                                 patient_patient.is_oncologic
                         ) AS
-                TOTAL_COUNT; 
+                TOTAL_COUNT;
                 """,
             ],
             reverse_sql=[
