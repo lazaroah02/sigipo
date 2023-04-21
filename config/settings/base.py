@@ -117,12 +117,11 @@ MY_SQL_DB = os.environ.get("PYTHON_ANYWHERE")
 if MY_SQL_DB:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "sigipo",
-            "USER": "root",
-            "PASSWORD": "123",
-            "HOST": "127.0.0.1",
-            "PORT": "3306",
+            "NAME": os.environ.get("MY_SQL_DB", None),
+            "USER": os.environ.get("MY_SQL_USER", None),
+            "PASSWORD": os.environ.get("MY_SQL_PASSWORD", None),
+            "HOST": os.environ.get("MY_SQL_DB_HOST", None),
+            "PORT": os.environ.get("MY_SQL_DB_PORT", None),
         }
     }
     FIELD_SEARCH_LOOKUP = "icontains"
