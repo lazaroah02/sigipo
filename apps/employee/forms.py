@@ -3,6 +3,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ModelForm
 from apps.employee.models import Doctor, Group
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class GroupForm(ModelForm):
@@ -47,7 +48,7 @@ class DoctorForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Grupo de trabajo",

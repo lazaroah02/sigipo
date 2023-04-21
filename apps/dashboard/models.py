@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models import IntegerField, Model
 
 
@@ -10,4 +11,4 @@ class GenderCountView(Model):
 
     class Meta:
         managed = False
-        db_table = "gender_count"
+        db_table = "GENDER_COUNT" if settings.MY_SQL_DB else "gender_count"

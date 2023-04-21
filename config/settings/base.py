@@ -112,6 +112,21 @@ if os.environ.get("GITHUB_WORKFLOW"):
         }
     }
 
+FIELD_SEARCH_LOOKUP = "trigram_similar"
+MY_SQL_DB = os.environ.get("PYTHON_ANYWHERE")
+if MY_SQL_DB:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "sigipo",
+            "USER": "root",
+            "PASSWORD": "123",
+            "HOST": "127.0.0.1",
+            "PORT": "3306",
+        }
+    }
+    FIELD_SEARCH_LOOKUP = "icontains"
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

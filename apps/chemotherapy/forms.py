@@ -29,6 +29,7 @@ from apps.core.forms import ModelForm
 from apps.drugs.models import Drug, UnitChoicesChoices
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class SchemeForm(ModelForm):
@@ -58,10 +59,10 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "identity_card__trigram_similar",
-                "medical_record__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"identity_card__{FIELD_SEARCH_LOOKUP}",
+                f"medical_record__{FIELD_SEARCH_LOOKUP}",
             ],
             add_url="patient:oncologic_create",
             view_url="patient:oncologic_detail",
@@ -81,7 +82,7 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Esquema",
@@ -136,9 +137,9 @@ class ProtocolForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "personal_record_number__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"personal_record_number__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Médico que reporta",
@@ -168,10 +169,10 @@ class MedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__trigram_similar",
-                "patient__last_name__trigram_similar",
-                "patient__identity_card__trigram_similar",
-                "patient__medical_record__trigram_similar",
+                f"patient__first_name__{FIELD_SEARCH_LOOKUP}",
+                f"patient__last_name__{FIELD_SEARCH_LOOKUP}",
+                f"patient__identity_card__{FIELD_SEARCH_LOOKUP}",
+                f"patient__medical_record__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Protocolo",
@@ -187,7 +188,7 @@ class MedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Fármaco",
@@ -252,10 +253,10 @@ class CycleForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "patient__first_name__trigram_similar",
-                "patient__last_name__trigram_similar",
-                "patient__identity_card__trigram_similar",
-                "patient__medical_record__trigram_similar",
+                f"patient__first_name__{FIELD_SEARCH_LOOKUP}",
+                f"patient__last_name__{FIELD_SEARCH_LOOKUP}",
+                f"patient__identity_card__{FIELD_SEARCH_LOOKUP}",
+                f"patient__medical_record__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Protocolo",
@@ -290,7 +291,7 @@ class CycleMedicationForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Fármaco",

@@ -3,11 +3,12 @@ from django_filters import CharFilter, FilterSet, ModelChoiceFilter
 from django_select2.forms import ModelSelect2Widget
 
 from apps.employee.models import Doctor, Group
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class DoctorFilter(FilterSet):
     personal_record_number = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -17,14 +18,14 @@ class DoctorFilter(FilterSet):
         label="Número de registro contiene",
     )
     first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
@@ -41,7 +42,7 @@ class DoctorFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Grupo de trabajo",
@@ -59,7 +60,7 @@ class DoctorFilter(FilterSet):
 
 class GroupFilter(FilterSet):
     name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),

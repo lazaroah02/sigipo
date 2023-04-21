@@ -35,6 +35,7 @@ from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.employee.models import Doctor, Group
 from apps.patient.models import Patient
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class NeoplasmForm(ModelForm):
@@ -51,10 +52,10 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "identity_card__trigram_similar",
-                "medical_record__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"identity_card__{FIELD_SEARCH_LOOKUP}",
+                f"medical_record__{FIELD_SEARCH_LOOKUP}",
             ],
             add_url="patient:oncologic_create",
             view_url="patient:oncologic_detail",
@@ -106,7 +107,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Sitio primario",
@@ -136,7 +137,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Tipo histológico",
@@ -247,9 +248,9 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "first_name__trigram_similar",
-                "last_name__trigram_similar",
-                "personal_record_number__trigram_similar",
+                f"first_name__{FIELD_SEARCH_LOOKUP}",
+                f"last_name__{FIELD_SEARCH_LOOKUP}",
+                f"personal_record_number__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         required=False,
@@ -266,7 +267,7 @@ class NeoplasmForm(ModelForm):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         required=False,

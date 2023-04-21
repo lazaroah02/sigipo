@@ -12,6 +12,7 @@ from django_select2.forms import ModelSelect2Widget
 
 from apps.geographic_location.models import Municipality, Province
 from apps.patient.models import Patient, PatientRace
+from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
 class CustomRangeWidget(RangeWidget):
@@ -31,28 +32,28 @@ class PatientFilter(FilterSet):
     """Filters to search for patients."""
 
     identity_card = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Carnet contiene"}
         ),
         label="Carnet contiene",
     )
     first_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Nombre contiene"}
         ),
         label="Nombre contiene",
     )
     last_name = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Apellidos contiene"}
         ),
         label="Apellidos contiene",
     )
     medical_record = CharFilter(
-        lookup_expr="trigram_similar",
+        lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
             attrs={
                 "class": "form-control",
@@ -78,8 +79,8 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
-                "province__name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
+                f"province__name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Municipio de residencia",
@@ -95,8 +96,8 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
-                "province__name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
+                f"province__name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Municipio natal",
@@ -112,7 +113,7 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Provincia de residencia",
@@ -128,7 +129,7 @@ class PatientFilter(FilterSet):
                 "data-width": "style",
             },
             search_fields=[
-                "name__trigram_similar",
+                f"name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
         label="Provincia natal",
