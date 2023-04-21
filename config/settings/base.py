@@ -117,6 +117,7 @@ MY_SQL_DB = os.environ.get("PYTHON_ANYWHERE")
 if MY_SQL_DB:
     DATABASES = {
         "default": {
+            "ENGINE": "django.db.backends.mysql",
             "NAME": os.environ.get("MY_SQL_DB", None),
             "USER": os.environ.get("MY_SQL_USER", None),
             "PASSWORD": os.environ.get("MY_SQL_PASSWORD", None),
