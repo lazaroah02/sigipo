@@ -14,7 +14,8 @@ from apps.chemotherapy.factories import (
     MedicationFactory,
     ProtocolFactory,
 )
-from apps.geographic_location.factories import MunicipalityFactory
+from apps.death_certificate.factories import DeathCertificateFactory
+from apps.geographic_location.factories import LocationFactory, MunicipalityFactory
 from apps.nuclear_medicine.factories import (
     GammagraphyFactory,
     HormonalResultFactory,
@@ -60,14 +61,16 @@ class Command(BaseCommand):
             MedicationFactory.create(drug=drug, protocol=protocol)
             cycle = CycleFactory.create(protocol=protocol)
             CycleMedicationFactory.create(cycle=cycle, drug=drug)
-            oncologicstudy = OncologicStudyFactory.create(patient=patient)
-            hormonalstudy = HormonalStudyFactory.create(patient=patient)
-            OncologicResultFactory.create(oncologic_study=oncologicstudy)
-            HormonalResultFactory.create(hormonal_study=hormonalstudy)
+            oncologic_study = OncologicStudyFactory.create(patient=patient)
+            hormonal_study = HormonalStudyFactory.create(patient=patient)
+            OncologicResultFactory.create(oncologic_study=oncologic_study)
+            HormonalResultFactory.create(hormonal_study=hormonal_study)
             IodineDetectionFactory.create(patient=patient)
             SerialIodineDetectionFactory.create(patient=patient)
             GammagraphyFactory.create(
                 patient=patient,
                 requested_study=[study],
             )
+            location = LocationFactory.create(municipality=municipality)
+            DeathCertificateFactory.create(patient=patient, death_location=location)
         self.stdout.write("Created a samples of data.")

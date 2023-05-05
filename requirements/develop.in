@@ -19,3 +19,4 @@ pip-compile-multi
 pytest-env
 black
 flake8
+pytz

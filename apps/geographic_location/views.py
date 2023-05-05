@@ -6,8 +6,8 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-from apps.geographic_location.forms import MunicipalityForm, ProvinceForm
-from apps.geographic_location.models import Municipality, Province
+from apps.geographic_location.forms import LocationForm, MunicipalityForm, ProvinceForm
+from apps.geographic_location.models import Location, Municipality, Province
 
 
 # * Province Views
@@ -90,3 +90,44 @@ class MunicipalityDeleteView(BaseDeleteView):
     success_message = "%(name)s eliminada satisfactoriamente."
     cancel_url = "geographic_location:municipality_list"
     object_not_found_error_message = "Municipio no encontrada"
+
+
+# * Location View
+class LocationCreateView(BaseCreateView):
+    """View to handle Location creation."""
+
+    model = Location
+    form_class = LocationForm
+    success_url = reverse_lazy("geographic_location:location_list")
+    success_message = "%(name)s guardado correctamente."
+    cancel_url = "geographic_location:location_list"
+
+
+class LocationDetailView(BaseDetailView):
+    """View to handle Location details."""
+
+    model = Location
+    form_class = LocationForm
+    cancel_url = "geographic_location:location_list"
+    object_not_found_error_message = "Localidad no encontrada"
+
+
+class LocationUpdateView(BaseUpdateView):
+    """View to handle Location edition."""
+
+    model = Location
+    form_class = LocationForm
+    success_url = reverse_lazy("geographic_location:location_list")
+    success_message = "%(name)s guardado correctamente."
+    cancel_url = "geographic_location:location_list"
+    object_not_found_error_message = "Localidad no encontrada no encontrada"
+
+
+class LocationDeleteView(BaseDeleteView):
+    """View to handle Location delete."""
+
+    model = Location
+    success_url = reverse_lazy("geographic_location:location_list")
+    success_message = "%(name)s eliminada satisfactoriamente."
+    cancel_url = "geographic_location:location_list"
+    object_not_found_error_message = "Localidad no encontrada no encontrada"

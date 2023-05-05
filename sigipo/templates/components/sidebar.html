@@ -53,8 +53,12 @@
               <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
                 <li><a href="{% url 'geographic_location:province_list' %}" class="nav-link link-light rounded">Provincia</a></li>
                 <li><a href="{% url 'geographic_location:municipality_list' %}" class="nav-link link-light rounded">Municipio</a></li>
+                <li><a href="{% url 'geographic_location:location_list' %}" class="nav-link link-light rounded">Localidad</a></li>
               </ul>
             </div>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'death_certificate:death_certificate_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-book-skull"></i> Certificado de Defunci&oacute;n</a>
           </li>
         </ul>
       </div>

@@ -40,3 +40,28 @@ class Municipality(Model):
     def __str__(self):
         """Returns the name of the municipality."""
         return f"{self.name} - {self.province.name}"
+
+
+class LocationQuerysetManager(Manager):
+    """Manager to handle Location."""
+
+    def get_queryset(self):
+        """Fetch related Municipalities."""
+        return super().get_queryset().select_related("municipality__province")
+
+
+class Location(Model):
+    """Model representation of a municipality."""
+
+    name = CharField(verbose_name="Nombre", max_length=128)
+    municipality = ForeignKey(Municipality, verbose_name="Municipio", on_delete=CASCADE)
+    objects = LocationQuerysetManager()
+
+    class Meta:
+        verbose_name = "Loacalidad"
+        verbose_name_plural = "Loacalidades"
+        ordering = ["pk"]
+
+    def __str__(self):
+        """Returns the name of the Loacation."""
+        return f"{self.name} - {self.municipality.name} - {self.municipality.province.name}"

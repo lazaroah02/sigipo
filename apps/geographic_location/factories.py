@@ -2,7 +2,7 @@ from factory import SubFactory
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyChoice, FuzzyText
 
-from apps.geographic_location.models import Municipality, Province
+from apps.geographic_location.models import Location, Municipality, Province
 
 
 class ProvinceFactory(DjangoModelFactory):
@@ -40,3 +40,13 @@ class MunicipalityFactory(DjangoModelFactory):
 
     province = SubFactory(ProvinceFactory)
     name = FuzzyText(prefix="Municipio-", length=20)
+
+
+class LocationFactory(DjangoModelFactory):
+    """Factory to handle Location creation."""
+
+    class Meta:
+        model = Location
+
+    municipality = SubFactory(MunicipalityFactory)
+    name = FuzzyText(prefix="Location-", length=20)

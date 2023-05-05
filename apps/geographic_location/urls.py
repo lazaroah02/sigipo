@@ -1,9 +1,17 @@
 from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
-from apps.geographic_location.filters import MunicipalityFilter, ProvinceFilter
-from apps.geographic_location.models import Municipality, Province
+from apps.geographic_location.filters import (
+    LocationFilter,
+    MunicipalityFilter,
+    ProvinceFilter,
+)
+from apps.geographic_location.models import Location, Municipality, Province
 from apps.geographic_location.views import (
+    LocationCreateView,
+    LocationDeleteView,
+    LocationDetailView,
+    LocationUpdateView,
     MunicipalityCreateView,
     MunicipalityDeleteView,
     MunicipalityDetailView,
@@ -42,4 +50,17 @@ urlpatterns = [
     getUrl(MunicipalityDetailView),
     getUrl(MunicipalityUpdateView),
     getUrl(MunicipalityDeleteView),
+    # * Location URLs
+    path(
+        "location/list/",
+        PaginationFilterView.as_view(
+            model=Location,
+            filterset_class=LocationFilter,
+        ),
+        name="location_list",
+    ),
+    getUrl(LocationCreateView),
+    getUrl(LocationDetailView),
+    getUrl(LocationUpdateView),
+    getUrl(LocationDeleteView),
 ]
