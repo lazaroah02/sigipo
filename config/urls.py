@@ -26,6 +26,7 @@ urlpatterns = [
     path("employee/", include("apps.employee.urls")),
     path("chemotherapy/", include("apps.chemotherapy.urls")),
     path("death_certificate/", include("apps.death_certificate.urls")),
+    path("pathologic_anathomy/", include("apps.pathologic_anathomy.urls")),
     # * Close Popup
     path("close_popup/", close_popup_view, name="close_popup"),
     # * django-select2-urls

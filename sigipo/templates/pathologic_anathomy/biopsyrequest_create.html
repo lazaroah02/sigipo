@@ -1,0 +1,9 @@
+{% extends "base_crud/base_create.html" %}
+
+{% load static i18n l10n form_customization %}
+
+{% block endloads %}
+{{ block.super }}
+<input type="hidden" id="id_fetch_url" value="{% url 'patient:check_patient_created' None %}"/>
+<script src="{% static 'js/internal/check-patient-created.js' %}"></script>
+{% endblock endloads %}

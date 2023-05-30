@@ -154,6 +154,40 @@
     </li>
 
     <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#pathologic-anathomy" aria-expanded="false">
+        <i class="fa-solid fa-bacteria"></i> Anatom&iacute;a Patol&oacute;gica
+      </button>
+      <div class="collapse" id="pathologic-anathomy">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#biopsy-request" aria-expanded="false">
+              <i class="fa-solid fa-flask-vial"></i> Solicitudes de Biopsias
+            </button>
+            <div class="collapse" id="biopsy-request">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><h6 class="dropdown-header">Solicitudes</h6></li>
+                <li><a href="{% url 'pathologic_anathomy:biopsyrequest_list' %}" class="nav-link link-light rounded">Solicitud de Biopsia</a></li>
+                <li><a href="#" class="nav-link link-light rounded">Resultado de las Biopsias</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item mb-1">
+            <button class="sub-menu btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#diagnostics" aria-expanded="false">
+              <i class="fa-solid fa-vial-circle-check"></i> Para Uso de Anatom&iacute;a Patol&oacute;gica
+            </button>
+            <div class="collapse" id="diagnostics">
+              <ul class="sub-menu btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="nav-link link-light rounded">Nuevas muestras</a></li>
+                <li><a href="#" class="nav-link link-light rounded">Muestras analizadas</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item mb-1">
       <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#hospital" aria-expanded="false">
         <i class="fa-solid fa-hospital"></i> Hospital
       </button>
