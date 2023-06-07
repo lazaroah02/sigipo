@@ -1,21 +1,17 @@
 from django.forms import TextInput
-from django_filters import (
-    CharFilter,
-    FilterSet,
-    ModelChoiceFilter,
-)
+from django_filters import CharFilter, FilterSet, ModelChoiceFilter
 from django_select2.forms import ModelSelect2Widget
 
 from apps.employee.models import Doctor
 from apps.pathologic_anathomy.models import BiopsyRequest
 
+
 class BiopsyRequestFilter(FilterSet):
     """Filters to search for Biopsy_Orders."""
+
     biopsy_id = CharFilter(
         lookup_expr="icontains",
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Biopsia_ID"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Biopsia_ID"}),
         label="Biopsia ID",
     )
 
@@ -52,9 +48,7 @@ class BiopsyRequestFilter(FilterSet):
     )
     hospital = CharFilter(
         lookup_expr="icontains",
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Hospital"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Hospital"}),
         label="Hospital",
     )
     health_area = CharFilter(
@@ -118,5 +112,3 @@ class BiopsyRequestFilter(FilterSet):
             "patient__last_name",
             "patient__medical_record",
         ]
-
-    

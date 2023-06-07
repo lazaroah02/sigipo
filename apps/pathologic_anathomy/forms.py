@@ -2,30 +2,26 @@ from django.forms import (
     CharField,
     ChoiceField,
     DateField,
-    DateInput,
-    ModelChoiceField,
-    Select,
-    TextInput,
     IntegerField,
+    ModelChoiceField,
+    TextInput,
 )
 from django.forms.widgets import DateInput, NumberInput, Select
 from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
-from apps.patient.models import Patient, SexChoices
 from apps.employee.models import Doctor
-
 from apps.pathologic_anathomy.models import (
     BiopsyRequest,
-    PatientRaceChoice,
     BiopsyTypeChoice,
     HospitalChoice,
+    PatientRaceChoice,
 )
+from apps.patient.models import Patient, SexChoices
 
 
 class BiopsyRequestForm(ModelForm):
-    
     hospital = EmptyChoiceField(
         empty_label="Seleccionar Hospital",
         choices=HospitalChoice.choices,
@@ -58,11 +54,13 @@ class BiopsyRequestForm(ModelForm):
         label="Area de Salud",
     )
     especiality = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Especialidad"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Especialidad"}
+        ),
         required=False,
         label="Especialidad",
     )
-    
+
     patient = ModelChoiceField(
         queryset=Patient.objects.all(),
         widget=ModelSelect2Widget(
@@ -106,7 +104,9 @@ class BiopsyRequestForm(ModelForm):
         label="Raza",
     )
     address = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Direccion particular"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Direccion particular"}
+        ),
         required=False,
         label="Direccion particular",
     )
@@ -118,17 +118,23 @@ class BiopsyRequestForm(ModelForm):
         required=False,
     )
     sample_biopsy = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Tipo de muestra"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Tipo de muestra"}
+        ),
         required=False,
         label="Tipo de muestra",
     )
     clinic_data = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Datos Clinicos"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Datos Clinicos"}
+        ),
         required=False,
         label="Datos Clinicos",
     )
     clinic_diagnostic = CharField(
-        widget=TextInput(attrs={"class": "form-control", "placeholder": "Diagnostico Clinico"}),
+        widget=TextInput(
+            attrs={"class": "form-control", "placeholder": "Diagnostico Clinico"}
+        ),
         required=False,
         label="Diagnostico Clinico",
     )
@@ -151,10 +157,8 @@ class BiopsyRequestForm(ModelForm):
         label="Médico que reporta",
         required=False,
     )
-    
 
     field_order = [
-        
         "hospital",
         "sample_date",
         "health_area",
@@ -171,11 +175,22 @@ class BiopsyRequestForm(ModelForm):
         "medic_that_report",
     ]
 
-
     class Meta:
-            model = BiopsyRequest
-            fields = ['hospital','sample_date','health_area','especiality','patient','age','sex','race','address','biopsy_type','sample_biopsy','clinic_data','clinic_diagnostic','medic_that_report']
-            default_permissions = ()
-    
-    
-
+        model = BiopsyRequest
+        fields = [
+            "hospital",
+            "sample_date",
+            "health_area",
+            "especiality",
+            "patient",
+            "age",
+            "sex",
+            "race",
+            "address",
+            "biopsy_type",
+            "sample_biopsy",
+            "clinic_data",
+            "clinic_diagnostic",
+            "medic_that_report",
+        ]
+        default_permissions = ()
