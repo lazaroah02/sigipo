@@ -9,6 +9,7 @@ from django.db.models import (
     Model,
     OneToOneField,
     TextField,
+    Manager,
 )
 
 from apps.geographic_location.models import Location
@@ -116,6 +117,12 @@ class ViolentDeathCausesChoices(IntegerChoices):
     OTHER = 4, "Otro"
     UNKNOWN = 5, "Por Investigar"
 
+class DeathCertificateQuerySetManager(Manager):
+        """Manager to handle Prescription."""
+
+        def get_queryset(self):
+            """Fetch the related Prescription."""
+            return super().get_queryset().select_related("death_location")
 
 class DeathCertificate(Model):
     """Model representation of a death_certificate."""
@@ -218,6 +225,8 @@ class DeathCertificate(Model):
         null=True,
         on_delete=CASCADE,
     )
+
+    objects = DeathCertificateQuerySetManager()
 
     class Meta:
         verbose_name = "Certificado de Defunción"

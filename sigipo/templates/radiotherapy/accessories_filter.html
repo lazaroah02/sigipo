@@ -2,16 +2,16 @@
 {% load column_sort %}
 {% block crud_columns %}
     {% create_header_column 'name' 'Nombre' %}
-    {% create_header_column 'municipality' 'Municipio' %}
-    {% create_header_column 'municpality.province' 'Provincia' %}
+    {% create_header_column 'type' 'Tipo' %}
+    {% create_header_column 'id' 'ID' %}
 {% endblock crud_columns %}
 
 {% block table_body %}
     {% for obj in page_obj %}
         <tr>
             <td>{{ obj.name }}</td>
-            <td>{{ obj.municipality }}</td>
-            <td>{{ obj.municipality.province }}</td>
+            <td>{{ obj.type }}</td>
+            <td>{{ obj.eid }}</td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>

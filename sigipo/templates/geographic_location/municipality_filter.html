@@ -9,7 +9,6 @@
     {% for obj in page_obj %}
         <tr>
             <td>{{ obj.name }}</td>
-            <td>{{ obj.municipality }}</td>
             <td>{{ obj.province }}</td>
             <td>
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>

@@ -14,7 +14,7 @@ class Province(Model):
 
     def __str__(self):
         """Returns the name of the province."""
-        return self.name
+        return f"{self.name}"
 
 
 class MunicipalityQuerysetManager(Manager):
@@ -47,7 +47,7 @@ class LocationQuerysetManager(Manager):
 
     def get_queryset(self):
         """Fetch related Municipalities."""
-        return super().get_queryset().select_related("municipality__province")
+        return super().get_queryset().select_related("municipality","municipality__province")
 
 
 class Location(Model):

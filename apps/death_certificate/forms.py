@@ -246,8 +246,8 @@ class DeathCertificateForm(ModelForm):
             },
             search_fields=[
                 f"name__{FIELD_SEARCH_LOOKUP}",
-                f"province__name__{FIELD_SEARCH_LOOKUP}",
                 f"municipality__name__{FIELD_SEARCH_LOOKUP}",
+                f"municipality__province__name__{FIELD_SEARCH_LOOKUP}",
             ],
         ),
     )

@@ -168,6 +168,41 @@
         </ul>
       </div>
     </li>
+
+    <li class="nav-item mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#radiotherapy" aria-expanded="false">
+        <i class="fa-solid fa-hospital"></i> Radioterap&iacute;a
+      </button>
+      <div class="collapse" id="radiotherapy">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:DosimetryPlan_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-people-group"></i> Plan de Dosimetr&iacute;a</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:Energy_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-user-doctor"></i> Energ&iacute;a</a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:Equipment_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-people-group"></i> Equipos </a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:Accessories_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-user-doctor"></i> Accesorios </a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:RiskOrgans_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-user-doctor"></i> &Oacute;rganos de Riesgo </a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:Prescription_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-people-group"></i> Prescripci&oacute;n </a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:MedicalTurn_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-user-doctor"></i> Turno M&eacute;dico </a>
+          </li>
+          <li class="sub-menu nav-item mb-1">
+            <a href="{% url 'radiotherapy:TACStudy_list' %}" class="nav-link link-light rounded"><i class="fa-solid fa-people-group"></i> Estudio TAC </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
   </ul>
   <div class="account-container">
     <hr/>
