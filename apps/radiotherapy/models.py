@@ -40,7 +40,7 @@ class DosimetryPlan(Model):
 
     modality = CharField(verbose_name="Modalidad",max_length=256)
     radiation_therapist_in_charge = CharField(verbose_name="Radioterapeuta a cargo",max_length=256)
-    team = CharField(verbose_name="Equipo")
+    team = CharField(verbose_name="Equipo", max_length=256)
     doctor_asigned = ForeignKey(Doctor, on_delete=CASCADE)
     patient = ForeignKey(Patient, on_delete=CASCADE)
     plan = TextField(verbose_name="Etiqueta del Plan")
@@ -72,7 +72,7 @@ class ModalityChoices(IntegerChoices):
 
 class Energy(Model):
 
-    energy = CharField(verbose_name="Energía")
+    energy = CharField(verbose_name="Energía", max_length=256)
     enable = BooleanField(verbose_name="Habilitado")
 
     class Meta:
@@ -93,7 +93,7 @@ class EquipmentQuerySetManager(Manager):
 
 class Equipment(Model):
 
-    name = CharField(verbose_name="Nombre del equipo")
+    name = CharField(verbose_name="Nombre del equipo", max_length=256)
     modality = IntegerField(
         verbose_name="Modalidad",
         choices=ModalityChoices.choices,
@@ -124,7 +124,7 @@ class Accessories(Model):
 
     name = CharField(verbose_name="Nombre",max_length=256)
     type = CharField(verbose_name="Tipo",max_length=256)
-    eid = CharField(verbose_name="ID")
+    eid = CharField(verbose_name="ID", max_length=256)
     enable_equipment = ForeignKey(Equipment, null=True, blank=True, on_delete=SET_NULL)
     objects = AccesoriesQuerySetManager()
 
@@ -144,7 +144,7 @@ class OAR_TV_TypeChoices(IntegerChoices):
 
 class RiskOrgans(Model):
 
-    name = CharField(verbose_name="Nombre del Órgano")
+    name = CharField(verbose_name="Nombre del Órgano", max_length=256)
     type = IntegerField(
         verbose_name="Tipo de Órganos",
         choices=OAR_TV_TypeChoices.choices,
@@ -175,7 +175,7 @@ class PrescriptionQuerySetManager(Manager):
 
 class Prescription(Model):
 
-    treatment_serie = CharField(verbose_name="Serie de Tratamiento")
+    treatment_serie = CharField(verbose_name="Serie de Tratamiento", max_length=256)
     modality = IntegerField(
         verbose_name="Modalidad",
         choices=ModalityChoices.choices,
@@ -185,8 +185,8 @@ class Prescription(Model):
     equipo = ForeignKey(Equipment, null=True, blank=True, on_delete=SET_NULL)
     irradiate_other_locations = BooleanField(default=False)
     reirradiated_patient = BooleanField(default=False)
-    status = CharField(verbose_name="Estado") ##########################
-    location = CharField(verbose_name="Localizacion")#####Lista
+    status = CharField(verbose_name="Estado", max_length=256) ##########################
+    location = CharField(verbose_name="Localizacion", max_length=256)#####Lista
     fractial_dosis = FloatField(verbose_name="Dosis por Fracción")
     total_dosis = FloatField(verbose_name="Dosis Total")
     session_number = IntegerField(verbose_name="Número de aplicaciones")
@@ -223,10 +223,10 @@ class MedicalTurn(TimeStampedModel):
     list_number = AutoField(primary_key=True)
     objects = MedicalTurnQuerysetManager()
     cid = IntegerField(verbose_name="CID")
-    id = CharField(verbose_name="ID")
-    address = CharField(verbose_name="Dirección", null=True, blank=True)
-    location = CharField(verbose_name="Localización", null=True, blank=True)
-    stage = CharField(verbose_name="Etapa", null=True, blank=True)
+    id = CharField(verbose_name="ID", max_length=256)
+    address = CharField(verbose_name="Dirección", null=True, blank=True, max_length=256)
+    location = CharField(verbose_name="Localización", null=True, blank=True ,max_length=256)
+    stage = CharField(verbose_name="Etapa", null=True, blank=True, max_length=256)
     doctor = ForeignKey(Doctor, on_delete=CASCADE, verbose_name="Doctor", null=True, blank=True)
     waiting_list = BooleanField(default=False, verbose_name="Añadir a la lista de espera", null=True, blank=True)
     date_first_apointment = DateField(verbose_name="Fecha de la primera consulta", null=True, blank=True)
@@ -249,10 +249,10 @@ class MedicalTurn(TimeStampedModel):
 class TACStudy(Model):
 
     patient = ForeignKey(Patient, on_delete=CASCADE, verbose_name="Paciente")
-    location = CharField(verbose_name="Localización")
+    location = CharField(verbose_name="Localización", max_length=256)
     chunck_distance = FloatField(verbose_name="Distancia entre cortes (mm)")
-    patient_position = CharField(verbose_name="Posición del Paciente")
-    protocol = CharField(verbose_name="Protocolo utilizado")
+    patient_position = CharField(verbose_name="Posición del Paciente", max_length=256)
+    protocol = CharField(verbose_name="Protocolo utilizado", max_length=256)
     doctor = ForeignKey(Doctor, on_delete=SET_NULL, verbose_name="Doctor", null=True, blank=True)
 
     class Meta:
