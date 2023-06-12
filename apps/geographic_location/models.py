@@ -47,7 +47,11 @@ class LocationQuerysetManager(Manager):
 
     def get_queryset(self):
         """Fetch related Municipalities."""
-        return super().get_queryset().select_related("municipality","municipality__province")
+        return (
+            super()
+            .get_queryset()
+            .select_related("municipality", "municipality__province")
+        )
 
 
 class Location(Model):

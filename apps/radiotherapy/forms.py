@@ -1,49 +1,35 @@
 from django.forms import (
+    BooleanField,
     CharField,
     CheckboxInput,
-    CheckboxSelectMultiple,
-    DateField,
+    ChoiceField,
     DateTimeField,
     DateTimeInput,
     FloatField,
-    HiddenInput,
+    IntegerField,
     ModelChoiceField,
-    ModelMultipleChoiceField,
     NumberInput,
     Select,
     Textarea,
     TextInput,
-    ChoiceField,
-    IntegerField,
-    BooleanField,
-    RadioSelect,
 )
-
-from django.utils.safestring import mark_safe
-from django_select2.forms import ModelSelect2MultipleWidget
-from multiselectfield.forms.fields import MultiSelectFormField
-
 
 from apps.core.fields import RelatedModelWrapper
 from apps.core.forms import ModelForm
 from apps.employee.models import Doctor
-
-
+from apps.patient.models import Patient
 from apps.radiotherapy.models import (
+    Accessories,
+    AnatomicDataChoices,
     DosimetryPlan,
     Energy,
     Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
     MedicalTurn,
-    TACStudy,
-    AnatomicDataChoices,
     ModalityChoices,
-    OAR_TV_TypeChoices,
+    Prescription,
+    RiskOrgans,
+    TACStudy,
 )
-
-from apps.patient.models import Patient
 from config.settings.base import FIELD_SEARCH_LOOKUP
 
 
@@ -69,6 +55,7 @@ class RTBaseForm(ModelForm):
         ),
         label="Paciente",
     )
+
 
 class RTBaseDetailForm(ModelForm):
     """Base Form to handle common fields."""
@@ -107,12 +94,10 @@ class RTBaseDetailForm(ModelForm):
             "value": kwargs["instance"].created_at.date,
         }
 
-class DosimetryPlanForm(RTBaseForm):
 
+class DosimetryPlanForm(RTBaseForm):
     modality = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Modalidad"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Modalidad"}),
         label="Modalidad",
     )
 
@@ -143,7 +128,7 @@ class DosimetryPlanForm(RTBaseForm):
             search_fields=[
                 f"first_name__{FIELD_SEARCH_LOOKUP}",
                 f"last_name__{FIELD_SEARCH_LOOKUP}",
-              ],
+            ],
         ),
         label="Doctor",
     )
@@ -154,8 +139,9 @@ class DosimetryPlanForm(RTBaseForm):
         ),
         label="Etiqueta del Plan",
     )
-    
-    fractial_dosis = FloatField(widget=TextInput(
+
+    fractial_dosis = FloatField(
+        widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Dosis por Fracción"}
         ),
         label="Dosis por Fracción",
@@ -185,7 +171,7 @@ class DosimetryPlanForm(RTBaseForm):
         label="Dosis en ICRU/Isocentro",
     )
 
-    max_dosis =  FloatField(
+    max_dosis = FloatField(
         widget=NumberInput(
             attrs={"class": "form-control", "placeholder": "Dosis máxima (%)"}
         ),
@@ -197,36 +183,30 @@ class DosimetryPlanForm(RTBaseForm):
     ]
 
     class Meta:
-        
         model = DosimetryPlan
         fields = "__all__"
 
-class EnergyForm(ModelForm):
 
+class EnergyForm(ModelForm):
     energy = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Energía"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Energía"}),
         label="Energía",
     )
 
     enable = BooleanField(
-            widget=CheckboxInput(attrs={"class": "form-check-input"}),
-            required=False,
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
         label="Habilitado",
     )
 
     class Meta:
-        
         model = Energy
         fields = "__all__"
 
-class EquipmentForm(ModelForm):
 
+class EquipmentForm(ModelForm):
     name = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Nombre"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",
     )
 
@@ -254,30 +234,23 @@ class EquipmentForm(ModelForm):
     )
 
     class Meta:
-        
         model = Equipment
         fields = "__all__"
 
-class AccessoriesForm(ModelForm):
 
+class AccessoriesForm(ModelForm):
     name = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Nombre"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",
     )
-    
+
     type = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Tipo"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Tipo"}),
         label="Tipo",
     )
-        
+
     eid = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "ID"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "ID"}),
         label="ID",
     )
 
@@ -299,17 +272,13 @@ class AccessoriesForm(ModelForm):
     )
 
     class Meta:
-        
         model = Accessories
         fields = "__all__"
 
 
 class RiskOrgansForm(ModelForm):
-
     name = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Nombre"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Nombre"}),
         label="Nombre",
     )
 
@@ -326,7 +295,7 @@ class RiskOrgansForm(ModelForm):
         label="alpha/beta",
     )
 
-    dosis_limit =  FloatField(
+    dosis_limit = FloatField(
         widget=NumberInput(
             attrs={"class": "form-control", "placeholder": "Dosis máxima (%)"}
         ),
@@ -334,13 +303,11 @@ class RiskOrgansForm(ModelForm):
     )
 
     class Meta:
-        
         model = RiskOrgans
         fields = "__all__"
 
 
 class PrescriptionForm(RTBaseForm):
-
     treatment_serie = CharField(
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Serie del Tratamiento"}
@@ -355,9 +322,7 @@ class PrescriptionForm(RTBaseForm):
     )
 
     status = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Status"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Status"}),
         label="Status",
     )
 
@@ -379,12 +344,14 @@ class PrescriptionForm(RTBaseForm):
     )
 
     irradiate_other_locations = BooleanField(
-            widget=CheckboxInput(attrs={"class": "form-check-input"}), required=False,
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
         label="Otras Localizaciones irradiadas",
     )
 
     reirradiated_patient = BooleanField(
-        widget=CheckboxInput(attrs={"class": "form-check-input"}), required=False,
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
         label="Paciente Reirradiado",
     )
 
@@ -393,16 +360,16 @@ class PrescriptionForm(RTBaseForm):
             attrs={"class": "form-control", "placeholder": "Localizacion"}
         ),
         label="Localizacion",
-    )    
+    )
 
-    fractial_dosis =  FloatField(
+    fractial_dosis = FloatField(
         widget=NumberInput(
             attrs={"class": "form-control", "placeholder": "Dosis por Fracción"}
         ),
         label="Dosis por Fracción",
     )
 
-    total_dosis =  FloatField(
+    total_dosis = FloatField(
         widget=NumberInput(
             attrs={"class": "form-control", "placeholder": "Dosis Total"}
         ),
@@ -482,47 +449,37 @@ class PrescriptionForm(RTBaseForm):
     )
 
     class Meta:
-        
         model = Prescription
         fields = "__all__"
 
 
 class MedicalTurnForm(RTBaseForm):
-
     cid = IntegerField(
-        widget=NumberInput(
-            attrs={"class": "form-control", "placeholder": "CID"}
-        ),
+        widget=NumberInput(attrs={"class": "form-control", "placeholder": "CID"}),
         label="CID",
     )
 
     id = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "ID"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "ID"}),
         label="ID",
-    )   
+    )
 
     address = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Dirección"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Dirección"}),
         label="Dirección",
-    )   
+    )
 
     location = CharField(
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Localizacion"}
         ),
         label="Localizacion",
-    )   
+    )
 
     stage = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Etapa"}
-        ),
+        widget=TextInput(attrs={"class": "form-control", "placeholder": "Etapa"}),
         label="Etapa",
-    )   
+    )
 
     doctor = ModelChoiceField(
         queryset=Doctor.objects.all(),
@@ -542,7 +499,8 @@ class MedicalTurnForm(RTBaseForm):
     )
 
     waiting_list = BooleanField(
-            widget=CheckboxInput(attrs={"class": "form-check-input"}),required=False,
+        widget=CheckboxInput(attrs={"class": "form-check-input"}),
+        required=False,
         label="Añadir a la lista de espera",
     )
 
@@ -573,23 +531,24 @@ class MedicalTurnForm(RTBaseForm):
     )
 
     class Meta:
-        
         model = MedicalTurn
         fields = "__all__"
 
 
 class TACStudyForm(RTBaseForm):
-
     location = CharField(
         widget=TextInput(
             attrs={"class": "form-control", "placeholder": "Localización"}
         ),
         label="Localización",
-    )   
+    )
 
-    chunck_distance =  FloatField(
+    chunck_distance = FloatField(
         widget=NumberInput(
-            attrs={"class": "form-control", "placeholder": "Distancia entre cortes (mm)"}
+            attrs={
+                "class": "form-control",
+                "placeholder": "Distancia entre cortes (mm)",
+            }
         ),
         label="Distancia entre cortes (mm)",
     )
@@ -599,14 +558,14 @@ class TACStudyForm(RTBaseForm):
             attrs={"class": "form-control", "placeholder": "Posición del Paciente"}
         ),
         label="Posición del Paciente",
-    )   
+    )
 
     protocol = CharField(
         widget=Textarea(
             attrs={"class": "form-control", "placeholder": "Protocolo utilizado"}
         ),
         label="Protocolo utilizado",
-    )  
+    )
 
     doctor = ModelChoiceField(
         queryset=Doctor.objects.all(),
@@ -626,7 +585,5 @@ class TACStudyForm(RTBaseForm):
     )
 
     class Meta:
-        
         model = TACStudy
         fields = "__all__"
-

@@ -1,14 +1,14 @@
 from apps.core.test import TestCase
 from apps.radiotherapy.factories import (
-    DosimetryPlanFactory, 
-    EnergyFactory, 
-    EquipmentFactory, 
-    AccessoriesFactory, 
-    RiskOrgansFactory, 
-    PrescriptionFactory, 
-    MedicalTurnFactory, 
+    AccessoriesFactory,
+    DosimetryPlanFactory,
+    EnergyFactory,
+    EquipmentFactory,
+    MedicalTurnFactory,
+    PrescriptionFactory,
+    RiskOrgansFactory,
     TACStudyFactory,
-    )
+)
 
 
 class DosimetryPlanTestCase(TestCase):
@@ -19,6 +19,7 @@ class DosimetryPlanTestCase(TestCase):
     def test_DosimetryPlanFactory_str(self):
         self.assertEqual(str(self.dsplan), f"{self.dsplan.patient}")
 
+
 class EnergyTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -26,6 +27,7 @@ class EnergyTestCase(TestCase):
 
     def test_EnergyFactory_str(self):
         self.assertEqual(str(self.energy), f"{self.energy.energy}")
+
 
 class EquipmentTestCase(TestCase):
     @classmethod
@@ -35,6 +37,7 @@ class EquipmentTestCase(TestCase):
     def test_EquipmentFactory_str(self):
         self.assertEqual(str(self.equip), f"{self.equip.name}")
 
+
 class AccessoriesTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -42,6 +45,7 @@ class AccessoriesTestCase(TestCase):
 
     def test_AccessoriesFactory_str(self):
         self.assertEqual(str(self.accesory), f"{self.accesory.name}")
+
 
 class RiskOrgansTestCase(TestCase):
     @classmethod
@@ -51,6 +55,7 @@ class RiskOrgansTestCase(TestCase):
     def test_RiskOrgansFactory_str(self):
         self.assertEqual(str(self.rorg), f"{self.rorg.name}")
 
+
 class PrescriptionTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -59,6 +64,7 @@ class PrescriptionTestCase(TestCase):
     def test_PrescriptionFactory_str(self):
         self.assertEqual(str(self.prescription), f"{self.prescription.treatment_serie}")
 
+
 class MedicalTurnTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -66,6 +72,7 @@ class MedicalTurnTestCase(TestCase):
 
     def test_MedicalTurnFactory_str(self):
         self.assertEqual(str(self.mturn.patient), f"{self.mturn.patient}")
+
 
 class TACStudyTestCase(TestCase):
     @classmethod

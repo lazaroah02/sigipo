@@ -1,41 +1,8 @@
-from http import HTTPStatus
-
-from django.contrib.messages import get_messages
 from django.urls import reverse
 
 from apps.accounts.factories import UserFactory
 from apps.core.test import TestCase
-from apps.radiotherapy.factories import (
-    DosimetryPlanFactory, 
-    EnergyFactory, 
-    EquipmentFactory, 
-    AccessoriesFactory, 
-    RiskOrgansFactory, 
-    PrescriptionFactory, 
-    MedicalTurnFactory, 
-    TACStudyFactory,
-    )
-from apps.radiotherapy.forms import (
-    DosimetryPlanForm,
-    EnergyForm,
-    EquipmentForm,
-    AccessoriesForm,
-    RiskOrgansForm,
-    PrescriptionForm,
-    MedicalTurnForm,
-    TACStudyForm,
-)
-
-from apps.radiotherapy.models import (
-    DosimetryPlan,
-    Energy,
-    Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
-    MedicalTurn,
-    TACStudy,
-)
+from apps.radiotherapy.factories import DosimetryPlanFactory
 
 
 class DosimetryPlanDetailViewTestCase(TestCase):

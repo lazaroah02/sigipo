@@ -1,15 +1,16 @@
 from django.contrib.admin import ModelAdmin, register
 
 from apps.radiotherapy.models import (
+    Accessories,
     DosimetryPlan,
     Energy,
     Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
     MedicalTurn,
+    Prescription,
+    RiskOrgans,
     TACStudy,
 )
+
 
 @register(DosimetryPlan)
 class DosimetryPlanAdmin(ModelAdmin):
@@ -19,6 +20,7 @@ class DosimetryPlanAdmin(ModelAdmin):
     list_select_related = ("patient",)
     list_display_links = ("patient",)
 
+
 @register(Energy)
 class EnergyAdmin(ModelAdmin):
     """Energy Django Admin view."""
@@ -27,21 +29,24 @@ class EnergyAdmin(ModelAdmin):
     list_select_related = ("energy",)
     list_display_links = ("energy",)
 
+
 @register(Equipment)
 class EquipmentAdmin(ModelAdmin):
     """Equipment Django Admin view."""
 
     list_display = ("name",)
-    list_select_related = ("name","energy")
+    list_select_related = ("name", "energy")
     list_display_links = ("name",)
+
 
 @register(Accessories)
 class AccessoriesAdmin(ModelAdmin):
     """Accessories Django Admin view."""
 
     list_display = ("name",)
-    list_select_related = ("name","enable_equipment")
+    list_select_related = ("name", "enable_equipment")
     list_display_links = ("name",)
+
 
 @register(RiskOrgans)
 class RiskOrgansAdmin(ModelAdmin):
@@ -51,6 +56,7 @@ class RiskOrgansAdmin(ModelAdmin):
     list_select_related = ("name",)
     list_display_links = ("name",)
 
+
 @register(Prescription)
 class PrescriptionAdmin(ModelAdmin):
     """Prescription Django Admin view."""
@@ -59,6 +65,7 @@ class PrescriptionAdmin(ModelAdmin):
     list_select_related = ("patient",)
     list_display_links = ("patient",)
 
+
 @register(MedicalTurn)
 class MedicalTurnAdmin(ModelAdmin):
     """MedicalTurn Django Admin view."""
@@ -66,6 +73,7 @@ class MedicalTurnAdmin(ModelAdmin):
     list_display = ("patient",)
     list_select_related = ("patient",)
     list_display_links = ("patient",)
+
 
 @register(TACStudy)
 class TACStudyAdmin(ModelAdmin):

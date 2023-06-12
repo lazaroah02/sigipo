@@ -6,28 +6,27 @@ from apps.core.views import (
     BaseDetailView,
     BaseUpdateView,
 )
-
 from apps.radiotherapy.forms import (
+    AccessoriesForm,
     DosimetryPlanForm,
     EnergyForm,
     EquipmentForm,
-    AccessoriesForm,
-    RiskOrgansForm,
-    PrescriptionForm,
     MedicalTurnForm,
+    PrescriptionForm,
+    RiskOrgansForm,
     TACStudyForm,
 )
-
 from apps.radiotherapy.models import (
+    Accessories,
     DosimetryPlan,
     Energy,
     Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
     MedicalTurn,
+    Prescription,
+    RiskOrgans,
     TACStudy,
 )
+
 
 class DosimetryPlanCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
@@ -71,6 +70,7 @@ class DosimetryPlanDeleteView(BaseDeleteView):
     cancel_url = "radiotherapy:DosimetryPlan_list"
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
+
 
 ######################################################################
 class EnergyCreateView(BaseCreateView):
@@ -116,7 +116,9 @@ class EnergyDeleteView(BaseDeleteView):
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
 
+
 ########################################################################
+
 
 class EquipmentCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
@@ -161,7 +163,9 @@ class EquipmentDeleteView(BaseDeleteView):
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
 
+
 #################################################################################################
+
 
 class AccessoriesCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
@@ -206,6 +210,7 @@ class AccessoriesDeleteView(BaseDeleteView):
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
 
+
 class RiskOrgansCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
 
@@ -248,6 +253,7 @@ class RiskOrgansDeleteView(BaseDeleteView):
     cancel_url = "radiotherapy:RiskOrgans_list"
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
+
 
 class PrescriptionCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
@@ -292,6 +298,7 @@ class PrescriptionDeleteView(BaseDeleteView):
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
 
+
 class MedicalTurnCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""
 
@@ -334,6 +341,7 @@ class MedicalTurnDeleteView(BaseDeleteView):
     cancel_url = "radiotherapy:MedicalTurn_list"
     object_not_found_error_message = "Plan de Dosimetría no encontrado"
     permission_required = "accounts.radiotherapy_manage"
+
 
 class TACStudyCreateView(BaseCreateView):
     """View to handle Dosimetry Plan creation."""

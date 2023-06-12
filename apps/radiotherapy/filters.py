@@ -1,43 +1,22 @@
-from django.forms import (
-    CharField,
-    CheckboxSelectMultiple,
-    DateField,
-    DateTimeField,
-    DateTimeInput,
-    FloatField,
-    ModelChoiceField,
-    ModelMultipleChoiceField,
-    NumberInput,
-    Textarea,
-    TextInput,
-    ChoiceField,
-    IntegerField,
-    BooleanField,
-    Select,
-)
-
-from django_filters import CharFilter, FilterSet, NumberFilter, ChoiceFilter
+from django.forms import Select, TextInput
+from django_filters import CharFilter, ChoiceFilter, FilterSet, NumberFilter
 
 from apps.radiotherapy.models import (
+    Accessories,
     DosimetryPlan,
     Energy,
     Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
     MedicalTurn,
-    TACStudy,
-    
-    AnatomicDataChoices,
     ModalityChoices,
     OAR_TV_TypeChoices,
-
+    Prescription,
+    RiskOrgans,
+    TACStudy,
 )
-
 from config.settings.base import FIELD_SEARCH_LOOKUP
 
-class DosimetryPlanFilter(FilterSet):
 
+class DosimetryPlanFilter(FilterSet):
     patient__identity_card = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -91,8 +70,8 @@ class DosimetryPlanFilter(FilterSet):
             "modality",
         ]
 
+
 class EnergyFilter(FilterSet):
-        
     energy = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -103,14 +82,15 @@ class EnergyFilter(FilterSet):
         ),
         label="Energía",
     )
+
     class Meta:
         model = Energy
         fields = [
             "energy",
         ]
 
-class EquipmentFilter(FilterSet):
 
+class EquipmentFilter(FilterSet):
     name = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -152,8 +132,8 @@ class EquipmentFilter(FilterSet):
             "modality",
         ]
 
-class AccessoriesFilter(FilterSet):
 
+class AccessoriesFilter(FilterSet):
     name = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -195,8 +175,8 @@ class AccessoriesFilter(FilterSet):
             "id",
         ]
 
-class RiskOrgansFilter(FilterSet):
 
+class RiskOrgansFilter(FilterSet):
     name = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -248,8 +228,8 @@ class RiskOrgansFilter(FilterSet):
             "dosis_limit",
         ]
 
-class PrescriptionFilter(FilterSet):
 
+class PrescriptionFilter(FilterSet):
     patient__identity_card = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -313,8 +293,8 @@ class PrescriptionFilter(FilterSet):
             "patient__medical_record",
         ]
 
-class MedicalTurnFilter(FilterSet):
 
+class MedicalTurnFilter(FilterSet):
     patient__identity_card = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -379,8 +359,8 @@ class MedicalTurnFilter(FilterSet):
             "id",
         ]
 
-class TACStudyFilter(FilterSet):    
 
+class TACStudyFilter(FilterSet):
     patient__identity_card = CharFilter(
         lookup_expr=f"{FIELD_SEARCH_LOOKUP}",
         widget=TextInput(
@@ -420,4 +400,4 @@ class TACStudyFilter(FilterSet):
             "patient__first_name",
             "patient__last_name",
             "patient__medical_record",
-        ] 
+        ]

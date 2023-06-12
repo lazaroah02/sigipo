@@ -2,58 +2,58 @@ from django.urls import path
 
 from apps.core.views import PaginationFilterView, getUrl
 from apps.radiotherapy.filters import (
+    AccessoriesFilter,
     DosimetryPlanFilter,
     EnergyFilter,
     EquipmentFilter,
-    AccessoriesFilter,
-    RiskOrgansFilter,
-    PrescriptionFilter,
     MedicalTurnFilter,
+    PrescriptionFilter,
+    RiskOrgansFilter,
     TACStudyFilter,
 )
 from apps.radiotherapy.models import (
+    Accessories,
     DosimetryPlan,
     Energy,
     Equipment,
-    Accessories,
-    RiskOrgans,
-    Prescription,
     MedicalTurn,
+    Prescription,
+    RiskOrgans,
     TACStudy,
 )
 from apps.radiotherapy.views import (
-    DosimetryPlanCreateView,
-    DosimetryPlanDetailView,
-    DosimetryPlanUpdateView,
-    DosimetryPlanDeleteView,
-    EnergyCreateView,
-    EnergyDetailView,
-    EnergyUpdateView,
-    EnergyDeleteView,
-    EquipmentCreateView,
-    EquipmentDetailView,
-    EquipmentUpdateView,
-    EquipmentDeleteView,
     AccessoriesCreateView,
+    AccessoriesDeleteView,
     AccessoriesDetailView,
     AccessoriesUpdateView,
-    AccessoriesDeleteView,
-    RiskOrgansCreateView,
-    RiskOrgansDetailView,
-    RiskOrgansUpdateView,
-    RiskOrgansDeleteView,
-    PrescriptionCreateView,
-    PrescriptionDetailView,
-    PrescriptionUpdateView,
-    PrescriptionDeleteView,
+    DosimetryPlanCreateView,
+    DosimetryPlanDeleteView,
+    DosimetryPlanDetailView,
+    DosimetryPlanUpdateView,
+    EnergyCreateView,
+    EnergyDeleteView,
+    EnergyDetailView,
+    EnergyUpdateView,
+    EquipmentCreateView,
+    EquipmentDeleteView,
+    EquipmentDetailView,
+    EquipmentUpdateView,
     MedicalTurnCreateView,
+    MedicalTurnDeleteView,
     MedicalTurnDetailView,
     MedicalTurnUpdateView,
-    MedicalTurnDeleteView,
+    PrescriptionCreateView,
+    PrescriptionDeleteView,
+    PrescriptionDetailView,
+    PrescriptionUpdateView,
+    RiskOrgansCreateView,
+    RiskOrgansDeleteView,
+    RiskOrgansDetailView,
+    RiskOrgansUpdateView,
     TACStudyCreateView,
+    TACStudyDeleteView,
     TACStudyDetailView,
     TACStudyUpdateView,
-    TACStudyDeleteView,
 )
 
 app_name = "radiotherapy"
@@ -72,7 +72,6 @@ urlpatterns = [
     getUrl(DosimetryPlanDetailView),
     getUrl(DosimetryPlanUpdateView),
     getUrl(DosimetryPlanDeleteView),
-
     path(
         "energy/list/",
         PaginationFilterView.as_view(
@@ -86,7 +85,6 @@ urlpatterns = [
     getUrl(EnergyDetailView),
     getUrl(EnergyUpdateView),
     getUrl(EnergyDeleteView),
-
     path(
         "equipment/list/",
         PaginationFilterView.as_view(
@@ -100,7 +98,6 @@ urlpatterns = [
     getUrl(EquipmentDetailView),
     getUrl(EquipmentUpdateView),
     getUrl(EquipmentDeleteView),
-
     path(
         "accessories/list/",
         PaginationFilterView.as_view(
@@ -114,7 +111,6 @@ urlpatterns = [
     getUrl(AccessoriesDetailView),
     getUrl(AccessoriesUpdateView),
     getUrl(AccessoriesDeleteView),
-
     path(
         "riskorgans/list/",
         PaginationFilterView.as_view(
@@ -128,7 +124,6 @@ urlpatterns = [
     getUrl(RiskOrgansDetailView),
     getUrl(RiskOrgansUpdateView),
     getUrl(RiskOrgansDeleteView),
-
     path(
         "prescription/list/",
         PaginationFilterView.as_view(
@@ -142,7 +137,6 @@ urlpatterns = [
     getUrl(PrescriptionDetailView),
     getUrl(PrescriptionUpdateView),
     getUrl(PrescriptionDeleteView),
-
     path(
         "medicalTurn/list/",
         PaginationFilterView.as_view(
@@ -156,7 +150,6 @@ urlpatterns = [
     getUrl(MedicalTurnDetailView),
     getUrl(MedicalTurnUpdateView),
     getUrl(MedicalTurnDeleteView),
-
     path(
         "TACStudy/list/",
         PaginationFilterView.as_view(
@@ -170,5 +163,4 @@ urlpatterns = [
     getUrl(TACStudyDetailView),
     getUrl(TACStudyUpdateView),
     getUrl(TACStudyDeleteView),
-
-    ]
+]
