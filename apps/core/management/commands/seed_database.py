@@ -26,6 +26,7 @@ from apps.nuclear_medicine.factories import (
     SerialIodineDetectionFactory,
     StudyFactory,
 )
+from apps.pathologic_anathomy.factories import BiopsyRequestFactory
 
 NUMBER_OF_INSTANCES_TO_CREATE = 5
 
@@ -73,4 +74,5 @@ class Command(BaseCommand):
             )
             location = LocationFactory.create(municipality=municipality)
             DeathCertificateFactory.create(patient=patient, death_location=location)
+            BiopsyRequestFactory.create(patient=patient, medic_that_report=doctor)
         self.stdout.write("Created a samples of data.")
