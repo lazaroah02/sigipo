@@ -4,10 +4,11 @@ from apps.accounts.factories import UserFactory
 from apps.core.test import TestCase
 from apps.pathologic_anathomy.factories import BiopsyRequestFactory
 from apps.pathologic_anathomy.forms import BiopsyRequestForm
+from apps.pathologic_anathomy.models import BiopsyRequest
 
 
 class BiopsyRequestCreateViewTestCase(TestCase):
-    """Test case for NeoplasmCreateView."""
+    """Test case for BiopsyRequest"""
 
     @classmethod
     def setUpTestData(cls):
@@ -19,8 +20,13 @@ class BiopsyRequestCreateViewTestCase(TestCase):
         """Extra initialization."""
         self.client.force_login(self.user)
 
-    def test_get(self):
-        """Test the get method for NeoplasmCreateView."""
+    def test_list(self):
+        """Test the get method for biopsy request view."""
         response = self.client.get(reverse("pathologic_anathomy:biopsyrequest_list"))
-        self.assertIn("form", response.context)
-        self.assertTrue(isinstance(response.context["form"], BiopsyRequestForm))
+        self.assertEqual(
+            response.context["crud_name"],
+            BiopsyRequest._meta.verbose_name_plural.capitalize(),
+        )
+        self.assertIn(str(self.biopsy_request.biopsy_id), response.content.decode())
+        
+
