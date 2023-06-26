@@ -1,3 +1,4 @@
+import datetime
 from django.db.models import (
     CASCADE,
     CharField,
@@ -30,7 +31,7 @@ class HospitalChoice(IntegerChoices):
 class BiopsyTypeChoice(IntegerChoices):
     """Defines the type of biopsy"""
 
-    breast_biopsy = 1, "Biopsia de mama"
+    breast_biopsy = 1, "Biopsia de Mama"
     neck_biopsy = 2, "Biopsia de Cuello"
     digestive_biopsy = 3, "Siopsia Digestivo"
     lymphoma_biopsy = 4, "Biopsia de Linfoma"
@@ -57,7 +58,16 @@ class BiopsyOrderQuerysetManager(Manager):
 
 
 class BiopsyRequest(TimeStampedModel):
-    biopsy_id = CharField(max_length=100, verbose_name="No Biopsia", null=True)
+    biopsy_id = CharField(max_length=100, verbose_name="No Biopsia", null=True, editable=False)
+    def save(self, *args, **kwargs):
+        if not self.biopsy_id:
+            year = datetime.date.today().year
+            super().save(*args,**kwargs)
+            self.biopsy_id = f"{year}-B-{self.pk}"
+            super().save(update_fields=["biopsy_id"])
+        else:
+            super().save(*args, **kwargs)
+    
     hospital = IntegerField(
         verbose_name="Hospital", choices=HospitalChoice.choices, blank=True, null=True
     )
@@ -65,7 +75,7 @@ class BiopsyRequest(TimeStampedModel):
     health_area = CharField(
         max_length=255, verbose_name="Area de Salud", blank=True, null=True
     )
-    especiality = CharField(
+    especialty = CharField(
         max_length=255, verbose_name="Especialidad", blank=True, null=True
     )
     patient = ForeignKey(Patient, on_delete=CASCADE, verbose_name="Paciente")
@@ -93,4 +103,4 @@ class BiopsyRequest(TimeStampedModel):
         ordering = ["pk"]
 
     def __str__(self):
-        return f"{self.biopsy_id}"
+        return f"{self.biopsy_id} {self.biopsy_type}"
