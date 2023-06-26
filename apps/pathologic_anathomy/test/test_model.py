@@ -17,5 +17,5 @@ class BiopsyResquestTest(TestCase):
         year = datetime.date.today().year
         self.assertEqual(
             str(self.biopsy_request),
-            f"{year}-B-{self.biopsy_request.pk}",
+            f"{year}-B-{self.biopsy_request.pk} {self.biopsy_request.get_biopsy_type_display()}",
         )

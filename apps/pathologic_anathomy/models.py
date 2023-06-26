@@ -62,16 +62,6 @@ class BiopsyRequest(TimeStampedModel):
     biopsy_id = CharField(
         max_length=100, verbose_name="No Biopsia", null=True, editable=False
     )
-
-    def save(self, *args, **kwargs):
-        if not self.biopsy_id:
-            year = datetime.date.today().year
-            super().save(*args, **kwargs)
-            self.biopsy_id = f"{year}-B-{self.pk}"
-            super().save(update_fields=["biopsy_id"])
-        else:
-            super().save(*args, **kwargs)
-
     hospital = IntegerField(
         verbose_name="Hospital", choices=HospitalChoice.choices, blank=True, null=True
     )
@@ -107,4 +97,13 @@ class BiopsyRequest(TimeStampedModel):
         ordering = ["pk"]
 
     def __str__(self):
-        return f"{self.biopsy_id} {self.biopsy_type}"
+        return f"{self.biopsy_id} {self.get_biopsy_type_display()}"
+
+    def save(self, *args, **kwargs):
+        if not self.biopsy_id:
+            year = datetime.date.today().year
+            super().save(*args, **kwargs)
+            self.biopsy_id = f"{year}-B-{self.pk}"
+            super().save(update_fields=["biopsy_id"])
+        else:
+            super().save(*args, **kwargs)
