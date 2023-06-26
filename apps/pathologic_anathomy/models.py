@@ -11,8 +11,6 @@ from django.db.models.manager import Manager
 from apps.core.models import TimeStampedModel
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
-from apps.patient.models import PatientRace as PatientRaceChoice
-from apps.patient.models import SexChoices as PatientSexChoices
 
 # Create your models here.
 

@@ -1,9 +1,4 @@
-from django.forms import (
-    CharField,
-    DateField,
-    ModelChoiceField,
-    TextInput,
-)
+from django.forms import CharField, DateField, ModelChoiceField, TextInput
 from django.forms.widgets import DateInput, Select
 from django_select2.forms import ModelSelect2Widget
 
