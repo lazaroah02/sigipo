@@ -20,7 +20,6 @@ class BiopsyRequestFactory(DjangoModelFactory):
     class Meta:
         model = BiopsyRequest
 
-    biopsy_id = FuzzyText(length=11, chars=string.digits)
     hospital = FuzzyChoice(HospitalChoice.values)
     sample_date = FuzzyDate(dt.date(1990, 1, 1), end_date=dt.date.today())
     health_area = FuzzyText(length=4)
