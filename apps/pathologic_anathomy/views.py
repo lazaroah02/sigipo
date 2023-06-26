@@ -60,7 +60,7 @@ class BiopsyRequestDeleteView(BaseDeleteView):
 def set_biopsy_id(sender, instance, **kwargs):
     if kwargs.get("created"):  # Preguntamos si se ha creado la instancia
         # Actualizamos el objeto Biopsy_id
-        year = datetime.datetime.now()
+        year = datetime.date.today().year
         sender.objects.filter(id=instance.id).update(
             biopsy_id=f"{year.strftime('%Y')}-B-{str(instance.id)}"
         )

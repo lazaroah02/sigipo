@@ -1,12 +1,10 @@
 from django.forms import (
     CharField,
-    ChoiceField,
     DateField,
-    IntegerField,
     ModelChoiceField,
     TextInput,
 )
-from django.forms.widgets import DateInput, NumberInput, Select
+from django.forms.widgets import DateInput, Select
 from django_select2.forms import ModelSelect2Widget
 
 from apps.core.forms import ChoiceField as EmptyChoiceField
@@ -16,9 +14,8 @@ from apps.pathologic_anathomy.models import (
     BiopsyRequest,
     BiopsyTypeChoice,
     HospitalChoice,
-    PatientRaceChoice,
 )
-from apps.patient.models import Patient, SexChoices
+from apps.patient.models import Patient
 
 
 class BiopsyRequestForm(ModelForm):
@@ -81,35 +78,6 @@ class BiopsyRequestForm(ModelForm):
         label="Paciente",
         required=False,
     )
-    age = IntegerField(
-        widget=NumberInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Edad del paciente",
-            },
-        ),
-        label="Edad",
-        required=False,
-    )
-    sex = ChoiceField(
-        choices=SexChoices.choices,
-        initial=SexChoices.UNDEFINED,
-        widget=Select(attrs={"class": "form-control form-select"}),
-        label="Sexo",
-    )
-    race = ChoiceField(
-        choices=PatientRaceChoice.choices,
-        initial=PatientRaceChoice.UNDEFINED,
-        widget=Select(attrs={"class": "form-control form-select"}),
-        label="Raza",
-    )
-    address = CharField(
-        widget=TextInput(
-            attrs={"class": "form-control", "placeholder": "Direccion particular"}
-        ),
-        required=False,
-        label="Direccion particular",
-    )
     biopsy_type = EmptyChoiceField(
         empty_label="Seleccionar Tipo de Biopsia",
         choices=BiopsyTypeChoice.choices,
@@ -164,9 +132,6 @@ class BiopsyRequestForm(ModelForm):
         "health_area",
         "especiality",
         "patient",
-        "age",
-        "sex",
-        "race",
         "address",
         "biopsy_type",
         "sample_biopsy",
@@ -183,10 +148,6 @@ class BiopsyRequestForm(ModelForm):
             "health_area",
             "especiality",
             "patient",
-            "age",
-            "sex",
-            "race",
-            "address",
             "biopsy_type",
             "sample_biopsy",
             "clinic_data",

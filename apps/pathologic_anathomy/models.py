@@ -65,33 +65,19 @@ class BiopsyRequest(TimeStampedModel):
     )
     sample_date = DateField(verbose_name="Fecha de la muestra", blank=True, null=True)
     health_area = CharField(
-        max_length=250, verbose_name="Area de Salud", blank=True, null=True
+        max_length=255, verbose_name="Area de Salud", blank=True, null=True
     )
     especiality = CharField(
-        max_length=250, verbose_name="Especialidad", blank=True, null=True
+        max_length=255, verbose_name="Especialidad", blank=True, null=True
     )
     patient = ForeignKey(Patient, on_delete=CASCADE, verbose_name="Paciente")
-    age = IntegerField(verbose_name="Edad", blank=True, null=True)
-    sex = IntegerField(
-        verbose_name="Sexo",
-        choices=PatientSexChoices.choices,
-        default=PatientSexChoices.UNDEFINED,
-    )
-    race = IntegerField(
-        verbose_name="Raza",
-        choices=PatientRaceChoice.choices,
-        default=PatientRaceChoice.UNDEFINED,
-    )
-    address = CharField(
-        max_length=255, verbose_name="Direeción Particular", blank=True, null=True
-    )
     biopsy_type = IntegerField(
         verbose_name="Tipo de Biopsia",
         choices=BiopsyTypeChoice.choices,
         blank=True,
         null=True,
     )
-    sample_biopsy = CharField(max_length=250, verbose_name="Tipo de Muestra")
+    sample_biopsy = CharField(max_length=255, verbose_name="Tipo de Muestra")
     clinic_data = CharField(max_length=255, verbose_name="Datos Clinicos")
     clinic_diagnostic = CharField(max_length=255, verbose_name="Diagnostico Clinico")
     medic_that_report = ForeignKey(
