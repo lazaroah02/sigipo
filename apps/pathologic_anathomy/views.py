@@ -1,4 +1,3 @@
-
 from django.urls import reverse_lazy
 
 from apps.core.views import (
@@ -51,4 +50,3 @@ class BiopsyRequestDeleteView(BaseDeleteView):
     success_message = "Biopsia eliminada satisfactoriamente."
     cancel_url = "pathologic_anathomy:biopsyrequest_list"
     object_not_found_error_message = "Biopsia no encontrada"
-

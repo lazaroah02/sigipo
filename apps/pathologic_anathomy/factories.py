@@ -1,5 +1,4 @@
 import datetime as dt
-import string
 
 from factory import SubFactory
 from factory.django import DjangoModelFactory
