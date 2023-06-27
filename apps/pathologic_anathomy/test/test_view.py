@@ -28,6 +28,3 @@ class BiopsyRequestCreateViewTestCase(TestCase):
             BiopsyRequest._meta.verbose_name_plural.capitalize(),
         )
         self.assertIn(str(self.biopsy_request.biopsy_id), response.content.decode())
-        
-    
-
