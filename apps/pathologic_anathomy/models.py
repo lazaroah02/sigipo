@@ -25,9 +25,6 @@ class HospitalChoice(IntegerChoices):
     pediatric_h = 3, "hospital Pediatrico"
     military_h = 4, "Hosptal Militar"
 
-    def __str__(self):
-        return self.name
-
 
 class BiopsyTypeChoice(IntegerChoices):
     """Defines the type of biopsy"""
@@ -38,9 +35,6 @@ class BiopsyTypeChoice(IntegerChoices):
     lymphoma_biopsy = 4, "Biopsia de Linfoma"
     ginecologic_biopsy = 5, "Biopsia de Ginecologia"
     head_biopsy = 6, "Biopsia de Cabeza"
-
-    def __str__(self):
-        return self.name
 
 
 class BiopsyOrderQuerysetManager(Manager):

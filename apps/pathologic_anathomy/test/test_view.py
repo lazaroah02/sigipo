@@ -29,4 +29,5 @@ class BiopsyRequestCreateViewTestCase(TestCase):
         )
         self.assertIn(str(self.biopsy_request.biopsy_id), response.content.decode())
         
+    
 
