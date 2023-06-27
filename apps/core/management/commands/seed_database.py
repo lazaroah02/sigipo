@@ -37,7 +37,6 @@ from apps.radiotherapy.factories import (
     TACStudyFactory,
 )
 
-
 NUMBER_OF_INSTANCES_TO_CREATE = 5
 
 
@@ -88,8 +87,13 @@ class Command(BaseCommand):
             energy = EnergyFactory.create()
             equipment = EquipmentFactory.create(energy=energy)
             AccessoriesFactory.create(enable_equipment=equipment)
-            MedicalTurnFactory.create(patient=patient, doctor=doctor )
+            MedicalTurnFactory.create(patient=patient, doctor=doctor)
             organs_at_risk = RiskOrgansFactory.create()
-            PrescriptionFactory.create(equipo=equipment, organs_at_risk = organs_at_risk, radiotherapist_in_charge = doctor, patient = patient )
-            TACStudyFactory.create(patient=patient, doctor=doctor )
+            PrescriptionFactory.create(
+                equipo=equipment,
+                organs_at_risk=organs_at_risk,
+                radiotherapist_in_charge=doctor,
+                patient=patient,
+            )
+            TACStudyFactory.create(patient=patient, doctor=doctor)
         self.stdout.write("Created a samples of data.")
