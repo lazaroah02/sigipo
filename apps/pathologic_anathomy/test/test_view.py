@@ -3,7 +3,6 @@ from django.urls import reverse
 from apps.accounts.factories import UserFactory
 from apps.core.test import TestCase
 from apps.pathologic_anathomy.factories import BiopsyRequestFactory
-from apps.pathologic_anathomy.forms import BiopsyRequestForm
 from apps.pathologic_anathomy.models import BiopsyRequest
 
 
