@@ -132,7 +132,6 @@ class TACRequest(Model):
         verbose_name="Dosimetrista",
     )
 
-    
     def __str__(self) -> str:
         return f'{self.id_code} - {self.patient}'
 
