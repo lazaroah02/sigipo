@@ -7,6 +7,7 @@ from django.db.models import (
     ForeignKey,
     IntegerChoices,
     IntegerField,
+    BooleanField
 )
 from django.db.models.manager import Manager
 
@@ -76,6 +77,7 @@ class BiopsyRequest(TimeStampedModel):
     sample_biopsy = CharField(max_length=255, verbose_name="Tipo de Muestra")
     clinic_data = CharField(max_length=255, verbose_name="Datos Clinicos")
     clinic_diagnostic = CharField(max_length=255, verbose_name="Diagnostico Clinico")
+    verificated = BooleanField(verbose_name="Biopsia Verificada", default=False)
     medic_that_report = ForeignKey(
         Doctor,
         verbose_name="Médico que reporta",

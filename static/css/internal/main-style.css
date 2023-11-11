@@ -1,0 +1,178 @@
+.bg-gradient-primary {
+  background-color: #2d4383;
+  background-image: linear-gradient(180deg, #2d4383 10%, #273b79 100%);
+  background-size: cover;
+}
+.bg-gradient-secondary {
+  background-color: #001247;
+  background-image: linear-gradient(180deg, #17285a 10%, #0b1a48 100%);
+  background-size: cover;
+}
+.z-index-top {
+  z-index: 11;
+}
+@font-face {
+  font-family: "Arial Nova";
+  src: url("../../webfonts/ArialNova.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+h1 {
+  font-family: "Arial Nova", serif !important;
+}
+body {
+  background: var(--bs-body-bg);
+  font-family: "Arial Nova", serif !important;
+}
+.card-container {
+  margin-top: 10px;
+}
+.fc-dark-red {
+  color: darkred;
+}
+.hidden {
+  display: None;
+}
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+main .content {
+  margin-top: 0.25em;
+  margin-left: 0.25em;
+  margin-bottom: 0.25em;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.sidebar {
+  max-width: 20%;
+  width: 17%;
+}
+
+.sidebar .btn-toggle[aria-expanded="true"] {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.sidebar .btn-toggle:hover,
+.sidebar .btn-toggle:focus {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #0d6efd;
+}
+
+.sidebar .btn:hover {
+  color: #212529;
+}
+
+.sidebar .btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: transparent;
+  border: 0;
+}
+
+.sidebar .btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.sidebar .btn-toggle::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  width: 1.25em;
+  line-height: 0;
+  content: "\f054";
+  transition: transform 0.35s ease;
+  transform-origin: 0.5em 50%;
+}
+
+.sidebar .btn-toggle[aria-expanded="true"]::before {
+  content: "\f078";
+}
+
+.sidebar .sub-menu {
+  margin-left: 0.5em;
+}
+
+.sidebar .sub-menu * {
+  margin-left: 0.5em;
+}
+
+.account {
+  white-space: break-spaces;
+}
+
+.active-link {
+  background-color: #2c65e8 !important;
+}
+
+.account-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+}
+
+.sidebar-list-container {
+  overflow-y: auto;
+  width: 100%;
+}
+
+.bd-mode-toggle {
+  z-index: 1500;
+}
+
+.top-7 {
+  top: 1em;
+  right: 2em !important;
+}
+
+.highcharts-background {
+  fill: var(--bs-body-bg);
+}
+.highcharts-container text {
+  fill: var(--bs-body-color);
+}
+.highcharts-subtitle,
+.highcharts-credits,
+.highcharts-axis-title {
+  fill-opacity: 0.7;
+}
+.highcharts-grid-line {
+  stroke: var(--bs-body-color);
+  stroke-opacity: 0.2;
+}
+.highcharts-tooltip-box {
+  fill: var(--bs-body-bg);
+}
+.highcharts-column-series rect.highcharts-point {
+  stroke: var(--bs-body-bg);
+}

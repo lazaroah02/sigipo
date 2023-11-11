@@ -1,0 +1,29 @@
+<div class="mb-3">
+  {% if field.field.widget.input_type == 'checkbox' and not field.field.widget.ignore_check %}
+      <div class="form-check">
+          {{ field }}
+          <label for="{{ field.id_for_label }}" class="flexCheckDefault">{{ field.label }}</label>
+          {% if field.errors %}
+          <div id="{{ field.id_for_label }}Feedback" class="invalid-feedback">
+              Valor inválido.
+          </div>
+          {% elif form.errors %}
+              <div id="{{ field.id_for_label }}Feedback" class="valid-feedback">
+                  Valor válido.
+              </div>
+          {% endif %}
+      </div>
+  {% else %}
+      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}
+          <div id="{{ field.id_for_label }}Feedback" class="invalid-feedback">
+              Valor inválido.
+          </div>
+      {% elif form.errors %}
+          <div id="{{ field.id_for_label }}Feedback" class="valid-feedback">
+              Valor válido.
+          </div>
+      {% endif %}
+  {% endif %}
+</div>

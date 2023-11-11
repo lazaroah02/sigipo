@@ -23,6 +23,15 @@ urlpatterns = [
         ),
         name="biopsyrequest_list",
     ),
+    path(
+        "biopsy-verificated/list/",
+        PaginationFilterView.as_view(
+            model=BiopsyRequest,
+            queryset=BiopsyRequest.objects.filter(verificated = True),
+            filterset_class=BiopsyRequestFilter,
+        ),
+        name="biopsy-verificated_list",
+    ),
     getUrl(BiopsyRequestCreateView),
     getUrl(BiopsyRequestDetailView),
     getUrl(BiopsyRequestUpdateView),

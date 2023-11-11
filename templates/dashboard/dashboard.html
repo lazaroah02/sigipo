@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block scripts %}
+<script src="{% static 'js/external/highcharts.min.js' %}"></script>
+<script src="{% static 'js/external/highchart-map.min.js' %}"></script>
+<script src="{% static 'js/external/highchart-maps-exporting.min.js' %}"></script>
+{% endblock scripts %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/internal/dashboard-loading.css' %}"/>
+{% endblock styles %}
+
+{% block content %}
+<div id="id_loading" class="loading">Loading&#8230;</div>
+<div class="containner">
+  <div class="row m-auto mt-2">
+    <div class="col-sm-4">
+      <div class="card text-bg-success mb-3 text-center">
+        <div class="card-body">
+          <h1 class="card-title"><i class="fa-solid fa-person"></i> {{ male_count }}</h1>
+          <p class="card-text">Hombres Registrados</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card text-bg-danger mb-3 text-center">
+        <div class="card-body">
+          <h1 class="card-title"><i class="fa-solid fa-person-dress"></i> {{ female_count }}</h1>
+          <p class="card-text">Mujeres Registradas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card text-bg-warning mb-3 text-center">
+        <div class="card-body">
+          <h1 class="card-title"><i class="fa-solid fa-person"></i><i class="fa-solid fa-person-dress"></i> {{ total_count }}</h1>
+          <p class="card-text">Total Registrados</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-auto">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div id="map-born"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div id="map-residence"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-auto mt-2 mb-4">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div id="chart-top-10"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div id="chart-ages"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block endloads %}
+<script src="{% static 'js/internal/dashboard-map.js' %}"></script>
+<script src="{% static 'js/internal/dashboard-charts.js' %}"></script>
+{% endblock endloads %}

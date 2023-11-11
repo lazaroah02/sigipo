@@ -1,0 +1,8 @@
+<div>
+  {% for subwidget in widget.subwidgets %}
+    <div>
+      <label for="{{ subwidget.attrs.id }}">{{ subwidget.attrs.label }}</label>
+      {% include subwidget.template_name with widget=subwidget %}
+    </div>
+  {% endfor %}
+</div>

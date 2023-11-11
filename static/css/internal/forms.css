@@ -1,0 +1,16 @@
+.action-buttons {
+  float: right;
+  margin: 0 0 5px;
+}
+.related-model-container {
+  padding-left: 0px;
+}
+.related-model-view {
+  color: #03a9f4;
+  font-size: 19px;
+}
+.related-model-add {
+  color: #019e6d;
+  font-size: 19px;
+  margin: 0 5px;
+}
