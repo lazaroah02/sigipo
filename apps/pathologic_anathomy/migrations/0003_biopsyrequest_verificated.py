@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0002_remove_biopsyrequest_address_and_more'),
+        ("pathologic_anathomy", "0002_remove_biopsyrequest_address_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='biopsyrequest',
-            name='verificated',
-            field=models.BooleanField(default=False, verbose_name='Biopsia Verificada'),
+            model_name="biopsyrequest",
+            name="verificated",
+            field=models.BooleanField(default=False, verbose_name="Biopsia Verificada"),
         ),
     ]

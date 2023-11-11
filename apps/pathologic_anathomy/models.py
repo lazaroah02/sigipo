@@ -2,12 +2,12 @@ import datetime
 
 from django.db.models import (
     CASCADE,
+    BooleanField,
     CharField,
     DateField,
     ForeignKey,
     IntegerChoices,
     IntegerField,
-    BooleanField
 )
 from django.db.models.manager import Manager
 

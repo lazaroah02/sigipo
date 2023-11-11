@@ -27,7 +27,7 @@ urlpatterns = [
         "biopsy-verificated/list/",
         PaginationFilterView.as_view(
             model=BiopsyRequest,
-            queryset=BiopsyRequest.objects.filter(verificated = True),
+            queryset=BiopsyRequest.objects.filter(verificated=True),
             filterset_class=BiopsyRequestFilter,
         ),
         name="biopsy-verificated_list",
