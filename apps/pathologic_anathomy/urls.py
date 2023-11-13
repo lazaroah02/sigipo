@@ -8,6 +8,7 @@ from apps.pathologic_anathomy.views import (
     BiopsyRequestDeleteView,
     BiopsyRequestDetailView,
     BiopsyRequestUpdateView,
+    BiopsyRequestAddDiagnosticView
 )
 
 app_name = "pathologic_anathomy"
@@ -23,6 +24,12 @@ urlpatterns = [
         ),
         name="biopsyrequest_list",
     ),
+    getUrl(BiopsyRequestCreateView),
+    getUrl(BiopsyRequestDetailView),
+    getUrl(BiopsyRequestUpdateView),
+    getUrl(BiopsyRequestDeleteView),
+    path("biopsyrequest/add-diagnostic", BiopsyRequestAddDiagnosticView.as_view()),
+    
     path(
         "biopsy-verificated/list/",
         PaginationFilterView.as_view(
@@ -32,8 +39,5 @@ urlpatterns = [
         ),
         name="biopsy-verificated_list",
     ),
-    getUrl(BiopsyRequestCreateView),
-    getUrl(BiopsyRequestDetailView),
-    getUrl(BiopsyRequestUpdateView),
-    getUrl(BiopsyRequestDeleteView),
+    
 ]

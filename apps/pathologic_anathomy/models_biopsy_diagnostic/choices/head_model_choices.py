@@ -78,8 +78,8 @@ class InvasionVascularChoice(IntegerChoices):
     no_identificado = 1, "No identificado"
     presente = 2, "Presente"
     no_determinado = 3, "No puede ser determinado"
-    focal = 4, "Focal (menos de 4 vasos)"
-    extensa = 5, "Extensa (4 o más vasos)"
+    extension_focal = 4, "Extensión Focal (menos de 4 vasos)"
+    extension_extensa = 5, "Extensión Extensa (4 o más vasos)"
 
 class InvasionLinfaticaChoice(IntegerChoices):
     """Define la invasión linfática"""
@@ -112,6 +112,7 @@ NIVELES_GANGLIONARES_CHOICES = [
     ("nivel_VII", "Nivel VII (los ganglios linfáticos mediastinales superiores)"),
     ("nivel_IV_derecho", "Nivel I-V (disección lateral del cuello) Derecho"),
     ("nivel_IV_izquierdo", "Nivel I-V (disección lateral del cuello) Izquierda"),
+    ("otros", "Otros"),
 ]
     
 

@@ -14,7 +14,12 @@ class Head(models.Model):
         choices=head_model_choices.TipoMuestraTiroidesChoice.choices,
         verbose_name= "Tipo de muestra:"
         )
-    tipo_extension_parcial = models.CharField(max_length=500, blank=True, null = True)
+    tipo_extension_parcial = models.CharField(
+        max_length=5000, 
+        blank=True, 
+        null = True,
+        verbose_name="Tipo de extensión parcial"
+        )
     
     #focalidad del tumor
     focalidad_tumor = models.IntegerField(
@@ -24,11 +29,15 @@ class Head(models.Model):
     
     #sitio o localizacion del tumor
     localizacion_tumor = models.CharField(
-        choices = head_model_choices.SITIO_TUMOR_CHOICES,
         verbose_name="El sitio (o localización) del tumor (seleccione todo lo que aplique):",
         max_length=100
         )
-    localizacion_tumor_otro = models.CharField(max_length=500, blank=True, null=True)
+    localizacion_tumor_otro = models.CharField(
+        max_length=5000, 
+        blank=True, 
+        null=True,
+        verbose_name="Otra localización del tumor (especificar)"
+        )
     
     #tumor size
     max_tumor_size = models.FloatField(
@@ -40,7 +49,7 @@ class Head(models.Model):
     )
     tumor_size_imposible_to_determinate = models.CharField(
         verbose_name="Dimensiones imposibles de determinar. Explique porque:",
-        max_length=1000, 
+        max_length=5000, 
         blank=True, null=True
         )
     
@@ -58,7 +67,7 @@ class Head(models.Model):
         verbose_name="Carcinomas Foliculares",
     )
     otro_tipo_carcinoma_folicular = models.CharField(
-        max_length=1000,
+        max_length=5000,
         verbose_name="Otro tipo del histológico que no figura en la lista (especifique): ",
         blank=True,
         null=True
@@ -75,7 +84,7 @@ class Head(models.Model):
         null=True
     )
     sitios_invasion = models.CharField(
-        max_length=1000, 
+        max_length=5000, 
         blank = True, 
         null=True,
         verbose_name="Sitio(s) de Invasión:"
@@ -128,26 +137,42 @@ class Head(models.Model):
     
     #Examen del ganglio linfatico(El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen))
     num_ganglios_linfaticos = models.IntegerField(
-        verbose_name="El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen)"
+        verbose_name="Número de Ganglios linfáticos involucrados",
+        blank = True,
+        null = True
     )
     num_ganglios_no_determinados = models.CharField(
-        max_length=1000,
+        max_length=5000,
         verbose_name = "El número de ganglios no puede ser determinado (explique):",
         blank=True,
         null = True
         )
     niveles_ganglionares = models.CharField(
-        choices = head_model_choices.NIVELES_GANGLIONARES_CHOICES,
         verbose_name = "Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
         max_length=100
+    )
+    niveles_ganglionares_otros = models.CharField(
+        max_length = 5000,
+        verbose_name = "Otros niveles ganglionares",
+        blank = True,
+        null = True
     )
     num_ganglios_linfaticos_examinados = models.IntegerField(
         verbose_name="El Número de Ganglios Linfáticos Examinados: "
     )
     num_ganglios_linfaticos_examinados_no_determinado = models.CharField(
-        max_length=1000,
+        max_length=5000,
         blank=True,
-        null=True
+        null=True,
+        verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): "
         )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Diagnostico Biopcia de Cabeza(Tiroides)"
+        verbose_name_plural = "Diagnosticos Biopcias de Cabeza(Tiroides)"
+        ordering = ["id"]
+    
+    def __str__(self):
+        return f"Diagnostico de la cabeza(tiroides) de la biopcia: {self.biopsy}"
