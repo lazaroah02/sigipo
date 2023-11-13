@@ -4,25 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0009_alter_head_localizacion_tumor_otro'),
+        ("pathologic_anathomy", "0009_alter_head_localizacion_tumor_otro"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='localizacion_tumor_otro',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Otra localización del tumor (especificar)'),
+            model_name="head",
+            name="localizacion_tumor_otro",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Otra localización del tumor (especificar)",
+            ),
         ),
         migrations.AlterField(
-            model_name='head',
-            name='tipo_extension_parcial',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Tipo de extensión parcial'),
+            model_name="head",
+            name="tipo_extension_parcial",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Tipo de extensión parcial",
+            ),
         ),
         migrations.AlterField(
-            model_name='head',
-            name='tumor_size_imposible_to_determinate',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Dimensiones imposibles de determinar. Explique porque:'),
+            model_name="head",
+            name="tumor_size_imposible_to_determinate",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Dimensiones imposibles de determinar. Explique porque:",
+            ),
         ),
     ]

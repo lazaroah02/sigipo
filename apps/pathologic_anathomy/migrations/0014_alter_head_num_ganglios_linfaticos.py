@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0013_alter_head_num_ganglios_linfaticos'),
+        ("pathologic_anathomy", "0013_alter_head_num_ganglios_linfaticos"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='num_ganglios_linfaticos',
-            field=models.IntegerField(blank=True, null=True, verbose_name='Número de Ganglios linfáticos involucrados'),
+            model_name="head",
+            name="num_ganglios_linfaticos",
+            field=models.IntegerField(
+                blank=True,
+                null=True,
+                verbose_name="Número de Ganglios linfáticos involucrados",
+            ),
         ),
     ]

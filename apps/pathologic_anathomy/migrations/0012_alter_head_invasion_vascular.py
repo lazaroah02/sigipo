@@ -4,15 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0011_alter_head_otro_tipo_carcinoma_folicular'),
+        ("pathologic_anathomy", "0011_alter_head_otro_tipo_carcinoma_folicular"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='invasion_vascular',
-            field=models.IntegerField(choices=[(1, 'No identificado'), (2, 'Presente'), (3, 'No puede ser determinado'), (4, 'Extensión Focal (menos de 4 vasos)'), (5, 'Extensión Extensa (4 o más vasos)')], verbose_name='Invasion Vacular'),
+            model_name="head",
+            name="invasion_vascular",
+            field=models.IntegerField(
+                choices=[
+                    (1, "No identificado"),
+                    (2, "Presente"),
+                    (3, "No puede ser determinado"),
+                    (4, "Extensión Focal (menos de 4 vasos)"),
+                    (5, "Extensión Extensa (4 o más vasos)"),
+                ],
+                verbose_name="Invasion Vacular",
+            ),
         ),
     ]

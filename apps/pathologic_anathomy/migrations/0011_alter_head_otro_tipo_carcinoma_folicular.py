@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0010_auto_20231113_1528'),
+        ("pathologic_anathomy", "0010_auto_20231113_1528"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='otro_tipo_carcinoma_folicular',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Otro tipo del histológico que no figura en la lista (especifique): '),
+            model_name="head",
+            name="otro_tipo_carcinoma_folicular",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Otro tipo del histológico que no figura en la lista (especifique): ",
+            ),
         ),
     ]
