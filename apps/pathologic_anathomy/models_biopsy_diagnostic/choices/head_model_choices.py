@@ -190,10 +190,8 @@ NIVELES_GANGLIONARES_CHOICES = [
     ("otros", "Otros"),
 ]
 
+
 class ClasificacionTumorChoices(IntegerChoices):
     PT = 1, "PT"
     N = 2, "N"
-    M = 3, "M"  
-    
-
-
+    M = 3, "M"

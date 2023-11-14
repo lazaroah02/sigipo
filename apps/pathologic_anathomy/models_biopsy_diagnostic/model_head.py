@@ -1,4 +1,5 @@
 from django.db import models
+
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 
 
@@ -120,7 +121,7 @@ class Head(models.Model):
         verbose_name="Extensión Extra-tiroidea:",
     )
     extension = models.IntegerField(
-        choices= head_model_choices.ExtensionChoices.choices,
+        choices=head_model_choices.ExtensionChoices.choices,
         blank=True,
         null=True,
         verbose_name="La extensión (requiere clínica /invasión macroscópica y microscópica del tumor):",
@@ -158,18 +159,18 @@ class Head(models.Model):
         max_length=5000,
         blank=True,
         null=True,
-        verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): "
-        )
-    
-    #clasificación del tumor 
+        verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): ",
+    )
+
+    # clasificación del tumor
     clasificacion_tumor = models.IntegerField(
         choices=head_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
         blank=True,
         null=True,
-        default=None
+        default=None,
     )
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

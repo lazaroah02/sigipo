@@ -19,7 +19,7 @@ urlpatterns = [
         "biopsyrequest/list/",
         PaginationFilterView.as_view(
             model=BiopsyRequest,
-            queryset=BiopsyRequest.objects.filter(verificated = False),
+            queryset=BiopsyRequest.objects.filter(verificated=False),
             filterset_class=BiopsyRequestFilter,
         ),
         name="biopsyrequest_list",

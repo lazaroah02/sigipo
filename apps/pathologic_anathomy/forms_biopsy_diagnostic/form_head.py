@@ -5,21 +5,20 @@ from django.forms import (
     CheckboxSelectMultiple,
     FloatField,
     IntegerField,
-    ModelChoiceField, 
+    ModelChoiceField,
     MultipleChoiceField,
-    Select, 
+    Select,
     Textarea,
 )
 
 from apps.core.forms import ChoiceField as EmptyChoiceField
-from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.core.forms import ModelForm
+from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
 
 
 class HeadBiopsyForm(ModelForm):
-
     biopsy = ModelChoiceField(
         queryset=BiopsyRequest.objects.all(),
         widget=Select(
@@ -34,8 +33,8 @@ class HeadBiopsyForm(ModelForm):
         label="Biopcia",
         required=True,
     )
-    #INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
-    #tipo de muestra
+    # INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
+    # tipo de muestra
     tipo_muestra = EmptyChoiceField(
         empty_label="Seleccionar Tipo de muestra",
         choices=head_model_choices.TipoMuestraTiroidesChoice.choices,
@@ -193,9 +192,9 @@ class HeadBiopsyForm(ModelForm):
 
     # Examen del ganglio linfatico(El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen))
     num_ganglios_linfaticos = IntegerField(
-        label = '''*****EXAMEN DEL GANGLIO LINFÁTICO (es únicamente requerido si se marco el campo anterior, es decir hay ganglios linfáticos presentes en el espécimen)***** 
-           Número de Ganglios linfáticos involucrados''',
-        required=False
+        label="""*****EXAMEN DEL GANGLIO LINFÁTICO (es únicamente requerido si se marco el campo anterior, es decir hay ganglios linfáticos presentes en el espécimen)*****
+           Número de Ganglios linfáticos involucrados""",
+        required=False,
     )
     num_ganglios_no_determinados = CharField(
         label="El número de ganglios no puede ser determinado (explique):",
@@ -268,4 +267,3 @@ class HeadBiopsyForm(ModelForm):
             "clasificacion_tumor"
         ]
         default_permissions = ()
-    

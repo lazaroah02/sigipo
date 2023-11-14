@@ -4,22 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0026_alter_head_clasificacion_tumor_and_more'),
+        ("pathologic_anathomy", "0026_alter_head_clasificacion_tumor_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=1, verbose_name='Clasificación Tumor'),
+            model_name="head",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=1,
+                verbose_name="Clasificación Tumor",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='neckbiopsydiagnostic',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=1, verbose_name='Clasificación Tumor'),
+            model_name="neckbiopsydiagnostic",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=1,
+                verbose_name="Clasificación Tumor",
+            ),
             preserve_default=False,
         ),
     ]
