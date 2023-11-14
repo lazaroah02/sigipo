@@ -4,20 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0014_alter_head_num_ganglios_linfaticos'),
+        ("pathologic_anathomy", "0014_alter_head_num_ganglios_linfaticos"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='num_ganglios_no_determinados',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='El número de ganglios no puede ser determinado (explique):'),
+            model_name="head",
+            name="num_ganglios_no_determinados",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="El número de ganglios no puede ser determinado (explique):",
+            ),
         ),
         migrations.AlterField(
-            model_name='head',
-            name='sitios_invasion',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Sitio(s) de Invasión:'),
+            model_name="head",
+            name="sitios_invasion",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Sitio(s) de Invasión:",
+            ),
         ),
     ]

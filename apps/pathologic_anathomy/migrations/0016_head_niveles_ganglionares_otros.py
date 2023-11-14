@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0015_auto_20231113_1726'),
+        ("pathologic_anathomy", "0015_auto_20231113_1726"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='head',
-            name='niveles_ganglionares_otros',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='Otros niveles ganglionares'),
+            model_name="head",
+            name="niveles_ganglionares_otros",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="Otros niveles ganglionares",
+            ),
         ),
     ]

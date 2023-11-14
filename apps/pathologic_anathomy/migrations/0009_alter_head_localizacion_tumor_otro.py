@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0008_alter_head_tipo_extension_parcial'),
+        ("pathologic_anathomy", "0008_alter_head_tipo_extension_parcial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='localizacion_tumor_otro',
-            field=models.CharField(blank=True, max_length=500, null=True, verbose_name='Otra localización del tumor (especificar)'),
+            model_name="head",
+            name="localizacion_tumor_otro",
+            field=models.CharField(
+                blank=True,
+                max_length=500,
+                null=True,
+                verbose_name="Otra localización del tumor (especificar)",
+            ),
         ),
     ]

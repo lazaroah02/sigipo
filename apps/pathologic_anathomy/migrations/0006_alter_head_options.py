@@ -4,14 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0005_auto_20231113_1228'),
+        ("pathologic_anathomy", "0005_auto_20231113_1228"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='head',
-            options={'ordering': ['id'], 'verbose_name': 'Diagnostico Biopcia de Cabeza(Tiroides)', 'verbose_name_plural': 'Diagnosticos Biopcias de Cabeza(Tiroides)'},
+            name="head",
+            options={
+                "ordering": ["id"],
+                "verbose_name": "Diagnostico Biopcia de Cabeza(Tiroides)",
+                "verbose_name_plural": "Diagnosticos Biopcias de Cabeza(Tiroides)",
+            },
         ),
     ]

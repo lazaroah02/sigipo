@@ -7,9 +7,10 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.pathologic_anathomy.forms import BiopsyRequestForm
+from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_head import HeadBiopsyForm
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
-from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_head import HeadBiopsyForm
+
 
 # Create your views here.
 class BiopsyRequestCreateView(BaseCreateView):
@@ -50,6 +51,7 @@ class BiopsyRequestDeleteView(BaseDeleteView):
     success_message = "Biopsia eliminada satisfactoriamente."
     cancel_url = "pathologic_anathomy:biopsyrequest_list"
     object_not_found_error_message = "Biopsia no encontrada"
+
 
 class BiopsyRequestAddDiagnosticView(BaseCreateView):
     """View to handle BiopsyOrder view."""

@@ -19,6 +19,7 @@ from apps.patient.models import Patient
 
 # Create your models here.
 
+
 class HospitalChoice(IntegerChoices):
     """Defines the Hospital in Holguin"""
 
