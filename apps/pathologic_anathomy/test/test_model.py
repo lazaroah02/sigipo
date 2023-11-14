@@ -34,7 +34,7 @@ class BiopsyResquestTest(TestCase):
 
     def test_save_method_does_not_overwrite_biopsy_id(self):
         # Create an instance of the model with a biopsy_id
-        model_instance = BiopsyRequest(biopsy_id="biopsy_id", biopsy_id="2022-B-1")
+        model_instance = BiopsyRequest(biopsy_id="2022-B-1")
         # Save the instance
         model_instance.save()
         # Ensure the biopsy_id was not overwritten

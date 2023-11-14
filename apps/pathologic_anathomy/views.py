@@ -7,11 +7,16 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.pathologic_anathomy.forms import BiopsyRequestForm
+from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_neck import (
+    NeckBiopsyDiagnosticForm,
+)
 from apps.pathologic_anathomy.models import BiopsyRequest
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_neck import (
+    NeckBiopsyDiagnostic,
+)
+
 
 # Create your views here.
-
-
 class BiopsyRequestCreateView(BaseCreateView):
     """View to handle BiopsyOrder view."""
 
@@ -50,3 +55,20 @@ class BiopsyRequestDeleteView(BaseDeleteView):
     success_message = "Biopsia eliminada satisfactoriamente."
     cancel_url = "pathologic_anathomy:biopsyrequest_list"
     object_not_found_error_message = "Biopsia no encontrada"
+
+
+class BiopsyRequestAddDiagnosticView(BaseCreateView):
+    """View to handle BiopsyOrder view."""
+
+    model = NeckBiopsyDiagnostic
+    form_class = NeckBiopsyDiagnosticForm
+    success_url = reverse_lazy("pathologic_anathomy:biopsy-verificated_list")
+    success_message = "Diagnostico de biopsia guardada correctamente."
+    cancel_url = "pathologic_anathomy:biopsyrequest_list"
+
+    def form_valid(self, form):
+        if form.is_valid():
+            biopsy = form.cleaned_data["biopsy"]
+            biopsy.verificated = True
+            biopsy.save()
+            return super().form_valid(form)
