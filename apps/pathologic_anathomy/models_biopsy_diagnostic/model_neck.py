@@ -1,5 +1,5 @@
 from django.db import models
-from .choices import neck_model_choices
+from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model_choices
 
 class NeckBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField("pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE)
