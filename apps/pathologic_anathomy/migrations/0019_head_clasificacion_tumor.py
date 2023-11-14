@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0018_alter_head_extension'),
+        ("pathologic_anathomy", "0018_alter_head_extension"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='head',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=None, verbose_name='Clasificación Tumor'),
+            model_name="head",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=None,
+                verbose_name="Clasificación Tumor",
+            ),
         ),
     ]

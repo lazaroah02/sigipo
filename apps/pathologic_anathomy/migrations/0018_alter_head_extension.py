@@ -4,15 +4,32 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0017_alter_head_num_ganglios_linfaticos_examinados_no_determinado'),
+        (
+            "pathologic_anathomy",
+            "0017_alter_head_num_ganglios_linfaticos_examinados_no_determinado",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='extension',
-            field=models.IntegerField(blank=True, choices=[(1, 'Invade solamente las bandas musculares (ie, pT3b)'), (2, 'Invade tejidos celular subcutáneo, laringe, tráquea, esófago o nervio laríngeo recurrente (ie, PT4a)'), (3, 'Invadiendo la fascia pre-vertebral o recubriendo la arteria carótida o los vasos mediastinales (ie,pT4b)')], null=True, verbose_name='La extensión (requiere clínica /invasión macroscópica y microscópica del tumor):'),
+            model_name="head",
+            name="extension",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (1, "Invade solamente las bandas musculares (ie, pT3b)"),
+                    (
+                        2,
+                        "Invade tejidos celular subcutáneo, laringe, tráquea, esófago o nervio laríngeo recurrente (ie, PT4a)",
+                    ),
+                    (
+                        3,
+                        "Invadiendo la fascia pre-vertebral o recubriendo la arteria carótida o los vasos mediastinales (ie,pT4b)",
+                    ),
+                ],
+                null=True,
+                verbose_name="La extensión (requiere clínica /invasión macroscópica y microscópica del tumor):",
+            ),
         ),
     ]
