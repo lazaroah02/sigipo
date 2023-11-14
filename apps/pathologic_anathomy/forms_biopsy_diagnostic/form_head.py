@@ -2,20 +2,37 @@ from django.forms import (
     BooleanField, 
     CheckboxInput, 
     FloatField,
-    IntegerField, 
+    IntegerField,
+    ModelChoiceField, 
     MultipleChoiceField,
-    NullBooleanSelect, 
-    Select, CharField, 
+    Select, 
+    CharField, 
     CheckboxSelectMultiple, 
     Textarea,
     )
 from apps.core.forms import ModelForm
 from apps.core.forms import ChoiceField as EmptyChoiceField
+from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
+from django_select2.forms import ModelSelect2Widget
 
 
 class HeadBiopsyForm(ModelForm):
+    biopsy = ModelChoiceField(
+        queryset=BiopsyRequest.objects.all(),
+        widget=Select(
+            attrs={
+                "class": "form-control",
+                "data-placeholder": "Biopsia",
+                "data-language": "es",
+                "data-theme": "bootstrap-5",
+                "data-width": "style",
+            },
+        ),
+        label="Biopcia",
+        required=True,
+    )
     #INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
     #tipo de muestra
     tipo_muestra = EmptyChoiceField(
@@ -175,7 +192,8 @@ class HeadBiopsyForm(ModelForm):
     
     #Examen del ganglio linfatico(El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen))
     num_ganglios_linfaticos = IntegerField(
-        label = "Número de Ganglios linfáticos involucrados",
+        label = '''*****EXAMEN DEL GANGLIO LINFÁTICO (es únicamente requerido si se marco el campo anterior, es decir hay ganglios linfáticos presentes en el espécimen)***** 
+           Número de Ganglios linfáticos involucrados''',
         required=False
     )
     num_ganglios_no_determinados = CharField(
@@ -210,6 +228,35 @@ class HeadBiopsyForm(ModelForm):
     class Meta:
         model = Head
         fields = [
+            "biopsy",
             "tipo_muestra",
+            "tipo_extension_parcial",
+            "focalidad_tumor",
+            "localizacion_tumor",
+            "localizacion_tumor_otro",
+            "max_tumor_size",
+            "aditional_tumor_size",
+            "tumor_size_imposible_to_determinate",
+            "carcinoma_papilar",
+            "carcinomas_foliculares",
+            "otro_tipo_carcinoma_folicular",
+            "margenes",
+            "distancia_carcinoma_mas_cercano",
+            "sitios_invasion",
+            "invasion_vascular",
+            "invasion_linfatica",
+            "indice_mitosis",
+            "invasion_perineural",
+            "extension_extratiroidea",
+            "extension",
+            "ganglio_linfatico_encontrado",
+            "num_ganglios_linfaticos",
+            "num_ganglios_no_determinados",
+            "niveles_ganglionares",
+            "niveles_ganglionares_otros",
+            "num_ganglios_linfaticos_examinados",
+            "num_ganglios_linfaticos_examinados_no_determinado",
+            
         ]
         default_permissions = ()
+    

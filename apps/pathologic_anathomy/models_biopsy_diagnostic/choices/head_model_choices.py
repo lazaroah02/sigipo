@@ -114,6 +114,11 @@ NIVELES_GANGLIONARES_CHOICES = [
     ("nivel_IV_izquierdo", "Nivel I-V (disección lateral del cuello) Izquierda"),
     ("otros", "Otros"),
 ]
+
+class ClasificacionTumorChoices(IntegerChoices):
+    PT = 1, "PT"
+    N = 2, "N"
+    M = 3, "M"  
     
 
 

@@ -1,5 +1,6 @@
 import datetime
 from .models_biopsy_diagnostic.model_head import Head
+from .models_biopsy_diagnostic.model_neck import NeckBiopsyDiagnostic
 
 from django.db.models import (
     CASCADE,

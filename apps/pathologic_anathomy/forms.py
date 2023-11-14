@@ -71,14 +71,14 @@ class BiopsyRequestForm(ModelForm):
             ],
         ),
         label="Paciente",
-        required=False,
+        required=True,
     )
     biopsy_type = EmptyChoiceField(
         empty_label="Seleccionar Tipo de Biopsia",
         choices=BiopsyTypeChoice.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Tipo de biopsia",
-        required=False,
+        required=True,
     )
     sample_biopsy = CharField(
         widget=TextInput(

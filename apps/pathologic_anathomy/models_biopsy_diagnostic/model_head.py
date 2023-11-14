@@ -121,8 +121,7 @@ class Head(models.Model):
         choices=head_model_choices.ExtensionExtratiroideaChoice.choices,
         verbose_name="Extensión Extra-tiroidea:",
     )
-    extension = models.CharField(
-        max_length=10,
+    extension = models.IntegerField(
         choices= head_model_choices.ExtensionChoices.choices,
         blank=True,
         null=True,
@@ -166,6 +165,16 @@ class Head(models.Model):
         null=True,
         verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): "
         )
+    
+    #clasificación del tumor 
+    clasificacion_tumor = models.IntegerField(
+        choices=head_model_choices.ClasificacionTumorChoices.choices,
+        verbose_name="Clasificación Tumor",
+        blank=True,
+        null=True,
+        default=None
+    )
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

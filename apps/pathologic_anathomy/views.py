@@ -59,3 +59,10 @@ class BiopsyRequestAddDiagnosticView(BaseCreateView):
     success_url = reverse_lazy("pathologic_anathomy:biopsy-verificated_list")
     success_message = "Diagnostico de biopsia guardada correctamente."
     cancel_url = "pathologic_anathomy:biopsyrequest_list"
+    
+    def form_valid(self, form):
+        if form.is_valid():
+            biopsy = form.cleaned_data["biopsy"]
+            biopsy.verificated = True
+            biopsy.save()
+            return super().form_valid(form)
