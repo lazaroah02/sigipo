@@ -74,12 +74,10 @@ class HeadBiopsyForm(ModelForm):
 
     # tumor size
     max_tumor_size = FloatField(
-        label="La máxima dimensión del tumor (centímetros)*:", 
-        required=True
+        label="La máxima dimensión del tumor (centímetros)*:", required=True
     )
     additional_tumor_size = FloatField(
-        label="Las dimensiones adicionales del tumor (centímetros)*:", 
-        required=True
+        label="Las dimensiones adicionales del tumor (centímetros)*:", required=True
     )
     tumor_size_imposible_to_determinate = CharField(
         label="Dimensiones imposibles de determinar. Explique porque:",
@@ -223,8 +221,8 @@ class HeadBiopsyForm(ModelForm):
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
     )
-    
-    #clasificacion_tumor
+
+    # clasificacion_tumor
     clasificacion_tumor = EmptyChoiceField(
         empty_label="Clasificación Tumor",
         choices=head_model_choices.ClasificacionTumorChoices.choices,
@@ -264,6 +262,6 @@ class HeadBiopsyForm(ModelForm):
             "niveles_ganglionares_otros",
             "num_ganglios_linfaticos_examinados",
             "num_ganglios_linfaticos_examinados_no_determinado",
-            "clasificacion_tumor"
+            "clasificacion_tumor",
         ]
         default_permissions = ()

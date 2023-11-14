@@ -4,11 +4,13 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model
 
 
 class NeckBiopsyDiagnostic(models.Model):
-    biopsy = models.OneToOneField("pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE)
-    
-    #A.	Información clínica recibida en el departamento de Anatomía Patológica.
-    
-    #Tipo de muestra
+    biopsy = models.OneToOneField(
+        "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE
+    )
+
+    # A.	Información clínica recibida en el departamento de Anatomía Patológica.
+
+    # Tipo de muestra
     tipo_muestra = models.IntegerField(
         choices=neck_model_choices.TipoMuestraChoices.choices,
         verbose_name="Tipo de Muestra",

@@ -38,6 +38,7 @@ class RelacionTumorUnionChoices(models.IntegerChoices):
     NO_ESPECIFICADO = 5, "no especificado"
     NO_EVALUADO = 6, "no puede ser evaluado"
 
+
 class TipoHistologiaChoices(models.IntegerChoices):
     ADENOCARCINOMA = 1, "Adenocarcinoma"
     CARCINOMA_ADENOIDEO_QUISTICO = 2, "Carcinoma  adenóideo quistito"
@@ -78,7 +79,8 @@ class GradoHistologicoChoices(models.IntegerChoices):
     G2 = 2, "G2: Moderadamente diferenciado"
     G3 = 3, "G3: Pobremente diferenciado, no diferenciado"
     GX = 4, "GX: No puede ser evaluado"
-    
+
+
 class TumorExtensionChoices(models.IntegerChoices):
     NINGUNA = 1, "Ninguna evidencia de tumor primario"
     DISPLASIA = (
@@ -152,6 +154,7 @@ class MargenRadialChoices(models.IntegerChoices):
     NO_EVALUADO = 1, "no puede ser evaluado"
     NO_INVOLUCRADO_INVASIVO = 2, "no involucrado por carcinoma invasivo"
     INVOLUCRADO_INVASIVO = 3, "involucrado por carcinoma invasivo"
+
 
 class OtrosMargenesEsophagectomiaEsophagogastrectomiaChoices(models.IntegerChoices):
     NO_EVALUADO = 1, "no puede ser evaluado"
