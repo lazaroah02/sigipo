@@ -71,6 +71,12 @@ class NeckBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
+    tipo_histologico_otro = models.CharField(
+        max_length=5000,
+        verbose_name="Otro Tipo Histológico (especifique)",
+        blank=True,
+        null=True,
+    )
 
     # Grado Histológico
     grado_histolico = models.IntegerField(
@@ -85,17 +91,23 @@ class NeckBiopsyDiagnostic(models.Model):
     # La Extensión del Tumor
     tumor_extension = models.IntegerField(
         choices=neck_model_choices.TumorExtensionChoices.choices,
-        verbose_name="""La Extensión del Tumor. Nota: Las estructuras adyacentes del esófago incluyen la pleura,
-            el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral, y la vía aérea""",
+        verbose_name="""La Extensión del Tumor.""",
+    )
+    estructuras_adyacentes_invadidas = models.CharField(
+        max_length=5000,
+        verbose_name='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen 
+            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.''',
+        blank=True,
+        null=True,
     )
 
     # LOS MARGENES
+    # Nota: Use esta sección sólo si marco la casilla anterior, es decir todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
     todos_los_margenes_involucrados = models.BooleanField(
         verbose_name=""" todos los márgenes son involucrados por carcinoma invasivo,
             displasia, y metaplasia intestinal""",
         default=False,
     )
-    # Nota: Use esta sección sólo si marco la casilla anterior, es decir todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
     margenes_examinados = models.CharField(
         verbose_name="""Los márgenes examinados. Nota: Los márgenes pueden incluir a proximal, distal, radial,
             mucosal, en profundidad, y otros.""",
@@ -112,6 +124,12 @@ class NeckBiopsyDiagnostic(models.Model):
     distancia_carcinoma_invasivo_margen_cercano_mm = models.FloatField(
         verbose_name="""La distancia del carcinoma invasivo al margen más cercano
                 (milímetros)""",
+        blank=True,
+        null=True,
+    )
+    margen_mas_cercano = models.CharField(
+        verbose_name="""Especifique el margen más cercano:""",
+        max_length=5000,
         blank=True,
         null=True,
     )
@@ -209,9 +227,7 @@ class NeckBiopsyDiagnostic(models.Model):
     clasificacion_tumor = models.IntegerField(
         choices=neck_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        blank=True,
-        null=True,
-        default=None,
+        default=1
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

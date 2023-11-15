@@ -12,11 +12,11 @@ from django.forms import (
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.pathologic_anathomy.models import BiopsyRequest
-from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model_choices
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_neck import NeckBiopsyDiagnostic
+from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import stomac_model_choices
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_stomac import StomacBiopsyDiagnostic
 
 
-class NeckBiopsyDiagnosticForm(ModelForm):
+class StomacBiopsyDiagnosticForm(ModelForm):
     biopsy = ModelChoiceField(
         queryset=BiopsyRequest.objects.all(),
         widget=Select(
@@ -37,7 +37,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     # tipo muestra
     tipo_muestra = EmptyChoiceField(
         empty_label="Seleccionar Tipo de muestra",
-        choices=neck_model_choices.TipoMuestraChoices.choices,
+        choices=stomac_model_choices.TipoDeMuestraChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Tipo de muestra*",
         required=True,
@@ -52,7 +52,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     # Sitio del Tumor
     sitio_tumor = EmptyChoiceField(
         empty_label="Seleccionar Sitio del Tumor",
-        choices=neck_model_choices.SitioTumorChoices.choices,
+        choices=stomac_model_choices.SitioTumorChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="Sitio del Tumor*",
         required=True,
@@ -62,23 +62,6 @@ class NeckBiopsyDiagnosticForm(ModelForm):
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
         label="Otro sitio del tumor (especifique):",
-    )
-
-    # Relación de Tumor con la unión Esophagogastric
-    relacion_tumor_union = EmptyChoiceField(
-        empty_label="Seleccionar Relación de Tumor con la unión Esophagogastric",
-        choices=neck_model_choices.RelacionTumorUnionChoices.choices,
-        widget=Select(attrs={"class": "form-control form-select"}),
-        label="Relación de Tumor con la unión Esophagogastric*",
-        required=True,
-    )
-    distancia_centro_tumor_union = FloatField(
-        label="""El protocolo de cáncer del estómago si ya sea:
-            (1) el tumor involucrara el EGJ, pero el punto medio es más que 2 cm del estómago proximal o
-            (2) el punto medio está menos de 2 cm del estómago proximal, pero el tumor no involucra al EGJ.
-            La distancia de centro del tumor a la unión esophagogastric (especifique, si aplicable) (los centímetros)
-            """,
-        required=False,
     )
 
     # El Tamaño del Tumor
@@ -96,12 +79,12 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     )
 
     # El Tipo de Histología
-    tipo_histologia = EmptyChoiceField(
-        empty_label="Seleccionar Tipo Histología",
-        choices=neck_model_choices.TipoHistologiaChoices.choices,
+    tipo_histologico = EmptyChoiceField(
+        empty_label="Seleccionar Tipo Histológico",
+        choices=stomac_model_choices.TipoHistologicoChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="Tipo Histología. Nota:Seleccione esta opción sólo si el de células grande o célula pequeña no puede ser determinada",
-        required=False,
+        label="Tipo Histológico*",
+        required=True,
     )
     tipo_histologico_otro = CharField(
         max_length=5000,
@@ -111,36 +94,42 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     )
 
     # Grado Histológico
-    grado_histolico = EmptyChoiceField(
+    grado_histologico = EmptyChoiceField(
         empty_label="Seleccionar Grado Histológico",
-        choices=neck_model_choices.GradoHistologicoChoices.choices,
+        choices=stomac_model_choices.GradoHistologicoChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Grado Histológico (El grado grado histológico no es aplicable para el carcinoma adenoideo quistito,
-            mucoepidermoide, el bien diferenciado, el tumor neuroendocrino y el carcinoma neuroendocrino)""",
+        label="""El Grado Histológico:""",
+        required=True,
+    )
+    grado_histologico_otro = CharField(
+        max_length=5000,
+        widget=Textarea(attrs={"class": "form-control"}),
         required=False,
+        label="Otro Grado Histológico (especifique):",
     )
 
-    # La Extensión del Tumor
-    tumor_extension = EmptyChoiceField(
+    #La Extensión del Tumor
+    extension_tumor = EmptyChoiceField(
         empty_label="Seleccionar La Extensión del Tumor",
-        choices=neck_model_choices.TumorExtensionChoices.choices,
+        choices=stomac_model_choices.ExtensionTumorChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""La Extensión del Tumor*.""",
+        label="""La Extensión del Tumor:*""",
         required=True,
     )
     estructuras_adyacentes_invadidas = CharField(
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
-        label='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen 
-            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.''',
+        label='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
+            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo. 
+            La extensión intramural del duodeno o el esófago no es considerado invasión de una estructura adyacente, pero está clasificado usa la profundidad de la máxima invasión en cualquier
+            de estos sitios.''',
     )
 
     # LOS MARGENES
     #******Use esta seccion si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados)******.
     todos_los_margenes_involucrados = BooleanField(
-        label="""Todos los márgenes son involucrados por carcinoma invasivo,
-            displasia, y metaplasia intestinal""",
+        label="""Todos los márgenes son involucrados por carcinoma invasor y displasia""",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
         required=False,
     )
@@ -149,7 +138,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
-        label="""Los márgenes examinados. Nota: Los márgenes pueden incluir a proximal, distal, radial, mucosal, en profundidad, y otros.""",
+        label="""Los márgenes examinados. Nota: Los márgenes pueden incluir a proximal, distal, omental(radial), mucosal, profundidad y otros.""",
     )
     distancia_carcinoma_invasivo_margen_cercano_cm = FloatField(
         label="""La distancia del carcinoma invasivo al margen más cercano (centímetros)""",
@@ -165,54 +154,62 @@ class NeckBiopsyDiagnosticForm(ModelForm):
         required=False,
         label="""Especifique el margen más cercano:""",
     )
-    # Solo para esophagectomia y esophagogastrectomia(EE)
+    #Solo para especímenes de gastrectomía
     margen_proximal = EmptyChoiceField(
         empty_label="Seleccionar Margen Proximal",
-        choices=neck_model_choices.MargenProximalChoices.choices,
+        choices=stomac_model_choices.MargenProximalChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Margen Proximal (Solo para esophagectomia y esophagogastrectomia)""",
+        label="""Margen Proximal(Solo para especímenes de gastrectomía)""",
         required=False,
     )
     margen_distal = EmptyChoiceField(
         empty_label="Seleccionar Margen Distal",
-        choices=neck_model_choices.MargenDistalChoices.choices,
+        choices=stomac_model_choices.MargenDistalChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Margen Distal (Solo para esophagectomia y esophagogastrectomia)""",
+        label="""Margen Distal(Solo para especímenes de gastrectomía)""",
         required=False,
     )
     margen_radial = EmptyChoiceField(
         empty_label="Seleccionar Margen Radial",
-        choices=neck_model_choices.MargenRadialChoices.choices,
+        choices=stomac_model_choices.MargenRadialChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Margen Radial (Solo para esophagectomia y esophagogastrectomia)""",
+        label="""Márgenes Omental(Radial)(Solo para especímenes de gastrectomía)""",
         required=False,
     )
-    otros_margenes_EE = CharField(
+    mayor_margen_omental  = FloatField(
+        label ='''El + que el Mayor margen del omental involucró por carcinoma del invasive''',
+        required=False
+    )
+    inferior_margen_omental = FloatField(
+        label ='''El + que el margen Inferior del omental involucró por carcinoma del invasive''',
+        required=False
+    )
+    otros_margenes_gastrectomia = CharField(
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
-        label="""Otro Margen(s) para esophagectomia y esophagogastrectomia (requerido único si es aplicable). Especifique""",
+        label="""Otro Margen(s) (requerido único si aplicable). Especifique""",
     )
-    otros_margenes_EE_especificaciones = EmptyChoiceField(
+    otros_margenes_gastrectomia_especificaciones = EmptyChoiceField(
         empty_label="Seleccionar",
-        choices=neck_model_choices.OtrosMargenesEsophagectomiaEsophagogastrectomiaChoices.choices,
+        choices=stomac_model_choices.OtrosMargenesGastrectomiaChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="""Otro Margen(s) clasificación""",
         required=False,
     )
-    # Para especímenes solo de resección endoscopica(RE)
+    #Para especímenes sólo de resección del endoscopic(RE)
     margen_mucosal = EmptyChoiceField(
         empty_label="Seleccionar Margen Mucosal",
-        choices=neck_model_choices.MargenMucosalChoices.choices,
+        choices=stomac_model_choices.MargenMucosalChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Margen Mucosal(Para especímenes solo de resección endoscopica)""",
+        label="""Margen Mucosal(Para especímenes sólo de resección del endoscopic)""",
         required=False,
     )
     margen_profundo = EmptyChoiceField(
         empty_label="Seleccionar Margen Profundo",
-        choices=neck_model_choices.MargenProfundoChoices.choices,
+        choices=stomac_model_choices.MargenProfundoChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
-        label="""Margen Profundo(Para especímenes solo de resección endoscopica)""",
+        label="""Margen Profundo(Para especímenes sólo de resección del endoscopic)""",
         required=False,
     )
     otros_margenes_RE = CharField(
@@ -223,7 +220,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     )
     otros_margenes_RE_especificaciones = EmptyChoiceField(
         empty_label="Seleccionar",
-        choices=neck_model_choices.OtrosMargenesReseccionEndoscopicaChoices.choices,
+        choices=stomac_model_choices.OtrosMargenesREChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="""Otro Margen(s) Clasificacicación""",
         required=False,
@@ -232,7 +229,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     # Invasión Linfovascular
     invasion_linfovascular = EmptyChoiceField(
         empty_label="Seleccionar Invasión Linfovascular",
-        choices=neck_model_choices.InvasionLinfovascularChoices.choices,
+        choices=stomac_model_choices.InvasionLinfovascularChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="""Invasión Linfovascular""",
         required=True,
@@ -241,7 +238,7 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     # Invasión Perineural
     invasion_perineural = EmptyChoiceField(
         empty_label="Seleccionar Invasión Perineural",
-        choices=neck_model_choices.InvasionPerineuralChoices.choices,
+        choices=stomac_model_choices.InvasionPerineuralChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="""Invasión Perineural""",
         required=True,
@@ -274,29 +271,28 @@ class NeckBiopsyDiagnosticForm(ModelForm):
     # clasificación del tumor
     clasificacion_tumor = EmptyChoiceField(
         empty_label="Seleccionar Clasificación Tumor",
-        choices=neck_model_choices.ClasificacionTumorChoices.choices,
+        choices=stomac_model_choices.ClasificacionTumorChoices.choices,
         widget=Select(attrs={"class": "form-control form-select"}),
         label="""Clasificación Tumor""",
         required=True,
     )
 
     class Meta:
-        model = NeckBiopsyDiagnostic
+        model = StomacBiopsyDiagnostic
         fields = [
             "biopsy",
             "tipo_muestra",
             "tipo_muestra_otro",
             "sitio_tumor",
             "sitio_tumor_otro",
-            "relacion_tumor_union",
-            "distancia_centro_tumor_union",
             "tumor_max_size",
             "tumor_size",
             "no_puede_aplicable",
-            "tipo_histologia",
+            "tipo_histologico",
             "tipo_histologico_otro",
-            "grado_histolico",
-            "tumor_extension",
+            "grado_histologico",
+            "grado_histologico_otro",
+            "extension_tumor",
             "estructuras_adyacentes_invadidas",
             "todos_los_margenes_involucrados",
             "margenes_examinados",
@@ -306,8 +302,10 @@ class NeckBiopsyDiagnosticForm(ModelForm):
             "margen_proximal",
             "margen_distal",
             "margen_radial",
-            "otros_margenes_EE",
-            "otros_margenes_EE_especificaciones",
+            "mayor_margen_omental",
+            "inferior_margen_omental",
+            "otros_margenes_gastrectomia",
+            "otros_margenes_gastrectomia_especificaciones",
             "margen_mucosal",
             "margen_profundo",
             "otros_margenes_RE",

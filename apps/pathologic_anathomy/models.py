@@ -10,7 +10,11 @@ from django.db.models import (
     IntegerField,
 )
 from django.db.models.manager import Manager
-
+from apps.pathologic_anathomy.models_biopsy_diagnostic import (
+    model_head,
+    model_neck,
+    model_stomac
+)
 from apps.core.models import TimeStampedModel
 from apps.employee.models import Doctor
 from apps.patient.models import Patient

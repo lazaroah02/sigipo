@@ -166,9 +166,7 @@ class Head(models.Model):
     clasificacion_tumor = models.IntegerField(
         choices=head_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        blank=True,
-        null=True,
-        default=None,
+        default=1
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
