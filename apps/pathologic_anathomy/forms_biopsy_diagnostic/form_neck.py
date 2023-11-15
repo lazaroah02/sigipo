@@ -13,7 +13,9 @@ from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model_choices
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_neck import NeckBiopsyDiagnostic
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_neck import (
+    NeckBiopsyDiagnostic,
+)
 
 
 class NeckBiopsyDiagnosticForm(ModelForm):
@@ -132,12 +134,12 @@ class NeckBiopsyDiagnosticForm(ModelForm):
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
-        label='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen 
-            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.''',
+        label="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen
+            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.""",
     )
 
     # LOS MARGENES
-    #******Use esta seccion si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados)******.
+    # ******Use esta seccion si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados)******.
     todos_los_margenes_involucrados = BooleanField(
         label="""Todos los márgenes son involucrados por carcinoma invasivo,
             displasia, y metaplasia intestinal""",

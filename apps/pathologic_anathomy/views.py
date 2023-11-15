@@ -7,11 +7,13 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.pathologic_anathomy.forms import BiopsyRequestForm
-from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_linfoma import LinfomaBiopsyDiagnosticForm
+from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_linfoma import (
+    LinfomaBiopsyDiagnosticForm,
+)
 from apps.pathologic_anathomy.models import BiopsyRequest
-from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_head import HeadBiopsyForm
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_linfoma import LinfomaBiopsyDiagnostic
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_linfoma import (
+    LinfomaBiopsyDiagnostic,
+)
 
 
 # Create your views here.

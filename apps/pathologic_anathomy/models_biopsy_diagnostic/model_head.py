@@ -165,26 +165,26 @@ class Head(models.Model):
         null=True,
         verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): ",
     )
-    
-    #Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
+
+    # Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
     size_deposito_metastásico_más_grande = models.FloatField(
         verbose_name="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
         blank=True,
-        null=True
+        null=True,
     )
-    #Extensión Extra-ganglionar (ENE)
+    # Extensión Extra-ganglionar (ENE)
     extension_extra_ganglionar = models.IntegerField(
         choices=head_model_choices.ExtensionExtraGanglionar.choices,
         verbose_name="Extensión Extra-ganglionar (ENE)",
         blank=True,
-        null=True
+        null=True,
     )
 
     # clasificación del tumor
     clasificacion_tumor = models.IntegerField(
         choices=head_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        default=1
+        default=1,
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

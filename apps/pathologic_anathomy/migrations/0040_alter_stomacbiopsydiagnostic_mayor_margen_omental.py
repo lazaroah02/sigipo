@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0039_alter_stomacbiopsydiagnostic_grado_histologico'),
+        ("pathologic_anathomy", "0039_alter_stomacbiopsydiagnostic_grado_histologico"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='stomacbiopsydiagnostic',
-            name='mayor_margen_omental',
-            field=models.FloatField(blank=True, null=True, verbose_name='El + que el Mayor margen del omental involucró por carcinoma del invasive'),
+            model_name="stomacbiopsydiagnostic",
+            name="mayor_margen_omental",
+            field=models.FloatField(
+                blank=True,
+                null=True,
+                verbose_name="El + que el Mayor margen del omental involucró por carcinoma del invasive",
+            ),
         ),
     ]

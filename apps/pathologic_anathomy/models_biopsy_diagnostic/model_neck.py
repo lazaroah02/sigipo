@@ -95,8 +95,8 @@ class NeckBiopsyDiagnostic(models.Model):
     )
     estructuras_adyacentes_invadidas = models.CharField(
         max_length=5000,
-        verbose_name='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen 
-            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.''',
+        verbose_name="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen
+            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.""",
         blank=True,
         null=True,
     )
@@ -227,7 +227,7 @@ class NeckBiopsyDiagnostic(models.Model):
     clasificacion_tumor = models.IntegerField(
         choices=neck_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        default=1
+        default=1,
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

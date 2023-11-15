@@ -4,25 +4,41 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0043_alter_biopsyrequest_biopsy_type'),
+        ("pathologic_anathomy", "0043_alter_biopsyrequest_biopsy_type"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='head',
-            name='extension_extra_ganglionar',
-            field=models.IntegerField(blank=True, choices=[(1, 'No identificado'), (2, 'Presente'), (3, 'No puede ser determinada')], null=True, verbose_name='Extensión Extra-ganglionar (ENE)'),
+            model_name="head",
+            name="extension_extra_ganglionar",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (1, "No identificado"),
+                    (2, "Presente"),
+                    (3, "No puede ser determinada"),
+                ],
+                null=True,
+                verbose_name="Extensión Extra-ganglionar (ENE)",
+            ),
         ),
         migrations.AddField(
-            model_name='head',
-            name='size_deposito_metastásico_más_grande',
-            field=models.FloatField(blank=True, null=True, verbose_name='Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados'),
+            model_name="head",
+            name="size_deposito_metastásico_más_grande",
+            field=models.FloatField(
+                blank=True,
+                null=True,
+                verbose_name="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
+            ),
         ),
         migrations.AlterField(
-            model_name='head',
-            name='num_ganglios_linfaticos_examinados',
-            field=models.IntegerField(blank=True, null=True, verbose_name='El Número de Ganglios Linfáticos Examinados: '),
+            model_name="head",
+            name="num_ganglios_linfaticos_examinados",
+            field=models.IntegerField(
+                blank=True,
+                null=True,
+                verbose_name="El Número de Ganglios Linfáticos Examinados: ",
+            ),
         ),
     ]

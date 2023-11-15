@@ -12,8 +12,12 @@ from django.forms import (
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.pathologic_anathomy.models import BiopsyRequest
-from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import stomac_model_choices
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_stomac import StomacBiopsyDiagnostic
+from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
+    stomac_model_choices,
+)
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_stomac import (
+    StomacBiopsyDiagnostic,
+)
 
 
 class StomacBiopsyDiagnosticForm(ModelForm):
@@ -108,7 +112,7 @@ class StomacBiopsyDiagnosticForm(ModelForm):
         label="Otro Grado Histológico (especifique):",
     )
 
-    #La Extensión del Tumor
+    # La Extensión del Tumor
     extension_tumor = EmptyChoiceField(
         empty_label="Seleccionar La Extensión del Tumor",
         choices=stomac_model_choices.ExtensionTumorChoices.choices,
@@ -120,14 +124,14 @@ class StomacBiopsyDiagnosticForm(ModelForm):
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
-        label='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
-            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo. 
+        label="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
+            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo.
             La extensión intramural del duodeno o el esófago no es considerado invasión de una estructura adyacente, pero está clasificado usa la profundidad de la máxima invasión en cualquier
-            de estos sitios.''',
+            de estos sitios.""",
     )
 
     # LOS MARGENES
-    #******Use esta seccion si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados)******.
+    # ******Use esta seccion si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados)******.
     todos_los_margenes_involucrados = BooleanField(
         label="""Todos los márgenes son involucrados por carcinoma invasor y displasia""",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
@@ -154,7 +158,7 @@ class StomacBiopsyDiagnosticForm(ModelForm):
         required=False,
         label="""Especifique el margen más cercano:""",
     )
-    #Solo para especímenes de gastrectomía
+    # Solo para especímenes de gastrectomía
     margen_proximal = EmptyChoiceField(
         empty_label="Seleccionar Margen Proximal",
         choices=stomac_model_choices.MargenProximalChoices.choices,
@@ -176,13 +180,13 @@ class StomacBiopsyDiagnosticForm(ModelForm):
         label="""Márgenes Omental(Radial)(Solo para especímenes de gastrectomía)""",
         required=False,
     )
-    mayor_margen_omental  = FloatField(
-        label ='''El + que el Mayor margen del omental involucró por carcinoma del invasive''',
-        required=False
+    mayor_margen_omental = FloatField(
+        label="""El + que el Mayor margen del omental involucró por carcinoma del invasive""",
+        required=False,
     )
     inferior_margen_omental = FloatField(
-        label ='''El + que el margen Inferior del omental involucró por carcinoma del invasive''',
-        required=False
+        label="""El + que el margen Inferior del omental involucró por carcinoma del invasive""",
+        required=False,
     )
     otros_margenes_gastrectomia = CharField(
         max_length=5000,
@@ -197,7 +201,7 @@ class StomacBiopsyDiagnosticForm(ModelForm):
         label="""Otro Margen(s) clasificación""",
         required=False,
     )
-    #Para especímenes sólo de resección del endoscopic(RE)
+    # Para especímenes sólo de resección del endoscopic(RE)
     margen_mucosal = EmptyChoiceField(
         empty_label="Seleccionar Margen Mucosal",
         choices=stomac_model_choices.MargenMucosalChoices.choices,

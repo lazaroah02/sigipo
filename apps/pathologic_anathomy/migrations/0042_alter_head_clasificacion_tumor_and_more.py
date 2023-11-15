@@ -4,25 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0041_alter_stomacbiopsydiagnostic_inferior_margen_omental'),
+        (
+            "pathologic_anathomy",
+            "0041_alter_stomacbiopsydiagnostic_inferior_margen_omental",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=1, verbose_name='Clasificación Tumor'),
+            model_name="head",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=1,
+                verbose_name="Clasificación Tumor",
+            ),
         ),
         migrations.AlterField(
-            model_name='neckbiopsydiagnostic',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=1, verbose_name='Clasificación Tumor'),
+            model_name="neckbiopsydiagnostic",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=1,
+                verbose_name="Clasificación Tumor",
+            ),
         ),
         migrations.AlterField(
-            model_name='stomacbiopsydiagnostic',
-            name='clasificacion_tumor',
-            field=models.IntegerField(choices=[(1, 'PT'), (2, 'N'), (3, 'M')], default=1, verbose_name='Clasificación Tumor'),
+            model_name="stomacbiopsydiagnostic",
+            name="clasificacion_tumor",
+            field=models.IntegerField(
+                choices=[(1, "PT"), (2, "N"), (3, "M")],
+                default=1,
+                verbose_name="Clasificación Tumor",
+            ),
         ),
     ]

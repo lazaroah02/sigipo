@@ -1,5 +1,8 @@
 from django.db import models
-from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import stomac_model_choices
+
+from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
+    stomac_model_choices,
+)
 
 
 class StomacBiopsyDiagnostic(models.Model):
@@ -11,7 +14,7 @@ class StomacBiopsyDiagnostic(models.Model):
     # Tipo de muestra
     tipo_muestra = models.IntegerField(
         choices=stomac_model_choices.TipoDeMuestraChoices.choices,
-        verbose_name = "Tipo de Muestra"
+        verbose_name="Tipo de Muestra",
     )
     tipo_muestra_otro = models.CharField(
         max_length=5000,
@@ -19,11 +22,11 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-    #Sitio del Tumor
+
+    # Sitio del Tumor
     sitio_tumor = models.IntegerField(
         choices=stomac_model_choices.SitioTumorChoices.choices,
-        verbose_name = "Sitio del Tumor"
+        verbose_name="Sitio del Tumor",
     )
     sitio_tumor_otro = models.CharField(
         max_length=5000,
@@ -31,8 +34,8 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-     # El Tamaño del Tumor
+
+    # El Tamaño del Tumor
     tumor_max_size = models.FloatField(
         verbose_name="La Máxima Dimensión del Tumor (centímetros)",
     )
@@ -45,11 +48,11 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-    #El Tipo Histológico
+
+    # El Tipo Histológico
     tipo_histologico = models.IntegerField(
         choices=stomac_model_choices.TipoHistologicoChoices.choices,
-        verbose_name="El Tipo Histológico"
+        verbose_name="El Tipo Histológico",
     )
     tipo_histologico_otro = models.CharField(
         max_length=5000,
@@ -57,11 +60,11 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-    #El Grado del Histológico
+
+    # El Grado del Histológico
     grado_histologico = models.IntegerField(
         choices=stomac_model_choices.GradoHistologicoChoices.choices,
-        verbose_name = "El Grado del Histológico"
+        verbose_name="El Grado del Histológico",
     )
     grado_histologico_otro = models.CharField(
         max_length=5000,
@@ -69,24 +72,24 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-    #Extensión del Tumor
+
+    # Extensión del Tumor
     extension_tumor = models.IntegerField(
         choices=stomac_model_choices.ExtensionTumorChoices.choices,
-        verbose_name = "Extensión del Tumor"
+        verbose_name="Extensión del Tumor",
     )
     estructuras_adyacentes_invadidas = models.CharField(
         max_length=5000,
-        verbose_name='''El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
-            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo. 
+        verbose_name="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
+            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo.
             La extensión intramural del duodeno o el esófago no es considerado invasión de una estructura adyacente, pero está clasificado usa la profundidad de la máxima invasión en cualquier
-            de estos sitios.''',
+            de estos sitios.""",
         blank=True,
         null=True,
     )
-    
-    #Los Márgenes
-    #Nota: Use esta sección sólo si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
+
+    # Los Márgenes
+    # Nota: Use esta sección sólo si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
     todos_los_margenes_involucrados = models.BooleanField(
         verbose_name=""" Todos los márgenes son involucrados por carcinoma invasor y displasia""",
         default=False,
@@ -115,7 +118,7 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    #Solo para especímenes de gastrectomía
+    # Solo para especímenes de gastrectomía
     margen_proximal = models.IntegerField(
         choices=stomac_model_choices.MargenProximalChoices.choices,
         verbose_name="""Margen Proximal(Solo para especímenes de gastrectomía)""",
@@ -134,15 +137,15 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    mayor_margen_omental  = models.FloatField(
-        verbose_name='''El + que el Mayor margen del omental involucró por carcinoma del invasive''',
+    mayor_margen_omental = models.FloatField(
+        verbose_name="""El + que el Mayor margen del omental involucró por carcinoma del invasive""",
         blank=True,
-        null = True
+        null=True,
     )
     inferior_margen_omental = models.FloatField(
-        verbose_name='''El + que el margen Inferior del omental involucró por carcinoma del invasive''',
+        verbose_name="""El + que el margen Inferior del omental involucró por carcinoma del invasive""",
         blank=True,
-        null = True
+        null=True,
     )
     otros_margenes_gastrectomia = models.CharField(
         max_length=1000,
@@ -156,13 +159,13 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    #Para especímenes sólo de resección del endoscopic(RE)
+    # Para especímenes sólo de resección del endoscopic(RE)
     margen_mucosal = models.IntegerField(
         verbose_name="Margen Mucosal(Para especímenes sólo de resección del endoscopic)",
         choices=stomac_model_choices.MargenMucosalChoices.choices,
         blank=True,
         null=True,
-    ) 
+    )
     margen_profundo = models.IntegerField(
         verbose_name="Margen Profundo(Para especímenes sólo de resección del endoscopic)",
         choices=stomac_model_choices.MargenProfundoChoices.choices,
@@ -181,25 +184,25 @@ class StomacBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    
-    #La Invasión del Linfovascular
+
+    # La Invasión del Linfovascular
     invasion_linfovascular = models.IntegerField(
         verbose_name="Invasión Linfovascular",
         choices=stomac_model_choices.InvasionLinfovascularChoices.choices,
     )
-    
+
     # Invasión Perineural
     invasion_perineural = models.IntegerField(
         verbose_name="Invasión Perineural",
         choices=stomac_model_choices.InvasionPerineuralChoices.choices,
     )
-    
+
     # Ganglios Linfáticos Regionales
     ganglios_linfaticos_encontrados = models.BooleanField(
         verbose_name="Ganglios Linfáticos Encontrados",
         default=False,
     )
-    
+
     # Examen del ganglio linfático (requerido solo si se marco la casilla anterior, es decir si los ganglios linfáticos están presentes en el espécimen)
     # Número de gânglios linfáticos Involucrados
     num_ganglios_linfaticos = models.IntegerField(
@@ -219,7 +222,7 @@ class StomacBiopsyDiagnostic(models.Model):
     clasificacion_tumor = models.IntegerField(
         choices=stomac_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        default=1
+        default=1,
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -232,13 +235,3 @@ class StomacBiopsyDiagnostic(models.Model):
 
     def __str__(self):
         return f"Diagnóstico Biopcia Digestivo(Estómago) de la biopcia: {self.biopsy}"
-    
-
-    
-    
-    
-    
-    
-    
-    
-    

@@ -8,9 +8,10 @@ from django.forms import (
     Select,
     Textarea,
 )
-from apps.nuclear_medicine import forms
+
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
+from apps.nuclear_medicine import forms
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
@@ -209,8 +210,7 @@ class HeadBiopsyForm(ModelForm):
         required=False,
     )
     num_ganglios_linfaticos_examinados = IntegerField(
-        label="El Número de Ganglios Linfáticos Examinados:", 
-        required=False
+        label="El Número de Ganglios Linfáticos Examinados:", required=False
     )
     num_ganglios_linfaticos_examinados_no_determinado = CharField(
         label="El número de Ganglios Linfáticos no puede ser determinado (explique):",
@@ -218,14 +218,14 @@ class HeadBiopsyForm(ModelForm):
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
     )
-    
-    #Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
+
+    # Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
     size_deposito_metastásico_más_grande = FloatField(
         label="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
         required=False,
     )
-    
-    #Extensión Extra-ganglionar(ENE)
+
+    # Extensión Extra-ganglionar(ENE)
     extension_extra_ganglionar = EmptyChoiceField(
         empty_label="Seleccionar Extensión Extra-ganglionar(ENE)",
         choices=head_model_choices.ExtensionExtraGanglionar.choices,

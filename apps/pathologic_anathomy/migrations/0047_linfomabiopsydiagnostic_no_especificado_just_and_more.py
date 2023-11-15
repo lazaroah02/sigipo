@@ -4,20 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0046_linfomabiopsydiagnostic'),
+        ("pathologic_anathomy", "0046_linfomabiopsydiagnostic"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='linfomabiopsydiagnostic',
-            name='no_especificado_just',
-            field=models.CharField(blank=True, max_length=5000, null=True, verbose_name='No especificado(justifique)'),
+            model_name="linfomabiopsydiagnostic",
+            name="no_especificado_just",
+            field=models.CharField(
+                blank=True,
+                max_length=5000,
+                null=True,
+                verbose_name="No especificado(justifique)",
+            ),
         ),
         migrations.AlterField(
-            model_name='linfomabiopsydiagnostic',
-            name='no_especificado',
-            field=models.BooleanField(default=False, verbose_name='No especificado'),
+            model_name="linfomabiopsydiagnostic",
+            name="no_especificado",
+            field=models.BooleanField(default=False, verbose_name="No especificado"),
         ),
     ]
