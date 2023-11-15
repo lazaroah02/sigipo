@@ -190,6 +190,10 @@ NIVELES_GANGLIONARES_CHOICES = [
     ("otros", "Otros"),
 ]
 
+class ExtensionExtraGanglionar(IntegerChoices):
+    NO_IDENTIFICADO = 1, 'No identificado'
+    PRESENTE = 2, 'Presente'
+    NO_PUEDE_DETERMINAR = 3, 'No puede ser determinada'
 
 class ClasificacionTumorChoices(IntegerChoices):
     PT = 1, "PT"

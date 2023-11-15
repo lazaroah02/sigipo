@@ -61,6 +61,7 @@ class HeadBiopsyForm(ModelForm):
     # sitio o localizacion del tumor
     localizacion_tumor = MultipleChoiceField(
         label="Localización del Tumor*",
+        help_text="Localización del Tumor*",
         choices=head_model_choices.SITIO_TUMOR_CHOICES,
         widget=CheckboxSelectMultiple(attrs={}),
         required=True,
@@ -185,7 +186,7 @@ class HeadBiopsyForm(ModelForm):
     ganglio_linfatico_encontrado = BooleanField(
         label="Ganglio linfático presente o encontrado*",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
-        required=True,
+        required=False,
     )
 
     # Examen del ganglio linfatico(El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen))
@@ -213,12 +214,28 @@ class HeadBiopsyForm(ModelForm):
         required=False,
     )
     num_ganglios_linfaticos_examinados = IntegerField(
-        label="El Número de Ganglios Linfáticos Examinados:", required=False
+        label="El Número de Ganglios Linfáticos Examinados:", 
+        required=False
     )
     num_ganglios_linfaticos_examinados_no_determinado = CharField(
         label="El número de Ganglios Linfáticos no puede ser determinado (explique):",
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
+        required=False,
+    )
+    
+    #Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
+    size_deposito_metastásico_más_grande = FloatField(
+        label="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
+        required=False,
+    )
+    
+    #Extensión Extra-ganglionar(ENE)
+    extension_extra_ganglionar = EmptyChoiceField(
+        empty_label="Seleccionar Extensión Extra-ganglionar(ENE)",
+        choices=head_model_choices.ExtensionExtraGanglionar.choices,
+        label="Extensión Extra-ganglionar (ENE)",
+        widget=Select(attrs={"class": "form-control form-select"}),
         required=False,
     )
 
@@ -262,6 +279,8 @@ class HeadBiopsyForm(ModelForm):
             "niveles_ganglionares_otros",
             "num_ganglios_linfaticos_examinados",
             "num_ganglios_linfaticos_examinados_no_determinado",
+            "size_deposito_metastásico_más_grande",
+            "extension_extra_ganglionar",
             "clasificacion_tumor",
         ]
         default_permissions = ()

@@ -13,7 +13,8 @@ from django.db.models.manager import Manager
 from apps.pathologic_anathomy.models_biopsy_diagnostic import (
     model_head,
     model_neck,
-    model_stomac
+    model_stomac,
+    model_linfoma
 )
 from apps.core.models import TimeStampedModel
 from apps.employee.models import Doctor
@@ -36,7 +37,7 @@ class BiopsyTypeChoice(IntegerChoices):
 
     breast_biopsy = 1, "Biopsia de Mama"
     neck_biopsy = 2, "Biopsia de Cuello"
-    digestive_biopsy = 3, "Siopsia Digestivo"
+    digestive_biopsy = 3, "Biopsia Digestivo"
     lymphoma_biopsy = 4, "Biopsia de Linfoma"
     ginecologic_biopsy = 5, "Biopsia de Ginecologia"
     head_biopsy = 6, "Biopsia de Cabeza"
