@@ -1,7 +1,6 @@
 from django.forms import (
     BooleanField,
     CharField,
-    CheckboxSelectMultiple,
     FloatField,
     ModelChoiceField,
     Select,
