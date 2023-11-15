@@ -2,15 +2,13 @@ from django.forms import (
     BooleanField,
     CharField,
     CheckboxInput,
-    CheckboxSelectMultiple,
     FloatField,
     IntegerField,
     ModelChoiceField,
-    MultipleChoiceField,
     Select,
     Textarea,
 )
-
+from apps.nuclear_medicine import forms
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
 from apps.pathologic_anathomy.models import BiopsyRequest
@@ -59,11 +57,9 @@ class HeadBiopsyForm(ModelForm):
     )
 
     # sitio o localizacion del tumor
-    localizacion_tumor = MultipleChoiceField(
+    localizacion_tumor = forms.CustomMultiSelectFormField(
         label="Localización del Tumor*",
-        help_text="Localización del Tumor*",
         choices=head_model_choices.SITIO_TUMOR_CHOICES,
-        widget=CheckboxSelectMultiple(attrs={}),
         required=True,
     )
     localizacion_tumor_otro = CharField(
@@ -201,10 +197,9 @@ class HeadBiopsyForm(ModelForm):
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
     )
-    niveles_ganglionares = MultipleChoiceField(
+    niveles_ganglionares = forms.CustomMultiSelectFormField(
         label="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
         choices=head_model_choices.NIVELES_GANGLIONARES_CHOICES,
-        widget=CheckboxSelectMultiple(attrs={}),
         required=False,
     )
     niveles_ganglionares_otros = CharField(

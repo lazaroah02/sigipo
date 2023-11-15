@@ -10,7 +10,6 @@ class LinfomaBiopsyDiagnostic(models.Model):
     # A.Información clínica recibida en el departamento de Anatomía Patológica.
     #El espécimen (seleccione todo lo que aplique)
     especimen = models.CharField(
-        choices=linfoma_model_choices.ESPECIMEN_CHOICES,
         verbose_name="El espécimen (seleccione todo lo que aplique)",
         max_length=100
     )
@@ -23,7 +22,6 @@ class LinfomaBiopsyDiagnostic(models.Model):
     
     #El sitio del tumor (seleccione todo lo que aplique)
     sitio_tumor = models.CharField(
-        choices=linfoma_model_choices.SITIO_TUMOR_CHOICES,
         verbose_name="El sitio del tumor (seleccione todo lo que aplique)",
         max_length=100
     )
@@ -39,11 +37,15 @@ class LinfomaBiopsyDiagnostic(models.Model):
         null = True,
         verbose_name="Otro tejido fino (s) u otro órgano (s) (especifique)"
     )
-    no_especificado = models.CharField(
+    no_especificado = models.BooleanField(
+        verbose_name="No especificado",
+        default=False
+    )
+    no_especificado_just = models.CharField(
         max_length=5000,
         blank=True,
         null = True,
-        verbose_name="No especificado"
+        verbose_name="No especificado(justifique)"
     )
     
     #HistologicType (basada en la clasificación de 2008 quienes)
@@ -53,7 +55,6 @@ class LinfomaBiopsyDiagnostic(models.Model):
     )
     #Extensión Patológica del Tumor (seleccione todo lo que aplique)
     pathologic_tumor_extensions = models.CharField(
-        choices = linfoma_model_choices.PATHOLOGIC_TUMOR_EXTENSIONS,
         verbose_name = "Extensión Patológica del Tumor (seleccione todo lo que aplique)",
         max_length=100,
     )
