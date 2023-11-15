@@ -1,18 +1,19 @@
 from django.db import models
 
-from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model_choices
+from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
+    stomac_model_choices,
+)
 
 
-class NeckBiopsyDiagnostic(models.Model):
+class StomacBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField(
         "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE
     )
 
-    # A.	Información clínica recibida en el departamento de Anatomía Patológica.
-
+    # A.Información clínica recibida en el departamento de Anatomía Patológica.
     # Tipo de muestra
     tipo_muestra = models.IntegerField(
-        choices=neck_model_choices.TipoMuestraChoices.choices,
+        choices=stomac_model_choices.TipoDeMuestraChoices.choices,
         verbose_name="Tipo de Muestra",
     )
     tipo_muestra_otro = models.CharField(
@@ -24,28 +25,12 @@ class NeckBiopsyDiagnostic(models.Model):
 
     # Sitio del Tumor
     sitio_tumor = models.IntegerField(
-        choices=neck_model_choices.SitioTumorChoices.choices,
+        choices=stomac_model_choices.SitioTumorChoices.choices,
         verbose_name="Sitio del Tumor",
     )
     sitio_tumor_otro = models.CharField(
         max_length=5000,
         verbose_name="Otro sitio del tumor (especifique)",
-        blank=True,
-        null=True,
-    )
-
-    # Relación de Tumor con la unión Esophagogastric
-    relacion_tumor_union = models.IntegerField(
-        choices=neck_model_choices.RelacionTumorUnionChoices.choices,
-        verbose_name="Relación de Tumor con la unión Esophagogastric",
-    )
-    distancia_centro_tumor_union = models.FloatField(
-        verbose_name="""
-            El protocolo de cáncer del estómago si ya sea:
-            (1) el tumor involucrara el EGJ, pero el punto medio es más que 2 cm del estómago proximal o
-            (2) el punto medio está menos de 2 cm del estómago proximal, pero el tumor no involucra al EGJ.
-            La distancia de centro del tumor a la unión esophagogastric (especifique, si aplicable) (los centímetros)
-        """,
         blank=True,
         null=True,
     )
@@ -64,12 +49,10 @@ class NeckBiopsyDiagnostic(models.Model):
         null=True,
     )
 
-    # El Tipo del Histología
-    tipo_histologia = models.IntegerField(
-        choices=neck_model_choices.TipoHistologiaChoices.choices,
-        verbose_name="Tipo Histología. Nota: Seleccione esta opción sólo si el de células grande o célula pequeña no puede ser determinada",
-        blank=True,
-        null=True,
+    # El Tipo Histológico
+    tipo_histologico = models.IntegerField(
+        choices=stomac_model_choices.TipoHistologicoChoices.choices,
+        verbose_name="El Tipo Histológico",
     )
     tipo_histologico_otro = models.CharField(
         max_length=5000,
@@ -78,39 +61,41 @@ class NeckBiopsyDiagnostic(models.Model):
         null=True,
     )
 
-    # Grado Histológico
-    grado_histolico = models.IntegerField(
-        choices=neck_model_choices.GradoHistologicoChoices.choices,
-        verbose_name="""Grado Histológico (El grado grado histológico no es aplicable para el carcinoma adenoideo quistito,
-            mucoepidermoide, el bien diferenciado, el tumor neuroendocrino y el carcinoma neuroendocrino).
-            """,
+    # El Grado del Histológico
+    grado_histologico = models.IntegerField(
+        choices=stomac_model_choices.GradoHistologicoChoices.choices,
+        verbose_name="El Grado del Histológico",
+    )
+    grado_histologico_otro = models.CharField(
+        max_length=5000,
+        verbose_name="Otro Tipo Histológico (especifique)",
         blank=True,
         null=True,
     )
 
-    # La Extensión del Tumor
-    tumor_extension = models.IntegerField(
-        choices=neck_model_choices.TumorExtensionChoices.choices,
-        verbose_name="""La Extensión del Tumor.""",
+    # Extensión del Tumor
+    extension_tumor = models.IntegerField(
+        choices=stomac_model_choices.ExtensionTumorChoices.choices,
+        verbose_name="Extensión del Tumor",
     )
     estructuras_adyacentes_invadidas = models.CharField(
         max_length=5000,
-        verbose_name="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen
-            la pleura, el pericardio, la vena ácigos, el diafragma, el peritoneo, la aorta, cuerpo vertebral y la vía aérea.""",
+        verbose_name="""El tumor invade a estructuras/órganos adyacentes(especifique). Las estructuras adyacentes del estómago incluyen el bazo, el colon
+            transverso, el hígado, el diafragma, el páncreas, la pared abdominal, la glándula suprarrenal, renale intestino delgado, y el retroperitoneo.
+            La extensión intramural del duodeno o el esófago no es considerado invasión de una estructura adyacente, pero está clasificado usa la profundidad de la máxima invasión en cualquier
+            de estos sitios.""",
         blank=True,
         null=True,
     )
 
-    # LOS MARGENES
-    # Nota: Use esta sección sólo si marco la casilla anterior, es decir todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
+    # Los Márgenes
+    # Nota: Use esta sección sólo si todos los márgenes son involucrados y todos los márgenes pueden ser evaluados.
     todos_los_margenes_involucrados = models.BooleanField(
-        verbose_name=""" todos los márgenes son involucrados por carcinoma invasivo,
-            displasia, y metaplasia intestinal""",
+        verbose_name=""" Todos los márgenes son involucrados por carcinoma invasor y displasia""",
         default=False,
     )
     margenes_examinados = models.CharField(
-        verbose_name="""Los márgenes examinados. Nota: Los márgenes pueden incluir a proximal, distal, radial,
-            mucosal, en profundidad, y otros.""",
+        verbose_name="""Los márgenes examinados. Nota: Los márgenes pueden incluir a proximal, distal, omental(radial), mucosal, profundidad y otros.""",
         max_length=5000,
         blank=True,
         null=True,
@@ -133,47 +118,57 @@ class NeckBiopsyDiagnostic(models.Model):
         blank=True,
         null=True,
     )
-    # Solo para esophagectomia y esophagogastrectomia(EE)
+    # Solo para especímenes de gastrectomía
     margen_proximal = models.IntegerField(
-        choices=neck_model_choices.MargenProximalChoices.choices,
-        verbose_name="""Margen Proximal""",
+        choices=stomac_model_choices.MargenProximalChoices.choices,
+        verbose_name="""Margen Proximal(Solo para especímenes de gastrectomía)""",
         blank=True,
         null=True,
     )
     margen_distal = models.IntegerField(
-        choices=neck_model_choices.MargenDistalChoices.choices,
-        verbose_name="Margen Distal",
+        choices=stomac_model_choices.MargenDistalChoices.choices,
+        verbose_name="Margen Distal(Solo para especímenes de gastrectomía)",
         blank=True,
         null=True,
     )
     margen_radial = models.IntegerField(
-        choices=neck_model_choices.MargenRadialChoices.choices,
-        verbose_name="Margen Radial",
+        choices=stomac_model_choices.MargenRadialChoices.choices,
+        verbose_name="Márgenes Omental(Radial)(Solo para especímenes de gastrectomía)",
         blank=True,
         null=True,
     )
-    otros_margenes_EE = models.CharField(
+    mayor_margen_omental = models.FloatField(
+        verbose_name="""El + que el Mayor margen del omental involucró por carcinoma del invasive""",
+        blank=True,
+        null=True,
+    )
+    inferior_margen_omental = models.FloatField(
+        verbose_name="""El + que el margen Inferior del omental involucró por carcinoma del invasive""",
+        blank=True,
+        null=True,
+    )
+    otros_margenes_gastrectomia = models.CharField(
         max_length=1000,
         blank=True,
         null=True,
-        verbose_name="Otro Margen(s) (requerido único si es aplicable). Especifique",
+        verbose_name="Otro Margen(s) (requerido único si aplicable). Especifique",
     )
-    otros_margenes_EE_especificaciones = models.IntegerField(
-        choices=neck_model_choices.OtrosMargenesEsophagectomiaEsophagogastrectomiaChoices.choices,
-        verbose_name="Otro Margen(s)",
+    otros_margenes_gastrectomia_especificaciones = models.IntegerField(
+        choices=stomac_model_choices.OtrosMargenesGastrectomiaChoices.choices,
+        verbose_name="Otro Margen(s) Clasificación",
         blank=True,
         null=True,
     )
-    # Para especímenes solo de resección endoscopica(RE)
+    # Para especímenes sólo de resección del endoscopic(RE)
     margen_mucosal = models.IntegerField(
-        verbose_name="Margen Mucosal",
-        choices=neck_model_choices.MargenMucosalChoices.choices,
+        verbose_name="Margen Mucosal(Para especímenes sólo de resección del endoscopic)",
+        choices=stomac_model_choices.MargenMucosalChoices.choices,
         blank=True,
         null=True,
     )
     margen_profundo = models.IntegerField(
-        verbose_name="Margen Profundo",
-        choices=neck_model_choices.MargenProfundoChoices.choices,
+        verbose_name="Margen Profundo(Para especímenes sólo de resección del endoscopic)",
+        choices=stomac_model_choices.MargenProfundoChoices.choices,
         blank=True,
         null=True,
     )
@@ -181,25 +176,25 @@ class NeckBiopsyDiagnostic(models.Model):
         max_length=1000,
         blank=True,
         null=True,
-        verbose_name="Otro Margen(s) (requerido único si es aplicable). Especifique",
+        verbose_name="Otro Margen(s) (requerido único si aplicable). Especifique",
     )
     otros_margenes_RE_especificaciones = models.IntegerField(
-        choices=neck_model_choices.OtrosMargenesReseccionEndoscopicaChoices.choices,
-        verbose_name="Otro Margen(s)",
+        choices=stomac_model_choices.OtrosMargenesREChoices.choices,
+        verbose_name="Otro Margen(s) Clasificación",
         blank=True,
         null=True,
     )
 
-    # Invasión Linfovascular
+    # La Invasión del Linfovascular
     invasion_linfovascular = models.IntegerField(
         verbose_name="Invasión Linfovascular",
-        choices=neck_model_choices.InvasionLinfovascularChoices.choices,
+        choices=stomac_model_choices.InvasionLinfovascularChoices.choices,
     )
 
     # Invasión Perineural
     invasion_perineural = models.IntegerField(
         verbose_name="Invasión Perineural",
-        choices=neck_model_choices.InvasionPerineuralChoices.choices,
+        choices=stomac_model_choices.InvasionPerineuralChoices.choices,
     )
 
     # Ganglios Linfáticos Regionales
@@ -225,7 +220,7 @@ class NeckBiopsyDiagnostic(models.Model):
 
     # clasificación del tumor
     clasificacion_tumor = models.IntegerField(
-        choices=neck_model_choices.ClasificacionTumorChoices.choices,
+        choices=stomac_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
         default=1,
     )
@@ -234,9 +229,9 @@ class NeckBiopsyDiagnostic(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Diagnóstico Biopcia de Cuello(Esófago)"
-        verbose_name_plural = "Diagnósticos Biopcias de Cuello(Esófago)"
+        verbose_name = "Diagnóstico Biopcia Digestivo(Estómago)"
+        verbose_name_plural = "Diagnósticos Biopcia Digestivo(Estómago)"
         ordering = ["id"]
 
     def __str__(self):
-        return f"Diagnóstico Biopcia de Cuello(Esófago) de la biopcia: {self.biopsy}"
+        return f"Diagnóstico Biopcia Digestivo(Estómago) de la biopcia: {self.biopsy}"

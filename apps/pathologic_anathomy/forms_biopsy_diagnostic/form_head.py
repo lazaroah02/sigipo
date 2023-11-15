@@ -2,17 +2,16 @@ from django.forms import (
     BooleanField,
     CharField,
     CheckboxInput,
-    CheckboxSelectMultiple,
     FloatField,
     IntegerField,
     ModelChoiceField,
-    MultipleChoiceField,
     Select,
     Textarea,
 )
 
 from apps.core.forms import ChoiceField as EmptyChoiceField
 from apps.core.forms import ModelForm
+from apps.nuclear_medicine import forms
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 from apps.pathologic_anathomy.models_biopsy_diagnostic.model_head import Head
@@ -59,10 +58,9 @@ class HeadBiopsyForm(ModelForm):
     )
 
     # sitio o localizacion del tumor
-    localizacion_tumor = MultipleChoiceField(
+    localizacion_tumor = forms.CustomMultiSelectFormField(
         label="Localización del Tumor*",
         choices=head_model_choices.SITIO_TUMOR_CHOICES,
-        widget=CheckboxSelectMultiple(attrs={}),
         required=True,
     )
     localizacion_tumor_otro = CharField(
@@ -185,7 +183,7 @@ class HeadBiopsyForm(ModelForm):
     ganglio_linfatico_encontrado = BooleanField(
         label="Ganglio linfático presente o encontrado*",
         widget=CheckboxInput(attrs={"class": "form-check-input"}),
-        required=True,
+        required=False,
     )
 
     # Examen del ganglio linfatico(El examen del ganglio linfático (es únicamente requerido si hay ganglios linfáticos presentes en el espécimen))
@@ -200,10 +198,9 @@ class HeadBiopsyForm(ModelForm):
         widget=Textarea(attrs={"class": "form-control"}),
         required=False,
     )
-    niveles_ganglionares = MultipleChoiceField(
+    niveles_ganglionares = forms.CustomMultiSelectFormField(
         label="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
         choices=head_model_choices.NIVELES_GANGLIONARES_CHOICES,
-        widget=CheckboxSelectMultiple(attrs={}),
         required=False,
     )
     niveles_ganglionares_otros = CharField(
@@ -219,6 +216,21 @@ class HeadBiopsyForm(ModelForm):
         label="El número de Ganglios Linfáticos no puede ser determinado (explique):",
         max_length=5000,
         widget=Textarea(attrs={"class": "form-control"}),
+        required=False,
+    )
+
+    # Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
+    size_deposito_metastásico_más_grande = FloatField(
+        label="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
+        required=False,
+    )
+
+    # Extensión Extra-ganglionar(ENE)
+    extension_extra_ganglionar = EmptyChoiceField(
+        empty_label="Seleccionar Extensión Extra-ganglionar(ENE)",
+        choices=head_model_choices.ExtensionExtraGanglionar.choices,
+        label="Extensión Extra-ganglionar (ENE)",
+        widget=Select(attrs={"class": "form-control form-select"}),
         required=False,
     )
 
@@ -262,6 +274,8 @@ class HeadBiopsyForm(ModelForm):
             "niveles_ganglionares_otros",
             "num_ganglios_linfaticos_examinados",
             "num_ganglios_linfaticos_examinados_no_determinado",
+            "size_deposito_metastásico_más_grande",
+            "extension_extra_ganglionar",
             "clasificacion_tumor",
         ]
         default_permissions = ()

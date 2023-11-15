@@ -145,6 +145,8 @@ class Head(models.Model):
     niveles_ganglionares = models.CharField(
         verbose_name="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
         max_length=100,
+        blank=True,
+        null=True,
     )
     niveles_ganglionares_otros = models.CharField(
         max_length=5000,
@@ -153,7 +155,9 @@ class Head(models.Model):
         null=True,
     )
     num_ganglios_linfaticos_examinados = models.IntegerField(
-        verbose_name="El Número de Ganglios Linfáticos Examinados: "
+        verbose_name="El Número de Ganglios Linfáticos Examinados: ",
+        blank=True,
+        null=True,
     )
     num_ganglios_linfaticos_examinados_no_determinado = models.CharField(
         max_length=5000,
@@ -162,13 +166,25 @@ class Head(models.Model):
         verbose_name="El número de Ganglios Linfáticos no puede ser determinado (explique): ",
     )
 
+    # Metástasis a ganglios linfáticos (es únicamente requerido si hay ganglios linfáticos involucrados)
+    size_deposito_metastásico_más_grande = models.FloatField(
+        verbose_name="Tamaño del depósito metastásico más grande(centímetros).Es únicamente requerido si hay ganglios linfáticos involucrados",
+        blank=True,
+        null=True,
+    )
+    # Extensión Extra-ganglionar (ENE)
+    extension_extra_ganglionar = models.IntegerField(
+        choices=head_model_choices.ExtensionExtraGanglionar.choices,
+        verbose_name="Extensión Extra-ganglionar (ENE)",
+        blank=True,
+        null=True,
+    )
+
     # clasificación del tumor
     clasificacion_tumor = models.IntegerField(
         choices=head_model_choices.ClasificacionTumorChoices.choices,
         verbose_name="Clasificación Tumor",
-        blank=True,
-        null=True,
-        default=None,
+        default=1,
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

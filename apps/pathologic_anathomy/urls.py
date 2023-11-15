@@ -30,12 +30,12 @@ urlpatterns = [
     getUrl(BiopsyRequestDeleteView),
     path("biopsyrequest/add-diagnostic", BiopsyRequestAddDiagnosticView.as_view()),
     path(
-        "biopsy-verificated/list/",
+        "biopsy-diagnosticated/list/",
         PaginationFilterView.as_view(
             model=BiopsyRequest,
             queryset=BiopsyRequest.objects.filter(verificated=True),
             filterset_class=BiopsyRequestFilter,
         ),
-        name="biopsy-verificated_list",
+        name="biopsy-diagnosticated_list",
     ),
 ]
