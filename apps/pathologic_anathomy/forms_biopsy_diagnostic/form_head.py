@@ -245,37 +245,5 @@ class HeadBiopsyForm(ModelForm):
 
     class Meta:
         model = Head
-        fields = [
-            "biopsy",
-            "tipo_muestra",
-            "tipo_extension_parcial",
-            "focalidad_tumor",
-            "localizacion_tumor",
-            "localizacion_tumor_otro",
-            "max_tumor_size",
-            "additional_tumor_size",
-            "tumor_size_imposible_to_determinate",
-            "carcinoma_papilar",
-            "carcinomas_foliculares",
-            "otro_tipo_carcinoma_folicular",
-            "margenes",
-            "distancia_carcinoma_mas_cercano",
-            "sitios_invasion",
-            "invasion_vascular",
-            "invasion_linfatica",
-            "indice_mitosis",
-            "invasion_perineural",
-            "extension_extratiroidea",
-            "extension",
-            "ganglio_linfatico_encontrado",
-            "num_ganglios_linfaticos",
-            "num_ganglios_no_determinados",
-            "niveles_ganglionares",
-            "niveles_ganglionares_otros",
-            "num_ganglios_linfaticos_examinados",
-            "num_ganglios_linfaticos_examinados_no_determinado",
-            "size_deposito_metastásico_más_grande",
-            "extension_extra_ganglionar",
-            "clasificacion_tumor",
-        ]
+        fields = "__all__"
         default_permissions = ()

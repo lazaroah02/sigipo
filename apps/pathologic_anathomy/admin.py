@@ -7,6 +7,7 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic import (
     model_linfoma,
     model_neck,
     model_stomac,
+    model_gynecology
 )
 
 admin.site.register(BiopsyRequest)
@@ -14,3 +15,4 @@ admin.site.register(model_head.Head)
 admin.site.register(model_neck.NeckBiopsyDiagnostic)
 admin.site.register(model_stomac.StomacBiopsyDiagnostic)
 admin.site.register(model_linfoma.LinfomaBiopsyDiagnostic)
+admin.site.register(model_gynecology.GynecologyBiopsyDiagnostic)

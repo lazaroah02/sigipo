@@ -15,6 +15,8 @@ from apps.core.models import TimeStampedModel
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
 
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_gynecology import GynecologyBiopsyDiagnostic
+
 # Create your models here.
 
 

@@ -7,7 +7,7 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
 
 class StomacBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField(
-        "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE
+        "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE, related_name = "stomac_biopsy_diagnostic"
     )
 
     # A.Información clínica recibida en el departamento de Anatomía Patológica.

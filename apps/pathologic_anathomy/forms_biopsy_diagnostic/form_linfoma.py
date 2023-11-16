@@ -126,21 +126,5 @@ class LinfomaBiopsyDiagnosticForm(ModelForm):
 
     class Meta:
         model = LinfomaBiopsyDiagnostic
-        fields = [
-            "biopsy",
-            "especimen",
-            "otro_especimen",
-            "sitio_tumor",
-            "sitio_tumor_especificacion",
-            "otro_tejido_fino_u_organo",
-            "no_especificado",
-            "no_especificado_just",
-            "histologic_type",
-            "pathologic_tumor_extensions",
-            "inmunofenotipo",
-            "inmunofenotipo_no_realizado",
-            "metodos_y_resultados",
-            "puntuacion_pronostico",
-            "sistema_utilizado",
-        ]
+        fields = "__all__"
         default_permissions = ()

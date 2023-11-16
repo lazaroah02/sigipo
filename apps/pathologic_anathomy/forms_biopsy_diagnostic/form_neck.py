@@ -284,41 +284,5 @@ class NeckBiopsyDiagnosticForm(ModelForm):
 
     class Meta:
         model = NeckBiopsyDiagnostic
-        fields = [
-            "biopsy",
-            "tipo_muestra",
-            "tipo_muestra_otro",
-            "sitio_tumor",
-            "sitio_tumor_otro",
-            "relacion_tumor_union",
-            "distancia_centro_tumor_union",
-            "tumor_max_size",
-            "tumor_size",
-            "no_puede_aplicable",
-            "tipo_histologia",
-            "tipo_histologico_otro",
-            "grado_histolico",
-            "tumor_extension",
-            "estructuras_adyacentes_invadidas",
-            "todos_los_margenes_involucrados",
-            "margenes_examinados",
-            "distancia_carcinoma_invasivo_margen_cercano_cm",
-            "distancia_carcinoma_invasivo_margen_cercano_mm",
-            "margen_mas_cercano",
-            "margen_proximal",
-            "margen_distal",
-            "margen_radial",
-            "otros_margenes_EE",
-            "otros_margenes_EE_especificaciones",
-            "margen_mucosal",
-            "margen_profundo",
-            "otros_margenes_RE",
-            "otros_margenes_RE_especificaciones",
-            "invasion_linfovascular",
-            "invasion_perineural",
-            "ganglios_linfaticos_encontrados",
-            "num_ganglios_linfaticos",
-            "num_ganglios_no_determinado",
-            "clasificacion_tumor",
-        ]
+        fields = "__all__"
         default_permissions = ()

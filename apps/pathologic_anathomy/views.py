@@ -8,12 +8,12 @@ from apps.core.views import (
     BaseUpdateView,
 )
 from apps.pathologic_anathomy.forms import BiopsyRequestForm
-from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_linfoma import (
-    LinfomaBiopsyDiagnosticForm,
+from apps.pathologic_anathomy.forms_biopsy_diagnostic.form_gynecology import (
+    GynecologyBiopsyForm,
 )
 from apps.pathologic_anathomy.models import BiopsyRequest
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_linfoma import (
-    LinfomaBiopsyDiagnostic,
+from apps.pathologic_anathomy.models_biopsy_diagnostic.model_gynecology import (
+    GynecologyBiopsyDiagnostic,
 )
 
 
@@ -60,8 +60,8 @@ class BiopsyRequestDeleteView(BaseDeleteView):
 
 class BiopsyRequestAddDiagnosticView(BaseCreateView):
     """View to handle BiopsyOrder view."""
-    model = LinfomaBiopsyDiagnostic
-    form_class = LinfomaBiopsyDiagnosticForm
+    model = GynecologyBiopsyDiagnostic
+    form_class = GynecologyBiopsyForm
     success_url = reverse_lazy("pathologic_anathomy:biopsy-diagnosticated_list")
     success_message = "Diagnostico de biopsia guardada correctamente."
     cancel_url = "pathologic_anathomy:biopsyrequest_list"

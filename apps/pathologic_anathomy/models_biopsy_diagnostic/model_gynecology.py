@@ -8,13 +8,13 @@ class GynecologyBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField(
         "pathologic_anathomy.BiopsyRequest",
         on_delete=models.CASCADE,
-        related_name="biopsy_diagnostic_head",
+        related_name="biopsy_diagnostic_gynecology",
     )
     # INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
     
     #Cuello Uterino
     #El Procedimiento
-    procedimiento = models.ImageField(
+    procedimiento = models.IntegerField(
         choices=gynecology_model_choices.ProcedimientoChoices.choices,
         verbose_name="El Procedimiento"
     )
@@ -120,7 +120,7 @@ class GynecologyBiopsyDiagnostic(models.Model):
         null = True,
     )
     margen_endocervical_afectado_por = models.CharField(
-        max_legth = 100,
+        max_length = 100,
         blank = True,
         null = True,
         verbose_name = "Afectado por:"
@@ -147,7 +147,7 @@ class GynecologyBiopsyDiagnostic(models.Model):
         null = True,
     )
     margen_ectocervical_afectado_por = models.CharField(
-        max_legth = 100,
+        max_length = 100,
         blank = True,
         null = True,
         verbose_name = "Afectado por:"
@@ -174,7 +174,7 @@ class GynecologyBiopsyDiagnostic(models.Model):
         null = True,
     )
     margen_profundo_afectado_por = models.CharField(
-        max_legth = 100,
+        max_length = 100,
         blank = True,
         null = True,
         verbose_name = "Afectado por:"
@@ -326,7 +326,7 @@ class GynecologyBiopsyDiagnostic(models.Model):
         verbose_name = "Ninguno de los ganglios linfáticos se sometieron o encontraron"
         )
     #El examen del ganglio linfático (requeridos únicos si los nodos de la linfa están presentes en espécimen)
-    num_nodos_con_metastasis = models.IntegerChoices(
+    num_nodos_con_metastasis = models.IntegerField(
         verbose_name = "El número de Nodos con Metástasis (excluye a ITCs):",
         blank = True,
         null = True
@@ -356,7 +356,9 @@ class GynecologyBiopsyDiagnostic(models.Model):
         null = True
     )
     total_num_nodos_examinados = models.IntegerField(
-        verbose_name = "Número total de Nodo Examinado (el señalizador y el poco señalizador)"
+        verbose_name = "Número total de Nodo Examinado (el señalizador y el poco señalizador)",
+        blank = True,
+        null = True
     )
     num_total_no_puede_determinarce = models.BooleanField(
         default = False,
