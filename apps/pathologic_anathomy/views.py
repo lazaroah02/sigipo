@@ -1,3 +1,4 @@
+from django.forms.models import BaseModelForm
 from django.urls import reverse_lazy
 
 from apps.core.views import (
@@ -59,7 +60,6 @@ class BiopsyRequestDeleteView(BaseDeleteView):
 
 class BiopsyRequestAddDiagnosticView(BaseCreateView):
     """View to handle BiopsyOrder view."""
-
     model = LinfomaBiopsyDiagnostic
     form_class = LinfomaBiopsyDiagnosticForm
     success_url = reverse_lazy("pathologic_anathomy:biopsy-diagnosticated_list")
