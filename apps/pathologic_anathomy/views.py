@@ -67,12 +67,13 @@ class BiopsyRequestDeleteView(BaseDeleteView):
 
 #ADD DIAGNOSTIC
 BIOPSY_TYPES = {
-        1:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama
+        1:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Cabeza
         2:{"model":model_neck.NeckBiopsyDiagnostic, "form":form_neck.NeckBiopsyDiagnosticForm},  #Biopsia de Cuello
         3:{"model":model_stomac.StomacBiopsyDiagnostic, "form":form_stomac.StomacBiopsyDiagnosticForm},  #Biopsia Digestivo
-        4:{"model":model_linfoma.LinfomaBiopsyDiagnostic, "form":form_linfoma.LinfomaBiopsyDiagnosticForm},  #Biopsia de Linfoma
-        5:{"model":model_gynecology.GynecologyBiopsyDiagnostic, "form":form_gynecology.GynecologyBiopsyForm},  #Biopsia de Ginecologia
-        6:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Cabeza
+        4:{"model":model_gynecology.GynecologyBiopsyDiagnostic, "form":form_gynecology.GynecologyBiopsyForm},  #Biopsia de Ginecologia
+        5:{"model":model_linfoma.LinfomaBiopsyDiagnostic, "form":form_linfoma.LinfomaBiopsyDiagnosticForm},  #Biopsia de Linfoma
+        6:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama CDI
+        7:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama CDIS
     }    
 
 def get_form_class(biopsy):

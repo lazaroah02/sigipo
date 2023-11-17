@@ -47,7 +47,7 @@ class Head(models.Model):
         verbose_name="La máxima dimensión del tumor en centímetros:",
     )
     aditional_tumor_size = models.FloatField(
-        verbose_name="Las dimensiones adicionales del tumor (centímetros):", default=0
+        verbose_name="Las dimensiones adicionales del tumor (centímetros):",
     )
     tumor_size_imposible_to_determinate = models.CharField(
         verbose_name="Dimensiones imposibles de determinar. Explique porque:",
