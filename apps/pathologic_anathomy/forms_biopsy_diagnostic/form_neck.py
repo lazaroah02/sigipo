@@ -28,9 +28,10 @@ class NeckBiopsyDiagnosticForm(ModelForm):
                 "data-language": "es",
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
+                "hidden":"true"
             },
         ),
-        label="Biopcia",
+        label="",
         required=True,
     )
 

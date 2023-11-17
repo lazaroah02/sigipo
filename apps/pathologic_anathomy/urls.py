@@ -4,11 +4,11 @@ from apps.core.views import PaginationFilterView, getUrl
 from apps.pathologic_anathomy.filters import BiopsyRequestFilter
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.views import (
-    BiopsyRequestAddDiagnosticView,
     BiopsyRequestCreateView,
     BiopsyRequestDeleteView,
     BiopsyRequestDetailView,
     BiopsyRequestUpdateView,
+    add_diagnostic_view
 )
 
 app_name = "pathologic_anathomy"
@@ -28,7 +28,10 @@ urlpatterns = [
     getUrl(BiopsyRequestDetailView),
     getUrl(BiopsyRequestUpdateView),
     getUrl(BiopsyRequestDeleteView),
-    path("biopsyrequest/add-diagnostic", BiopsyRequestAddDiagnosticView.as_view()),
+    path("biopsyrequest/<int:biopsy_pk>/add-diagnostic", 
+         add_diagnostic_view,
+         name = "biopsyrequest_add_diagnostic"
+         ),
     path(
         "biopsy-diagnosticated/list/",
         PaginationFilterView.as_view(
