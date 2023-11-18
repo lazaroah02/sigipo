@@ -141,8 +141,6 @@ class PresenciaDCISChoices(models.IntegerChoices):
     DCIS_PRESENTE_POSITIVE_EIC = 3, "DCIS presente.Positive for EIC"
     DCIS_PRESENTE_DESPUES_TTO = 4, "DCIS presente.Solo presente después de tto presurgical (neoadjuvant)"
 
-from django.db import models
-
 PATRON_ARQUITECTURAL_CHOICES = [
     ("COMEDO", "Comedo"),
     ("PAGET", "Enfermedad de Paget (DCIS involving nipple skin)"),

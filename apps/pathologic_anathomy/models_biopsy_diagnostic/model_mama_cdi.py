@@ -76,7 +76,7 @@ class MamaCDIBiopsyDiagnostic(models.Model):
     #Posición
     posicion = models.IntegerField(
         choices = mama_cdi_model_choices.PosicionChoices.choices,
-        verbose_name = "Diagnóstico intraoperatorio"
+        verbose_name = "Posición"
     )
     posicion_otra = models.CharField(
         verbose_name = "Otra posición(especificar)",
@@ -421,7 +421,7 @@ class MamaCDIBiopsyDiagnostic(models.Model):
     )
     #Otros (especificar márgenes):
     margen_otros = models.CharField(
-        max_length = 1000,
+        max_length = 5000,
         verbose_name = "Otros márgenes(especificar)",
         blank = True,
         null = True
@@ -460,7 +460,9 @@ class MamaCDIBiopsyDiagnostic(models.Model):
     #Inferior:	
     margen_inferior_cdis = models.CharField(
         max_length = 1000,
-        verbose_name = "Inferior"
+        verbose_name = "Inferior",
+        blank=True,
+        null = True
     )
     #Medial:
     margen_medial_cdis = models.CharField(

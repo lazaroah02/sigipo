@@ -14,6 +14,7 @@ from apps.pathologic_anathomy.forms_biopsy_diagnostic import (
     form_stomac,
     form_linfoma,
     form_gynecology,
+    form_mama_cdi,
 )
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic import (
@@ -22,6 +23,7 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic import (
     model_stomac,
     model_linfoma,
     model_gynecology,
+    model_mama_cdi,
 )
 
 
@@ -72,7 +74,7 @@ BIOPSY_TYPES = {
         3:{"model":model_stomac.StomacBiopsyDiagnostic, "form":form_stomac.StomacBiopsyDiagnosticForm},  #Biopsia Digestivo
         4:{"model":model_gynecology.GynecologyBiopsyDiagnostic, "form":form_gynecology.GynecologyBiopsyForm},  #Biopsia de Ginecologia
         5:{"model":model_linfoma.LinfomaBiopsyDiagnostic, "form":form_linfoma.LinfomaBiopsyDiagnosticForm},  #Biopsia de Linfoma
-        6:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama CDI
+        6:{"model":model_mama_cdi.MamaCDIBiopsyDiagnostic, "form":form_mama_cdi.MamaCDIBiopsyForm},  #Biopsia de Mama CDI
         7:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama CDIS
     }    
 
@@ -111,7 +113,7 @@ def add_diagnostic_view(request, biopsy_pk):
                 )                    
     #mostramos el formulario en el template
     else:
-        form = form_head.HeadBiopsyForm(initial={'biopsy': biopsy_pk})
+        form = get_form_class(biopsy)(initial={'biopsy': biopsy_pk})
         return render(
             request, 
             "pathologic_anathomy/add_diagnostic.html", 
