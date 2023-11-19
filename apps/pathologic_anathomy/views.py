@@ -173,7 +173,6 @@ def biopsy_diagnosticated_detail_view(request, biopsy_pk):
     diagnostic = get_model_class(biopsy).objects.get(biopsy=biopsy_pk)
     view_title = f"Detalles del {get_model_class(biopsy)._meta.verbose_name.lower()} {biopsy.biopsy_id}"
 
-    print(diagnostic)
     form = get_form_class(biopsy)(instance=diagnostic)
     form_biopsyrequest = BiopsyRequestForm(instance=biopsy)
     disable_form_fields(form_biopsyrequest)
