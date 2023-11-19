@@ -1,10 +1,9 @@
 from django.forms import Select, TextInput
-from django_filters import CharFilter, FilterSet, ModelChoiceFilter, ChoiceFilter
+from django_filters import CharFilter, ChoiceFilter, FilterSet, ModelChoiceFilter
 from django_select2.forms import ModelSelect2Widget
 
 from apps.employee.models import Doctor
-from apps.pathologic_anathomy.models import BiopsyRequest
-from apps.pathologic_anathomy.models import BiopsyTypeChoice
+from apps.pathologic_anathomy.models import BiopsyRequest, BiopsyTypeChoice
 
 
 class BiopsyRequestFilter(FilterSet):
@@ -63,7 +62,7 @@ class BiopsyRequestFilter(FilterSet):
         choices=BiopsyTypeChoice.choices,
         label="Tipo de Bipsia",
         widget=Select(attrs={"class": "form-control form-select"}),
-        )
+    )
     sample_biopsy = CharFilter(
         lookup_expr="icontains",
         widget=TextInput(

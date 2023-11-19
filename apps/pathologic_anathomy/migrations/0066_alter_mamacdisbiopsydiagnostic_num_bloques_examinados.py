@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0065_mamacdisbiopsydiagnostic'),
+        ("pathologic_anathomy", "0065_mamacdisbiopsydiagnostic"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mamacdisbiopsydiagnostic',
-            name='num_bloques_examinados',
-            field=models.IntegerField(blank=True, null=True, verbose_name='Número de bloques examinados'),
+            model_name="mamacdisbiopsydiagnostic",
+            name="num_bloques_examinados",
+            field=models.IntegerField(
+                blank=True, null=True, verbose_name="Número de bloques examinados"
+            ),
         ),
     ]
