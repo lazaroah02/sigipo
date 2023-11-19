@@ -1,4 +1,5 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
     linfoma_model_choices,
@@ -7,13 +8,18 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import (
 
 class LinfomaBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField(
-        "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE
+        "pathologic_anathomy.BiopsyRequest",
+        on_delete=models.CASCADE,
+        related_name="linfoma_byopsy_diagnostic",
     )
 
     # A.Información clínica recibida en el departamento de Anatomía Patológica.
     # El espécimen (seleccione todo lo que aplique)
-    especimen = models.CharField(
-        verbose_name="El espécimen (seleccione todo lo que aplique)", max_length=100
+    especimen = MultiSelectField(
+        verbose_name="El espécimen (seleccione todo lo que aplique)",
+        max_length=100,
+        min_choices=1,
+        choices=linfoma_model_choices.EspecimenChoices.choices,
     )
     otro_especimen = models.CharField(
         max_length=5000,
@@ -23,9 +29,11 @@ class LinfomaBiopsyDiagnostic(models.Model):
     )
 
     # El sitio del tumor (seleccione todo lo que aplique)
-    sitio_tumor = models.CharField(
+    sitio_tumor = MultiSelectField(
         verbose_name="El sitio del tumor (seleccione todo lo que aplique)",
         max_length=100,
+        min_choices=1,
+        choices=linfoma_model_choices.SitioTumorChoices.choices,
     )
     sitio_tumor_especificacion = models.CharField(
         max_length=5000,
@@ -53,9 +61,11 @@ class LinfomaBiopsyDiagnostic(models.Model):
         verbose_name="HistologicType (basada en la clasificación de 2008 quienes)",
     )
     # Extensión Patológica del Tumor (seleccione todo lo que aplique)
-    pathologic_tumor_extensions = models.CharField(
+    pathologic_tumor_extensions = MultiSelectField(
         verbose_name="Extensión Patológica del Tumor (seleccione todo lo que aplique)",
         max_length=100,
+        min_choices=1,
+        choices=linfoma_model_choices.PathologicTumorExtensionChoices.choices,
     )
     # Inmunofenotipo (IHQ) en la lesión del sitio específico:
     inmunofenotipo = models.CharField(

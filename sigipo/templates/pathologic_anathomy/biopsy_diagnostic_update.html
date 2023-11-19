@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/internal/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/external/select2-bootstrap5.min.css' %}"/>
+{% endblock styles %}
+
+{% block content %}
+<div class="container">
+    <form method="post">
+        <div class="card card-container">
+            <div class="card-header">
+                <h3 class="card-title">{{ view_title }}</h3>
+            </div>
+            <!--Card to show the info of the biopsyrequest-->
+            <section>
+                <header>
+                    <br/>
+                        <h5 class="text-center"><strong>Informacion de la Solicitud de Biopsia</strong></h5>
+                    <hr/>
+                </header>
+                <div class="card-body">
+                    <form action="" >
+                        <table>
+                            {{ form_biopsyrequest.as_table }}
+                        </table>
+                    </form>
+                </div>
+            </section>
+            <!--Here-->
+            <div class="card-body" id="base_form">
+                <header>
+                    <hr/>
+                        <h5 class="text-center"><strong>Formulario de Diagnostico de Biopsia</strong></h5>
+                    <hr/>
+                </header>
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-warning " role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    {% block form_customization %}
+                        {% include "helpers/form_field.html" %}
+                    {% endblock form_customization %}
+                {% endfor %}
+                {% block formset %}{% endblock formset %}
+            </div>
+            <div class="card-footer text-muted">
+                <div class="action-buttons">
+                    {% block action-buttons %}
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                        {% if not is_popup %}
+                            <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
+                        {% else %}
+                            <a href="#" role="button" class="btn btn-secondary close-popup-btn"><i class="fa-solid fa-ban"></i> Cancelar</a>
+                        {% endif %}
+                    {% endblock action-buttons %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+{% block endloads %}
+<script src="{% static 'js/external/es.min.js' %}"></script>
+{{ form.media.css }}
+{{ form.media.js }}
+<script src="{% static 'js/internal/select2-focus-fix.js' %}"></script>
+<script src="{% static 'js/internal/related-model-field.js' %}"></script>
+<script src="{% static 'js/internal/create-modal.js' %}"></script>
+{% endblock endloads %}

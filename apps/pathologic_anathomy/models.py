@@ -30,12 +30,13 @@ class HospitalChoice(IntegerChoices):
 class BiopsyTypeChoice(IntegerChoices):
     """Defines the type of biopsy"""
 
-    breast_biopsy = 1, "Biopsia de Mama"
+    head_biopsy = 1, "Biopsia de Cabeza"
     neck_biopsy = 2, "Biopsia de Cuello"
     digestive_biopsy = 3, "Biopsia Digestivo"
-    lymphoma_biopsy = 4, "Biopsia de Linfoma"
-    ginecologic_biopsy = 5, "Biopsia de Ginecologia"
-    head_biopsy = 6, "Biopsia de Cabeza"
+    ginecologic_biopsy = 4, "Biopsia de Ginecologia"
+    lymphoma_biopsy = 5, "Biopsia de Linfoma"
+    breast_biopsy_cdi = 6, "Biopsia de Mama CDI"
+    breast_biopsy_cdis = 7, "Biopsia de Mama CDIS"
 
 
 class BiopsyOrderQuerysetManager(Manager):

@@ -27,10 +27,11 @@ class HeadBiopsyForm(ModelForm):
                 "data-language": "es",
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
+                "hidden": "true",
             },
         ),
-        label="Biopcia",
         required=True,
+        label="",
     )
     # INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
     # tipo de muestra
@@ -60,7 +61,7 @@ class HeadBiopsyForm(ModelForm):
     # sitio o localizacion del tumor
     localizacion_tumor = forms.CustomMultiSelectFormField(
         label="Localización del Tumor*",
-        choices=head_model_choices.SITIO_TUMOR_CHOICES,
+        choices=head_model_choices.SitioTumorChoices.choices,
         required=True,
     )
     localizacion_tumor_otro = CharField(
@@ -74,7 +75,7 @@ class HeadBiopsyForm(ModelForm):
     max_tumor_size = FloatField(
         label="La máxima dimensión del tumor (centímetros)*:", required=True
     )
-    additional_tumor_size = FloatField(
+    aditional_tumor_size = FloatField(
         label="Las dimensiones adicionales del tumor (centímetros)*:", required=True
     )
     tumor_size_imposible_to_determinate = CharField(
@@ -200,7 +201,7 @@ class HeadBiopsyForm(ModelForm):
     )
     niveles_ganglionares = forms.CustomMultiSelectFormField(
         label="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
-        choices=head_model_choices.NIVELES_GANGLIONARES_CHOICES,
+        choices=head_model_choices.NivelesGanglionaresChoices.choices,
         required=False,
     )
     niveles_ganglionares_otros = CharField(
@@ -245,37 +246,5 @@ class HeadBiopsyForm(ModelForm):
 
     class Meta:
         model = Head
-        fields = [
-            "biopsy",
-            "tipo_muestra",
-            "tipo_extension_parcial",
-            "focalidad_tumor",
-            "localizacion_tumor",
-            "localizacion_tumor_otro",
-            "max_tumor_size",
-            "additional_tumor_size",
-            "tumor_size_imposible_to_determinate",
-            "carcinoma_papilar",
-            "carcinomas_foliculares",
-            "otro_tipo_carcinoma_folicular",
-            "margenes",
-            "distancia_carcinoma_mas_cercano",
-            "sitios_invasion",
-            "invasion_vascular",
-            "invasion_linfatica",
-            "indice_mitosis",
-            "invasion_perineural",
-            "extension_extratiroidea",
-            "extension",
-            "ganglio_linfatico_encontrado",
-            "num_ganglios_linfaticos",
-            "num_ganglios_no_determinados",
-            "niveles_ganglionares",
-            "niveles_ganglionares_otros",
-            "num_ganglios_linfaticos_examinados",
-            "num_ganglios_linfaticos_examinados_no_determinado",
-            "size_deposito_metastásico_más_grande",
-            "extension_extra_ganglionar",
-            "clasificacion_tumor",
-        ]
+        fields = "__all__"
         default_permissions = ()
