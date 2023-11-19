@@ -39,7 +39,7 @@ class LinfomaBiopsyDiagnosticForm(ModelForm):
     # El espécimen (seleccione todo lo que aplique)
     especimen = forms.CustomMultiSelectFormField(
         label="El espécimen (seleccione todo lo que aplique)*",
-        choices=linfoma_model_choices.ESPECIMEN_CHOICES,
+        choices=linfoma_model_choices.EspecimenChoices.choices,
         required=True,
     )
     otro_especimen = CharField(
@@ -52,7 +52,7 @@ class LinfomaBiopsyDiagnosticForm(ModelForm):
     # El sitio del tumor (seleccione todo lo que aplique)
     sitio_tumor = forms.CustomMultiSelectFormField(
         label="El sitio del tumor (seleccione todo lo que aplique)*",
-        choices=linfoma_model_choices.SITIO_TUMOR_CHOICES,
+        choices=linfoma_model_choices.SitioTumorChoices.choices,
         required=True,
     )
     sitio_tumor_especificacion = CharField(
@@ -89,7 +89,7 @@ class LinfomaBiopsyDiagnosticForm(ModelForm):
     # Extensión Patológica del Tumor (seleccione todo lo que aplique)
     pathologic_tumor_extensions = forms.CustomMultiSelectFormField(
         label="Extensión Patológica del Tumor (seleccione todo lo que aplique)*",
-        choices=linfoma_model_choices.PATHOLOGIC_TUMOR_EXTENSIONS,
+        choices=linfoma_model_choices.PathologicTumorExtensionChoices.choices,
         required=True,
     )
     # Inmunofenotipo (IHQ) en la lesión del sitio específico:

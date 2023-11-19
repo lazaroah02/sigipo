@@ -17,7 +17,7 @@
             <section>
                 <header>
                     <br/>
-                        <h5 class="text-center"><strong>Informacion de la Solicitud de Biopsia</strong></h5>
+                        <h5 class="text-center"><strong>Informacion de la Biopsia</strong></h5>
                     <hr/>
                 </header>
                 <div class="card-body">
@@ -38,7 +38,7 @@
             <div class="card-body" id="base_form">
                 <header>
                     <hr/>
-                        <h5 class="text-center"><strong>Formulario de Diagnostico de Biopsia</strong></h5>
+                        <h5 class="text-center"><strong>Diagnostico de Biopsia</strong></h5>
                     <hr/>
                 </header>
                 {% csrf_token %}
@@ -60,12 +60,7 @@
             <div class="card-footer text-muted">
                 <div class="action-buttons">
                     {% block action-buttons %}
-                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
-                        {% if not is_popup %}
-                            <a href="{% url cancel_url %}" role="button" class="btn btn-secondary"><i class="fa-solid fa-ban"></i> Cancelar</a>
-                        {% else %}
-                            <a href="#" role="button" class="btn btn-secondary close-popup-btn"><i class="fa-solid fa-ban"></i> Cancelar</a>
-                        {% endif %}
+                        <a href="{% url 'pathologic_anathomy:biopsy-diagnosticated_list'%}" role="button" class="btn btn-secondary close-popup-btn"><i class="fa-solid fa-angle-left"></i> Atras</a>
                     {% endblock action-buttons %}
                 </div>
             </div>

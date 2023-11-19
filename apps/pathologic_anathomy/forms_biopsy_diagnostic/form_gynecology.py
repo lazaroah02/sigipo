@@ -55,7 +55,7 @@ class GynecologyBiopsyForm(ModelForm):
     sitio_tumor = forms.CustomMultiSelectFormField(
         required = True,
         label = "El sitio del Tumor (seleccione todo lo que aplique)",
-        choices = gynecology_model_choices.SITIO_TUMOR_CHOICES
+        choices = gynecology_model_choices.SitioTumorChoices.choices
     )
     sitio_no_determinado = CharField(
         max_length=5000, 
@@ -176,7 +176,7 @@ class GynecologyBiopsyForm(ModelForm):
     margen_endocervical_afectado_por = forms.CustomMultiSelectFormField(
         required = False,
         label = "Afectado por:",
-        choices = gynecology_model_choices.MARGEN_AFECTACION_CHOICES
+        choices = gynecology_model_choices.MargenAfectacionChoices.choices
     )
     margen_endocervical_posicion_especifica = CharField(
         max_length=5000, 
@@ -207,7 +207,7 @@ class GynecologyBiopsyForm(ModelForm):
         required = False
     )
     margen_ectocervical_afectado_por = forms.CustomMultiSelectFormField(
-        choices = gynecology_model_choices.MARGEN_AFECTACION_CHOICES,
+        choices = gynecology_model_choices.MargenAfectacionChoices.choices,
         label = "Afectado por:",
         required = False,
     )
@@ -243,7 +243,7 @@ class GynecologyBiopsyForm(ModelForm):
         max_length = 100,
         required = False,
         label = "Afectado por:",
-        choices = gynecology_model_choices.MARGEN_AFECTACION_CHOICES
+        choices = gynecology_model_choices.MargenAfectacionChoices.choices
     )
     margen_profundo_posicion_especifica = CharField(
         max_length=5000, 
@@ -265,7 +265,7 @@ class GynecologyBiopsyForm(ModelForm):
     otra_patologia_asociada = forms.CustomMultiSelectFormField(
         label="Otra patología asociada(seleccione todo lo que aplique)",
         required = True,
-        choices = gynecology_model_choices.OTRA_PATOLOGIA_ASOCIADA_CHOICES
+        choices = gynecology_model_choices.OtraPatologiaAsociada.choices
     )
     otra_patologia_asociada_especifique = CharField(
         max_length=5000, 

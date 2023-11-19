@@ -1,5 +1,6 @@
 from django.db import models
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import mama_cdi_model_choices
+from multiselectfield import MultiSelectField
 
 class MamaCDIBiopsyDiagnostic(models.Model):
     """
@@ -69,9 +70,11 @@ class MamaCDIBiopsyDiagnostic(models.Model):
         verbose_name = "Diagnóstico intraoperatorio"
     )
     #Sitio del Tumor
-    sitio_tumor = models.CharField(
+    sitio_tumor = MultiSelectField(
         verbose_name = "Sitio del Tumor",
-        max_length = 10
+        max_length = 10,
+        min_choices = 1,
+        choices = mama_cdi_model_choices.SitioDelTumorChoices.choices
     )
     #Posición
     posicion = models.IntegerField(
@@ -335,9 +338,11 @@ class MamaCDIBiopsyDiagnostic(models.Model):
         verbose_name="Número de bloques examinados"
     )
     #Patrón arquitectural (todos los que apliquen)
-    patron_arquitectural = models.CharField(
+    patron_arquitectural = MultiSelectField(
         max_length=100,
-        verbose_name = "Patrón arquitectural (todos los que apliquen)"
+        verbose_name = "Patrón arquitectural (todos los que apliquen)",
+        min_choices = 1,
+        choices = mama_cdi_model_choices.PatronArquitecturalChoices.choices
     )
     patron_arquitectural = models.CharField(
         verbose_name = "Otro Patrón arquitectural(especifique)",

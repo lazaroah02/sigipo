@@ -1,4 +1,4 @@
-from django.db.models import IntegerChoices
+from django.db.models import IntegerChoices, TextChoices
 
 
 class TipoMuestraTiroidesChoice(IntegerChoices):
@@ -37,14 +37,12 @@ class FocalidadTumorChoice(IntegerChoices):
     indeterminado = 3, "No puede ser determinado"
 
 
-SITIO_TUMOR_CHOICES = [
-    ("lobulo_derecho", "El lóbulo derecho"),
-    ("lobulo_izquierdo", "El lóbulo izquierdo"),
-    ("istmo", "El istmo"),
-    ("lobulo_piramidal", "El lóbulo piramidal"),
-    ("otro", "Otro (especifique)"),
-]
-
+class SitioTumorChoices(TextChoices):
+    LOBULO_DERECHO = "lobulo_derecho", "El lóbulo derecho"
+    LOBULO_IZQUIERDO = "lobulo_izquierdo", "El lóbulo izquierdo"
+    ISTMO = "istmo", "El istmo"
+    LOBULO_PIRAMIDAL = "lobulo_piramidal", "El lóbulo piramidal"
+    OTRO = "otro", "Otro (especifique)"
 
 class CarcinomaPapilarChoice(IntegerChoices):
     """Define el carcinoma papilar"""
@@ -178,17 +176,13 @@ class ExtensionChoices(IntegerChoices):
         "Invadiendo la fascia pre-vertebral o recubriendo la arteria carótida o los vasos mediastinales (ie,pT4b)",
     )
 
+class NivelesGanglionaresChoices(TextChoices):
+    NIVEL_VI = "nivel_Vi", "Nivel VI: pre- traqueal, para- traqueal y pre-laríngeo/Delphian, peri-tiroideos (disección del compartimiento central)"
+    NIVEL_VII = "nivel_VII", "Nivel VII (los ganglios linfáticos mediastinales superiores)"
+    NIVEL_IV_DERECHO = "nivel_IV_derecho", "Nivel I-V (disección lateral del cuello) Derecho"
+    NIVEL_IV_IZQUIERDO = "nivel_IV_izquierdo", "Nivel I-V (disección lateral del cuello) Izquierda"
+    OTROS = "otros", "Otros"
 
-NIVELES_GANGLIONARES_CHOICES = [
-    (
-        "nivel_Vi",
-        "Nivel VI: pre- traqueal, para- traqueal y pre-laríngeo/Delphian, peri-tiroideos (disección del compartimiento central)",
-    ),
-    ("nivel_VII", "Nivel VII (los ganglios linfáticos mediastinales superiores)"),
-    ("nivel_IV_derecho", "Nivel I-V (disección lateral del cuello) Derecho"),
-    ("nivel_IV_izquierdo", "Nivel I-V (disección lateral del cuello) Izquierda"),
-    ("otros", "Otros"),
-]
 
 
 class ExtensionExtraGanglionar(IntegerChoices):

@@ -1,0 +1,35 @@
+{% extends "base_crud/base_list.html" %}
+{% load column_sort %}
+{% block crud_columns %}
+    {% create_header_column 'biopsy_id' 'Biopsia ID' %}
+    {% create_header_column 'hospital' 'Hospital' %}
+    {% create_header_column 'biopsy_type' 'Tipo de Biopsia' %}
+    {% create_header_column 'sample_biopsy' 'Tipo de muestra' %}
+    {% create_header_column 'sample_date' 'Fecha_Muestra' %}
+    {% create_header_column 'medic_that_report' 'Médico que reporta' %}
+{% endblock crud_columns %}
+
+{% block table_body %}
+    {% for obj in page_obj %}
+        <tr>
+            <td>{{ obj.biopsy_id }}</td>
+            <td>{{ obj.get_hospital_display|default_if_none:"" }}</td>
+            <td>{{ obj.get_biopsy_type_display|default_if_none:"" }}</td>
+            <td>{{ obj.sample_biopsy|default_if_none:"" }}</td>
+            <td>{{ obj.sample_date|default_if_none:"" }}</td>
+            {% if obj.medic_that_report.pk %}
+                <td><a href="{% url "employee:doctor_detail" obj.medic_that_report.pk %}?return_to=pathologic_anathomy:biopsyrequest_list&{{ url_lookup }}" class="text-dark text-decoration-none" title="Detalles" data-toggle="tooltip">{{ obj.medic_that_report }}</a></td>
+            {% else %}
+                <td>{{ obj.medic_that_report|default_if_none:"" }}</td>
+            {% endif %}
+            <td>
+                <a href="{% url 'pathologic_anathomy:biopsy_diagnosticated_detail' obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
+                <a href="{% url 'pathologic_anathomy:biopsy_diagnostic_update' obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url 'pathologic_anathomy:biopsy_diagnosticated_delete' obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
+              </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
+
+{% block crud_actions %}
+{% endblock crud_actions %}

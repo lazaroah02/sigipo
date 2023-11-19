@@ -1,5 +1,5 @@
 from django.db import models
-
+from multiselectfield import MultiSelectField
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import head_model_choices
 
 
@@ -31,9 +31,11 @@ class Head(models.Model):
     )
 
     # sitio o localizacion del tumor
-    localizacion_tumor = models.CharField(
+    localizacion_tumor = MultiSelectField(
         verbose_name="El sitio (o localización) del tumor (seleccione todo lo que aplique):",
         max_length=100,
+        min_choices = 1,
+        choices = head_model_choices.SitioTumorChoices.choices
     )
     localizacion_tumor_otro = models.CharField(
         max_length=5000,
@@ -142,11 +144,11 @@ class Head(models.Model):
         blank=True,
         null=True,
     )
-    niveles_ganglionares = models.CharField(
+    niveles_ganglionares = MultiSelectField(
         verbose_name="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
         max_length=100,
-        blank=True,
-        null=True,
+        min_choices = 0,
+        choices = head_model_choices.NivelesGanglionaresChoices.choices
     )
     niveles_ganglionares_otros = models.CharField(
         max_length=5000,

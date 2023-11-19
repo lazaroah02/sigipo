@@ -1,5 +1,6 @@
 from django.db import models
 from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import gynecology_model_choices
+from multiselectfield import MultiSelectField
 
 class GynecologyBiopsyDiagnostic(models.Model):
     """
@@ -23,9 +24,11 @@ class GynecologyBiopsyDiagnostic(models.Model):
     )
     
     #El sitio del Tumor (seleccione todo lo que aplique) 
-    sitio_tumor = models.CharField(
+    sitio_tumor = MultiSelectField(
         max_length=100,
         verbose_name="El sitio del Tumor (seleccione todo lo que aplique)",
+        choices = gynecology_model_choices.SitioTumorChoices.choices,
+        min_choices = 1
     )
     sitio_no_determinado = models.CharField(
         max_length=5000, blank=True, null=True, verbose_name="El sitio del tumor no puede ser determinado(explique): "
@@ -119,10 +122,10 @@ class GynecologyBiopsyDiagnostic(models.Model):
         blank = True,
         null = True,
     )
-    margen_endocervical_afectado_por = models.CharField(
+    margen_endocervical_afectado_por = MultiSelectField(
+        choices=gynecology_model_choices.MargenAfectacionChoices.choices,
         max_length = 100,
-        blank = True,
-        null = True,
+        min_choices = 0,
         verbose_name = "Afectado por:"
     )
     margen_endocervical_posicion_especifica = models.CharField(
@@ -146,11 +149,11 @@ class GynecologyBiopsyDiagnostic(models.Model):
         blank = True,
         null = True,
     )
-    margen_ectocervical_afectado_por = models.CharField(
+    margen_ectocervical_afectado_por = MultiSelectField(
         max_length = 100,
-        blank = True,
-        null = True,
-        verbose_name = "Afectado por:"
+        min_choices = 0,
+        verbose_name = "Afectado por:",
+        choices = gynecology_model_choices.MargenAfectacionChoices.choices
     )
     margen_ectocervical_posicion_especifica = models.CharField(
         max_length=5000, blank=True, null=True, verbose_name="La posición especifica(si es posible):"
@@ -173,11 +176,11 @@ class GynecologyBiopsyDiagnostic(models.Model):
         blank = True,
         null = True,
     )
-    margen_profundo_afectado_por = models.CharField(
+    margen_profundo_afectado_por = MultiSelectField(
         max_length = 100,
-        blank = True,
-        null = True,
-        verbose_name = "Afectado por:"
+        min_choices = 0,
+        verbose_name = "Afectado por:",
+        choices = gynecology_model_choices.MargenAfectacionChoices.choices
     )
     margen_profundo_posicion_especifica = models.CharField(
         max_length=5000, blank=True, null=True, verbose_name="La posición especifica(si es posible):"
@@ -190,9 +193,11 @@ class GynecologyBiopsyDiagnostic(models.Model):
     )
     
     #Otra patología asociada(seleccione todo lo que aplique)
-    otra_patologia_asociada = models.CharField(
+    otra_patologia_asociada = MultiSelectField(
         verbose_name="Otra patología asociada(seleccione todo lo que aplique)",
         max_length=100,
+        min_choices = 1,
+        choices = gynecology_model_choices.OtraPatologiaAsociada.choices
     )
     otra_patologia_asociada_especifique = models.CharField(
         max_length=5000, blank=True, null=True, verbose_name="El otro del + (especifique): "

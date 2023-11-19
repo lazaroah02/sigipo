@@ -61,7 +61,7 @@ class HeadBiopsyForm(ModelForm):
     # sitio o localizacion del tumor
     localizacion_tumor = forms.CustomMultiSelectFormField(
         label="Localización del Tumor*",
-        choices=head_model_choices.SITIO_TUMOR_CHOICES,
+        choices=head_model_choices.SitioTumorChoices.choices,
         required=True,
     )
     localizacion_tumor_otro = CharField(
@@ -75,7 +75,7 @@ class HeadBiopsyForm(ModelForm):
     max_tumor_size = FloatField(
         label="La máxima dimensión del tumor (centímetros)*:", required=True
     )
-    additional_tumor_size = FloatField(
+    aditional_tumor_size = FloatField(
         label="Las dimensiones adicionales del tumor (centímetros)*:", required=True
     )
     tumor_size_imposible_to_determinate = CharField(
@@ -201,7 +201,7 @@ class HeadBiopsyForm(ModelForm):
     )
     niveles_ganglionares = forms.CustomMultiSelectFormField(
         label="Especifique Niveles Ganglionares (seleccione todo lo que aplique)",
-        choices=head_model_choices.NIVELES_GANGLIONARES_CHOICES,
+        choices=head_model_choices.NivelesGanglionaresChoices.choices,
         required=False,
     )
     niveles_ganglionares_otros = CharField(

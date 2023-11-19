@@ -111,7 +111,7 @@ class MamaCDIBiopsyForm(ModelForm):
     sitio_tumor = forms.CustomMultiSelectFormField(
         label = "Sitio del Tumor",
         required = True,
-        choices = mama_cdi_model_choices.SITIO_DEL_TUMOR_CHOICES,
+        choices = mama_cdi_model_choices.SitioDelTumorChoices.choices,
     )
     #Posición
     posicion = EmptyChoiceField(
@@ -427,7 +427,7 @@ class MamaCDIBiopsyForm(ModelForm):
     #Patrón arquitectural (todos los que apliquen)
     patron_arquitectural = forms.CustomMultiSelectFormField(
         label = "Patrón arquitectural (todos los que apliquen)",
-        choices = mama_cdi_model_choices.PATRON_ARQUITECTURAL_CHOICES
+        choices = mama_cdi_model_choices.PatronArquitecturalChoices.choices
     )
     patron_arquitectural = CharField(
         label = "Otro Patrón arquitectural(especifique)",

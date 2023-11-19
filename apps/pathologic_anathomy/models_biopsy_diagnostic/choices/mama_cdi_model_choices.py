@@ -27,14 +27,14 @@ class DiagnosticoOperatorioChoices(models.IntegerChoices):
     SI = 1,"SI"     
     NO = 2,"NO"
 
-SITIO_DEL_TUMOR_CHOICES = [
-    ("CLS", "Cuadrante lateral superior"),
-    ("CLI", "Cuadrante lateral inferior"),
-    ("CMS", "Cuadrante medial superior"),
-    ("CMI", "Cuadrante medial inferior"),
-    ("CEN", "Central"),
-    ("PEZ", "Pezón"),
-]
+class SitioDelTumorChoices(models.TextChoices):
+    CLS = "CLS", "Cuadrante lateral superior"
+    CLI = "CLI", "Cuadrante lateral inferior"
+    CMS = "CMS", "Cuadrante medial superior"
+    CMI = "CMI", "Cuadrante medial inferior"
+    CEN = "CEN", "Central"
+    PEZ = "PEZ", "Pezón"
+
 class PosicionChoices(models.IntegerChoices):
     HORAS_RELOJ = 1,"Horas del Reloj"     
     NO_ESPECIFICADA = 2,"No Especificada"
@@ -141,15 +141,15 @@ class PresenciaDCISChoices(models.IntegerChoices):
     DCIS_PRESENTE_POSITIVE_EIC = 3, "DCIS presente.Positive for EIC"
     DCIS_PRESENTE_DESPUES_TTO = 4, "DCIS presente.Solo presente después de tto presurgical (neoadjuvant)"
 
-PATRON_ARQUITECTURAL_CHOICES = [
-    ("COMEDO", "Comedo"),
-    ("PAGET", "Enfermedad de Paget (DCIS involving nipple skin)"),
-    ("CRIBRIFORME", "Cribriforme"),
-    ("MICROPAPILAR", "Micropapilar"),
-    ("PAPILAR", "Papilar"),
-    ("SOLIDO", "Sólido"),
-    ("OTROS", "Otros (especificar)"),
-]
+class PatronArquitecturalChoices(models.TextChoices):
+    COMEDO = "COMEDO", "Comedo"
+    PAGET = "PAGET", "Enfermedad de Paget (DCIS involving nipple skin)"
+    CRIBRIFORME = "CRIBRIFORME", "Cribriforme"
+    MICROPAPILAR = "MICROPAPILAR", "Micropapilar"
+    PAPILAR = "PAPILAR", "Papilar"
+    SOLIDO = "SOLIDO", "Sólido"
+    OTROS = "OTROS", "Otros (especificar)"
+
 
 # Define una clase para representar el grado del carcinoma
 class GradoChoices(models.IntegerChoices):

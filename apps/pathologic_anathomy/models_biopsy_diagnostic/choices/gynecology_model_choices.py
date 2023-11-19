@@ -6,14 +6,13 @@ class ProcedimientoChoices(models.IntegerChoices):
     OTRO = 3, "otro (especifique)"
     NO_ESPECIFICADO = 4, "no especificado"
 
-SITIO_TUMOR_CHOICES = [
-    ("CUADRANTE_SUPERIOR_DERECHO", "Cuadrante superior, derecho"),
-    ("CUADRANTE_SUPERIOR_IZQUIERDO", "Cuadrante superior, izquierdo"),
-    ("CUADRANTE_INFERIOR_DERECHO", "Cuadrante inferior, derecho"),
-    ("CUADRANTE_INFERIOR_IZQUIERDO", "Cuadrante inferior, izquierdo"),
-    ("NO_DETERMINADO", "No puede ser determinado (explique)"),
-]   
-
+class SitioTumorChoices(models.TextChoices):
+    CUADRANTE_SUPERIOR_DERECHO = "CUADRANTE_SUPERIOR_DERECHO", "Cuadrante superior, derecho"
+    CUADRANTE_SUPERIOR_IZQUIERDO = "CUADRANTE_SUPERIOR_IZQUIERDO", "Cuadrante superior, izquierdo"
+    CUADRANTE_INFERIOR_DERECHO = "CUADRANTE_INFERIOR_DERECHO", "Cuadrante inferior, derecho"
+    CUADRANTE_INFERIOR_IZQUIERDO = "CUADRANTE_INFERIOR_IZQUIERDO", "Cuadrante inferior, izquierdo"
+    NO_DETERMINADO = "NO_DETERMINADO", "No puede ser determinado (explique)"
+    
 class TipoHistologicoChoices(models.IntegerChoices):
     CARCINOMA_CELULAS_ESCAMOSAS = 1, "carcinoma de células escamosas"
     CARCINOMA_CELULAS_ESCAMOSAS_QUERATINIZANTE = 2, "carcinoma de células escamosas, queratinizante"
@@ -52,25 +51,26 @@ class GradoHistologicoChoices(models.IntegerChoices):
     GX = 4, "No puede ser evaluado"
     NO_SE_APLICA = 5, "No se aplica"
 
-MARGEN_AFECTACION_CHOICES = [
-    ("INFILTRADO", "Infiltrado por carcinoma invasor. Especifique posición, si es posible:"),
-    ("NEOPLASIA", "Neoplasia intraepithelial"),
-    ("LESION", "Lesión escamosa (CIN 2-3)"),
-    ("ADENOCARCINOMA", "Adenocarcinoma en situ"),
-]
+class MargenAfectacionChoices(models.TextChoices):
+    INFILTRADO = "INFILTRADO", "Infiltrado por carcinoma invasor. Especifique posición, si es posible:"
+    NEOPLASIA = "NEOPLASIA", "Neoplasia intraepithelial"
+    LESION = "LESION", "Lesión escamosa (CIN 2-3)"
+    ADENOCARCINOMA = "ADENOCARCINOMA", "Adenocarcinoma en situ"
+
 
 class InvasionLymphovascularChoices(models.IntegerChoices):
     AUSENTE = 1, "ausente"
     PRESENTE = 2, "presente"
     NO_DETERMINADO = 3, "no determinado"
 
-OTRA_PATOLOGIA_ASOCIADA_CHOICES = [
-    ("NO_IDENTIFICO", "No identificó"),
-    ("NIC_I", "NIC I"),
-    ("NIC_II", "NIC II"),
-    ("INFLAMACION", "Inflamación"),
-    ("OTRO", "Otro del + (especifique)"),
-]
+
+class OtraPatologiaAsociada(models.TextChoices):
+    NO_IDENTIFICO = "NO_IDENTIFICO", "No identificó"
+    NIC_I = "NIC_I", "NIC I"
+    NIC_II = "NIC_II", "NIC II"
+    INFLAMACION = "INFLAMACION", "Inflamación"
+    OTRO = "OTRO", "Otro del + (especifique)"
+
 
 class ReseccionChoices(models.IntegerChoices):
     AMPUTACION = 1, "Amputación"
