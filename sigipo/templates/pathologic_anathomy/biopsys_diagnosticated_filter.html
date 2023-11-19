@@ -1,5 +1,6 @@
 {% extends "base_crud/base_list.html" %}
 {% load column_sort %}
+{%block title%} Biopsias diagnosticadas {%endblock%}
 {% block crud_columns %}
     {% create_header_column 'biopsy_id' 'Biopsia ID' %}
     {% create_header_column 'hospital' 'Hospital' %}
