@@ -44,6 +44,7 @@ class SitioTumorChoices(TextChoices):
     LOBULO_PIRAMIDAL = "lobulo_piramidal", "El lóbulo piramidal"
     OTRO = "otro", "Otro (especifique)"
 
+
 class CarcinomaPapilarChoice(IntegerChoices):
     """Define el carcinoma papilar"""
 
@@ -176,13 +177,25 @@ class ExtensionChoices(IntegerChoices):
         "Invadiendo la fascia pre-vertebral o recubriendo la arteria carótida o los vasos mediastinales (ie,pT4b)",
     )
 
-class NivelesGanglionaresChoices(TextChoices):
-    NIVEL_VI = "nivel_Vi", "Nivel VI: pre- traqueal, para- traqueal y pre-laríngeo/Delphian, peri-tiroideos (disección del compartimiento central)"
-    NIVEL_VII = "nivel_VII", "Nivel VII (los ganglios linfáticos mediastinales superiores)"
-    NIVEL_IV_DERECHO = "nivel_IV_derecho", "Nivel I-V (disección lateral del cuello) Derecho"
-    NIVEL_IV_IZQUIERDO = "nivel_IV_izquierdo", "Nivel I-V (disección lateral del cuello) Izquierda"
-    OTROS = "otros", "Otros"
 
+class NivelesGanglionaresChoices(TextChoices):
+    NIVEL_VI = (
+        "nivel_Vi",
+        "Nivel VI: pre- traqueal, para- traqueal y pre-laríngeo/Delphian, peri-tiroideos (disección del compartimiento central)",
+    )
+    NIVEL_VII = (
+        "nivel_VII",
+        "Nivel VII (los ganglios linfáticos mediastinales superiores)",
+    )
+    NIVEL_IV_DERECHO = (
+        "nivel_IV_derecho",
+        "Nivel I-V (disección lateral del cuello) Derecho",
+    )
+    NIVEL_IV_IZQUIERDO = (
+        "nivel_IV_izquierdo",
+        "Nivel I-V (disección lateral del cuello) Izquierda",
+    )
+    OTROS = "otros", "Otros"
 
 
 class ExtensionExtraGanglionar(IntegerChoices):

@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0055_alter_biopsyrequest_biopsy_type'),
+        ("pathologic_anathomy", "0055_alter_biopsyrequest_biopsy_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='head',
-            name='aditional_tumor_size',
-            field=models.FloatField(verbose_name='Las dimensiones adicionales del tumor (centímetros):'),
+            model_name="head",
+            name="aditional_tumor_size",
+            field=models.FloatField(
+                verbose_name="Las dimensiones adicionales del tumor (centímetros):"
+            ),
         ),
     ]

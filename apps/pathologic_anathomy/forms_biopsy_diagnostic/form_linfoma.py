@@ -29,7 +29,7 @@ class LinfomaBiopsyDiagnosticForm(ModelForm):
                 "data-language": "es",
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
-                "hidden":"true"
+                "hidden": "true",
             },
         ),
         label="",

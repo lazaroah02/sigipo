@@ -1,8 +1,12 @@
 from django.db import models
 
+
 class EspecimenChoices(models.TextChoices):
     EL_GANGLIO_LINFATICO = "el ganglio linfático(s)", "El ganglio linfático(s)"
-    NO_ESPECIFICADO_EL_PROCEDIMIENTO = "no especificado el procedimiento", "No especificado el procedimiento"
+    NO_ESPECIFICADO_EL_PROCEDIMIENTO = (
+        "no especificado el procedimiento",
+        "No especificado el procedimiento",
+    )
     LA_BIOPSIA = "la biopsia", "La biopsia"
     LA_RESECCION = "la resección", "La resección"
     OTRO = "otro", "Otro (especifique)"
@@ -26,7 +30,11 @@ class HistologicTypeChoices(models.IntegerChoices):
     LYMPHOCYTE_RICH = 6, "Linfoma de Hodgkin clásico rico en linfocitos"
     LYMPHOCYTE_DEPLETED = 7, "Linfoma de Hodgkin con depleción linfocítica"
 
+
 class PathologicTumorExtensionChoices(models.TextChoices):
     AFECTA_LA_MEDULA_OSEA = "Afecta la médula ósea", "Afecta la médula ósea"
-    AFECTA_EL_SITIO_ESPECIFICO = "Afecta el sitio específico", "Afecta el sitio específico"
+    AFECTA_EL_SITIO_ESPECIFICO = (
+        "Afecta el sitio específico",
+        "Afecta el sitio específico",
+    )
     AFECTA_OTRO_SITIO = "Afecta otro sitio", "Afecta otro sitio"

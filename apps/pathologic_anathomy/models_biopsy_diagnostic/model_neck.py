@@ -5,7 +5,9 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic.choices import neck_model
 
 class NeckBiopsyDiagnostic(models.Model):
     biopsy = models.OneToOneField(
-        "pathologic_anathomy.BiopsyRequest", on_delete=models.CASCADE, related_name="neck_biopsy_diagnostic"
+        "pathologic_anathomy.BiopsyRequest",
+        on_delete=models.CASCADE,
+        related_name="neck_biopsy_diagnostic",
     )
 
     # A.	Información clínica recibida en el departamento de Anatomía Patológica.

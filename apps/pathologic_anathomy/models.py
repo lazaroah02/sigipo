@@ -14,9 +14,9 @@ from django.db.models.manager import Manager
 from apps.core.models import TimeStampedModel
 from apps.employee.models import Doctor
 from apps.patient.models import Patient
-from apps.pathologic_anathomy.models_biopsy_diagnostic.model_mama_cdis import MamaCDISBiopsyDiagnostic
 
 # Create your models here.
+
 
 class HospitalChoice(IntegerChoices):
     """Defines the Hospital in Holguin"""

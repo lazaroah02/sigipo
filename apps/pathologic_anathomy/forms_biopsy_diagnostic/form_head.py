@@ -27,11 +27,11 @@ class HeadBiopsyForm(ModelForm):
                 "data-language": "es",
                 "data-theme": "bootstrap-5",
                 "data-width": "style",
-                "hidden":"true"
+                "hidden": "true",
             },
         ),
         required=True,
-        label = ""
+        label="",
     )
     # INFORMACION CLINICA RECIVIDA EN EL DEPARTAMENTEO DE ANATOMIA PATOLOGICA
     # tipo de muestra

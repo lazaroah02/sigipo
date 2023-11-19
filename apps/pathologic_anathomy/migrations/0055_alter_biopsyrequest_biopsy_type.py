@@ -4,15 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('pathologic_anathomy', '0054_alter_gynecologybiopsydiagnostic_total_num_nodos_examinados'),
+        (
+            "pathologic_anathomy",
+            "0054_alter_gynecologybiopsydiagnostic_total_num_nodos_examinados",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='biopsyrequest',
-            name='biopsy_type',
-            field=models.IntegerField(blank=True, choices=[(1, 'Biopsia de Cabeza'), (2, 'Biopsia de Cuello'), (3, 'Biopsia Digestivo'), (4, 'Biopsia de Ginecologia'), (5, 'Biopsia de Linfoma'), (6, 'Biopsia de Mama CDI'), (7, 'Biopsia de Mama CDIS')], null=True, verbose_name='Tipo de Biopsia'),
+            model_name="biopsyrequest",
+            name="biopsy_type",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (1, "Biopsia de Cabeza"),
+                    (2, "Biopsia de Cuello"),
+                    (3, "Biopsia Digestivo"),
+                    (4, "Biopsia de Ginecologia"),
+                    (5, "Biopsia de Linfoma"),
+                    (6, "Biopsia de Mama CDI"),
+                    (7, "Biopsia de Mama CDIS"),
+                ],
+                null=True,
+                verbose_name="Tipo de Biopsia",
+            ),
         ),
     ]
