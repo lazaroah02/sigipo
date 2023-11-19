@@ -15,6 +15,7 @@ from apps.pathologic_anathomy.forms_biopsy_diagnostic import (
     form_linfoma,
     form_gynecology,
     form_mama_cdi,
+    form_mama_cdis,
 )
 from apps.pathologic_anathomy.models import BiopsyRequest
 from apps.pathologic_anathomy.models_biopsy_diagnostic import (
@@ -24,6 +25,7 @@ from apps.pathologic_anathomy.models_biopsy_diagnostic import (
     model_linfoma,
     model_gynecology,
     model_mama_cdi,
+    model_mama_cdis,
 )
 
 
@@ -84,7 +86,7 @@ BIOPSY_TYPES = {
         4:{"model":model_gynecology.GynecologyBiopsyDiagnostic, "form":form_gynecology.GynecologyBiopsyForm},  #Biopsia de Ginecologia
         5:{"model":model_linfoma.LinfomaBiopsyDiagnostic, "form":form_linfoma.LinfomaBiopsyDiagnosticForm},  #Biopsia de Linfoma
         6:{"model":model_mama_cdi.MamaCDIBiopsyDiagnostic, "form":form_mama_cdi.MamaCDIBiopsyForm},  #Biopsia de Mama CDI
-        7:{"model":model_head.Head, "form":form_head.HeadBiopsyForm},  #Biopsia de Mama CDIS
+        7:{"model":model_mama_cdis.MamaCDISBiopsyDiagnostic, "form":form_mama_cdis.MamaCDISBiopsyForm},  #Biopsia de Mama CDIS
     }    
 
 def get_form_class(biopsy):

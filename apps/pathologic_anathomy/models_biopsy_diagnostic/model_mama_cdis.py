@@ -122,7 +122,7 @@ class MamaCDISBiopsyDiagnostic(models.Model):
         null=True
     )
     #Número de bloques examinados:
-    num_bloques_examinados = models.ImageField(
+    num_bloques_examinados = models.IntegerField(
         verbose_name="Número de bloques examinados",
         blank=True,
         null=True
