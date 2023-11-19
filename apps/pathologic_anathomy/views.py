@@ -109,6 +109,8 @@ def add_diagnostic_view(request, biopsy_pk):
     #si es post procesamos el formulario para guardarlo o mostrar los errores
     if request.method == "POST":
         form = get_form_class(biopsy)(request.POST)
+        form_biopsyrequest = BiopsyRequestForm(instance = biopsy)
+        disable_form_fields(form_biopsyrequest)
         if form.is_valid():
             biopsy.verificated = True
             biopsy.save()
@@ -163,14 +165,15 @@ def biopsy_diagnosticated_detail_view(request, biopsy_pk):
 
 def biopsy_diagnostic_update_view(request, biopsy_pk):
     success_url = reverse_lazy("pathologic_anathomy:biopsy-diagnosticated_list")
-    cancel_url = "pathologic_anathomy:biopsyrequest_list"
+    cancel_url = "pathologic_anathomy:biopsy-diagnosticated_list"
     biopsy = BiopsyRequest.objects.get(pk = biopsy_pk)
     diagnostic = get_model_class(biopsy).objects.get(biopsy = biopsy_pk)
     view_title = f"Añadir {get_model_class(biopsy)._meta.verbose_name.lower()} de la biopsia {biopsy.biopsy_id}"
+    form_biopsyrequest = BiopsyRequestForm(instance = biopsy)
+    disable_form_fields(form_biopsyrequest)
     #si es post procesamos el formulario para guardarlo o mostrar los errores
     if request.method == "POST":
-        form = get_form_class(biopsy)(request.POST)
-        print(form)
+        form = get_form_class(biopsy)(request.POST, instance = diagnostic)
         if form.is_valid():
             form.save()
             return redirect(success_url) 
@@ -181,6 +184,7 @@ def biopsy_diagnostic_update_view(request, biopsy_pk):
                 "pathologic_anathomy/add_diagnostic.html", 
                 {
                     "form": form, 
+                    "form_biopsyrequest": form_biopsyrequest,
                     "cancel_url":"pathologic_anathomy:biopsyrequest_list",
                     "view_title":view_title,
                 }
@@ -188,8 +192,6 @@ def biopsy_diagnostic_update_view(request, biopsy_pk):
     #mostramos el formulario en el template
     else:
         form = get_form_class(biopsy)(instance = diagnostic)
-        form_biopsyrequest = BiopsyRequestForm(instance = biopsy)
-        disable_form_fields(form_biopsyrequest)
         return render(
             request, 
             "pathologic_anathomy/biopsy_diagnostic_update.html", 
