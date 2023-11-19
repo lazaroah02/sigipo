@@ -22,7 +22,7 @@
             {% else %}
                 <td>{{ obj.medic_that_report|default_if_none:"" }}</td>
             {% endif %}
-            <td style = "width:150px">
+            <td style="width:150px">
                 <a href="{% url detail_url obj.pk %}" class="view" title="Detalles" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                 <a href="{% url edit_url obj.pk %}" class="edit" title="Editar" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="{% url delete_url obj.pk %}" class="delete" title="Eliminar" data-toggle="tooltip"><i class="fa-solid fa-trash-can"></i></a>
